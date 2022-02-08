@@ -5,6 +5,10 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
+    "build:contracts": "yarn run clean && yarn run build-ts && npm run cp",
+    "build-ts": "node build.js",
+    "clean": "rimraf ./dist",
+    "cp": "copyfiles -u 1 ./src/**/*.json dist",
     "lint": "vue-cli-service lint",
     "test": "jest"
   },
@@ -40,6 +44,9 @@
     "prettier": "^2.2.1",
     "ts-jest": "^27.1.3",
     "vue-template-compiler": "^2.6.11",
-    "ts-node": "^10.0.0"
+    "ts-node": "^10.0.0",
+    "esbuild": "0.12.5",
+    "replace-in-file": "^6.2.0",
+    "copyfiles": "^2.4.0"
   }
 }

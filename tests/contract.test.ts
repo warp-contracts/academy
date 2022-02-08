@@ -11,6 +11,7 @@ import {
   SmartWeave,
   SmartWeaveNodeFactory,
   LoggerFactory,
+  InteractionResult,
 } from 'redstone-smartweave';
 
 describe('Testing the Profit Sharing Token', () => {
@@ -44,12 +45,12 @@ describe('Testing the Profit Sharing Token', () => {
     walletAddress = await arweave.wallets.jwkToAddress(wallet);
 
     contractSrc = fs.readFileSync(
-      path.join(__dirname, '../src/contracts/contract.ts'),
+      path.join(__dirname, '../dist/contract.js'),
       'utf8'
     );
     const stateFromFile: PstState = JSON.parse(
       fs.readFileSync(
-        path.join(__dirname, '../src/contracts/initial-state.json'),
+        path.join(__dirname, '../dist/contracts/initial-state.json'),
         'utf8'
       )
     );
