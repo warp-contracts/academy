@@ -10,7 +10,7 @@ import {
   PstState,
   SmartWeave,
   SmartWeaveNodeFactory,
-  LoggerFactory,
+  LoggerFactory, InteractionResult,
 } from 'redstone-smartweave';
 
 describe('Testing the Profit Sharing Token', () => {
