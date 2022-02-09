@@ -16,6 +16,7 @@ export const mintTokens = async (
   if (!Number.isInteger(qty)) {
     throw new ContractError('Invalid value for "qty". Must be an integer');
   }
+
   balances[caller] ? (balances[caller] += qty) : (balances[caller] = qty);
   return { state };
 };
