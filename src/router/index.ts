@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import VueRouter, { RouteConfig } from 'vue-router';
-import Contract from '../views/Contract.vue';
+import Contract from '../views/Contract/Contract.vue';
 
 Vue.use(VueRouter);
 

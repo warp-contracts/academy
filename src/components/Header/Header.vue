@@ -52,14 +52,7 @@ export default Vue.extend({
     contractAddress() {
       return deployedContracts.fc;
     },
-    ...mapState([
-      'state',
-      'validity',
-      'contract',
-      'arweave',
-      'smartweave',
-      'walletAddress',
-    ]),
+    ...mapState(['contract', 'arweave', 'walletAddress']),
   },
 });
 </script>
