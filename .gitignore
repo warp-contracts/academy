@@ -2,6 +2,7 @@
 node_modules
 /dist
 /lib
+.secrets
 
 
 # local env files

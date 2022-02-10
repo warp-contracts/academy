@@ -1,8 +1,8 @@
 import fs from 'fs';
 import path from 'path';
 import Arweave from 'arweave';
-import { SmartWeaveNodeFactory } from 'redstone-smartweave';
-const jwk = require('../../.secrets/jwk.json');
+import { ArWallet, SmartWeaveNodeFactory } from 'redstone-smartweave';
+import jwk from '../../.secrets/jwk.json';
 
 (async () => {
   // Loading contract source and initial state from files
@@ -26,7 +26,7 @@ const jwk = require('../../.secrets/jwk.json');
   // Deploying contract
   console.log('Deployment started');
   const contractTxId = await smartweave.createContract.deploy({
-    wallet: jwk,
+    wallet: jwk as ArWallet,
     initState: initialState,
     src: contractSrc,
   });

@@ -134,7 +134,8 @@ describe('Testing the Profit Sharing Token', () => {
       'GH2IY_3vtE2c0KfQve9_BHoIPjZCS8s5YmSFS_fppKI'
     );
     expect(result.balance).toEqual(1000 + 555);
-    expect(result.ticker).toEqual('EC');
+    expect(result.ticker).toEqual('FC');
+    expect(result.ticker).toEqual('Federation Credits');
     expect(result.target).toEqual(
       'GH2IY_3vtE2c0KfQve9_BHoIPjZCS8s5YmSFS_fppKI'
     );

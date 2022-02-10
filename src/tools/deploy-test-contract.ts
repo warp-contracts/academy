@@ -1,55 +1,66 @@
+import Arweave from 'arweave';
+import { JWKInterface } from 'arweave/node/lib/wallet';
+import { PstState } from '../contracts/types/types';
+import {
+  LoggerFactory,
+  PstContract,
+  SmartWeave,
+  SmartWeaveNodeFactory,
+} from 'redstone-smartweave';
 import fs from 'fs';
 import path from 'path';
-import Arweave from 'arweave';
-import { SmartWeaveNodeFactory, LoggerFactory } from 'redstone-smartweave';
+
+let contractSrc: string;
+
+let wallet: JWKInterface;
+let walletAddress: string;
+
+let initialState: PstState;
+
+let arweave: Arweave;
+let smartweave: SmartWeave;
+let pst: PstContract;
 
 (async () => {
-  // Set up Arweave client
-  const arweave = Arweave.init({
-    host: 'localhost',
-    port: 1984,
-    protocol: 'http',
+  arweave = Arweave.init({
+    host: 'testnet.redstone.tools',
+    port: 443,
+    protocol: 'https',
   });
-  const wallet = await arweave.wallets.generate();
-  const walletAddress = await arweave.wallets.getAddress(wallet);
-  await arweave.api.get(`/mint/${walletAddress}/1000000000000000`);
 
-  const stateFromFile = JSON.parse(
+  LoggerFactory.INST.logLevel('error');
+
+  smartweave = SmartWeaveNodeFactory.memCached(arweave);
+  wallet = await arweave.wallets.generate();
+  const address = await arweave.wallets.getAddress(wallet);
+  await arweave.api.get(`/mint/${address}/1000000000000000`);
+  walletAddress = await arweave.wallets.jwkToAddress(wallet);
+
+  contractSrc = fs.readFileSync(
+    path.join(__dirname, '../../dist/contract.js'),
+    'utf8'
+  );
+  const stateFromFile: PstState = JSON.parse(
     fs.readFileSync(
-      path.join(__dirname, '../contracts/initial-state.json'),
+      path.join(__dirname, '../../dist/contracts/initial-state.json'),
       'utf8'
     )
   );
 
-  const initialState = {
+  initialState = {
     ...stateFromFile,
     ...{
       owner: walletAddress,
-      balances: {
-        ...stateFromFile.balances,
-        [walletAddress]: 555669,
-      },
     },
   };
-  const mine = () => arweave.api.get('mine');
-
-  // Set up SmartWeave client
-  LoggerFactory.INST.logLevel('error');
-  const smartweave = SmartWeaveNodeFactory.memCached(arweave);
-
-  // Deploying contract
-  const contractSrc = fs.readFileSync(
-    path.join(__dirname, '../contracts/contract.ts'),
-    'utf8'
-  );
 
   const contractTxId = await smartweave.createContract.deploy({
     wallet,
     initState: JSON.stringify(initialState),
     src: contractSrc,
   });
-  await mine();
-  const pst = smartweave.contract(contractTxId);
-  await pst.readState();
+
   console.log(contractTxId);
+
+  await arweave.api.get('mine');
 })();

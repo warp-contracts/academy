@@ -1,0 +1,30 @@
+.balances-list.active {
+  background-color: #c8e7ff;
+}
+
+.balances-list {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 1rem;
+  flex-wrap: wrap;
+}
+
+.loader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 30vh;
+}
+
+.img-fc {
+  width: 15px;
+  height: 15px;
+}
+
+.balance {
+  width: 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
