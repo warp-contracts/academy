@@ -1,0 +1,13 @@
+.address-field {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+
+  div {
+    padding: 0.5rem;
+  }
+
+  .address-tx {
+    font-weight: 600;
+  }
+}

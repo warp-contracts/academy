@@ -40,26 +40,7 @@ const config = {
       }),
     ],
   ],
-  plugins: [
-    [
-      '@docusaurus/plugin-content-docs',
-      {
-        id: 'redstone-academy-pst',
-        path: '../redstone-academy-pst/docs',
-        routeBasePath: '../redstone-academy-pst/docs',
-        sidebarPath: require.resolve('./sidebars.js'),
-      },
-    ],
-    [
-      '@docusaurus/plugin-content-docs',
-      {
-        id: 'redstone-academy-loot',
-        path: '../redstone-academy-loot/docs',
-        routeBasePath: '../redstone-academy-loot/docs',
-        sidebarPath: require.resolve('./sidebars.js'),
-      },
-    ],
-  ],
+  plugins: [],
 
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
@@ -67,6 +48,7 @@ const config = {
       colorMode: {
         defaultMode: 'dark',
       },
+      hideableSidebar: true,
       navbar: {
         title: 'RedStone Academy',
         logo: {
@@ -78,24 +60,12 @@ const config = {
             type: 'doc',
             docId: 'intro',
             position: 'left',
-            label: 'Introduction',
+            label: 'Learn',
           },
           {
             href: 'https://github.com/redstone-finance/redstone-smartcontracts',
             label: 'GitHub',
             position: 'right',
-          },
-          {
-            to: '../redstone-academy-pst/docs/intro', // ./docs-api/Intro.md
-            label: 'PST',
-            position: 'left',
-            activeBaseRegex: `/redstone-academy-pst/docs/`,
-          },
-          {
-            to: '../redstone-academy-loot/docs/intro', // ./docs-api/Intro.md
-            label: 'LOOT',
-            position: 'left',
-            activeBaseRegex: `/redstone-academy-loot/docs/`,
           },
         ],
       },

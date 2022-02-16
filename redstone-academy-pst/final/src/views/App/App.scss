@@ -1,0 +1,94 @@
+#app {
+  font-family: 'VT323', monospace;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  font-size: 20px;
+}
+
+#nav {
+  padding: 30px;
+}
+
+#nav a {
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+#nav a.router-link-exact-active {
+  color: #42b983;
+}
+
+.toasted {
+  font-family: 'VT323', monospace;
+  .action {
+    color: white !important;
+  }
+
+  a {
+    color: white;
+  }
+}
+
+h3 {
+  margin: 40px 0 0;
+}
+h1 {
+  color: #779be7;
+  font-weight: 600;
+}
+ul {
+  list-style-type: none;
+  padding: 0;
+  padding-left: 0rem !important;
+}
+li {
+  display: inline-block;
+  margin: 0 10px;
+}
+a {
+  color: #42b983;
+}
+
+button {
+  background-color: #d8bbff;
+  border: 2px solid #d8bbff;
+  padding: 6px 15px;
+  text-decoration: none;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 0.5rem !important;
+  font-family: 'Noto Sans Mono', monospace;
+  font-weight: 600;
+
+  &:hover {
+    background-color: transparent;
+  }
+
+  @media only screen and (max-width: 768px) {
+    margin-left: auto !important;
+  }
+
+  &.mint {
+    margin-left: 1rem;
+  }
+}
+
+input[type='text'],
+input[type='number'] {
+  border-width: 0px;
+  border: none;
+  border-bottom: 1px solid;
+  background-color: transparent;
+  font-family: 'VT323', monospace;
+  margin: 1rem 0;
+
+  &:focus {
+    outline: none;
+  }
+
+  &::placeholder {
+    font-family: 'VT323', monospace;
+  }
+}

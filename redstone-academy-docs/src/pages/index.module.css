@@ -11,6 +11,7 @@
   background-image: url(../../static/img/space-background.png);
   height: 70vh;
   background-size: contain;
+  color: white;
 }
 
 @media screen and (max-width: 966px) {
