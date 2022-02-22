@@ -1,5 +1,4 @@
 import fs from 'fs';
-
 import ArLocal from 'arlocal';
 import Arweave from 'arweave';
 import { JWKInterface } from 'arweave/node/lib/wallet';
@@ -28,7 +27,7 @@ describe('Testing the Profit Sharing Token', () => {
   let pst: PstContract;
 
   beforeAll(async () => {
-    arlocal = new ArLocal(1820, false);
+    arlocal = new ArLocal(1820);
     await arlocal.start();
 
     arweave = Arweave.init({
@@ -80,7 +79,6 @@ describe('Testing the Profit Sharing Token', () => {
 
   it('should read pst state and balance data', async () => {
     expect(await pst.currentState()).toEqual(initialState);
-
     expect(
       (await pst.currentBalance('GH2IY_3vtE2c0KfQve9_BHoIPjZCS8s5YmSFS_fppKI'))
         .balance
@@ -101,16 +99,6 @@ describe('Testing the Profit Sharing Token', () => {
     expect((await pst.currentState()).balances[walletAddress]).toEqual(2000);
   });
 
-  it('should properly add tokens for already existing balance', async () => {
-    await pst.writeInteraction({
-      function: 'mint',
-      qty: 333,
-    });
-
-    await mineBlock(arweave);
-    expect((await pst.currentState()).balances[walletAddress]).toEqual(2333);
-  });
-
   it('should properly transfer tokens', async () => {
     await pst.transfer({
       target: 'GH2IY_3vtE2c0KfQve9_BHoIPjZCS8s5YmSFS_fppKI',
@@ -127,18 +115,6 @@ describe('Testing the Profit Sharing Token', () => {
         'GH2IY_3vtE2c0KfQve9_BHoIPjZCS8s5YmSFS_fppKI'
       ]
     ).toEqual(1000 + 555);
-  });
-
-  it('should properly view contract state', async () => {
-    const result = await pst.currentBalance(
-      'GH2IY_3vtE2c0KfQve9_BHoIPjZCS8s5YmSFS_fppKI'
-    );
-    expect(result.balance).toEqual(1000 + 555);
-    expect(result.ticker).toEqual('FC');
-    expect(result.ticker).toEqual('Federation Credits');
-    expect(result.target).toEqual(
-      'GH2IY_3vtE2c0KfQve9_BHoIPjZCS8s5YmSFS_fppKI'
-    );
   });
 
   it('should properly perform dry write with overwritten caller', async () => {

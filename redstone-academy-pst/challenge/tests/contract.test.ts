@@ -1,4 +1,6 @@
 describe('Testing the Profit Sharing Token', () => {
+  beforeAll(async () => {});
+
   afterAll(async () => {});
 
   it('should read pst state and balance data', async () => {});

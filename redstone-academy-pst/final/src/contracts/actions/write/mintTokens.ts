@@ -7,7 +7,6 @@ export const mintTokens = async (
   { caller, input: { qty } }: PstAction
 ) => {
   const balances = state.balances;
-  console.log('test', balances[caller]);
 
   if (qty <= 0) {
     throw new ContractError('Invalid token mint');

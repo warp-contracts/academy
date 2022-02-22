@@ -4,7 +4,7 @@ Ok, time for our first dApp!
 
 ## 👷 What we're gonna build?
 
-In this tutorial we're going to learn how to build a simple PST (Profit sharing tokens) application. Our main tokens will be Federation Credits which are monetary units used by the United Federation of Planets. In order to achieve that we will write our first PST contract. After writing some tests, we will deploy it to the [RedStone public testnet](https://testnet.redstone.tools/). It will let us mint some tokens as well as transfer them between addresses and read addresses' current balances. We will then create a simple dApp which will help us interact with the contract in a user-friendly way.
+In this tutorial we're going to learn how to build a simple PST (Profit Sharing Tokens) application. Our main tokens will be Federation Credits which are monetary units used by the United Federation of Planets. In order to achieve that, we will write our first PST contract. After writing some tests, we will deploy it to the [RedStone public testnet](https://testnet.redstone.tools/). It will let us mint some tokens as well as transfer them between addresses and read addresses' current balances. We will then create a simple dApp which will help us interact with the contract in a user-friendly way.
 
 ## 🔨 What you'll need
 

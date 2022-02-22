@@ -5,7 +5,11 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "build:contracts": "yarn run clean && yarn run build-ts && npm run cp",
+    "build-ts": "node build.js",
+    "clean": "rimraf ./dist",
+    "cp": "copyfiles -u 1 ./src/**/*.json dist"
   },
   "dependencies": {
     "babel-jest": "^27.5.0",

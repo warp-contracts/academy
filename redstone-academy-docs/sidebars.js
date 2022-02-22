@@ -19,13 +19,13 @@ const sidebars = {
   // But you can create a sidebar manually
 
   tutorialSidebar: [
-    { type: 'doc', label: 'Introduction', id: 'intro' },
+    { type: 'doc', label: 'Intro', id: 'intro' },
     {
       type: 'category',
       label: 'Elementary',
       items: [
-        { type: 'doc', label: 'Arweave', id: 'elementary/arweave' },
         { type: 'doc', label: 'Blockchain', id: 'elementary/blockchain' },
+        { type: 'doc', label: 'Arweave', id: 'elementary/arweave' },
         {
           type: 'doc',
           label: 'Gateways',
@@ -65,8 +65,34 @@ const sidebars = {
             },
             {
               type: 'doc',
+              label: 'Initial State',
+              id: 'pst/writing-pst-contract/initial-state',
+            },
+            {
+              type: 'doc',
               label: 'Contract Source',
               id: 'pst/writing-pst-contract/contract-source',
+            },
+          ],
+        },
+        {
+          type: 'category',
+          label: 'Writing tests',
+          items: [
+            {
+              type: 'doc',
+              label: 'Networks',
+              id: 'pst/tests/networks',
+            },
+            {
+              type: 'doc',
+              label: 'Preparations',
+              id: 'pst/tests/preparations',
+            },
+            {
+              type: 'doc',
+              label: 'Execution',
+              id: 'pst/tests/execution',
             },
           ],
         },
