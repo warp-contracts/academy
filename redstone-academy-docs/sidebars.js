@@ -37,7 +37,7 @@ const sidebars = {
       type: 'category',
       label: 'PST',
       items: [
-        { type: 'doc', label: 'Intro', id: 'pst/intro' },
+        { type: 'doc', label: 'Intro', id: 'pst/introduction/intro' },
         {
           type: 'category',
           label: 'Profit Sharing',
@@ -96,12 +96,8 @@ const sidebars = {
             },
           ],
         },
+        { type: 'doc', label: 'Deployment', id: 'pst/deployment/deployment' },
       ],
-    },
-    {
-      type: 'category',
-      label: 'LOOT',
-      items: [{ type: 'doc', label: 'Intro', id: 'loot/intro' }],
     },
   ],
 };

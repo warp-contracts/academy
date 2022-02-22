@@ -14,7 +14,7 @@ In this tutorial we're going to learn how to build a simple PST (Profit Sharing 
 ## 🔗 Links
 
 We've already deployed final versions of PST contract and application.
-You can view contract in [SonAR](https://sonar.redstone.tools/#/app/contract/NfOsoVlsQ4_hh_tLwvI4IkNQr0Ey5p3_uHTqKD1O3Ts?network=testnet). Application is available [here](url).
+You can view contract in [SonAR](https://sonar.redstone.tools/#/app/contract/NfOsoVlsQ4_hh_tLwvI4IkNQr0Ey5p3_uHTqKD1O3Ts?network=testnet). Application is available here.
 
 In order to complete this tutorial you will need to fork [redstone-academy repository](https://github.com/redstone-finance/redstone-academy), head to redstone-academy-pst/challenge folder and complete all the tasks in next sections by writing some code.
 

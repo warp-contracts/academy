@@ -1,6 +1,6 @@
 # Execution
 
-We will write couple of tests which will help us understand some basics about interacting with the contract. After writing each test you should run correct script from previous section (node or browser one) to see if it works correctly. 
+We will write couple of tests which will help us understand some basics about interacting with the contract. After writing each test you should run correct script from previous section (node or browser one) to see if it works correctly.
 
 ### Current state and current balance
 
@@ -43,21 +43,21 @@ As we posted a transaction which changes contract's state, we need to mine a blo
 Let's test core contract function - `transfer`. It should correctly substract indicated amount of tokens from caller's wallet and add it to the target wallet. Here we can use dedicated PST method - `transfer` which calls `transfer` function by using `writeInteraction` method. We will then - again - mine block and check contract's state after the change. Add following code to `should properly transfer tokens` test.
 
 ```js
-    await pst.transfer({
-      target: 'GH2IY_3vtE2c0KfQve9_BHoIPjZCS8s5YmSFS_fppKI',
-      qty: 555,
-    });
+await pst.transfer({
+  target: 'GH2IY_3vtE2c0KfQve9_BHoIPjZCS8s5YmSFS_fppKI',
+  qty: 555,
+});
 
-    await mineBlock(arweave);
+await mineBlock(arweave);
 
-    expect((await pst.currentState()).balances[walletAddress]).toEqual(
-      2000 + 333 - 555
-    );
-    expect(
-      (await pst.currentState()).balances[
-        'GH2IY_3vtE2c0KfQve9_BHoIPjZCS8s5YmSFS_fppKI'
-      ]
-    ).toEqual(1000 + 555);
+expect((await pst.currentState()).balances[walletAddress]).toEqual(
+  2000 + 333 - 555
+);
+expect(
+  (await pst.currentState()).balances[
+    'GH2IY_3vtE2c0KfQve9_BHoIPjZCS8s5YmSFS_fppKI'
+  ]
+).toEqual(1000 + 555);
 ```
 
 ### Dry-writes
@@ -93,3 +93,7 @@ Write following code in `should properly perform dry write with overwritten call
     expect(result.state.balances[overwrittenCaller]).toEqual(1000 - 333);
   });
 ```
+
+### Conclusion
+
+We've just learned some key SmartWeave concepts. We've also ascertained that our contract will work correctly. We are ready to deploy the contract!
