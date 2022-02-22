@@ -193,7 +193,7 @@ await arlocal.stop();
 
 ### Test scripts
 
-It is good to test contract in different environments. We will test it in server environment as well as browser one. Jest executes tests on server so we need to add some additional files in order for it to work. It's already prepared but if you want to get familiar with how it works see these files: [challenge/jest.browser.config.js](https://github.com/redstone-finance/redstone-academy/blob/main/redstone-academy-pst/final/jest.browser.config.js) and [challenge/browser-jest-env.js](https://github.com/redstone-finance/redstone-academy/blob/main/redstone-academy-pst/final/browser-jest-env.js). One last bit is to add scripts to `package.json` files which will give us possibility to run node tests, run browser tests or run them both.
+It is good to test contract in different environments. We will test it in server environment as well as browser one. Jest executes tests on server so we need to add some additional files in order for it to work. It's already prepared but if you want to get familiar with how it works see these files: [challenge/jest.browser.config.js](https://github.com/redstone-finance/redstone-academy/blob/main/redstone-academy-pst/challenge/jest.browser.config.js) and [challenge/browser-jest-env.js](https://github.com/redstone-finance/redstone-academy/blob/main/redstone-academy-pst/challenge/browser-jest-env.js). One last bit is to add scripts to `package.json` files which will give us possibility to run node tests, run browser tests or run them both.
 
 ```json
     "test": "yarn test:node && yarn test:browser",

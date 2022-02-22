@@ -19,7 +19,6 @@ let initialState: PstState;
 
 let arweave: Arweave;
 let smartweave: SmartWeave;
-let pst: PstContract;
 
 (async () => {
   arweave = Arweave.init({
