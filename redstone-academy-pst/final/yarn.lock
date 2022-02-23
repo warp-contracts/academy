@@ -3135,7 +3135,7 @@ argparse@^1.0.7:
   dependencies:
     sprintf-js "~1.0.2"
 
-arlocal@^1.0.29, arlocal@^1.1.19:
+arlocal@^1.1.19:
   version "1.1.19"
   resolved "https://registry.yarnpkg.com/arlocal/-/arlocal-1.1.19.tgz#85eaaae4e701a0a25e0e258d24bc1fd574b22e85"
   integrity sha512-MGFR0CIqPFn07q80cN9Bbf+6w4ozla5eq7fOwLM/ENw0EC57AQ8oltq/Ad6QvmxAJ/U61Taz9XvXNnIK7wrXxA==
@@ -11382,26 +11382,6 @@ slice-ansi@^2.1.0:
     ansi-styles "^3.2.0"
     astral-regex "^1.0.0"
     is-fullwidth-code-point "^2.0.0"
-
-smartweave@0.4.42:
-  version "0.4.42"
-  resolved "https://registry.yarnpkg.com/smartweave/-/smartweave-0.4.42.tgz#8d508e80ffb93a5f88fe7e280032232f8ceb62a3"
-  integrity sha512-y8sEeXq5YEH12cg6iIEkx1H/lQ6Jq59N+B9UVj3UxvBax7n1AYdzbGoOK0LL9MRaY33QUuhbZ+jcSnfOW/sNiA==
-  dependencies:
-    "@types/clui" "^0.3.0"
-    "@types/inquirer" "^7.3.1"
-    "@weavery/clarity" "^0.1.5"
-    arlocal "^1.0.29"
-    arweave "^1.10.16"
-    bignumber.js "^9.0.1"
-    chalk "^4.1.2"
-    clui "^0.3.6"
-    figlet "^1.5.2"
-    inquirer "^8.1.2"
-    json-beautify "^1.1.1"
-    loglevel "^1.7.0"
-    sentencer "^0.2.1"
-    yargs "^17.1.1"
 
 smartweave@^0.4.46:
   version "0.4.46"

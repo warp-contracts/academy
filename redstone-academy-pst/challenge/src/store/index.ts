@@ -11,17 +11,12 @@ export default new Vuex.Store({
     arweave,
     smartweave,
     state: {},
-    validity: {},
     contract: null,
     walletAddress: null,
   },
   mutations: {
     setState(state, swState) {
       state.state = swState;
-    },
-
-    setValidity(state, validity) {
-      state.validity = validity;
     },
     setContract(state, contract) {
       state.contract = contract;
@@ -41,9 +36,8 @@ export default new Vuex.Store({
         .pst(deployedContracts.fc)
         .connect(wallet);
       commit('setContract', contract);
-      const { state, validity } = await contract.readState();
+      const { state } = await contract.readState();
       commit('setState', state);
-      commit('setValidity', validity);
       commit('setWalletAddress', walletAddress);
     },
   },

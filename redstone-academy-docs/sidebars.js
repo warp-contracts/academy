@@ -97,6 +97,27 @@ const sidebars = {
           ],
         },
         { type: 'doc', label: 'Deployment', id: 'pst/deployment/deployment' },
+        {
+          type: 'doc',
+          label: 'Frontend Environment',
+          id: 'pst/frontend-environment/frontend-environment',
+        },
+        {
+          type: 'category',
+          label: 'SmartWeave in browser',
+          items: [
+            {
+              type: 'doc',
+              label: 'Preparations',
+              id: 'pst/smartweave-in-browser/preparations',
+            },
+            {
+              type: 'doc',
+              label: 'Interacting with contract',
+              id: 'pst/smartweave-in-browser/interacting-with-contract',
+            },
+          ],
+        },
       ],
     },
   ],

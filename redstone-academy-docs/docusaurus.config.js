@@ -27,6 +27,9 @@ const config = {
           sidebarPath: require.resolve('./sidebars.js'),
           lastVersion: 'current',
           onlyIncludeVersions: ['current'],
+          editUrl: ({ docPath }) => {
+            return `https://github.com/redstone-finance/redstone-academy/tree/main/redstone-academy-docs/docs/${docPath}`;
+          },
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),

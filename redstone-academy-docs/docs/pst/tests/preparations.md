@@ -1,8 +1,8 @@
 # Preparations
 
-It is more than important to carefully test your contract before deploy. We will write few tests and execute them in server environment as well as in browser one using Jest. Throughout this process you will get to know couple of important ArweaveJS and RedStone Smartweave SDKs.
+It is more than important to carefully test your contract before deploying it to the blockchain. We will write few tests and execute them in server environment as well as in browser one using Jest. Throughout this process you will get to know couple of important ArweaveJS and RedStone Smartweave SDK methods.
 
-### Declaring variables
+## 🔤 Declaring variables
 
 Head to [redstone-academy-pst/challenge/tests/contract.test.ts](https://github.com/redstone-finance/redstone-academy/tree/main/redstone-academy-pst/challenge/tests/contract.test.ts) and start by declaring all necessary variables in `beforeAll` - a callback which will be executed before all the tests. Remeber to import all the interfaces!
 
@@ -20,7 +20,7 @@ let smartweave: SmartWeave;
 let pst: PstContract;
 ```
 
-### Setting up ArLocal and instantiating Arweave
+## 🅰️ Setting up ArLocal and instantiating Arweave
 
 ```js
 arlocal = new ArLocal(1820);

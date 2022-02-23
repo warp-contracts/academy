@@ -1,8 +1,8 @@
 # Contract Source
 
-### Handle function
+## 🪓 What do we need in contract source?
 
-Let's start with contract source. It exports one function - `handle` which accepts two arguments:
+Let's talk about contract source. It exports one function - `handle` - which accepts two arguments:
 
 - state - contract's current state
 - action - contract interaction with two properties:
@@ -15,7 +15,7 @@ Let's start with contract source. It exports one function - `handle` which accep
 - other result - when contract's state is not changing after interaction
 - ContractError
 
-### Challenge time
+## 📃 Contract source types
 
 We will start by writing some additional types. Head again to [redstone-academy-pst/challenge/src/contracts/types/types.ts](https://github.com/redstone-finance/redstone-academy/tree/main/redstone-academy-pst/challenge/src/contracts/types/types.ts) write following types:
 
@@ -40,7 +40,7 @@ export interface PstResult {
 export type PstFunction = 'transfer' | 'mint' | 'balance';
 ```
 
-Time for explanation:
+Time for explanation.
 
 `PstAction` represents contract's interaction. As mentioned earlier it can be either caller or input. In our contract user will have an ability to write three types of inputs (`PstInput`):
 
@@ -54,9 +54,11 @@ Time for explanation:
 - `ticker` - ??
 - `balance` - specific address balance
 
-### Actions
+## 🎬 Actions
 
-Let's prepare all the interactions that will be possible within our contract. We will put them in separate files, each of the files in a dedicated folder - either read (actions responsible for reading state) or write (which change current state). All the folders and files are already prepared, you just need to fill them with some code.
+Let's prepare all the interactions that will be possible within our contract. We will put them in separate files, each of the files in a dedicated folder - either `read` (actions responsible for reading state) or `write` (which change current state). All the folders and files are already prepared, you just need to fill them with some code.
+
+### Read
 
 [redstone-academy-pst/challenge/src/contracts/actions/read/balance.ts](https://github.com/redstone-finance/redstone-academy/tree/main/redstone-academy-pst/challenge/src/contracts/actions/read/balance.ts)
 
@@ -84,7 +86,9 @@ export const balance = async (
 
 ```
 
-Above function will help us read balance of inidicated target address. I takes two arguments - contract initial state and destructure contract action to obtain the input to the interaction. Remember that we have three possible options to be returned from the interactions? In above interaction we added two of them - thanks to simple error handling we can return `ContractError` or result.
+Above function will help us read balance of inidicated target address. I takes two arguments - contract initial state and destructured contract action which give us input to the interaction. Remember that we have three possible options to be returned from the interactions? In above interaction we added two of them - thanks to simple error handling we can return `ContractError` or result.
+
+### Write
 
 Now let's add two `write` interactions which will change our contract's state:
 
@@ -114,7 +118,7 @@ export const mintTokens = async (
 
 ```
 
-This one will help us miting some tokens to the caller's address. It takes two arguments - contract's state and destructured caller of the interaction and the input to the interaction. It adds tokens to caller's address. It can return `ContractError` or contract's state.
+This one will help us miting some tokens to the caller's address. It takes two arguments - contract's state and destructured caller of the interaction as well as the input to the interaction. It adds tokens to caller's address. It can return `ContractError` or contract's state.
 
 [redstone-academy-pst/challenge/src/contracts/actions/write/transferTokens.ts](https://github.com/redstone-finance/redstone-academy/tree/main/redstone-academy-pst/challenge/src/contracts/actions/write/transferTokens.ts)
 
@@ -160,7 +164,9 @@ export const transferTokens = async (
 
 ```
 
-And the last one - core function of our contract which will be responsible for transfering tokens between addresses. It takes two arguments - state and destructured caller of the interaction and input to the interaction. It substract indicated amount of tokens from caller's address and add them to the target address. It can return `ContractError` or contract's state.
+And the last one - core function of our contract which will be responsible for transfering tokens between addresses. It takes two arguments - state and destructured caller of the interaction as well as the input to the interaction. It substract indicated amount of tokens from caller's address and add them to the target address. It can return `ContractError` or contract's state.
+
+## ⚓ Handle function
 
 Wow, a lot of work done. Now the cherry on top. We will put all the interactions together to write the final `handle` function which will be exported from the contract source.
 
@@ -201,4 +207,6 @@ export async function handle(
 
 `Handle` function is an asynchronous function and it returns promise of type `ContractResult`. As mentioned above, it takes two arguments - state and action. It waits for one of the interactions to be called and return result of matching functions - the ones that we prepared earlier.
 
-Well done! We have all the parts which are needed to deploy our contract. But before that we need to test it out.
+## 🎉 Conclusion
+
+Well done! We have all the parts which are needed to deploy our contract. But before that we need to test it out to see if it works correctly.

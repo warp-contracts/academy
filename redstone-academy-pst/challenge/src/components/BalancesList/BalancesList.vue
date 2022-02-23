@@ -72,12 +72,8 @@ export default Vue.extend({
         return;
       }
       this.$toasted.show('Processing...');
-      const tx = await this.contract.transfer({
-        target: address,
-        qty: parseInt(qty),
-      });
-      await this.arweave.api.get('mine');
-      let newResult = await this.contract.currentState();
+      const tx = null;
+      let newResult = null;
       if (newResult) {
         this.$toasted.clear();
         this.$toasted.global.success('Processed!');

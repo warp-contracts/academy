@@ -30,13 +30,8 @@ export default Vue.extend({
         return;
       }
       this.$toasted.show('Processing...');
-      const txId = await this.contract.writeInteraction({
-        function: 'mint',
-        qty: parseInt(this.$refs.balanceMint.value),
-      });
-      await this.arweave.api.get('mine');
-
-      const newResult = await this.contract.currentState();
+      const txId = null;
+      const newResult = null;
       if (newResult) {
         this.$toasted.clear();
         this.$toasted.global.success('Processed!');

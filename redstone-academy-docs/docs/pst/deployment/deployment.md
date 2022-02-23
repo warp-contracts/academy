@@ -1,4 +1,4 @@
-# Deployment
+# Contract deployment
 
 ### Setting up Arweave
 
@@ -99,6 +99,7 @@ ts-node src/tools/deploy-test-contract.ts
 
 :::tip
 Remember that you need to bundle contract source file before deploying the contract. We've already done it in tests chapter.
+:::
 
 Congratulations!
 You've just deployed contract to the RedStone testnet. You should see contract id in the console output. You can also visit [SonAR](htttps://sonar.redstone.tools), switch to the testnet and search your contract :)

@@ -2,11 +2,11 @@
 
 ## ❓ What are Profit Sharing Tokens?
 
-Profit sharing tokens (PST) are built using SmartWeave and they are responsible for sharing the proceeds of any resources on Arweave. That means PSTs help monetize apps or webisted built on Arweave. It's very simple. Each time user interacts with an app specific amount of ARs is sent to PST holders based on their share. So if a holder owns 50% of the tokens, he/she will receive 50% of the revenue from the application.
+Profit sharing tokens (PST) are built using SmartWeave and they are responsible for sharing the proceeds of any resources on Arweave. That means PSTs help monetize apps or webistes built on Arweave. It's very simple. Each time user interacts with an app, specific amount of ARs is sent to PST holders based on their share. So if a holder owns 50% of the tokens, he will receive 50% of the revenue from the application.
 
 ## 💰 How much PSTs do we need to pay?
 
-The amount of PSTs which will be transfered by the user while interacting with the app is specified by developers creating the app. It can be everything - from little payments up to large amounts for significant interactions. It can be fixed amount or percentae of interaction's value.
+The amount of PSTs which will be transfered by the user while interacting with the app is specified by developers creating the app. It can be everything - from little payments up to large amounts for significant interactions. It can be fixed amount or percentage of interaction's value.
 
 ## ✍️ Example usage
 
@@ -14,4 +14,4 @@ Very interesting usage of PSTs is ownership representation of the revenue from s
 
 :::info
 
-You can read more about on [ArWiki](https://arwiki.wiki/#/en/profit-sharing-tokens) and on [ArWeave medium](https://arweave.medium.com/profit-sharing-tokens-a-new-incentivization-mechanism-for-an-open-web-1f2532411d6e).
+You can read more about PSTs on [ArWiki](https://arwiki.wiki/#/en/profit-sharing-tokens) and on [ArWeave medium](https://arweave.medium.com/profit-sharing-tokens-a-new-incentivization-mechanism-for-an-open-web-1f2532411d6e).
