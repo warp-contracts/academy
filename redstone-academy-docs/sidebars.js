@@ -26,11 +26,8 @@ const sidebars = {
       items: [
         { type: 'doc', label: 'Blockchain', id: 'elementary/blockchain' },
         { type: 'doc', label: 'Arweave', id: 'elementary/arweave' },
-        {
-          type: 'doc',
-          label: 'Gateways',
-          id: 'elementary/gateways',
-        },
+        { type: 'doc', label: 'SmartWeave', id: 'elementary/smartweave' },
+        { type: 'doc', label: 'Environment', id: 'elementary/environment' },
       ],
     },
     {

@@ -119,7 +119,7 @@ initialState = {
 
 We need to update our initial state and set previously generated wallet address as the owner of the contract.
 
-### Deploing contract
+### Deploying contract
 
 Now, the moment we were all waiting for!
 

@@ -1,57 +1,41 @@
----
-sidebar_position: 1
----
-
 # Welcome to Arweave
 
-٩(˘◡˘)۶
+Arweave is a protocol that allows to store data permanently with a single fee. It connects these with disk space with those who need permanent storage.
 
-<!-- Docusaurus can manage multiple versions of your docs.
+Arweave is not a typical blockchain. Instead of keeping transactions in a chain of blocks, Arweave stores them in a graph of blocks. Each block is linked to two earlier blocks creating a structure called 'blockweave'.
 
-## Create a docs version
+:::info
 
-Release a version 1.0 of your project:
+Read more about Arweave on [ArWiki](https://arwiki.wiki/#/en/main) and if you want to gain an in-depth knowledge feel free to read the [yellow paper](https://www.arweave.org/yellow-paper.pdf).
 
-```bash
-npm run docusaurus docs:version 1.0
-```
+:::
 
-The `docs` folder is copied into `versioned_docs/version-1.0` and `versions.json` is created.
+### Proof of Access
 
-Your docs now have 2 versions:
+Instead of proof of work, Arweave uses different consensus mechanism - Proof of Access. Unlike this first one, PoA doesn't rely only on previous block to validate transactions. It uses previous block and a random block in chain. Miners need to proof that they have access to **recall** block. This way, they don't need the entire blockchain so not as big compuation power is needed.
 
-- `1.0` at `http://localhost:3000/docs/` for the version 1.0 docs
-- `current` at `http://localhost:3000/docs/next/` for the **upcoming, unreleased docs**
+Transactions in this recall block are then hashed against the current block to generate a new block. When miners solve the problem and find an appropriate hash they can share the new block and recall block with the network. In case of rare blocks, miners have to face less competition and chance of getting rewarded grow. It is not mandatory for miners to store all the data in the network.
 
-## Add a Version Dropdown
+### Permaweb
 
-To navigate seamlessly across versions, add a version dropdown.
+The permaweb is a permanent and fully decentralized web built on top of Arweave. You can store all kinds of static files or web applications. Once uploaded, files/applications cannot be modified and they don't require being maintained.
 
-Modify the `docusaurus.config.js` file:
+:::info
+You can read some more on [Arwiki](https://arwiki.wiki/#/en/the-permaweb).
+:::info
 
-```js title="docusaurus.config.js"
-module.exports = {
-  themeConfig: {
-    navbar: {
-      items: [
-        // highlight-start
-        {
-          type: 'docsVersionDropdown',
-        },
-        // highlight-end
-      ],
-    },
-  },
-};
-```
+### Gateways
 
-The docs version dropdown appears in your navbar:
+Gateways allow users to view content on the permaweb. Users gain access to files rendered locally by pointing to a transaction id.
+Not only gateways enable storing static files but also allow entire web applications. In most of the cases, gateways expose a GraphQL interface for querying the tags linked to Arweave transactions. Thanks to that developers can store content of their applications in Arweave transactions and build entire web applications on blockchain.
 
-![Docs Version Dropdown](/img/tutorial/docsVersionDropdown.png)
+:::info
+You can read some more on [Arwiki](https://arwiki.wiki/#/en/gateways).
+:::
 
-## Update an existing version
+### AR token
 
-It is possible to edit versioned docs in their respective folder:
+AR is the currency of the Arweave network. If you want to store data you need to buy AR tokens to pay for data storage.
 
-- `versioned_docs/version-1.0/hello.md` updates `http://localhost:3000/docs/hello`
-- `docs/hello.md` updates `http://localhost:3000/docs/next/hello` -->
+:::info
+You can find current AR price [here](https://app.redstone.finance/#/app/token/AR).
