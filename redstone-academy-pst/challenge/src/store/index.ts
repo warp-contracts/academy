@@ -1,8 +1,8 @@
-import { Contract } from 'redstone-smartweave';
 import Vue from 'vue';
 import Vuex from 'vuex';
 import { arweave, smartweave } from '../pst-contract';
 import { deployedContracts } from '../deployed-contracts';
+import { PstState } from '@/contracts/types/types';
 
 Vue.use(Vuex);
 
@@ -27,16 +27,18 @@ export default new Vuex.Store({
   },
   actions: {
     async loadState({ commit }) {
-      const wallet = await arweave.wallets.generate();
+      // ~~ Generate arweave wallet ~~
+      const wallet = null;
 
-      const walletAddress = await arweave.wallets.getAddress(wallet);
-      await arweave.api.get(`/mint/${walletAddress}/1000000000000000`);
-      // Interacting with the contract
-      const contract: Contract = smartweave
-        .pst(deployedContracts.fc)
-        .connect(wallet);
+      // ~~ Get wallet address and mint some tokens ~~
+      const walletAddress = null;
+
+      // ~~ Connect deployed contract ~~
+      const contract = null;
       commit('setContract', contract);
-      const { state } = await contract.readState();
+
+      // ~~ Set the state of the contract ~~
+      const state = null;
       commit('setState', state);
       commit('setWalletAddress', walletAddress);
     },

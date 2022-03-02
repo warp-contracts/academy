@@ -1,3 +1,5 @@
+import ReactPlayer from 'react-player';
+
 # SmartWeave
 
 ### What are smart contracts?
@@ -5,6 +7,8 @@
 In general, smart contracts are just regular programs that run on blockchain when predetermined conditions are met. They are automatically executing events or actions accordingly to the terms of contract.
 
 They are deployed to the blockchain and they are not controlled by the user - they just run how they were programmed. User accounts then interact with the contract by submitting transactions which execute functions from the contract.
+
+<ReactPlayer controls url="https://www.youtube.com/watch?v=ZE2HxTmxfrI" />
 
 ### SmartWeave
 

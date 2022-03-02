@@ -1,6 +1,8 @@
-We are displaying all the balances in `BalancesList` component. We have access to the list thanks to `state` property we defined in the store in the Preparations section. Now all we need to do is find a way to properly mint some tokens to the wallet and transfer tokens between addresses.
+# Interacting with the contract
 
-### Mint tokens
+We are displaying all the balances in `BalancesList` component. We have access to the list thanks to `state` property we defined in the store in the Preparations section. Now all we need to do is find a way to properly mint some FC tokens to the wallet and transfer tokens between addresses.
+
+## 🤑 Mint tokens
 
 We need to add `mint` function so it will be possible to fill up the wallet with some tokens.
 Head to [challenge/src/components/Header/Header.vue](https://github.com/redstone-finance/redstone-academy/blob/main/redstone-academy-pst/challenge/src/components/Header/Header.vue) and add declaration to `txId` variable in `mint` function by calling SDK's `writeInteraction` method:
@@ -24,7 +26,7 @@ await this.arweave.api.get('mine');
 const newResult = await this.contract.currentState();
 ```
 
-### Transfer tokens
+## 💸 Transfer tokens
 
 Head to [challenge/src/components/BalancesList/BalancesList.vue](https://github.com/redstone-finance/redstone-academy/blob/main/redstone-academy-pst/challenge/src/components/BalancesList/BalancesList.vue) and add declaration to `tx` variable by calling SDK's `transfer` method:
 
@@ -46,3 +48,7 @@ Finally, set new balances list by calling `currentState` method:
 ```js
 let newResult = await this.contract.currentState();
 ```
+
+## ✨ Conclusion
+
+And that's it! The application should now work correctly. Congratulations! If you completed this tutorial succesfully feel free to publish your code on Github and share it on `[our Discord](https://discord.com/invite/PVxBZKFr46).

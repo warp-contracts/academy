@@ -4,20 +4,20 @@
 
 Let's talk about contract source. It exports one function - `handle` - which accepts two arguments:
 
-- state - contract's current state
-- action - contract interaction with two properties:
-  - caller - wallet address of user interacting with the contract
-  - input - user's input to the contract.
+- `state` - contract's current state
+- `action` - contract interaction with two properties:
+  - `caller` - wallet address of user interacting with the contract
+  - `input` - user's input to the contract.
 
 `Handle` function can return three types of values:
 
-- state - when contract's state is changing after specific interaction
-- other result - when contract's state is not changing after interaction
-- ContractError
+- `state` - when contract's state is changing after specific interaction
+- `other result` - when contract's state is not changing after interaction
+- `ContractError`
 
 ## 📃 Contract source types
 
-We will start by writing some additional types. Head again to [redstone-academy-pst/challenge/src/contracts/types/types.ts](https://github.com/redstone-finance/redstone-academy/tree/main/redstone-academy-pst/challenge/src/contracts/types/types.ts) write following types:
+We will start by writing some additional types. Head again to [redstone-academy-pst/challenge/src/contracts/types/types.ts](https://github.com/redstone-finance/redstone-academy/tree/main/redstone-academy-pst/challenge/src/contracts/types/types.ts) and write following types:
 
 ```js
 export interface PstAction {
@@ -42,23 +42,23 @@ export type PstFunction = 'transfer' | 'mint' | 'balance';
 
 Time for explanation.
 
-`PstAction` represents contract's interaction. As mentioned earlier it can be either caller or input. In our contract user will have an ability to write three types of inputs (`PstInput`):
+`PstAction` represents contract's interaction. As mentioned earlier it has two properties - caller and input. In our contract user will have an ability to write three types of inputs (`PstInput`):
 
-- `function` - type of interaction (in our case - it can be transfering tokens, minting tokens or reading balances - `PstFunction`)
+- `function` - type of interaction (in our case - it can be **transfering tokens**, **minting tokens** or **reading balances** - `PstFunction`)
 - `target` - target address
 - `qty` - amount of tokens to be transferred/minted
 
 `PstResult` - object possible to be returned by interacting with the contract:
 
 - `target` - target address
-- `ticker` - ??
+- `ticker` - an abbreviation used to uniquely identify the token
 - `balance` - specific address balance
 
 ## 🎬 Actions
 
 Let's prepare all the interactions that will be possible within our contract. We will put them in separate files, each of the files in a dedicated folder - either `read` (actions responsible for reading state) or `write` (which change current state). All the folders and files are already prepared, you just need to fill them with some code.
 
-### Read
+### 📖 Read
 
 [redstone-academy-pst/challenge/src/contracts/actions/read/balance.ts](https://github.com/redstone-finance/redstone-academy/tree/main/redstone-academy-pst/challenge/src/contracts/actions/read/balance.ts)
 
@@ -86,9 +86,9 @@ export const balance = async (
 
 ```
 
-Above function will help us read balance of inidicated target address. I takes two arguments - contract initial state and destructured contract action which give us input to the interaction. Remember that we have three possible options to be returned from the interactions? In above interaction we added two of them - thanks to simple error handling we can return `ContractError` or result.
+The above function will help us read balance of inidicated target address. I takes two arguments - contract initial state and destructured contract action which give us input to the interaction. Remember that we have three possible options to be returned from the interactions? In above interaction we added two of them - thanks to simple error handling we can return `ContractError` or result.
 
-### Write
+### 🖊️ Write
 
 Now let's add two `write` interactions which will change our contract's state:
 

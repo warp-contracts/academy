@@ -1,7 +1,7 @@
 import { Contract } from 'redstone-smartweave';
 import Vue from 'vue';
 import Vuex from 'vuex';
-import { arweave, smartweave } from '../pst-contract';
+import { arweave, smartweave } from '../environment';
 import { deployedContracts } from '../deployed-contracts';
 
 Vue.use(Vuex);

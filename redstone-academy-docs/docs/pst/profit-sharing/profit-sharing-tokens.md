@@ -15,3 +15,5 @@ Very interesting usage of PSTs is ownership representation of the revenue from s
 :::info
 
 You can read more about PSTs on [ArWiki](https://arwiki.wiki/#/en/profit-sharing-tokens) and on [ArWeave medium](https://arweave.medium.com/profit-sharing-tokens-a-new-incentivization-mechanism-for-an-open-web-1f2532411d6e).
+
+:::

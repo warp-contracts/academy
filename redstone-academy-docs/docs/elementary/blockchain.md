@@ -8,6 +8,8 @@ Blockchain is defined as a decentralized, distributed and immutable ledger stori
 
 Each block in the chain contains a number of transactions and when new transaction is supposed to be added, nodes communicate (sticking to a protocol) and validate new blocks. A record of that transaction is then added to every participant's ledger.
 
+<ReactPlayer controls url="https://www.youtube.com/watch?v=yubzJw0uiE4" />
+
 ### Proof of Work
 
 In order to confirm transactions we need some sort of consensus mechanism. The first one was called Proof of Work (PoW). It is executed by miners - key participants of the blockchain. They must show proof of work (and show it fastest) to win the right to mine a block (in simple words - add block to the chain). The **work** means solving complex math ptoblems and the **proof** is the solution to the problem. Virtual miners around the world participate in this contest to solve a math puzzle first, update the blockchain with the latest verified transactions and get rewarded with specific amount of cryptocurrency.
@@ -24,5 +26,3 @@ Cryptocurrencies are denominated into crypto tokens whic represent fungible and 
 ### Wallet
 
 A blockchain wallet is a digital wallet that allows users to store, manage, and trade their cryptocurrencies.
-
-<ReactPlayer controls url="https://www.youtube.com/watch?v=yubzJw0uiE4" />

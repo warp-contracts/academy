@@ -24,13 +24,13 @@ Instead of heading to arweave.net you can request and query nodes directly. Node
 Here you can find [Arweave Network launch report](https://arweave.medium.com/arweave-network-launch-report-b7e7ffac0f75).
 :::
 
-### Testnet
+## 🥅 Testnet
 
 Unlike mainnet, testnet means that the network is not running on its full capacity. It is used by developers to test different kind of actions, features before posting them to mainnet.
 
 We will make use of two kinds of testnets.
 
-1. ArLocal - it's a local server which resembles Arweave mainnet. You need to run it locally on your computer.
+1. **ArLocal** - it's a local server which resembles Arweave mainnet. You need to run it locally on your computer.
 
 :::info
 
@@ -38,9 +38,10 @@ You can read more about ArLocal in a [dedicated repository](https://github.com/t
 
 :::
 
-2. RedStone testnet - it's a public testnet based on ArLocal. It does not require any instance to be run locally. The blocks are mined every 10s so you don't have to wait for the transaction as long as in case of mainnet. You can also mine block manaully, same way you would do it on ArLocal.
+2. **RedStone testnet** - it's a public testnet based on ArLocal. It does not require any instance to be run locally. The blocks are mined every 10s so you don't have to wait for the transaction as long as in case of mainnet. You can also mine block manually, same way you would do it on ArLocal.
 
 :::info
-Redstone public testnet i available [here](https://testnet.redstone.tools)
+Redstone public testnet i available [here](https://testnet.redstone.tools).
+:::
 
-We will use ArLocal for our tests and RedStone public testnet for deploying contract and writing interactions. Testnets main aim is to create close-to-real environment which is very similair to Arweave. There are of course small differences which we will point out.
+We will use ArLocal for our tests and RedStone public testnet for deploying contract and writing interactions. Testnets main aim is to create close-to-real environment which is very similair to Arweave. There are of course small differences which I will point out.

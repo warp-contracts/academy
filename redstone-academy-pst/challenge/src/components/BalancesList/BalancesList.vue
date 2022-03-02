@@ -72,7 +72,13 @@ export default Vue.extend({
         return;
       }
       this.$toasted.show('Processing...');
+
+      // ~~ Call `transfer` method ~~
       const tx = null;
+
+      // ~~ Mine a block ~~
+
+      // ~~ Set new balances list by calling `currentState` method
       let newResult = null;
       if (newResult) {
         this.$toasted.clear();

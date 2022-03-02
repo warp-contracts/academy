@@ -6,7 +6,7 @@ Let's start with initial state.
 
 ## 📃 PstState
 
-To obtain good structure we will use power of typescript and prepare some types first. Head to [redstone-academy-pst/challenge/src/contracts/types/types.ts](https://github.com/redstone-finance/redstone-academy/tree/main/redstone-academy-pst/challenge/src/contracts/types/types.ts) and let's start writing!
+To obtain good structure we will use power of Typescript and prepare some types first. Head to [redstone-academy-pst/challenge/src/contracts/types/types.ts](https://github.com/redstone-finance/redstone-academy/tree/main/redstone-academy-pst/challenge/src/contracts/types/types.ts) and let's start writing!
 
 ```js
 export interface PstState {
@@ -23,7 +23,7 @@ Time for explanation.
 
 `PstState` represents contract's current state. Its shape is not defined by any rules and it is developer who decide what the state will look like. In case of our implementation it will consist of four properties:
 
-- `ticker` - ??
+- `ticker` - an abbreviation used to uniquely identify the token
 - `name` - name of the token
 - `owner` - owner of the contract
 - `balances` - object with all the addresses possessing tokens and their balances.

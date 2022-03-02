@@ -30,7 +30,11 @@ export default Vue.extend({
         return;
       }
       this.$toasted.show('Processing...');
+
+      // ~~ Post `mint` interaction and mine a block ~~
       const txId = null;
+
+      // ~~ Set the balances by calling `currentState` method ~~
       const newResult = null;
       if (newResult) {
         this.$toasted.clear();
