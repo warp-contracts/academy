@@ -12,4 +12,4 @@ Throughout this course we will be using multiple tools:
 
 - ArConnect - Arweave wallet for token management installed as browser extension [https://www.arconnect.io](https://www.arconnect.io/)
 
-- ArWeave faucet - if you want to play with Arweave you will need some tokens, you can get some for starters here [https://faucet.arweave.net](https://faucet.arweave.net/)
+- ArWeave faucet - if you want to play with Arweave you will need some tokens; you can get some for starters here [https://faucet.arweave.net](https://faucet.arweave.net/)

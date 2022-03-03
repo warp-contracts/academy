@@ -50,7 +50,7 @@ const config = {
         title: 'RedStone Academy',
         logo: {
           alt: 'My Site Logo',
-          src: 'img/logo.png',
+          src: 'img/smartweave.png',
         },
         items: [
           {
