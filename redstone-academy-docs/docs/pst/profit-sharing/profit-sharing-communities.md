@@ -10,6 +10,8 @@ Profit Sharing Communities provide more control for founders of the projects and
 
 :::info
 In order to view or create PSC you can visit [community.xyz](https://community.xyz/home).
+
+You can find specification for the SmartWeave contract handling communities [here](https://github.com/CommunityXYZ/contract).
 :::
 
 :::info

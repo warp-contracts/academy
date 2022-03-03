@@ -87,7 +87,7 @@ await addFunds(arweave, wallet);
 
 ## 📰 Reading contract source and initial state files
 
-Ok, back to the test. Now, we need to find a way to read files with contract source and initial state we've prepared in the last section.
+Ok, back to the test. Now, we need to find a way to read files with contract source and initial state we've prepared in the last section. In order to do that we will use NodeJS method `readFileSync`. Remember to import `fs` and `path` modules. We are pointing to the files we've prepared in [the last section](../writing-pst-contract/contract-source#-bundling-contract) using esbuild and prepared scripts.
 
 ```js
 contractSrc = fs.readFileSync(
@@ -100,14 +100,6 @@ const stateFromFile: PstState = JSON.parse(
     'utf8'
   )
 );
-```
-
-In order to do that we will use NodeJS method `readFileSync`. Remember to import `fs` and `path` modules. Now comes the tricky part. We need to find a way to bundle our contract source so its output code is in javascript and not typescript. We will use esbuild tool to acheive that result but of course you can use whichever bundler you'd like. We will not come into the details but you can view bundling script here [https://github.com/redstone-finance/redstone-academy/blob/main/redstone-academy-pst/challenge/build.js](https://github.com/redstone-finance/redstone-academy/blob/main/redstone-academy-pst/challenge/build.js). Then we just need to add few commands to our `package.json` file that will simply remove everything from `dist` folder (which contains the minimized version of the source code), run bundling script and additionally - copy `initial-state.json` file to the `dist` folder so we'll have all the files we need to deploy the contract in one place.
-
-```json
-    "build:contracts": "yarn run clean && yarn run build-ts && npm run cp",
-    "build-ts": "node build.js",
-    "clean": "rimraf ./dist"
 ```
 
 ## ✍🏻 Updating initial state
@@ -163,17 +155,16 @@ You can of course override them or add some more tags by passing property with `
 ## 🔌 Connecting to the pst contract
 
 ```js
-pst = smartweave.pst(contractTxId);
-pst.connect(wallet);
+pst = smartweave.pst(contractTxId).connect(wallet);
 ```
 
-In order to perform any operation on the contract we need to connect to it. You can connect to any contract using SDK's `contract` method. But in case of pst contract it is recommended to connect to contract by using `pst` method which allows to use all the functions which are specific for PST Contract implementation. You can view it in `SmartWeave` class [https://github.com/redstone-finance/redstone-smartcontracts/blob/main/src/core/SmartWeave.ts](https://github.com/redstone-finance/redstone-smartcontracts/blob/main/src/core/SmartWeave.ts).
+In order to perform any operation on the contract we need to connect to it. You can connect to any contract using SDK's `contract` method. But in case of pst contract it is recommended to connect to contract by using `pst` method which allows to use all the functions which are specific for PST Contract implementation. You can view `connect` and `pst` methods in [`SmartWeave` class](https://github.com/redstone-finance/redstone-smartcontracts/blob/main/src/core/SmartWeave.ts#L47). All methods specific for PST contracts can be viewed in [PstContract interface](https://github.com/redstone-finance/redstone-smartcontracts/blob/main/src/contract/PstContract.ts#L73).
 
-We then connect our wallet to the pst contract.
+We then connect our wallet to the pst contract. Please remember that connecting a wallet MAY be done before `viewState` (depending on contract implementation, ie. whether called contract's function required `caller` info). Connecting a wallet MUST be done before `writeInteraction`. And therefore, it is not required when we just want to read the state.
 
 ## 🚧 Mining blocks
 
-As you may recall from the Elementary section, blockchain mining means adding transactions to the blockchain ledger of transactions. On mainnet it means When using ArLocal we need to do it manually. We will add another helper function to the `_helpers.ts` file:
+As you may recall from the Elementary section, blockchain mining means adding transactions to the blockchain ledger of transactions. On mainnet in order to mine a block it is required for nodes to validate a transaction, when using ArLocal we need to mine a block manually. We will add another helper function to the `_helpers.ts` file:
 
 ```js
 export async function mineBlock(arweave: Arweave) {
@@ -181,7 +172,7 @@ export async function mineBlock(arweave: Arweave) {
 }
 ```
 
-It hits the Arweave endpoint and mine a block. We will need to call this function whenever we will want to post a transaction to Arweave. As we deployed a contract in previous step, let's finish our `beforeAll` callback with calling `mineBlock` function:
+We need to call this function so the transaction will be available on Arweave instance. As we deployed a contract in previous step, let's finish our `beforeAll` callback with calling `mineBlock` function:
 
 ```js
 await mineBlock(arweave);

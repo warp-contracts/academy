@@ -15,6 +15,8 @@ Let's talk about contract source. It exports one function - `handle` - which acc
 - `other result` - when contract's state is not changing after interaction
 - `ContractError`
 
+//rozbudować tak jak np w sdk 'readState'
+
 ## 📃 Contract source types
 
 We will start by writing some additional types. Head again to [redstone-academy-pst/challenge/src/contracts/types/types.ts](https://github.com/redstone-finance/redstone-academy/tree/main/redstone-academy-pst/challenge/src/contracts/types/types.ts) and write following types:
@@ -69,7 +71,7 @@ declare const ContractError;
 export const balance = async (
   state: PstState,
   { input: { target } }: PstAction
-) => {
+): PstResult => {
   const ticker = state.ticker;
   const balances = state.balances;
 
@@ -86,7 +88,7 @@ export const balance = async (
 
 ```
 
-The above function will help us read balance of inidicated target address. I takes two arguments - contract initial state and destructured contract action which give us input to the interaction. Remember that we have three possible options to be returned from the interactions? In above interaction we added two of them - thanks to simple error handling we can return `ContractError` or result.
+The above function will help us read balance of inidicated target address. It takes two arguments - contract computed state and destructured contract action which give us input to the interaction. Remember that we have three possible options to be returned from the interactions? In above interaction we added two of them - thanks to simple error handling we can return `ContractError` or result.
 
 ### 🖊️ Write
 
@@ -101,7 +103,7 @@ declare const ContractError;
 export const mintTokens = async (
   state: PstState,
   { caller, input: { qty } }: PstAction
-) => {
+): PstResult => {
   const balances = state.balances;
 
   if (qty <= 0) {
@@ -118,7 +120,7 @@ export const mintTokens = async (
 
 ```
 
-This one will help us miting some tokens to the caller's address. It takes two arguments - contract's state and destructured caller of the interaction as well as the input to the interaction. It adds tokens to caller's address. It can return `ContractError` or contract's state.
+This one will help us minting some tokens to the caller's address. It takes two arguments - contract's state and destructured caller of the interaction as well as the input to the interaction. It adds tokens to caller's address. It can return `ContractError` or contract's state.
 
 [redstone-academy-pst/challenge/src/contracts/actions/write/transferTokens.ts](https://github.com/redstone-finance/redstone-academy/tree/main/redstone-academy-pst/challenge/src/contracts/actions/write/transferTokens.ts)
 
@@ -129,7 +131,7 @@ declare const ContractError;
 export const transferTokens = async (
   state: PstState,
   { caller, input: { target, qty } }: PstAction
-) => {
+): PstResult => {
   const balances = state.balances;
   if (!Number.isInteger(qty)) {
     throw new ContractError('Invalid value for "qty". Must be an integer');
@@ -206,6 +208,49 @@ export async function handle(
 ```
 
 `Handle` function is an asynchronous function and it returns promise of type `ContractResult`. As mentioned above, it takes two arguments - state and action. It waits for one of the interactions to be called and return result of matching functions - the ones that we prepared earlier.
+
+## 🎨 Bundling contract
+
+Now comes the tricky part. We need to find a way to bundle our contract source so its output code is in javascript and not typescript. We will use esbuild tool to achieve that result but of course you can use whichever bundler you'd like. We will not come into the details but you can view bundling script here [https://github.com/redstone-finance/redstone-academy/blob/main/redstone-academy-pst/challenge/build.js](https://github.com/redstone-finance/redstone-academy/blob/main/redstone-academy-pst/challenge/build.js).
+
+It takes contract source file as an esbuild source file, bundle it and put its compiled Javascript version in a `dist` folder.
+
+```js
+const { build } = require('esbuild');
+const replace = require('replace-in-file');
+
+const contracts = ['/contracts/contract.ts'];
+
+build({
+  entryPoints: contracts.map((source) => {
+    return `./src${source}`;
+  }),
+  outdir: './dist',
+  minify: false,
+  bundle: true,
+  format: 'iife',
+})
+  .catch(() => process.exit(1))
+  .finally(() => {
+    const files = contracts.map((source) => {
+      return `./dist${source}`.replace('.ts', '.js');
+    });
+    replace.sync({
+      files: files,
+      from: [/\(\(\) => {/g, /}\)\(\);/g],
+      to: '',
+      countMatches: true,
+    });
+  });
+```
+
+Then we just need to add few commands to our `package.json` file that will simply remove everything from `dist` folder (which contains the minimized version of the source code), run bundling script and additionally - copy `initial-state.json` file to the `dist` folder so we'll have all the files we need to deploy the contract in one place.
+
+```json
+    "build:contracts": "yarn run clean && yarn run build-ts && npm run cp",
+    "build-ts": "node build.js",
+    "clean": "rimraf ./dist"
+```
 
 ## 🎉 Conclusion
 

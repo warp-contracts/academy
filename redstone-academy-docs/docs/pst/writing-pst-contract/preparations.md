@@ -9,15 +9,9 @@ Head to [redstone-academy-pst/challenge](https://github.com/redstone-finance/red
 
 ## ⛏️ Install dependencies
 
-Firstly install all dependencies by running:
+Install all dependencies connected with SmartWeave contracts. And do not worry, you will learn, how to use them pretty soon. We will install specific versions of the libraries just so we are sure we are on the same page. You can of course use the most recent ones, but be aware that due to possible changes they may not be compatible with tutorial.
 
-```bash
-yarn install
-```
-
-in the root folder.
-
-Then, install all dependencies connected with SmartWeave contracts. And do not worry, you will learn, how to use them pretty soon. Run following command:
+Run following command:
 
 ```bash
 yarn add arweave arlocal redstone-smartweave

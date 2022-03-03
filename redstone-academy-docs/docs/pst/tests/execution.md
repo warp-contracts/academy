@@ -18,7 +18,7 @@ expect(
 ).toEqual(230);
 ```
 
-We are using SDK's `currentState` method which reads initial state of our contract. We are also using PST's specific method - `current` balance which takes target address as an argument and read its current balance. Underneath, it's simply creating, signing and posting transaction to Arweave with `{function: 'balance', target}` as an argument and returning required piece of contract's state after writing interaction to it. Remember when we were writing actions possible to make with our contract in the contract source? This is where we see it in action!
+We are using SDK's `currentState` method which reads current state of our contract. We are also using PST's specific method - `currentBalance` which takes target wallet as an argument and read its current balance. Underneath, it simply returns the "view" of the state, computed by the SWC - ie. object that is a derivative of a current state and some specific smart contract business logic. Remember when we were writing actions possible to make with our contract in the contract source? This is where we see it in action!
 
 ## 💰 Minting tokens - write interaction
 
@@ -34,7 +34,7 @@ await mineBlock(arweave);
 expect((await pst.currentState()).balances[walletAddress]).toEqual(2000);
 ```
 
-We are using SDK's `writeInteraction` method which create, sign and post transaction with specific input to Arweave. It returns transaction id. We will call mint function which should mint specific amount of FC tokens to the previously generated caller's wallet.
+We are using SDK's `writeInteraction` method which creates, signs and posts transaction with specific input to Arweave. It returns transaction id. We will call mint function which should mint specific amount of FC tokens to the previously generated caller's wallet.
 
 As we posted a transaction which changes contract's state, we need to mine a block by using `mineBlock` function and read contract state to verify if `mint` function has correctly updated the state and minted some tokens to the caller's wallet.
 

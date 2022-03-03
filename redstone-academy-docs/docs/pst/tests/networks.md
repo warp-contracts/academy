@@ -41,7 +41,7 @@ You can read more about ArLocal in a [dedicated repository](https://github.com/t
 2. **RedStone testnet** - it's a public testnet based on ArLocal. It does not require any instance to be run locally. The blocks are mined every 10s so you don't have to wait for the transaction as long as in case of mainnet. You can also mine block manually, same way you would do it on ArLocal.
 
 :::info
-Redstone public testnet i available [here](https://testnet.redstone.tools).
+Redstone public testnet is available [here](https://testnet.redstone.tools).
 :::
 
 We will use ArLocal for our tests and RedStone public testnet for deploying contract and writing interactions. Testnets main aim is to create close-to-real environment which is very similair to Arweave. There are of course small differences which I will point out.

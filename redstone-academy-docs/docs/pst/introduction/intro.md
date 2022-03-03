@@ -23,6 +23,7 @@ You can view contract in the contracts explorer - [SonAR](https://sonar.redstone
 In order to complete this tutorial you will need to fork [redstone-academy repository](https://github.com/redstone-finance/redstone-academy), head to [redstone-academy-pst/challenge](https://github.com/redstone-finance/redstone-academy/tree/main/redstone-academy-pst/challenge) folder and complete all the tasks in the next sections by writing some code.
 
 ```bash
+git clone git@github.com:<username>/redstone-academy.git
 cd redstone-academy-pst/challenge
 ```
 

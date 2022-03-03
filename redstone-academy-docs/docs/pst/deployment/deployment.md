@@ -98,7 +98,7 @@ ts-node src/tools/deploy-test-contract.ts
 ```
 
 :::tip
-Remember that you need to bundle contract source file before deploying the contract. We've already done it in tests chapter.
+Remember that you need to bundle contract source file before deploying the contract. We've already done it in [**Writing PST contract** chapter](../writing-pst-contract/contract-source.md#-bundling-contract).
 :::
 
 Congratulations!
