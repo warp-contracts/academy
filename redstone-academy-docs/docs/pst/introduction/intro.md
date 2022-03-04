@@ -24,7 +24,7 @@ In order to complete this tutorial you will need to fork [redstone-academy repos
 
 ```bash
 git clone git@github.com:<username>/redstone-academy.git
-cd redstone-academy-pst/challenge
+cd redstone-academy/redstone-academy-pst/challenge
 ```
 
 No worries, we will guide you through the whole process!

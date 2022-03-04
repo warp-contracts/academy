@@ -11,7 +11,7 @@ Let's create a new file `simple-demo.js`.
 
 ## 🔥 Implemented tests
 
-You can see the ready-made implementation of the test script in [src/tools/simple-demo.js](../src/tools/simple-demo.js). You can also see a better solution (JEST tests) in [tests/contracts.](../tests/contracts)
+You can see the ready-made implementation of the test script in [redstone-academy-loot/src/tools/simple-demo.js](https://github.com/redstone-finance/redstone-academy/blob/main/redstone-academy-loot/src/tools/simple-demo.js). You can also see a better solution (JEST tests) in [redstone-academy-loot/tests/contracts/contract.spec.js](https://github.com/redstone-finance/redstone-academy/blob/main/redstone-academy-loot/tests/contracts/contract.spec.js)
 
 ## 🌐 Test in node and browser environments
 

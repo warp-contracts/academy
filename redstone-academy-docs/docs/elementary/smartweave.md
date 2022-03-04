@@ -12,7 +12,7 @@ They are deployed to the blockchain and they are not controlled by the user - th
 
 ## 🧵 SmartWeave
 
-Arweave version of smart contracts - data-centered protocol built on top of Arweave blockchain called SmartWeave - is unique because unlike other traditional smart contract systems where it is node's responsibility to validate smart contract's result, it deploys a lazy evaluation method which transfers the burden of computation transaction validation to the smart contract user.
+Arweave has its own version of smart contract system. SmartWeave is a data-centered protocol built on top of Arweave blockchain. It is unique because it deploys a lazy evaluation method. In other traditional smart contract systems it is node's responsibility to validate smart contract's result. SmartWeave's lazy evaluation transfers the burden of computation transaction validation to the smart contract user.
 
 As it is written in the protocol:
 
@@ -59,7 +59,7 @@ RedStone SmartContracts consist of three main layers:
 2. **The Caching layer** - is build on top of the Core Protocol layer and allows caching results of each of the Core Protocol modules separately.
 3. **The Extensions layer** - includes everything that can be built on top of the core SDK - including Command Line Interface, Debugging tools, different logging implementations etc.
 
-Modular implementation has multiple advantages - it can be tested and develop separately. The SmartWeave client is more customizable as different types of caches can be used for web and node environment. It also enables adding different loaders responsible for loading interaction transactions registered for given contract. You can use `ArweaveGatewayInteractionsLoader` which uses Arweave gateway. Alternatively it is possible to make use of `RedstoneGatewayInteractionsLoader` which uses gateway dedicated to loading smart contracts transactions, available under [https://gateway.redstone.finance](https://gateway.redstone.finance/) url. You can view the instructions of how to use it in the SDK [here](https://github.com/redstone-finance/redstone-smartcontracts#using-the-redstone-gateway).
+Modular implementation has multiple advantages - it can be tested and developed separately. The SmartWeave client is more customizable as different types of caches can be used for web and node environment. It also enables adding different loaders responsible for loading interaction transactions registered for given contract. You can use `ArweaveGatewayInteractionsLoader` which uses Arweave gateway. Alternatively it is possible to make use of `RedstoneGatewayInteractionsLoader` which uses gateway dedicated to loading smart contracts transactions, available under [https://gateway.redstone.finance](https://gateway.redstone.finance/) url. You can view the instructions of how to use it in the SDK [here](https://github.com/redstone-finance/redstone-smartcontracts#using-the-redstone-gateway).
 
 We will use RedStone SDK throughout the whole course so you will have an advanced understanding of how it works and how you can use its features when creating your own application.
 

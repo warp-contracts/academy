@@ -9,13 +9,11 @@ Let's talk about contract source. It exports one function - `handle` - which acc
   - `caller` - wallet address of user interacting with the contract
   - `input` - user's input to the contract.
 
-`Handle` function can return three types of values:
+`Handle` function should end by:
 
-- `state` - when contract's state is changing after specific interaction
-- `other result` - when contract's state is not changing after interaction
-- `ContractError`
-
-//rozbudować tak jak np w sdk 'readState'
+- returning `{ state: newState }` - when contract's state is changing after specific interaction
+- returning `{ result: someResult }` - when contract's state is not changing after interaction
+- throwing `ContractError` exception
 
 ## 📃 Contract source types
 
@@ -120,7 +118,7 @@ export const mintTokens = async (
 
 ```
 
-This one will help us minting some tokens to the caller's address. It takes two arguments - contract's state and destructured caller of the interaction as well as the input to the interaction. It adds tokens to caller's address. It can return `ContractError` or contract's state.
+This one will help us minting some tokens to the caller's address. It takes two arguments - contract's state and destructured caller of the interaction as well as the input to the interaction. It adds tokens to caller's address. It can throw `ContractError` exception or return contract's state.
 
 [redstone-academy-pst/challenge/src/contracts/actions/write/transferTokens.ts](https://github.com/redstone-finance/redstone-academy/tree/main/redstone-academy-pst/challenge/src/contracts/actions/write/transferTokens.ts)
 
@@ -166,7 +164,7 @@ export const transferTokens = async (
 
 ```
 
-And the last one - core function of our contract which will be responsible for transfering tokens between addresses. It takes two arguments - state and destructured caller of the interaction as well as the input to the interaction. It substract indicated amount of tokens from caller's address and add them to the target address. It can return `ContractError` or contract's state.
+And the last one - core function of our contract which will be responsible for transfering tokens between addresses. It takes two arguments - state and destructured caller of the interaction as well as the input to the interaction. It substract indicated amount of tokens from caller's address and add them to the target address. It can throw `ContractError` exception or return contract's state.
 
 ## ⚓ Handle function
 
@@ -207,7 +205,7 @@ export async function handle(
 
 ```
 
-`Handle` function is an asynchronous function and it returns promise of type `ContractResult`. As mentioned above, it takes two arguments - state and action. It waits for one of the interactions to be called and return result of matching functions - the ones that we prepared earlier.
+`Handle` function is an asynchronous function and it returns promise of type `ContractResult`. As mentioned above, it takes two arguments - state and action. It waits for one of the interactions to be called and returns result of matching functions - the ones that we prepared earlier.
 
 ## 🎨 Bundling contract
 
@@ -249,7 +247,8 @@ Then we just need to add few commands to our `package.json` file that will simpl
 ```json
     "build:contracts": "yarn run clean && yarn run build-ts && npm run cp",
     "build-ts": "node build.js",
-    "clean": "rimraf ./dist"
+    "clean": "rimraf ./dist",
+    "cp": "copyfiles -u 1 ./src/**/*.json dist"
 ```
 
 ## 🎉 Conclusion

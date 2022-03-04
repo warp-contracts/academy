@@ -50,7 +50,7 @@ const config = {
         title: 'RedStone Academy',
         logo: {
           alt: 'My Site Logo',
-          src: 'img/smartweave.png',
+          src: 'img/smartweave.svg',
         },
         items: [
           {
@@ -67,7 +67,6 @@ const config = {
         ],
       },
       footer: {
-        style: 'dark',
         links: [
           {
             title: 'Docs',
@@ -107,7 +106,7 @@ const config = {
         ],
         logo: {
           alt: 'SmartWeave logo',
-          src: 'img/smartweave.png',
+          src: 'img/smartweave.svg',
           href: 'https://smartweave.redstone.finance',
           width: 50,
           height: 20,

@@ -14,6 +14,11 @@
   color: white;
 }
 
+.titleContainer {
+  background-color: rgb(221, 189, 252, 0.6);
+  color: var(--ifm-title-color);
+}
+
 @media screen and (max-width: 966px) {
   .heroBanner {
     padding: 2rem;

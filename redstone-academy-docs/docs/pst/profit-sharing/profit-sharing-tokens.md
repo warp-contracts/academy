@@ -8,23 +8,9 @@ Profit sharing tokens (PST) are built using SmartWeave and they are responsible 
 
 The amount of PSTs which will be transfered by the user while interacting with the app is specified by developers creating the app. It can be everything - from little payments up to large amounts for significant interactions. It can be fixed amount or percentage of interaction's value.
 
-Here is the example method of distributing fees to PST holders using `selectWeightedPstHolder` method from SmartWeave v1:
-
-```js
-import { selectWeightedPstHolder } from 'smartweave'
-
-const arweave = ... // an arweave client initialized previously.
-const contractState = ... // the PST contract state loaded previously.
-const jwk = ... // the users wallet loaded previously.
-
-async function sendFee() {
-  const holder = selectWeightedPstHolder(contractState.balances)
-  // send a fee. You should inform the user about this fee and amount.
-  const tx = await arweave.transactions.createTransaction({ target: holder, quantity: 0.1 }, jwk)
-  await arweave.transactions.sign(tx, jwk)
-  await arweave.transactions.post(tx)
-}
-```
+:::info
+If you want to see a code example of the fee distribution to PST holders using SmartWeave method `selectWeightedPstHolder`, check [this PST guide section](https://github.com/ArweaveTeam/SmartWeave/blob/master/CREATE-PST.md).
+:::
 
 ## ✍️ Example usage
 
