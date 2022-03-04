@@ -1,6 +1,6 @@
 # Test your contract
 
-I strongly recommend you to implement tests for all your smart contracts. It's generaly a good practice and it will help you to avoid silly bugs before deploying contracts to blockchain.
+We strongly recommend you to implement tests for all your smart contracts. It's generaly a good practice and it will help you to avoid simple bugs before deploying contracts to blockchain.
 
 The best way to implement tests is to use a special test framework like [JEST](https://jestjs.io/). But to keep this tutorial shorter we will implement a simple Node.js testing script. It will deploy the contract, interact with it, and print some output.
 
@@ -72,7 +72,7 @@ const initialState = fs.readFileSync(
 );
 ```
 
-## 🛳️ Deploy your contract to arlocal
+## 🛳️ Deploy your contract to `ArLocal`
 
 ```javascript
 // File: simple-demo.js
@@ -149,7 +149,7 @@ const finalState = await contract.readState();
 console.log(JSON.stringify(finalState, null, 2));
 ```
 
-## 🛑 Shut down arlocal
+## 🛑 Shut down `ArLocal`
 
 ```javascript
 // File: simple-demo.js
