@@ -34,7 +34,7 @@ const { default: ArLocal } = require('arlocal');
 })();
 ```
 
-## 🧑‍🔧 Configure `ArLocal`, `Arweave` and `Smarteave`
+## 🧑‍🔧 Configure `ArLocal`, `Arweave` and `SmartWeave`
 
 ```javascript
 // File: simple-demo.js
