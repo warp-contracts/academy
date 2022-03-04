@@ -30,8 +30,8 @@ Please feel free to contact us [on Discord](https://redstone.finance/discord) if
 
 ```bash
 # Install dependencies
-$ yarn add arweave redstone-smartweave
+$ yarn add arweave@1.10.16 redstone-smartweave@0.4.28
 
 # Install dev dependencies
-$ yarn add arlocal jest -D
+$ yarn add arlocal@1.1.19 jest -D
 ```

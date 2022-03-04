@@ -34,6 +34,12 @@ const config = {
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
         },
+          // Will be passed to @docusaurus/plugin-google-analytics.
+          googleAnalytics: {
+            trackingID: 'UA-216524725-1',
+            // Optional fields.
+            anonymizeIP: true, // Should IPs be anonymized?
+          },
       }),
     ],
   ],
