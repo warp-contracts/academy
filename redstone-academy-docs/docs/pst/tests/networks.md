@@ -44,4 +44,4 @@ You can read more about ArLocal in a [dedicated repository](https://github.com/t
 Redstone public testnet is available [here](https://testnet.redstone.tools).
 :::
 
-We will use ArLocal for our tests and RedStone public testnet for deploying contract and writing interactions. Testnets main aim is to create close-to-real environment which is very similair to Arweave. There are of course small differences which I will point out.
+We will use ArLocal for our tests and RedStone public testnet for deploying contract and writing interactions. Testnets main aim is to create close-to-real environment which is very similair to Arweave. There are of course small differences which we will point out.

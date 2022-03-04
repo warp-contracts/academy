@@ -62,7 +62,7 @@ wallet = await arweave.wallets.generate();
 walletAddress = await arweave.wallets.jwkToAddress(wallet);
 ```
 
-In order for tests to be working we need to generate a wallet which will be connected to the contract and therefore responsible for signing the transactions. We also need to get its address. We do it using ArweaveJS SDK. I advice you to read [this documentation of wallets](https://github.com/ArweaveTeam/arweave-js#wallets-and-keys).
+In order for tests to be working we need to generate a wallet which will be connected to the contract and therefore responsible for signing the transactions. We also need to get its address. We do it using ArweaveJS SDK. We advise you to read [this documentation of wallets](https://github.com/ArweaveTeam/arweave-js#wallets-and-keys).
 
 We also need to fund the wallet with some tokens. Head to [redstone-academy-pst/challenge/utils/\_helpers.ts](https://github.com/redstone-finance/redstone-academy/tree/main/redstone-academy-pst/challenge/utils/_helpers.ts) and write this asynchronous helper function.
 
@@ -129,7 +129,7 @@ const contractTxId = await smartweave.createContract.deploy({
 
 We are using RedStone Smartweave SDK's `deploy` method to deploy the contract. You can view the implementation here [https://github.com/redstone-finance/redstone-smartcontracts/blob/main/src/core/modules/impl/DefaultCreateContract.ts](https://github.com/redstone-finance/redstone-smartcontracts/blob/main/src/core/modules/impl/DefaultCreateContract.ts#L12).
 
-What it does is take object with **wallet**, **initial state** and **contract source** as contract data, create transaction using ArweaveJS SDK, add tags specific for SmartWeave contract (we will discuss tags in the next paragraph), sign transaction using generated Arweave wallet and post it to the Arweave blockchain. If your are not familiar with creating transactions on Arweave I strongly recommend reading ArweaveJS documentation, it's the key part to understand transactions flow, you can read more about it [here](https://github.com/ArweaveTeam/arweave-js#transactions).
+What it does is take object with **wallet**, **initial state** and **contract source** as contract data, create transaction using ArweaveJS SDK, add tags specific for SmartWeave contract (we will discuss tags in the next paragraph), sign transaction using generated Arweave wallet and post it to the Arweave blockchain. If your are not familiar with creating transactions on Arweave we strongly recommend reading ArweaveJS documentation, it's the key part to understand transactions flow, you can read more about it [here](https://github.com/ArweaveTeam/arweave-js#transactions).
 
 ## 🏷️ Tags
 

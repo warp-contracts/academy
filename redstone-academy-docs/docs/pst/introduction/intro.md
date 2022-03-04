@@ -2,15 +2,15 @@
 
 Ok, time for our first dApp!
 
-## 👷 What we're gonna build?
+## 👷 What we will build?
 
 In this tutorial we're going to learn how to build a simple PST (Profit Sharing Tokens) application. Our main tokens will be Federation Credits which are monetary units used by the United Federation of Planets. You can read some more about this fictional unit in the [Star trek fandom wiki](https://memory-alpha.fandom.com/wiki/Federation_credit). In order to achieve that, we will write our first PST contract. After writing some tests, we will deploy it to the [RedStone public testnet](https://testnet.redstone.tools/). It will let us mint some tokens as well as transfer them between addresses and read addresses' current balances. We will then create a simple dApp which will help us interact with the contract in a user-friendly way.
 
-I'll also give you some advices of how to deploy the contract to the Arweave mainnet.
+We will also give you some advices of how to deploy the contract to the Arweave mainnet.
 
 ![PST-app](./assets/app.png)
 
-## 🔨 What you'll need
+## 🔨 What you will need
 
 - [Node.js](https://nodejs.org/en/download/) version 16.5 or above:
 - [yarn](https://yarnpkg.com/getting-started/install) installed

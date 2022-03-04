@@ -63,7 +63,7 @@ const { state } = await contract.currentState();
 
 That's it for the preparations! As you may notice, we used some things we've already learned while writing tests and deploying our contract.
 
-## 🇦 Preparing Arweave mainnet environment
+## 🅰️ Preparing Arweave mainnet environment
 
 If you want to create an application which enables interacting with mainnet contract the only things you need to change in this section is indicating correct `host` in Arweave initialization (exactly like the last time - `arweave.net`) and pointing to the real wallet. This time it is best to detect if user has ArConnect already installed. If yes - `arweaveWallet` object will be available in `window` object and therefore you will be able to use ArConnect `connect` method. You can see its API in [ArConnect docs](https://docs.th8ta.org/arconnect/functions). You can also request necessary permissions. You can check list of available permissions [here](https://docs.th8ta.org/arconnect/permissions).
 
