@@ -33,7 +33,7 @@ export default new Vuex.Store({
       // ~~ Get wallet address and mint some tokens ~~
       const walletAddress = null;
 
-      // ~~ Connect deployed contract ~~
+      // ~~ Connect deployed contract and wallet ~~
       const contract = null;
       commit('setContract', contract);
 

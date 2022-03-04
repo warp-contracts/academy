@@ -14,7 +14,7 @@ const txId = await this.contract.writeInteraction({
 });
 ```
 
-Mine a block:
+Mine a block (remember that you only need to do this when using testnets):
 
 ```js
 await this.arweave.api.get('mine');

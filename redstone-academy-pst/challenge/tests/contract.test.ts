@@ -1,7 +1,29 @@
 describe('Testing the Profit Sharing Token', () => {
-  beforeAll(async () => {});
+  beforeAll(async () => {
+    // ~~ Declare all variables ~~
 
-  afterAll(async () => {});
+    // ~~ Set up ArLocal and instantiate Arweave ~~
+
+    // ~~ Initialize 'LoggerFactory' ~~
+
+    // ~~ Set up SmartWeave ~~
+
+    // ~~ Generate wallet and add funds ~~
+
+    // ~~ Read contract source and initial state files ~~
+
+    // ~~ Update initial state ~~
+
+    // ~~ Deploy contract ~~
+
+    // ~~ Connect to the pst contract ~~
+
+    // ~~ Mine block ~~
+  });
+
+  afterAll(async () => {
+    // ~~ Stop ArLocal ~~
+  });
 
   it('should read pst state and balance data', async () => {});
 
