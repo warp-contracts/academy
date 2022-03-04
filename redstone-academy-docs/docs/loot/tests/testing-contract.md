@@ -1,4 +1,4 @@
-## 🔥 Test your contract
+# Test your contract
 
 I strongly recommend you to implement tests for all your smart contracts. It's generaly a good practice and it will help you to avoid silly bugs before deploying contracts to blockchain.
 
@@ -9,15 +9,15 @@ And it allows to test SmartWave contracts without spending AR tokens.
 
 Let's create a new file `simple-demo.js`.
 
-### Implemented tests
+## 🔥 Implemented tests
 
 You can see the ready-made implementation of the test script in [src/tools/simple-demo.js](../src/tools/simple-demo.js). You can also see a better solution (JEST tests) in [tests/contracts.](../tests/contracts)
 
-### Test in node and browser environments
+## 🌐 Test in node and browser environments
 
 You should test your contracts in both browser and Node.js environments, so that your users are able to use them anywhere. Pay special attention to using such globals as `Buffer`, `ArrayBuffer` or `Uint8Array` that may work differently in different environments.
 
-#### 1.Load required modules
+## ⚓ Load required modules
 
 ```javascript
 // File: simple-demo.js
@@ -34,7 +34,7 @@ const { default: ArLocal } = require('arlocal');
 })();
 ```
 
-#### 2. Configure `ArLocal`, `Arweave` and `Smarteave`
+## 🧑‍🔧 Configure `ArLocal`, `Arweave` and `Smarteave`
 
 ```javascript
 // File: simple-demo.js
@@ -57,7 +57,7 @@ LoggerFactory.INST.logLevel('error');
 const smartweave = SmartWeaveNodeFactory.memCached(arweave);
 ```
 
-#### 3. Load contract source code and initial state
+## 🔧 Load contract source code and initial state
 
 ```javascript
 // File: simple-demo.js
@@ -72,7 +72,7 @@ const initialState = fs.readFileSync(
 );
 ```
 
-#### 4. Deploy your contract to arlocal
+## 🛳️ Deploy your contract to arlocal
 
 ```javascript
 // File: simple-demo.js
@@ -85,7 +85,7 @@ const contractTxId = await smartweave.createContract.deploy({
 await mine();
 ```
 
-#### 5. Interact with your contract
+## 🤏 Interact with your contract
 
 You can read more about interacting with your contracts in our [dedicated repo with examples.](https://github.com/redstone-finance/redstone-smartweave-examples)
 
@@ -149,7 +149,7 @@ const finalState = await contract.readState();
 console.log(JSON.stringify(finalState, null, 2));
 ```
 
-#### 6. Shut down arlocal
+## 🛑 Shut down arlocal
 
 ```javascript
 // File: simple-demo.js

@@ -1,4 +1,4 @@
-### Implement contract logic in Javascript
+# Implement contract logic in Javascript
 
 Let's create a new file `contract.js` and add the following initial code
 
@@ -13,7 +13,7 @@ export async function handle(state, action) {
 
 As you can see the `handle` function has 2 arguments, that will be fulfilled with values during interaction with the contract. The `state` argument will contain (guess what) the state. And the `action` argument will contain information about the interaction function name and (optioanlly) its arguments.
 
-#### Implement the first method `name`
+## 🔩 Implement the first method `name`
 
 Let's implement the first (and the simplest) function for getting the name of the loot pool.
 
@@ -33,7 +33,7 @@ switch (action.input.function) {
 
 💡 Note! This function reads from state, but doesn't change it.
 
-#### Implement `getOwner` and `transfer` methods
+## 🔨 Implement `getOwner` and `transfer` methods
 
 Let's add some token-like methods inside the `swtich` block.
 
@@ -62,7 +62,7 @@ case "transfer": {
 
 As you can see, the `getOwner` function also doesn't change the contract state, while the `transfer` function updates the owner of the provided asset. This interaction will require sending a transaction to Arweave and the sender will need to pay some fee in AR tokens.
 
-#### Implement `generate` method
+## 🪚 Implement `generate` method
 
 Great! Now we can implement the core function for the whole contract.
 
@@ -164,7 +164,7 @@ async function getRandomIntNumber(max, uniqueValue = '') {
 
 💡 Note! You can use the global variable `SmartWeave` inside your contract code. You can learn more about it [here.](https://github.com/redstone-finance/redstone-smartweave/blob/main/src/legacy/smartweave-global.ts)
 
-#### Add bonus methods `generatedAssets` and `assetsLeft`
+## 🗜️ Add bonus methods `generatedAssets` and `assetsLeft`
 
 Ok, the core part of the contract is ready. So let's add 2 bonus methods inside the `switch .. case` block.
 

@@ -1,4 +1,4 @@
-## 🔒 Deploy your contract
+# Deploy your contract
 
 The smart contract deployment code is very similar to the one that we've used in the testing script. You can see an example of the deployment script in [src/tools/deploy-contracts.js.](../src/tools/deploy-contracts.js).
 
