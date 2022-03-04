@@ -117,6 +117,39 @@ const sidebars = {
         },
       ],
     },
+    {
+      type: 'category',
+      label: 'LOOT',
+      items: [
+        { type: 'doc', label: 'Intro', id: 'loot/introduction/intro' },
+        {
+          type: 'category',
+          label: 'Implementating contract',
+          items: [
+            {
+              type: 'doc',
+              label: 'Contract state',
+              id: 'loot/implementation/contract-state',
+            },
+            {
+              type: 'doc',
+              label: 'Contract logic',
+              id: 'loot/implementation/contract-logic',
+            },
+          ],
+        },
+        {
+          type: 'doc',
+          label: 'Testing contract',
+          id: 'loot/tests/testing-contract',
+        },
+        {
+          type: 'doc',
+          label: 'Deployment',
+          id: 'loot/deployment/deployment',
+        },
+      ],
+    },
   ],
 };
 
