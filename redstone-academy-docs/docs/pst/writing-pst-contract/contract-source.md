@@ -4,16 +4,16 @@
 
 Let's talk about contract source. It exports one function - `handle` - which accepts two arguments:
 
-- `state` - contract's current state
+- `state` - contract's current state.
 - `action` - contract interaction with two properties:
-  - `caller` - wallet address of user interacting with the contract
+  - `caller` - wallet address of user interacting with the contract.
   - `input` - user's input to the contract.
 
 `Handle` function should end by:
 
-- returning `{ state: newState }` - when contract's state is changing after specific interaction
-- returning `{ result: someResult }` - when contract's state is not changing after interaction
-- throwing `ContractError` exception
+- returning `{ state: newState }` - when contract state is changing after specific interaction.
+- returning `{ result: someResult }` - when contract state is not changing after interaction.
+- throwing `ContractError` exception.
 
 ## 📃 Contract source types
 
@@ -40,19 +40,19 @@ export interface PstResult {
 export type PstFunction = 'transfer' | 'mint' | 'balance';
 ```
 
-Time for explanation.
+Time for an explanation.
 
 `PstAction` represents contract's interaction. As mentioned earlier it has two properties - caller and input. In our contract user will have an ability to write three types of inputs (`PstInput`):
 
 - `function` - type of interaction (in our case - it can be **transfering tokens**, **minting tokens** or **reading balances** - `PstFunction`)
-- `target` - target address
-- `qty` - amount of tokens to be transferred/minted
+- `target` - target address.
+- `qty` - amount of tokens to be transferred/minted.
 
 `PstResult` - object possible to be returned by interacting with the contract:
 
-- `target` - target address
-- `ticker` - an abbreviation used to uniquely identify the token
-- `balance` - specific address balance
+- `target` - target address.
+- `ticker` - an abbreviation used to uniquely identify the token.
+- `balance` - specific address balance.
 
 ## 🎬 Actions
 
@@ -86,7 +86,7 @@ export const balance = async (
 
 ```
 
-The above function will help us read balance of inidicated target address. It takes two arguments - contract computed state and destructured contract action which give us input to the interaction. Remember that we have three possible options to be returned from the interactions? In above interaction we added two of them - thanks to simple error handling we can return `ContractError` or result.
+The above function will help us read the balance of the inidicated target address. It takes two arguments - contract computed state and destructured contract action which give us input to the interaction. Remember that we have three possible options to be returned from the interactions? In the above interaction we added two of them - thanks to simple error handling we can return `ContractError` or result.
 
 ### 🖊️ Write
 
@@ -118,7 +118,7 @@ export const mintTokens = async (
 
 ```
 
-This one will help us minting some tokens to the caller's address. It takes two arguments - contract's state and destructured caller of the interaction as well as the input to the interaction. It adds tokens to caller's address. It can throw `ContractError` exception or return contract's state.
+This one will help us minting some tokens to the caller's address. It takes two arguments - contract state and the destructured caller of the interaction as well as the input to the interaction. It adds tokens to the caller's address. It can throw `ContractError` exception or return contract's state.
 
 [redstone-academy-pst/challenge/src/contracts/actions/write/transferTokens.ts](https://github.com/redstone-finance/redstone-academy/tree/main/redstone-academy-pst/challenge/src/contracts/actions/write/transferTokens.ts)
 
@@ -164,7 +164,7 @@ export const transferTokens = async (
 
 ```
 
-And the last one - core function of our contract which will be responsible for transfering tokens between addresses. It takes two arguments - state and destructured caller of the interaction as well as the input to the interaction. It substract indicated amount of tokens from caller's address and add them to the target address. It can throw `ContractError` exception or return contract's state.
+And the last one - the core function of our contract which will be responsible for transfering tokens between addresses. It takes two arguments - state and destructured caller of the interaction as well as the input to the interaction. It subtract's the indicated amount of tokens from caller's address and adds them to the target address. It can throw `ContractError` exception or return contract's state.
 
 ## ⚓ Handle function
 
@@ -205,13 +205,13 @@ export async function handle(
 
 ```
 
-`Handle` function is an asynchronous function and it returns promise of type `ContractResult`. As mentioned above, it takes two arguments - state and action. It waits for one of the interactions to be called and returns result of matching functions - the ones that we prepared earlier.
+`Handle` function is an asynchronous function and it returns a promise of type `ContractResult`. As mentioned above, it takes two arguments - state and action. It waits for one of the interactions to be called and returns the result of matching functions - the ones that we prepared earlier.
 
 ## 🎨 Bundling contract
 
-Now comes the tricky part. We need to find a way to bundle our contract source so its output code is in javascript and not typescript. We will use esbuild tool to achieve that result but of course you can use whichever bundler you'd like. We will not come into the details but you can view bundling script here [https://github.com/redstone-finance/redstone-academy/blob/main/redstone-academy-pst/challenge/build.js](https://github.com/redstone-finance/redstone-academy/blob/main/redstone-academy-pst/challenge/build.js).
+Now comes the tricky part. We need to find a way to bundle our contract source so its output code is in Javascript and not typescript. We will use esbuild tool to achieve that result but of course you can use whichever bundler you'd like. We will not go into the details but you can view the bundling script here [https://github.com/redstone-finance/redstone-academy/blob/main/redstone-academy-pst/challenge/build.js](https://github.com/redstone-finance/redstone-academy/blob/main/redstone-academy-pst/challenge/build.js).
 
-It takes contract source file as an esbuild source file, bundle it and put its compiled Javascript version in a `dist` folder.
+It takes the contract source file as an esbuild source file, bundles it and put's its compiled Javascript version in a `dist` folder.
 
 ```js
 const { build } = require('esbuild');
@@ -242,7 +242,7 @@ build({
   });
 ```
 
-Then we just need to add few commands to our `package.json` file that will simply remove everything from `dist` folder (which contains the minimized version of the source code), run bundling script and additionally - copy `initial-state.json` file to the `dist` folder so we'll have all the files we need to deploy the contract in one place.
+Now we just need to add a few commands to our `package.json` file that will simply remove everything from `dist` folder (which contains the minimized version of the source code), run the bundling script and additionally - copy `initial-state.json` file to the `dist` folder so we'll have all the files we need to deploy the contract in one place.
 
 ```json
     "build:contracts": "yarn run clean && yarn run build-ts && npm run cp",
