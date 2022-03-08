@@ -21,7 +21,7 @@
 @media screen and (max-width: 966px) {
   .heroBanner {
     padding: 2rem;
-    background-size: auto;
+    background-size: cover;
   }
 }
 
@@ -30,7 +30,6 @@
     background-size: contain;
   }
 }
-
 
 .buttons {
   display: flex;
