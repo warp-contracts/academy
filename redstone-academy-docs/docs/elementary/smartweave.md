@@ -34,7 +34,7 @@ In general, it works like this. Contract source code (simple javascript function
 >
 > — SmartWeave protocol
 
-In order to fully understand the process of contract creation I advice you to read full protocol linked below.
+In order to fully understand the process of contract creation we advise you to read full protocol linked below.
 
 :::info
 
