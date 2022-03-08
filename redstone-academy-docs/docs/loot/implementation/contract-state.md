@@ -4,19 +4,19 @@
 
 ## ✔️ Start with a state
 
-The first 2 things you should think about before implementing a SmartWeave contract are
+The first 2 things you should think about before implementing a SmartWeave contract are:
 
-- what you need to store in the contract state
-- how to store it there in the most efficient and easy-to-use way
+- what you need to store in the contract state.
+- how to store it there in the most efficient and easy-to-use way.
 
 In our case the state can have 2 properties:
 
-- `name` - name of the loot pool
+- `name` - name of the loot pool.
 - `assets` - object with assets ({ "assetName": "ownerAddress", ... })
 
-Initially the `assets` object will be empty. But it will be filling with the newly generated assets, pointing to their owners. This state structure allows to quickly understand who owns an asset or switch the ownership.
+Initially the `assets` object will be empty. But it will be filling with the newly generated assets and pointing to their owners. This state structure allows us to quickly understand who owns an asset or switch the ownership.
 
-Let's save the initial state in JSON format to `initial-state.json` file
+Let's save the initial state in JSON format to `initial-state.json` file.
 
 ```json
 {
