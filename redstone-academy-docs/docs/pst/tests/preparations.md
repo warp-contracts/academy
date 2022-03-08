@@ -1,6 +1,6 @@
 # Preparations
 
-It is more than important to carefully test your contract before deploying it to the blockchain. We will write few tests and execute them in server environment as well as in browser one using Jest. Throughout this process you will get to know couple of important **ArweaveJS** and **RedStone Smartweave SDK** methods.
+It is more than important to carefully test your contract before deploying it to the blockchain. We will write a few tests and execute them in a server environment as well as in a browser using Jest. Throughout this process you will get to know a couple of important **ArweaveJS** and **RedStone Smartweave SDK** methods.
 
 ## 🔤 Declaring variables
 
@@ -30,7 +30,7 @@ arweave = Arweave.init({
 });
 ```
 
-We initialize ArLocal - a local server resembling real Arweave network - on port 1820 (the default one is 1984) and start the instance. Then, we initialize Arweave by pointing to the running local testnet.
+We initialize ArLocal - a local server resembling the real Arweave network - on port 1820 (the default one is 1984) and start the instance. Then, we initialize Arweave by pointing to the running local testnet.
 
 ## 🎛️ LoggerFactory
 
@@ -38,14 +38,14 @@ We initialize ArLocal - a local server resembling real Arweave network - on port
 LoggerFactory.INST.logLevel('error');
 ```
 
-Logging is helpful not only during development process but also when interacting with the contract as it gives some advices of what is happening and what errors have occured. RedStone Smartweave SDK has seven levels of logging, you can view all logging implementations in the SDK [https://github.com/redstone-finance/redstone-smartcontracts/tree/main/src/logging](https://github.com/redstone-finance/redstone-smartcontracts/tree/main/src/logging). It is adviced to use only `fatal` or `error` logging levels in production as using other ones may slow down the evaluation. You can also use different logging levels for each module. Names of the modules are derived from Typescript classes in the SDK, example of such implementation:
+Logging is helpful not only during the development process but also when interacting with the contract as it gives some indication of what is happening and what errors have occured. RedStone Smartweave SDK has seven levels of logging, you can view all logging implementations in the SDK [https://github.com/redstone-finance/redstone-smartcontracts/tree/main/src/logging](https://github.com/redstone-finance/redstone-smartcontracts/tree/main/src/logging). It is advisable to use only `fatal` or `error` logging levels in production as using other ones may slow down the evaluation. You can also use different logging levels for each module. Names of the modules are derived from Typescript classes in the SDK. Here is an example of such an implementation:
 
 ```js
 LoggerFactory.INST.logLevel('fatal');
 LoggerFactory.INST.logLevel('debug', 'ArweaveGatewayInteractionsLoader');
 ```
 
-For the tutorial purposes we will set `error` logging level.
+For the tutorial purposes we will set logging level to `error`.
 
 ## 🪡 Setting up SmartWeave
 
@@ -53,7 +53,7 @@ For the tutorial purposes we will set `error` logging level.
 smartweave = SmartWeaveNodeFactory.memCached(arweave);
 ```
 
-SmartWeave class in SDK is a base class that supplies the implementation of SmartWeave protocol. Check it out in SDK [https://github.com/redstone-finance/redstone-smartcontracts/blob/main/src/core/SmartWeave.ts](https://github.com/redstone-finance/redstone-smartcontracts/blob/main/src/core/SmartWeave.ts). SmartWeave allows to plug-in different module implementations (like interactions loader or state evaluator) but as it is just the first tutorial, we will go with the most basic implementation. We will create SmartWeave instance by using `SmartWeaveNodeFactory` which is designed to be used in node environment. We will also use `MemCache` which a simple in-memory cache. Later in the Academy schedule you will be introduced to other types of chache (like `fileCached` or `knexCached`).
+SmartWeave class in SDK is a base class that supplies the implementation of SmartWeave protocol. Check it out in SDK [https://github.com/redstone-finance/redstone-smartcontracts/blob/main/src/core/SmartWeave.ts](https://github.com/redstone-finance/redstone-smartcontracts/blob/main/src/core/SmartWeave.ts). SmartWeave allows to plug-in different module implementations (like interactions loader or state evaluator) but as it is just the first tutorial, we will go with the most basic implementation. We will create a SmartWeave instance by using `SmartWeaveNodeFactory` which is designed to be used in a node environment. We will also use `MemCache` which is a simple in-memory cache. Later in the Academy schedule you will be introduced to other types of cache (like `fileCached` or `knexCached`).
 
 ## 👛 Generating wallet and adding funds
 
@@ -62,7 +62,7 @@ wallet = await arweave.wallets.generate();
 walletAddress = await arweave.wallets.jwkToAddress(wallet);
 ```
 
-In order for tests to be working we need to generate a wallet which will be connected to the contract and therefore responsible for signing the transactions. We also need to get its address. We do it using ArweaveJS SDK. We advise you to read [this documentation of wallets](https://github.com/ArweaveTeam/arweave-js#wallets-and-keys).
+In order for tests to work we need to generate a wallet which will be connected to the contract and therefore responsible for signing the transactions. We also need to obtain the wallet address. We do this by using ArweaveJS SDK. We advise you to read [this documentation of wallets](https://github.com/ArweaveTeam/arweave-js#wallets-and-keys).
 
 We also need to fund the wallet with some tokens. Head to [redstone-academy-pst/challenge/utils/\_helpers.ts](https://github.com/redstone-finance/redstone-academy/tree/main/redstone-academy-pst/challenge/utils/_helpers.ts) and write this asynchronous helper function.
 
@@ -73,7 +73,7 @@ export async function addFunds(arweave: Arweave, wallet: JWKInterface) {
 }
 ```
 
-It takes two arguments - arweave instance and generated wallet. It declares wallet address using ArweaveJs and hit the `mint` Arweave endpoint which is responsible for minting tokens. Keep in mind that above value is an amount of winstons.
+It takes two arguments - arweave instance and generated wallet. It declares wallet address using ArweaveJs and hit the `mint` Arweave endpoint which is responsible for minting tokens. Keep in mind that the above value is an amount of winstons.
 
 :::info
 1 Winston = 0.000000000001 AR
@@ -113,7 +113,7 @@ initialState = {
 };
 ```
 
-We need to update our initial state and set previously generated wallet address as the owner of the contract. Please remember that this step is only needed in case of dynamically generated wallet (usually when we are using testnets).
+We need to update our initial state and set the previously generated wallet address as the owner of the contract. Please remember that this step is only needed in case of a dynamically generated wallet (usually when we are using testnets).
 
 ## 🪗 Deploying contract
 
@@ -150,7 +150,7 @@ Tags are used to add metadata to the transaction, it helps documenting the data 
 }
 ```
 
-You can of course override them or add some more tags by passing property with `tags` key to the contract data passed to `deploy` function.
+You can of course override them or add some more tags by passing property with `tags` key to the contract data passed to the `deploy` function.
 
 ## 🔌 Connecting to the pst contract
 
@@ -158,13 +158,13 @@ You can of course override them or add some more tags by passing property with `
 pst = smartweave.pst(contractTxId).connect(wallet);
 ```
 
-In order to perform any operation on the contract we need to connect to it. You can connect to any contract using SDK's `contract` method. But in case of pst contract it is recommended to connect to contract by using `pst` method which allows to use all the functions which are specific for PST Contract implementation. You can view `connect` and `pst` methods in [`SmartWeave` class](https://github.com/redstone-finance/redstone-smartcontracts/blob/main/src/core/SmartWeave.ts#L47). All methods specific for PST contracts can be viewed in [PstContract interface](https://github.com/redstone-finance/redstone-smartcontracts/blob/main/src/contract/PstContract.ts#L73).
+In order to perform any operation on the contract we need to connect to it. You can connect to any contract using SDK's `contract` method. But in case of the pst contract it is recommended to connect to the contract by using the `pst` method which allows you to use all the functions which are specific for PST Contract implementation. You can view `connect` and `pst` methods in [`SmartWeave` class](https://github.com/redstone-finance/redstone-smartcontracts/blob/main/src/core/SmartWeave.ts#L47). All methods specific for PST contracts can be viewed in [PstContract interface](https://github.com/redstone-finance/redstone-smartcontracts/blob/main/src/contract/PstContract.ts#L73).
 
-We then connect our wallet to the pst contract. Please remember that connecting a wallet MAY be done before `viewState` (depending on contract implementation, ie. whether called contract's function required `caller` info). Connecting a wallet MUST be done before `writeInteraction`. And therefore, it is not required when we just want to read the state.
+We then connect our wallet to the pst contract. Please remember that connecting a wallet MAY be done before `viewState` (depending on contract implementation, ie. whether called contract's function required `caller` info). Connecting a wallet MUST be done before `writeInteraction`. Therefore, it is not required when we just want to read the state.
 
 ## 🚧 Mining blocks
 
-As you may recall from the Elementary section, blockchain mining means adding transactions to the blockchain ledger of transactions. On mainnet in order to mine a block it is required for nodes to validate a transaction, when using ArLocal we need to mine a block manually. We will add another helper function to the `_helpers.ts` file:
+As you may recall from the Elementary section, blockchain mining means adding transactions to the blockchain ledger of transactions. In order to mine a block on the mainnet it is required for nodes to validate a transaction. When using ArLocal we need to mine a block manually. We will add another helper function to the `_helpers.ts` file:
 
 ```js
 export async function mineBlock(arweave: Arweave) {
@@ -188,7 +188,7 @@ await arlocal.stop();
 
 ## 📜 Test scripts
 
-It is good to test contract in different environments. We will test it in server environment as well as browser one. Jest executes tests on server so we need to add some additional files in order for the browser tests to work. It's already prepared but if you want to get familiar with how it works see these files: [challenge/jest.browser.config.js](https://github.com/redstone-finance/redstone-academy/blob/main/redstone-academy-pst/challenge/jest.browser.config.js) and [challenge/browser-jest-env.js](https://github.com/redstone-finance/redstone-academy/blob/main/redstone-academy-pst/challenge/browser-jest-env.js). One last bit is to add scripts to `package.json` files which will give us possibility to run node tests, run browser tests or run them both.
+It is good to test the contract in different environments. We will test it in a server environment as well as a browser one. Jest executes tests on server so we need to add some additional files in order for the browser tests to work. It's already prepared but if you want to get familiar with how it works see these files: [challenge/jest.browser.config.js](https://github.com/redstone-finance/redstone-academy/blob/main/redstone-academy-pst/challenge/jest.browser.config.js) and [challenge/browser-jest-env.js](https://github.com/redstone-finance/redstone-academy/blob/main/redstone-academy-pst/challenge/browser-jest-env.js). One last bit is to add scripts to `package.json` files which will give us the possibility to run node tests, run browser tests or run them both.
 
 ```json
     "test": "yarn test:node && yarn test:browser",
