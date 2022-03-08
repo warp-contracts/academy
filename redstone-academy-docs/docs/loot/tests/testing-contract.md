@@ -1,11 +1,11 @@
 # Test your contract
 
-We strongly recommend you to implement tests for all your smart contracts. It's generaly a good practice and it will help you to avoid simple bugs before deploying contracts to blockchain.
+We strongly recommend you implement tests for all your smart contracts. It's generaly a good practice and it will help you to avoid simple bugs before deploying contracts to blockchain.
 
 The best way to implement tests is to use a special test framework like [JEST](https://jestjs.io/). But to keep this tutorial shorter we will implement a simple Node.js testing script. It will deploy the contract, interact with it, and print some output.
 
 We will use arlocal to run a local Arweave instance. It is much faster than the real blockchain.
-And it allows to test SmartWave contracts without spending AR tokens.
+And it allows us to test SmartWave contracts without spending AR tokens.
 
 Let's create a new file `simple-demo.js`.
 
