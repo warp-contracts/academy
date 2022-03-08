@@ -16,7 +16,7 @@ In order to confirm transactions we need some sort of consensus mechanism. The f
 
 ## 🪨 Immutability
 
-An immutable cryptographic signature called a hash is added to each block, so if one block in one chain was changed all the nodes would immediately known about it. In order to manipulate blockchain's data in malicious way, a hacker would need to change every block in the chain across all duplicated versions of the chain.
+An immutable cryptographic signature called a hash is added to each block, so if one block in one chain was changed all the nodes would immediately known about it. In order to manipulate blockchain data in a malicious way, a hacker would need to change every block in the chain across all duplicated versions of the chain.
 
 ## 💱Cryptocurrency
 
