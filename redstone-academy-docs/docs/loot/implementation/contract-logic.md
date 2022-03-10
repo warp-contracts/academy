@@ -1,6 +1,6 @@
 # Implement contract logic in Javascript
 
-Let's create a new file `contract.js` and add the following initial code
+Let's create a new file `contract.js` and add the following initial code:
 
 ```javascript
 // file: contract.js
@@ -11,7 +11,7 @@ export async function handle(state, action) {
 }
 ```
 
-As you can see the `handle` function has 2 arguments, that will be fulfilled with values during interaction with the contract. The `state` argument will contain (guess what) the state. And the `action` argument will contain information about the interaction function name and (optioanlly) its arguments.
+As you can see the `handle` function has 2 arguments that will be fulfilled with values during interaction with the contract. The `state` argument will contain (guess what) the state and the `action` argument will contain information about the interaction function name and (optionally) its arguments.
 
 ## 🔩 Implement the first method `name`
 
@@ -109,7 +109,7 @@ const ITEMS = [
 ];
 ```
 
-Then, we add a `generate` function inside the `switch .. case` block
+Then, we add a `generate` function inside the `switch .. case` block:
 
 ```javascript
 // file: contract.js
