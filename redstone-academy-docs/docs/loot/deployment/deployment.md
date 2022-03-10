@@ -1,6 +1,6 @@
 # Deploy your contract
 
-The smart contract deployment code is very similar to the one that we've used in the testing script. You can see an example of the deployment script in [redstone-academy-loot/src/tools/deploy-contracts.js](https://github.com/redstone-finance/redstone-academy/blob/main/redstone-academy-loot/src/tools/deploy-contracts.js).
+The smart contract deployment code is very similar to the one that we used in the testing script. You can see an example of the deployment script in [redstone-academy-loot/src/tools/deploy-contracts.js](https://github.com/redstone-finance/redstone-academy/blob/main/redstone-academy-loot/src/tools/deploy-contracts.js).
 
 After running the deployment script the contract transaction Id will be printed.
 This transaction should be mined on Arweave in about 20-30 minutes. You can check its status on [Viewblock.](https://viewblock.io)
