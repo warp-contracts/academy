@@ -1,10 +1,10 @@
 # Implementation tutorial for loot contract on SmartWeave
 
-This tutorial shows how to implement a simple loot contract on SmartWeave protocol.
+This tutorial shows how to implement a simple loot contract on the SmartWeave protocol.
 
 ## 💡 The smart contract idea
 
-We will implement a simple [LOOT](https://www.lootproject.com/)-like contract, which allows to generate and transfer different magical assets, like for example `black silver sword` or `blue gold crown`. Each asset will be unique and can belong to only one wallet at a time.
+We will implement a simple [LOOT](https://www.lootproject.com/)-like contract, which allows us to generate and transfer different magical assets, for example `black silver sword` or `blue gold crown`. Each asset will be unique and can belong to only one wallet at a time.
 
 Initially there are no generated assets, but users will be able to generate and claim them.
 Users also will be able to transfer their assets to others.
