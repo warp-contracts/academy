@@ -6,7 +6,7 @@ Let's start with initial state.
 
 ## 📃 PstState
 
-To obtain good structure we will use power of Typescript and prepare some types first. Head to [redstone-academy-pst/challenge/src/contracts/types/types.ts](https://github.com/redstone-finance/redstone-academy/tree/main/redstone-academy-pst/challenge/src/contracts/types/types.ts) and let's start writing!
+To obtain good structure we will use the power of Typescript and prepare some types first. Head to [redstone-academy-pst/challenge/src/contracts/types/types.ts](https://github.com/redstone-finance/redstone-academy/tree/main/redstone-academy-pst/challenge/src/contracts/types/types.ts) and let's start writing!
 
 ```js
 export interface PstState {
@@ -21,16 +21,16 @@ export interface PstState {
 
 Time for explanation.
 
-`PstState` represents contract's current state. Its shape is not defined by any rules and it is developer who decide what the state will look like. In case of our implementation it will consist of four properties:
+`PstState` represents the contract's current state. Its shape is not defined by any rules and it is the developer who decides what the state will look like. In case of our implementation it will consist of four properties:
 
-- `ticker` - an abbreviation used to uniquely identify the token
-- `name` - name of the token
-- `owner` - owner of the contract
+- `ticker` - an abbreviation used to uniquely identify the token.
+- `name` - name of the token.
+- `owner` - owner of the contract.
 - `balances` - object with all the addresses possessing tokens and their balances.
 
 ## 📁 Initial state file
 
-Now we have it typed, we can write initial state for our contract. Head to [redstone-academy-pst/challenge/src/contracts/initial-state.json](https://github.com/redstone-finance/redstone-academy/tree/main/redstone-academy-pst/challenge/src/contracts/initial-state.json) and write initial state for your contract. Remember - it has to be a json file. We will stick to the types we have already written and here is just a sample of what it can look like. You can copy it or change some of the fields (e.g. `balances` object). For the purpose of tutorial we will just mock the addresses.
+Now we have it typed, we can write the initial state for our contract. Head to [redstone-academy-pst/challenge/src/contracts/initial-state.json](https://github.com/redstone-finance/redstone-academy/tree/main/redstone-academy-pst/challenge/src/contracts/initial-state.json) and write the initial state for your contract. Remember - it has to be a json file. We will stick to the types we have already written and here is just a sample of what it can look like. You can copy it or change some of the fields (e.g. `balances` object). For the purpose of the tutorial we will just mock the addresses.
 
 ```json
 {
