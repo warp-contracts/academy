@@ -1,6 +1,6 @@
 # Interacting with the contract
 
-We are displaying all the balances in `BalancesList` component. We have access to the list thanks to `state` property we defined in the store in the Preparations section. Now all we need to do is find a way to properly mint some FC tokens to the wallet and transfer tokens between addresses.
+We are displaying all the balances in the `BalancesList` component. We have access to the list thanks to `state` property we defined in the store in the Preparations section. Now all we need to do is find a way to properly mint some FC tokens to the wallet and transfer tokens between addresses.
 
 ## 🤑 Mint tokens
 
@@ -43,7 +43,7 @@ Right after writing above interaction, mine a block:
 await this.arweave.api.get('mine');
 ```
 
-Finally, set new balances list by calling `currentState` method:
+Finally, set the new balances list by calling `currentState` method:
 
 ```js
 let newResult = await this.contract.currentState();
