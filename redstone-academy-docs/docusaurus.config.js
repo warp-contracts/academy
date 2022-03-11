@@ -34,12 +34,12 @@ const config = {
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
         },
-          // Will be passed to @docusaurus/plugin-google-analytics.
-          googleAnalytics: {
-            trackingID: 'UA-216524725-1',
-            // Optional fields.
-            anonymizeIP: true, // Should IPs be anonymized?
-          },
+        // Will be passed to @docusaurus/plugin-google-analytics.
+        googleAnalytics: {
+          trackingID: 'UA-216524725-1',
+          // Optional fields.
+          anonymizeIP: true, // Should IPs be anonymized?
+        },
       }),
     ],
   ],
@@ -122,6 +122,13 @@ const config = {
       prism: {
         theme: lightCodeTheme,
         darkTheme: darkCodeTheme,
+      },
+      algolia: {
+        appId: 'MCHYFKZV38',
+
+        apiKey: '83b1fd61be3073cd6100d6f2239fe47c',
+
+        indexName: 'redstone-academy',
       },
     }),
 };
