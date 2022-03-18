@@ -94,7 +94,7 @@ The script is ready!
 All we need to do now is run the prepared script. We will use a typescript execution engine for NodeJS - ts-node. Run the following script in the root folder:
 
 ```bash
-ts-node src/tools/deploy-test-contract.ts
+yarn ts-node src/tools/deploy-test-contract.ts
 ```
 
 :::tip
