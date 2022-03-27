@@ -11,6 +11,8 @@ class MyEnvironment extends JsDomEnv {
           Uint8Array,
           TextDecoder,
           TextEncoder,
+          setImmediate: null,
+          clearImmediate: null,
         }),
       })
     );

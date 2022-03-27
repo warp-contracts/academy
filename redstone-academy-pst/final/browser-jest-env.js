@@ -2,7 +2,6 @@
 
 const JsDomEnv = require('jest-environment-jsdom');
 const { TextDecoder, TextEncoder } = require('util');
-
 class MyEnvironment extends JsDomEnv {
   constructor(config) {
     super(
@@ -11,6 +10,8 @@ class MyEnvironment extends JsDomEnv {
           Uint8Array,
           TextDecoder,
           TextEncoder,
+          setImmediate: null,
+          clearImmediate: null,
         }),
       })
     );

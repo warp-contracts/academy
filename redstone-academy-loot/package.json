@@ -13,12 +13,12 @@
   "dependencies": {
     "@babel/polyfill": "^7.4.4",
     "ar-gql": "^0.0.6",
-    "arlocal": "^1.1.19",
-    "arweave": "1.10.16",
+    "arlocal": "1.1.30",
+    "arweave": "1.10.23",
     "core-js": "^2.6.5",
     "hex-rgb": "^5.0.0",
     "jest": "^27.1.1",
-    "redstone-smartweave": "0.4.28",
+    "redstone-smartweave": "0.4.53",
     "vue": "^2.6.10",
     "vue-loaders": "^4.1.4",
     "vue-observe-visibility": "^1.0.0",
@@ -30,6 +30,8 @@
     "vuex": "^3.0.1"
   },
   "devDependencies": {
+    "@babel/core": "^7.17.8",
+    "@babel/preset-env": "^7.16.11",
     "@vue/cli-plugin-babel": "^3.0.3",
     "@vue/cli-plugin-e2e-cypress": "^3.0.3",
     "@vue/cli-plugin-eslint": "^3.0.3",
@@ -38,7 +40,7 @@
     "@vue/test-utils": "1.0.0-beta.29",
     "babel-core": "7.0.0-bridge.0",
     "babel-eslint": "^10.0.1",
-    "babel-jest": "^23.6.0",
+    "babel-jest": "^27.5.1",
     "eslint": "^5.16.0",
     "eslint-plugin-vue": "^5.0.0",
     "jest-environment-jsdom": "^27.2.0",

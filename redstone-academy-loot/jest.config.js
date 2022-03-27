@@ -6,10 +6,9 @@ module.exports = {
 
   testEnvironment: 'node',
 
-  "testMatch": [
-    "**/tests/**/?(*.)+(spec).+(js)"
-  ],
+  testMatch: ['**/tests/**/?(*.)+(spec).+(js)'],
 
-  // https://stackoverflow.com/a/67909921
-  transform: {},
+  transformIgnorePatterns: ['<rootDir>/node_modules/(?!@assemblyscript/.*)'],
+
+  transform: { '^.+\\.(js|jsx)$': 'babel-jest' },
 };
