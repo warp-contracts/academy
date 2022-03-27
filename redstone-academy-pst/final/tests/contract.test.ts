@@ -108,7 +108,7 @@ describe('Testing the Profit Sharing Token', () => {
     await mineBlock(arweave);
 
     expect((await pst.currentState()).balances[walletAddress]).toEqual(
-      2000 + 333 - 555
+      2000 - 555
     );
     expect(
       (await pst.currentState()).balances[
@@ -136,9 +136,7 @@ describe('Testing the Profit Sharing Token', () => {
       overwrittenCaller
     );
 
-    expect(result.state.balances[walletAddress]).toEqual(
-      2000 + 333 - 555 - 1000
-    );
+    expect(result.state.balances[walletAddress]).toEqual(2000 - 555 - 1000);
     expect(
       result.state.balances['GH2IY_3vtE2c0KfQve9_BHoIPjZCS8s5YmSFS_fppKI']
     ).toEqual(1000 + 555 + 333);

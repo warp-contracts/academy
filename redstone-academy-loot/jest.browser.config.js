@@ -6,9 +6,9 @@ module.exports = {
 
   testEnvironment: './browser-jest-env.js',
 
-  "testMatch": [
-    "**/tests/**/?(*.)+(spec).+(js)"
-  ],
+  testMatch: ['**/tests/**/?(*.)+(spec).+(js)'],
 
-  transform: {},
+  transformIgnorePatterns: ['<rootDir>/node_modules/(?!@assemblyscript/.*)'],
+
+  transform: { '^.+\\.(js|jsx)$': 'babel-jest' },
 };
