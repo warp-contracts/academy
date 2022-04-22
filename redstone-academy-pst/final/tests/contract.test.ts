@@ -3,7 +3,7 @@ import ArLocal from 'arlocal';
 import Arweave from 'arweave';
 import { JWKInterface } from 'arweave/node/lib/wallet';
 import path from 'path';
-import { addFunds, mineBlock } from './_helpers';
+import { addFunds, mineBlock } from '../utils/_helpers';
 import {
   PstContract,
   PstState,
@@ -43,15 +43,9 @@ describe('Testing the Profit Sharing Token', () => {
     await addFunds(arweave, wallet);
     walletAddress = await arweave.wallets.jwkToAddress(wallet);
 
-    contractSrc = fs.readFileSync(
-      path.join(__dirname, '../dist/contract.js'),
-      'utf8'
-    );
+    contractSrc = fs.readFileSync(path.join(__dirname, '../dist/contract.js'), 'utf8');
     const stateFromFile: PstState = JSON.parse(
-      fs.readFileSync(
-        path.join(__dirname, '../dist/contracts/initial-state.json'),
-        'utf8'
-      )
+      fs.readFileSync(path.join(__dirname, '../dist/contracts/initial-state.json'), 'utf8')
     );
 
     initialState = {
@@ -79,14 +73,8 @@ describe('Testing the Profit Sharing Token', () => {
 
   it('should read pst state and balance data', async () => {
     expect(await pst.currentState()).toEqual(initialState);
-    expect(
-      (await pst.currentBalance('GH2IY_3vtE2c0KfQve9_BHoIPjZCS8s5YmSFS_fppKI'))
-        .balance
-    ).toEqual(1000);
-    expect(
-      (await pst.currentBalance('33F0QHcb22W7LwWR1iRC8Az1ntZG09XQ03YWuw2ABqA'))
-        .balance
-    ).toEqual(230);
+    expect((await pst.currentBalance('GH2IY_3vtE2c0KfQve9_BHoIPjZCS8s5YmSFS_fppKI')).balance).toEqual(1000);
+    expect((await pst.currentBalance('33F0QHcb22W7LwWR1iRC8Az1ntZG09XQ03YWuw2ABqA')).balance).toEqual(230);
   });
 
   it('should properly mint tokens', async () => {
@@ -107,14 +95,8 @@ describe('Testing the Profit Sharing Token', () => {
 
     await mineBlock(arweave);
 
-    expect((await pst.currentState()).balances[walletAddress]).toEqual(
-      2000 - 555
-    );
-    expect(
-      (await pst.currentState()).balances[
-        'GH2IY_3vtE2c0KfQve9_BHoIPjZCS8s5YmSFS_fppKI'
-      ]
-    ).toEqual(1000 + 555);
+    expect((await pst.currentState()).balances[walletAddress]).toEqual(2000 - 555);
+    expect((await pst.currentState()).balances['GH2IY_3vtE2c0KfQve9_BHoIPjZCS8s5YmSFS_fppKI']).toEqual(1000 + 555);
   });
 
   it('should properly perform dry write with overwritten caller', async () => {
@@ -137,9 +119,7 @@ describe('Testing the Profit Sharing Token', () => {
     );
 
     expect(result.state.balances[walletAddress]).toEqual(2000 - 555 - 1000);
-    expect(
-      result.state.balances['GH2IY_3vtE2c0KfQve9_BHoIPjZCS8s5YmSFS_fppKI']
-    ).toEqual(1000 + 555 + 333);
+    expect(result.state.balances['GH2IY_3vtE2c0KfQve9_BHoIPjZCS8s5YmSFS_fppKI']).toEqual(1000 + 555 + 333);
     expect(result.state.balances[overwrittenCaller]).toEqual(1000 - 333);
   });
 });

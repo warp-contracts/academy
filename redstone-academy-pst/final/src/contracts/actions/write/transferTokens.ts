@@ -1,11 +1,11 @@
-import { PstAction, PstState } from '../../../contracts/types/types';
+import { ContractResult, PstAction, PstState } from '../../../contracts/types/types';
 
 declare const ContractError;
 
 export const transferTokens = async (
   state: PstState,
   { caller, input: { target, qty } }: PstAction
-) => {
+): Promise<ContractResult> => {
   const balances = state.balances;
   if (!Number.isInteger(qty)) {
     throw new ContractError('Invalid value for "qty". Must be an integer');
@@ -24,9 +24,7 @@ export const transferTokens = async (
   }
 
   if (balances[caller] < qty) {
-    throw new ContractError(
-      `Caller balance not high enough to send ${qty} token(s)!`
-    );
+    throw new ContractError(`Caller balance not high enough to send ${qty} token(s)!`);
   }
 
   balances[caller] -= qty;

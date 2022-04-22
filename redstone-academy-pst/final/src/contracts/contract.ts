@@ -1,16 +1,11 @@
 import { balance } from './actions/read/balance';
 import { mintTokens } from './actions/write/mintTokens';
 import { transferTokens } from './actions/write/transferTokens';
-import { PstAction, PstResult, PstState } from './types/types';
+import { ContractResult, PstAction, PstResult, PstState } from './types/types';
 
 declare const ContractError;
 
-declare type ContractResult = { state: PstState } | { result: PstResult };
-
-export async function handle(
-  state: PstState,
-  action: PstAction
-): Promise<ContractResult> {
+export async function handle(state: PstState, action: PstAction): Promise<ContractResult> {
   const input = action.input;
 
   switch (input.function) {
@@ -21,8 +16,6 @@ export async function handle(
     case 'balance':
       return await balance(state, action);
     default:
-      throw new ContractError(
-        `No function supplied or function not recognised: "${input.function}"`
-      );
+      throw new ContractError(`No function supplied or function not recognised: "${input.function}"`);
   }
 }

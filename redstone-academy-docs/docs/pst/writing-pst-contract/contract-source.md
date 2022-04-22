@@ -38,6 +38,8 @@ export interface PstResult {
 }
 
 export type PstFunction = 'transfer' | 'mint' | 'balance';
+
+export type ContractResult = { state: PstState } | { result: PstResult };
 ```
 
 Time for an explanation.
@@ -48,11 +50,16 @@ Time for an explanation.
 - `target` - target address.
 - `qty` - amount of tokens to be transferred/minted.
 
-`PstResult` - object possible to be returned by interacting with the contract:
+`PstResult` - object possible to be returned by interacting with the contract when the state is not being changed:
 
 - `target` - target address.
 - `ticker` - an abbreviation used to uniquely identify the token.
 - `balance` - specific address balance.
+
+`ContractResult` - contract's handler function should be terminated by one of those:
+
+- `state` - when the state is being changed
+- `result` - when the interaction was a read-only operation
 
 ## 🎬 Actions
 
@@ -69,7 +76,7 @@ declare const ContractError;
 export const balance = async (
   state: PstState,
   { input: { target } }: PstAction
-): PstResult => {
+): Promise<ContractResult> => {
   const ticker = state.ticker;
   const balances = state.balances;
 
@@ -101,7 +108,7 @@ declare const ContractError;
 export const mintTokens = async (
   state: PstState,
   { caller, input: { qty } }: PstAction
-): PstResult => {
+): Promise<ContractResult> => {
   const balances = state.balances;
 
   if (qty <= 0) {
@@ -129,7 +136,7 @@ declare const ContractError;
 export const transferTokens = async (
   state: PstState,
   { caller, input: { target, qty } }: PstAction
-): PstResult => {
+): Promise<ContractResult> => {
   const balances = state.balances;
   if (!Number.isInteger(qty)) {
     throw new ContractError('Invalid value for "qty". Must be an integer');
@@ -180,8 +187,6 @@ import { transferTokens } from './actions/write/transferTokens';
 import { PstAction, PstResult, PstState } from './types/types';
 
 declare const ContractError;
-
-declare type ContractResult = { state: PstState } | { result: PstResult };
 
 export async function handle(
   state: PstState,

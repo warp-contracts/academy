@@ -25,3 +25,5 @@ export interface PstResult {
 }
 
 export type PstFunction = 'transfer' | 'mint' | 'balance';
+
+export type ContractResult = { state: PstState } | { result: PstResult };
