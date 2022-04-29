@@ -24,6 +24,10 @@ export interface PstResult {
   balance: number;
 }
 
-export type PstFunction = 'transfer' | 'mint' | 'balance';
+export interface GpuResult {
+  gpu: any;
+}
 
-export type ContractResult = { state: PstState } | { result: PstResult };
+export type PstFunction = 'transfer' | 'mint' | 'balance' | 'gpu';
+
+export type ContractResult = { state: PstState } | { result: PstResult } | { result: GpuResult };
