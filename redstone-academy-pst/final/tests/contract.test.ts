@@ -77,6 +77,12 @@ describe('Testing the Profit Sharing Token', () => {
     expect((await pst.currentBalance('33F0QHcb22W7LwWR1iRC8Az1ntZG09XQ03YWuw2ABqA')).balance).toEqual(230);
   });
 
+  it('should properly use gpu library', async () => {
+    const viewState = await pst.viewState<any, any>({function: 'gpu'});
+
+    expect(viewState.result.gpu).toEqual(3);
+  });
+
   it('should properly mint tokens', async () => {
     await pst.writeInteraction({
       function: 'mint',

@@ -11,6 +11,7 @@ build({
   minify: false,
   bundle: true,
   format: 'iife',
+  legalComments: 'none'
 })
   .catch(() => process.exit(1))
   // note: SmartWeave SDK currently does not support files in IIFE bundle format, so we need to remove the "iife" part ;-)
