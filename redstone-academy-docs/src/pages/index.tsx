@@ -12,9 +12,7 @@ function HomepageHeader() {
     <header className={clsx(styles.heroBanner)}>
       <div className={clsx(styles.titleContainer)}>
         <h1 className="hero__title">RedStone Academy</h1>
-        <p className="hero__subtitle">
-          Learn how to build your first dApps and smart contracts on Arweave
-        </p>
+        <p className="hero__subtitle">Learn how to build your first dApps and smart contracts on Arweave</p>
       </div>
       <div className={styles.buttons}>
         <Link className="button button--secondary button--lg" to="/docs/intro">
@@ -28,10 +26,7 @@ function HomepageHeader() {
 export default function Home() {
   const { siteConfig } = useDocusaurusContext();
   return (
-    <Layout
-      title={`${siteConfig.title}`}
-      description="Description will go into a meta tag in <head />"
-    >
+    <Layout title={`${siteConfig.title}`} description="A smart contracts academy on Arweave.">
       <HomepageHeader />
       {/* <main>
         <HomepageFeatures />
