@@ -50,10 +50,10 @@ For the tutorial purposes we will set logging level to `error`.
 ## 🪡 Setting up SmartWeave
 
 ```js
-smartweave = SmartWeaveNodeFactory.memCached(arweave);
+smartweave = SmartWeaveNodeFactory.forTesting(arweave);
 ```
 
-SmartWeave class in SDK is a base class that supplies the implementation of SmartWeave protocol. Check it out in SDK [https://github.com/redstone-finance/redstone-smartcontracts/blob/main/src/core/SmartWeave.ts](https://github.com/redstone-finance/redstone-smartcontracts/blob/main/src/core/SmartWeave.ts). SmartWeave allows to plug-in different module implementations (like interactions loader or state evaluator) but as it is just the first tutorial, we will go with the most basic implementation. We will create a SmartWeave instance by using `SmartWeaveNodeFactory` which is designed to be used in a node environment. We will also use `MemCache` which is a simple in-memory cache. Later in the Academy schedule you will be introduced to other types of cache (like `fileCached` or `knexCached`).
+SmartWeave class in SDK is a base class that supplies the implementation of SmartWeave protocol. Check it out in SDK [https://github.com/redstone-finance/redstone-smartcontracts/blob/main/src/core/SmartWeave.ts](https://github.com/redstone-finance/redstone-smartcontracts/blob/main/src/core/SmartWeave.ts). SmartWeave allows to plug-in different module implementations (like interactions loader or state evaluator) but as it is just the first tutorial, we will go with the most basic implementation. We will create a SmartWeave instance by using `SmartWeaveNodeFactory` which is designed to be used in a node environment. We will also use `forTesting` method factory - at the moment the default gateway responsible for loading interactions is RedStone gateway, as ArLocal is not aware of it we need to indicate that we are in testing environment and RedStone gateway should not be used.
 
 ## 👛 Generating wallet and adding funds
 
@@ -90,15 +90,9 @@ await addFunds(arweave, wallet);
 Ok, back to the test. Now, we need to find a way to read files with contract source and initial state we've prepared in the last section. In order to do that we will use NodeJS method `readFileSync`. Remember to import `fs` and `path` modules. We are pointing to the files we've prepared in [the last section](../writing-pst-contract/contract-source#-bundling-contract) using esbuild and prepared scripts.
 
 ```js
-contractSrc = fs.readFileSync(
-  path.join(__dirname, '../dist/contract.js'),
-  'utf8'
-);
+contractSrc = fs.readFileSync(path.join(__dirname, '../dist/contract.js'), 'utf8');
 const stateFromFile: PstState = JSON.parse(
-  fs.readFileSync(
-    path.join(__dirname, '../dist/contracts/initial-state.json'),
-    'utf8'
-  )
+  fs.readFileSync(path.join(__dirname, '../dist/contracts/initial-state.json'), 'utf8')
 );
 ```
 

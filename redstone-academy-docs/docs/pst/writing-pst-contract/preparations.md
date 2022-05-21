@@ -14,7 +14,7 @@ Install all dependencies connected with SmartWeave contracts. Do not worry, you 
 Run following command:
 
 ```bash
-yarn add arweave@1.10.23 arlocal@1.1.30 redstone-smartweave@0.4.53
+yarn add arweave@1.10.23 arlocal@1.1.30 redstone-smartweave@0.5.6
 ```
 
 You're good to go!

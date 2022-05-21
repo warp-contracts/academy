@@ -1,9 +1,5 @@
 import Arweave from 'arweave';
-import {
-  LoggerFactory,
-  SmartWeaveWebFactory,
-  SmartWeave,
-} from 'redstone-smartweave';
+import { LoggerFactory, SmartWeaveWebFactory, SmartWeave } from 'redstone-smartweave';
 
 // Set up Arweave client
 export const arweave: Arweave = Arweave.init({
@@ -15,5 +11,4 @@ export const arweave: Arweave = Arweave.init({
 LoggerFactory.INST.logLevel('debug');
 
 // const smartweave = new SmartWeaveWebFactory.memCached(arweave);
-export const smartweave: SmartWeave =
-  SmartWeaveWebFactory.memCachedBased(arweave).build();
+export const smartweave: SmartWeave = SmartWeaveWebFactory.memCachedBased(arweave).useArweaveGateway().build();

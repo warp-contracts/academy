@@ -24,10 +24,10 @@ export const arweave: Arweave = Arweave.init({
 });
 
 export const smartweave: SmartWeave =
-  SmartWeaveWebFactory.memCachedBased(arweave).build();
+  SmartWeaveWebFactory.memCachedBased(arweave).useArweaveGateway().build();
 ```
 
-This time, we are using SDK's `SmartWeaveWebFactory` instead of `SmartWeaveNodeFactory` which will be safe to use in a web environment.
+This time, we are using SDK's `SmartWeaveWebFactory` instead of `SmartWeaveNodeFactory` which will be safe to use in a web environment. Additionally, as we are in are in the test environment, we need to indicate that we don't want to use the default RedStone gateway (if you would like to switch to mainnet - just delete this factory method).
 Remember to export them as we will use them in a store for our app.
 
 ## 🆔 Indicating contract id
