@@ -105,15 +105,15 @@ const config = {
               },
               {
                 label: 'Website',
-                href: 'https://smartweave.redstone.finance',
+                href: 'https://warp.cc',
               },
             ],
           },
         ],
         logo: {
-          alt: 'SmartWeave logo',
+          alt: 'Warp logo',
           src: 'img/smartweave.svg',
-          href: 'https://smartweave.redstone.finance',
+          href: 'https://warp.cc',
           width: 50,
           height: 20,
         },
