@@ -22,13 +22,13 @@ const config = {
       /** @type {import('@docusaurus/preset-classic').Options} */
       ({
         docs: {
-          routeBasePath: 'docs',
-          path: 'docs',
-          sidebarPath: require.resolve('./sidebars.js'),
+          routeBasePath: 'tutorials',
+          path: 'tutorials',
+          sidebarPath: require.resolve('./sidebars/tutorialSidebar.js'),
           lastVersion: 'current',
           onlyIncludeVersions: ['current'],
           editUrl: ({ docPath }) => {
-            return `https://github.com/warp-contracts/warp/tree/main/warp-academy-docs/docs/${docPath}`;
+            return `https://github.com/warp-contracts/warp/tree/main/warp-academy-docs/tutorials/${docPath}`;
           },
         },
         theme: {
@@ -43,7 +43,20 @@ const config = {
       }),
     ],
   ],
-  plugins: [],
+  plugins: [
+    [
+      '@docusaurus/plugin-content-docs',
+      {
+        id: 'docs',
+        path: 'docs',
+        routeBasePath: 'docs',
+        editUrl: ({ docPath }) => {
+          return `https://github.com/warp-contracts/warp/tree/main/warp-academy-docs/docs/${docPath}`;
+        },
+        sidebarPath: require.resolve('./sidebars/docsSidebar.js'),
+      },
+    ],
+  ],
 
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
@@ -61,9 +74,14 @@ const config = {
         items: [
           {
             type: 'doc',
-            docId: 'intro',
+            docId: 'tutorials-intro',
             position: 'left',
-            label: 'Learn',
+            label: 'Tutorials',
+          },
+          {
+            label: 'Docs',
+            position: 'left',
+            to: 'docs/docs-intro',
           },
           {
             href: 'https://github.com/warp-contracts/warp',
