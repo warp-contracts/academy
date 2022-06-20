@@ -30,7 +30,7 @@ When state is evaluated for the given contract ("Contract A") all the interactio
 
 ### `evaluationOptions`
 
-In order for internal writes to work we need to set evaluationOptions to true:
+In order for internal writes to work we need to set `evaluationOptions` to `true`. If you are not familiar with the `EvaluationOptions` interface, check out [Warp SDK](https://github.com/warp-contracts/warp/blob/main/src/core/modules/StateEvaluator.ts#L123). Basically, setting `evaluationOptions` let us changing behaviour of some of the contract features.
 
 ```ts
 const callingContract = smartweave
