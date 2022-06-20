@@ -1,4 +1,4 @@
-# Docs
+# Features
 
 ### 🧑‍🎓 What we will learn
 

@@ -47,13 +47,13 @@ const config = {
     [
       '@docusaurus/plugin-content-docs',
       {
-        id: 'docs',
-        path: 'docs',
-        routeBasePath: 'docs',
+        id: 'features',
+        path: 'features',
+        routeBasePath: 'features',
         editUrl: ({ docPath }) => {
-          return `https://github.com/warp-contracts/warp/tree/main/warp-academy-docs/docs/${docPath}`;
+          return `https://github.com/warp-contracts/warp/tree/main/warp-academy-docs/features/${docPath}`;
         },
-        sidebarPath: require.resolve('./sidebars/docsSidebar.js'),
+        sidebarPath: require.resolve('./sidebars/featuresSidebar.js'),
       },
     ],
   ],
@@ -79,9 +79,9 @@ const config = {
             label: 'Tutorials',
           },
           {
-            label: 'Docs',
+            label: 'Features',
             position: 'left',
-            to: 'docs/docs-intro',
+            to: 'features/features-intro',
           },
           {
             href: 'https://github.com/warp-contracts/warp',
@@ -93,11 +93,20 @@ const config = {
       footer: {
         links: [
           {
-            title: 'Docs',
+            title: 'Tutorials',
             items: [
               {
-                label: 'Tutorial',
-                to: '/docs/intro',
+                label: 'Tutorials',
+                to: '/tutorials/tutorials-intro',
+              },
+            ],
+          },
+          {
+            title: 'Features',
+            items: [
+              {
+                label: 'Features',
+                to: '/features/features-intro',
               },
             ],
           },
