@@ -20,7 +20,9 @@ const sidebars = {
 
   tutorialSidebar: [
     { type: 'doc', label: 'Intro', id: 'docs-intro' },
+    { type: 'doc', label: 'Bundled interactions and deployment', id: 'bundle' },
     { type: 'doc', label: 'Evolve', id: 'evolve' },
+    { type: 'doc', label: 'Internal calls', id: 'internal-calls' },
   ],
 };
 
