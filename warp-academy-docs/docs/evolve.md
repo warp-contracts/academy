@@ -95,6 +95,7 @@ await contract.evolve(newSrcTxId, true);
 
 Please note, that you need to pass `true` as the second argument if you want to bundle the interaction using Warp Sequencer.
 
+Evolved contract source is then referred instead of the original contract source when performing any interactions after the `evolve` interaction. The state is evaluated based on all contract sources linked to the contract. There is no limitation for number of evolved contract sources associated to one contract.
 ### Conclusion
 
 That's it! We just evolved our contract. If you want to see the whole implementation check out Warp integration tests:
