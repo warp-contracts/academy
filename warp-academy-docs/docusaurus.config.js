@@ -22,13 +22,13 @@ const config = {
       /** @type {import('@docusaurus/preset-classic').Options} */
       ({
         docs: {
-          routeBasePath: 'docs',
-          path: 'docs',
-          sidebarPath: require.resolve('./sidebars.js'),
+          routeBasePath: 'tutorials',
+          path: 'tutorials',
+          sidebarPath: require.resolve('./sidebars/tutorialSidebar.js'),
           lastVersion: 'current',
           onlyIncludeVersions: ['current'],
           editUrl: ({ docPath }) => {
-            return `https://github.com/warp-contracts/warp/tree/main/warp-academy-docs/docs/${docPath}`;
+            return `https://github.com/warp-contracts/warp/tree/main/warp-academy-docs/tutorials/${docPath}`;
           },
         },
         theme: {
@@ -43,7 +43,20 @@ const config = {
       }),
     ],
   ],
-  plugins: [],
+  plugins: [
+    [
+      '@docusaurus/plugin-content-docs',
+      {
+        id: 'features',
+        path: 'features',
+        routeBasePath: 'features',
+        editUrl: ({ docPath }) => {
+          return `https://github.com/warp-contracts/warp/tree/main/warp-academy-docs/features/${docPath}`;
+        },
+        sidebarPath: require.resolve('./sidebars/featuresSidebar.js'),
+      },
+    ],
+  ],
 
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
@@ -61,9 +74,14 @@ const config = {
         items: [
           {
             type: 'doc',
-            docId: 'intro',
+            docId: 'tutorials-intro',
             position: 'left',
-            label: 'Learn',
+            label: 'Tutorials',
+          },
+          {
+            label: 'Features',
+            position: 'left',
+            to: 'features/features-intro',
           },
           {
             href: 'https://github.com/warp-contracts/warp',
@@ -75,11 +93,20 @@ const config = {
       footer: {
         links: [
           {
-            title: 'Docs',
+            title: 'Tutorials',
             items: [
               {
-                label: 'Tutorial',
-                to: '/docs/intro',
+                label: 'Tutorials',
+                to: '/tutorials/tutorials-intro',
+              },
+            ],
+          },
+          {
+            title: 'Features',
+            items: [
+              {
+                label: 'Features',
+                to: '/features/features-intro',
               },
             ],
           },
@@ -105,15 +132,15 @@ const config = {
               },
               {
                 label: 'Website',
-                href: 'https://smartweave.redstone.finance',
+                href: 'https://warp.cc',
               },
             ],
           },
         ],
         logo: {
-          alt: 'SmartWeave logo',
+          alt: 'Warp logo',
           src: 'img/smartweave.svg',
-          href: 'https://smartweave.redstone.finance',
+          href: 'https://warp.cc',
           width: 50,
           height: 20,
         },

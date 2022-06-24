@@ -15,7 +15,7 @@ function HomepageHeader() {
         <p className="hero__subtitle">Learn how to build your first dApps and smart contracts on Arweave</p>
       </div>
       <div className={styles.buttons}>
-        <Link className="button button--secondary button--lg" to="/docs/intro">
+        <Link className="button button--secondary button--lg" to="/tutorials/tutorials-intro">
           Enter
         </Link>
       </div>
