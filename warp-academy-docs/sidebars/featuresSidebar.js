@@ -20,9 +20,30 @@ const sidebars = {
 
   tutorialSidebar: [
     { type: 'doc', label: 'Intro', id: 'features-intro' },
-    { type: 'doc', label: 'Bundled interactions and deployment', id: 'bundle' },
+    {
+      type: 'category',
+      label: 'Bundled deployment and interactions',
+      items: [
+        {
+          type: 'doc',
+          label: 'Sequencer',
+          id: 'sequencer',
+        },
+        {
+          type: 'doc',
+          label: 'Bundled deployment',
+          id: 'bundled-deployment',
+        },
+        {
+          type: 'doc',
+          label: 'Bundled interactions',
+          id: 'bundled-interactions',
+        },
+      ],
+    },
     { type: 'doc', label: 'Evolve', id: 'evolve' },
     { type: 'doc', label: 'Internal calls', id: 'internal-calls' },
+    { type: 'doc', label: 'VRF', id: 'vrf' },
   ],
 };
 

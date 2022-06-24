@@ -4,7 +4,7 @@ Evolve is a feature that allows to change contract's source code, without having
 
 Below - the steps we need to follow in order to properly evolve the contract.
 
-### `canEvolve`
+### canEvolve
 
 `canEvolve` property should be set in the initial state of the contract. This way we indicate if evolving is possible.
 
@@ -22,7 +22,7 @@ Optionally, we can also set `evolve` property to `null`. It will be later replac
 }
 ```
 
-### `evolve`
+### evolve
 
 `evolve` function must be added to the original contract source, an example of such below:
 
