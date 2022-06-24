@@ -2,7 +2,7 @@
 
 ### bundleInteraction
 
-In order to write an interaction to the contract, we can use `writeInteraction` method. Here's the API:
+In order to write an interaction to the contract, we can use the `writeInteraction` method. Here's the API:
 
 ```js
   writeInteraction<Input = unknown>(
@@ -28,14 +28,14 @@ To bundle our interaction we simply replace `writeInteraction` method with `bund
 
 Let's tear it apart:
 
-1. `input` - new input to the contract that will be assigned with this interactions transaction.
+1. `input` - new input to the contract that will be assigned with this interaction transaction.
 2. `tags` - additional tags that can be attached to the newly created interaction transaction.
 3. `strict` - transaction will be posted on Arweave only if the dry-run of the input result is "ok".
 4. `vrf` refers to verifiable randomness which can be verified on chain. Remember that we need to provide deterministic inputs to our contract? Randomness does not sound like one. However, with this vrf we are safe to generate randomness which is cryptographically verifiable.
 
-Please note that is not possible to transfer ARs to another wallet using `bundleInteraction` method as Bundlr cannot do the transfer.
+Please note that it is not possible to transfer ARs to another wallet using `bundleInteraction` method as Bundlr cannot do the transfer.
 
-Here is how you can use `bundleInteraction` method:
+Here is how you can use the `bundleInteraction` method:
 
 ```ts
 await contract.bundleInteraction(

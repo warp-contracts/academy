@@ -1,6 +1,6 @@
 # Evolve
 
-Evolve is a feature that allows to change contract's source code, without having to deploy a new contract. Thanks to contract being upgradeable, state of the contract is preserved and the logic can change. **Warp SDK** provides couple of handful methods which ease the process of evolving the contract.
+Evolve is a feature that allows us to change contract's source code, without having to deploy a new contract. Thanks to the contract being upgradeable, the state of the contract is preserved and the logic can change. **Warp SDK** provides a handful of methods which ease the process of evolving the contract.
 
 Below - the steps we need to follow in order to properly evolve the contract.
 
@@ -38,13 +38,13 @@ if (action.input.function === 'evolve' && state.canEvolve) {
 }
 ```
 
-It's very important that we set the `evolve` property in wer state to exactly this value - `action.input.value`. Only this way, **Warp Gateway** will be able to index new contract source and evolve will be possible for contract which were deployed through **Warp Sequencer**.
+It's very important that we set the `evolve` property in the state to exactly this value - `action.input.value`. Only this way, **Warp Gateway** will be able to index new contract source and evolve will be possible for contract which were deployed through **Warp Sequencer**.
 
 So now we have everything ready in our contract. Let's perform the evolve.
 
 ### Post new contract source on Arweave
 
-In order to properly perform evolve, we should first post new contract source on **Arweave**. We post it exactly the same way we would post the original contract source. **Warp SDK** provides a one-liner method to easily save the source but let's see what happens underneath:
+In order to properly evolve, we should first post new contract source on **Arweave**. We post it exactly the same way we would post the original contract source. **Warp SDK** provides a one-liner method to easily save the source but let's see what happens underneath:
 
 ```js
 const tx = await arweave.createTransaction({ data: newContractSource }, wallet);
@@ -63,7 +63,7 @@ Here's the promised one-liner:
 const newSrcTxId = await contract.save({ src: newSource });
 ```
 
-Yes, it's that simple. We can also save new WASM contract source (even if the original contract source was written in pure Javascript). The only difference is that we need to pass new contract source directory as `wasmSrcCodeDir`. Additionally - but only if we want to save Rust contract source, we need to pass path to wasm-bindgen javascript code which was generated during the build.
+Yes, it's that simple. We can also save new WASM contract source (even if the original contract source was written in pure Javascript). The only difference is that we need to pass new contract source directory as `wasmSrcCodeDir`. Additionally - but only if we want to save Rust contract source, we need to pass a path to wasm-bindgen javascript code which was generated during the build.
 
 ```js
 const newSrcTxId = await pst.save({
@@ -73,7 +73,7 @@ const newSrcTxId = await pst.save({
 });
 ```
 
-Remember, that currently it is not possible to save new contract source using **Warp Sequencer**, so we are posting transaction directly on **Arweave**. That's why, we should wait up to 20 minutes for the transaction to be mined. we can check its status using following endpoint:
+Remember, that currently it is not possible to save new contract source using **Warp Sequencer**, so we are posting transaction directly on **Arweave**. That's why we should wait up to 20 minutes for the transaction to be mined. We can check its status using the following endpoint:
 
 ```js
 `https://arweave.net/tx/${newSrcTxId}`;
@@ -95,7 +95,7 @@ await contract.evolve(newSrcTxId, true);
 
 Please note, that we need to pass `true` as the second argument if we want to bundle the interaction using **Warp Sequencer**.
 
-Evolved contract source is then referred instead of the original contract source when performing any interactions after the `evolve` interaction. The state is evaluated based on all contract sources linked to the contract. There is no limitation for number of evolved contract sources associated to one contract.
+Evolved contract source is then referred to instead of the original contract source when performing any interactions after the `evolve` interaction. The state is evaluated based on all contract sources linked to the contract. There is no limitation for the number of evolved contract sources associated with one contract.
 
 ### Conclusion
 
@@ -106,4 +106,4 @@ That's it! We just evolved our contract. If we want to see the whole implementat
 3. [saving new contract source and calling `evolve` interaction](https://github.com/warp-contracts/warp/blob/main/src/__tests__/integration/data/token-pst.js#L84)
 4. [WASM - saving new contract source and calling `evolve` interaction](https://github.com/warp-contracts/warp/blob/main/src/__tests__/integration/wasm/rust-deploy-write-read.test.ts#L228)
 
-It's a powerful tool but of course - use it wisely. Remember, that wer contract can be used by many subjects which should be aware of any significant changes.
+It's a powerful tool but of course - use it wisely. Remember, that the contract can be used by many subjects which should be aware of any significant changes.
