@@ -24,5 +24,5 @@ const jwk = require("../../.secrets/jwk.json");
     initState: initialState,
     src: contractSrc
   });
-  console.log("Deployment completed: " + contractTxId);
+  console.log("Deployment completed: " + contractTxId.contractTxId);
 })();
