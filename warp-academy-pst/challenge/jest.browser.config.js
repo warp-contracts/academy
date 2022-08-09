@@ -5,10 +5,10 @@ module.exports = {
 
   testPathIgnorePatterns: ['/.yalc/', '/data/', '/_helpers'],
 
-  testEnvironment: 'node',
+  transformIgnorePatterns: ['<rootDir>/node_modules/(?!@assemblyscript/.*)'],
 
   transform: {
-    '^.+\\.(ts)$': 'ts-jest',
+    '^.+\\.(ts|js)$': 'ts-jest',
   },
 
   testEnvironment: './browser-jest-env.js',

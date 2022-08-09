@@ -14,7 +14,7 @@ Let's fill it up with some content!
 
 ## 🗼 Setting up Arweave and Warp
 
-As always, we will start by setting up Arweave and Warp clients. Head to [challenge/src/pst-contract.ts](https://github.com/warp-contracts/academy/blob/main/academy-pst/challenge/src/pst-contract.ts) and initialize both of them.
+As always, we will start by setting up Arweave and Warp clients. Head to [challenge/src/pst-contract.ts](https://github.com/warp-contracts/academy/blob/main/warp-academy-pst/challenge/src/pst-contract.ts) and initialize both of them.
 
 ```js
 export const arweave: Arweave = Arweave.init({
@@ -31,11 +31,11 @@ Remember to export them as we will use them in a store for our app.
 
 ## 🆔 Indicating contract id
 
-Head to [challenge/src/deployed-contracts.ts](https://github.com/warp-contracts/academy/blob/main/academy-pst/challenge/src/deployed-contracts.ts) and paste the id of your deployed contract.
+Head to [challenge/src/deployed-contracts.ts](https://github.com/warp-contracts/academy/blob/main/warp-academy-pst/challenge/src/deployed-contracts.ts) and paste the id of your deployed contract.
 
 ## 💰 Generating wallet and adding funds
 
-Head to [challenge/src/store/index.ts](https://github.com/warp-contracts/academy/blob/main/academy-pst/challenge/src/store/index.ts). Generate Arweave wallet, get wallet address and add some funds to it in dedicated places:
+Head to [challenge/src/store/index.ts](https://github.com/warp-contracts/academy/blob/main/warp-academy-pst/challenge/src/store/index.ts). Generate Arweave wallet, get wallet address and add some funds to it in dedicated places:
 
 ```js
 const wallet = await arweave.wallets.generate();

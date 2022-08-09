@@ -4,7 +4,7 @@ It is more than important to carefully test your contract before deploying it to
 
 ## 🔤 Declaring variables
 
-Head to [academy-pst/challenge/tests/contract.test.ts](https://github.com/warp-contracts/academy/tree/main/academy-pst/challenge/tests/contract.test.ts) and start by declaring all necessary variables in `beforeAll` - a callback which will be executed before all the tests. Remeber to import all the interfaces!
+Head to [academy-pst/challenge/tests/contract.test.ts](https://github.com/warp-contracts/academy/tree/main/warp-academy-pst/challenge/tests/contract.test.ts) and start by declaring all necessary variables in `beforeAll` - a callback which will be executed before all the tests. Remeber to import all the interfaces!
 
 ```js
 let contractSrc: string;
@@ -64,7 +64,7 @@ walletAddress = await arweave.wallets.jwkToAddress(wallet);
 
 In order for tests to work we need to generate a wallet which will be connected to the contract and therefore responsible for signing the transactions. We also need to obtain the wallet address. We do this by using ArweaveJS SDK. We advise you to read [this documentation of wallets](https://github.com/ArweaveTeam/arweave-js#wallets-and-keys).
 
-We also need to fund the wallet with some tokens. Head to [academy-pst/challenge/utils/\_helpers.ts](https://github.com/warp-contracts/academy/tree/main/academy-pst/challenge/utils/_helpers.ts) and write this asynchronous helper function.
+We also need to fund the wallet with some tokens. Head to [academy-pst/challenge/utils/\_helpers.ts](https://github.com/warp-contracts/academy/tree/main/warp-academy-pst/challenge/utils/_helpers.ts) and write this asynchronous helper function.
 
 ```js
 export async function addFunds(arweave: Arweave, wallet: JWKInterface) {
@@ -182,7 +182,7 @@ await arlocal.stop();
 
 ## 📜 Test scripts
 
-It is good to test the contract in different environments. We will test it in a server environment as well as a browser one. Jest executes tests on server so we need to add some additional files in order for the browser tests to work. It's already prepared but if you want to get familiar with how it works see these files: [challenge/jest.browser.config.js](https://github.com/warp-contracts/academy/blob/main/academy-pst/challenge/jest.browser.config.js) and [challenge/browser-jest-env.js](https://github.com/warp-contracts/academy/blob/main/warp-academy-pst/challenge/browser-jest-env.js). One last bit is to add scripts to `package.json` files which will give us the possibility to run node tests, run browser tests or run them both.
+It is good to test the contract in different environments. We will test it in a server environment as well as a browser one. Jest executes tests on server so we need to add some additional files in order for the browser tests to work. It's already prepared but if you want to get familiar with how it works see these files: [challenge/jest.browser.config.js](https://github.com/warp-contracts/academy/blob/main/warp-academy-pst/challenge/jest.browser.config.js) and [challenge/browser-jest-env.js](https://github.com/warp-contracts/academy/blob/main/warp-academy-pst/challenge/browser-jest-env.js). One last bit is to add scripts to `package.json` files which will give us the possibility to run node tests, run browser tests or run them both.
 
 ```json
     "test": "yarn test:node && yarn test:browser",

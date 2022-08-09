@@ -5,7 +5,7 @@ We are displaying all the balances in the `BalancesList` component. We have acce
 ## 🤑 Mint tokens
 
 We need to add `mint` function so it will be possible to fill up the wallet with some tokens.
-Head to [challenge/src/components/Header/Header.vue](https://github.com/warp-contracts/academy/blob/main/academy-pst/challenge/src/components/Header/Header.vue) and add declaration to `txId` variable in `mint` function by calling SDK's `writeInteraction` method:
+Head to [challenge/src/components/Header/Header.vue](https://github.com/warp-contracts/academy/blob/main/warp-academy-pst/challenge/src/components/Header/Header.vue) and add declaration to `txId` variable in `mint` function by calling SDK's `writeInteraction` method:
 
 ```js
 const txId = await this.contract.writeInteraction({
@@ -28,7 +28,7 @@ const newResult = await this.contract.currentState();
 
 ## 💸 Transfer tokens
 
-Head to [challenge/src/components/BalancesList/BalancesList.vue](https://github.com/warp-contracts/academy/blob/main/academy-pst/challenge/src/components/BalancesList/BalancesList.vue) and add declaration to `tx` variable by calling SDK's `transfer` method:
+Head to [challenge/src/components/BalancesList/BalancesList.vue](https://github.com/warp-contracts/academy/blob/main/warp-academy-pst/challenge/src/components/BalancesList/BalancesList.vue) and add declaration to `tx` variable by calling SDK's `transfer` method:
 
 ```js
 const tx = await this.contract.transfer({

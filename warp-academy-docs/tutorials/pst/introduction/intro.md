@@ -20,11 +20,11 @@ We will also give you some advice of how to deploy the contract to the Arweave m
 We've already deployed final versions of the PST contract and application.
 You can view the contract in the contracts explorer - [SonAR](https://sonar.warp.cc/#/app/contract/NfOsoVlsQ4_hh_tLwvI4IkNQr0Ey5p3_uHTqKD1O3Ts?network=testnet). Application is available [here](https://pst.redstone.academy).
 
-In order to complete this tutorial you will need to fork [warp academy repository](https://github.com/warp-contracts/academy), head to [academy-pst/challenge](https://github.com/warp-contracts/academy/tree/main/academy-pst/challenge) folder and complete all the tasks in the next sections by writing some code.
+In order to complete this tutorial you will need to fork [warp academy repository](https://github.com/warp-contracts/academy), head to [warp-academy-pst/challenge](https://github.com/warp-contracts/academy/tree/main/warp-academy-pst/challenge) folder and complete all the tasks in the next sections by writing some code.
 
 ```bash
 git clone https://github.com/warp-contracts/academy.git
-cd academy/academy-pst/challenge
+cd academy/warp-academy-pst/challenge
 ```
 
 No worries, we will guide you through the whole process!
@@ -32,7 +32,7 @@ No worries, we will guide you through the whole process!
 You can also run final version locally by running following commands:
 
 ```bash
-cd academy-pst/final
+cd warp-academy-pst/final
 yarn install
 yarn serve
 ```
