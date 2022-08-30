@@ -25,6 +25,7 @@ The k is called an invariant because it doesn’t change during trades. (The k o
 
 A market controlled by this curve will automatically adapt the price according to the current supply and demand. As the ratio becomes more and more unbalanced, you will get less and less of the weaker asset from the same trade amount. Again, if the smart contract has too much token A and not enough token B, the price to swap tokens should be more desirable.
 
+To work poperly the AMM requires certain amoount of tokens to be deposited to the contract. Theses tokens are usually described as *liquidity* and the actors that supply them are called *liquidity providers*
 
 
 ## 🚀 Deployed version
