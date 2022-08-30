@@ -8,8 +8,6 @@ export async function handle(state: DexState, action: DexAction): Promise<Contra
   const input = action.input;
 
   switch (input.function) {
-    // case 'swap':
-    //   return await swap(state, action);
     case 'mint':
       return await mint(state, action);
     case 'burn':
