@@ -4,7 +4,7 @@ export interface DexState {
     token1: string;
     reserve0: number;
     reserve1: number;
-    liqidityProvider: string;
+    liquidityProvider: string;
   }
   
   export interface DexAction {

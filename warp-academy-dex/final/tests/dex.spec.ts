@@ -307,7 +307,7 @@ describe('Testing the Staking Logic', () => {
       },
       { strict: true })
     ).rejects.toThrow(
-      'Only the liqidity provider may burn and withdraw the liquidity'  
+      'Only the liquidity provider may burn and withdraw the liquidity'  
     );
   });
 

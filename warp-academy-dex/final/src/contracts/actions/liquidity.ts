@@ -4,7 +4,7 @@ import { ContractResult, DexAction, DexState } from '../types/types';
 declare const ContractError;
 
 /**
- * Currently, for the simplicity case we don't tokenize liqidity
+ * Currently, for the simplicity case we don't tokenize liquidity
  * Therefore, the liquidity could be provided by a single wallet
  * In order to change the liquidity, the provider will need to withdraw all the funds
  * and redeploy them
@@ -14,8 +14,8 @@ export const mint = async (
   { caller, input: { amountIn0, amountIn1 } }: DexAction
 ): Promise<ContractResult> => {
 
-    if (state.liqidityProvider == null) {
-        state.liqidityProvider = caller;
+    if (state.liquidityProvider == null) {
+        state.liquidityProvider = caller;
     } else {
         throw new ContractError('Burn liquidity first before adding it again');
     }
@@ -52,8 +52,8 @@ export const burn = async (
     { caller, input: { amountIn0, amountIn1 } }: DexAction
   ): Promise<ContractResult> => {
 
-    if (caller !== state.liqidityProvider) {
-        throw new ContractError('Only the liqidity provider may burn and withdraw the liquidity');
+    if (caller !== state.liquidityProvider) {
+        throw new ContractError('Only the liquidity provider may burn and withdraw the liquidity');
     }
   
     await SmartWeave.contracts.write(state.token0, {
@@ -70,7 +70,7 @@ export const burn = async (
     });
     state.reserve1 = 0 ;
     
-    state.liqidityProvider = null;
+    state.liquidityProvider = null;
   
     return { state };
   };
