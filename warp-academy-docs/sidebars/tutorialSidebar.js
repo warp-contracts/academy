@@ -150,6 +150,49 @@ const sidebars = {
         },
       ],
     },
+    {
+      type: 'category',
+      label: 'Dex',
+      items: [
+        { type: 'doc', label: 'Intro', id: 'dex/introduction/intro' },
+        {
+          type: 'category',
+          label: 'Implementating contract',
+          items: [
+            {
+              type: 'doc',
+              label: 'Adding liquidity',
+              id: 'dex/implementation/adding-liquidity',
+            },
+            {
+              type: 'doc',
+              label: 'Calculating price',
+              id: 'dex/implementation/calculating-price',
+            },
+            {
+              type: 'doc',
+              label: 'Swapping tokens',
+              id: 'dex/implementation/swapping-tokens',
+            },
+            {
+              type: 'doc',
+              label: 'Removing liquidity',
+              id: 'dex/implementation/removing-liquidity',
+            }
+          ],
+        },
+        {
+          type: 'doc',
+          label: 'Testing contract',
+          id: 'dex/tests/testing-contract',
+        },
+        {
+          type: 'doc',
+          label: 'Deployment',
+          id: 'dex/deployment/deployment',
+        },
+      ],
+    }
   ],
 };
 
