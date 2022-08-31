@@ -22,7 +22,6 @@ describe('Testing the Atomic NFT Token', () => {
   let arlocal: ArLocal;
   let warp: Warp;
   let ardit: Contract<ArditState>;
-  let ardit2: Contract<ArditState>;
 
   let contractSrc: string;
 

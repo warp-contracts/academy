@@ -9,8 +9,7 @@
   "scripts": {
     "clean": "rimraf ./dist",
     "build-ts": "node build.js",
-    "cp": "copyfiles -u 1 ./src/**/*.json dist",
-    "build": "yarn run clean && yarn run build-ts && npm run cp",
+    "build": "yarn run clean && yarn run build-ts",
     "test": "jest"
   },
   "engines": {

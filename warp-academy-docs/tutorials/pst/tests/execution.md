@@ -8,14 +8,8 @@ Let's start with reading the contract's state. Add the following code to `should
 
 ```js
 expect(await pst.currentState()).toEqual(initialState);
-expect(
-  (await pst.currentBalance('GH2IY_3vtE2c0KfQve9_BHoIPjZCS8s5YmSFS_fppKI'))
-    .balance
-).toEqual(1000);
-expect(
-  (await pst.currentBalance('33F0QHcb22W7LwWR1iRC8Az1ntZG09XQ03YWuw2ABqA'))
-    .balance
-).toEqual(230);
+expect((await pst.currentBalance('GH2IY_3vtE2c0KfQve9_BHoIPjZCS8s5YmSFS_fppKI')).balance).toEqual(1000);
+expect((await pst.currentBalance('33F0QHcb22W7LwWR1iRC8Az1ntZG09XQ03YWuw2ABqA')).balance).toEqual(230);
 ```
 
 We are using SDK's `currentState` method which reads the current state of our contract. We are also using PST's specific method - `currentBalance` which takes the target wallet as an argument and read its current balance. Underneath, it simply returns the "view" of the state, computed by the Warp - ie. the object that is a derivative of a current state and some specific smart contract business logic. Remember when we were writing actions possible to make with our contract in the contract source? This is where we see it in action!
@@ -47,17 +41,7 @@ await pst.transfer({
   target: 'GH2IY_3vtE2c0KfQve9_BHoIPjZCS8s5YmSFS_fppKI',
   qty: 555,
 });
-
-await mineBlock(arweave);
-
-expect((await pst.currentState()).balances[walletAddress]).toEqual(
-  2000 + 333 - 555
-);
-expect(
-  (await pst.currentState()).balances[
-    'GH2IY_3vtE2c0KfQve9_BHoIPjZCS8s5YmSFS_fppKI'
-  ]
-).toEqual(1000 + 555);
+});
 ```
 
 ## 🏜️ Dry-writes
