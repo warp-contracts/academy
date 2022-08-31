@@ -6,7 +6,7 @@ export const upvoteMessage = async (
   state: ArditState,
   { caller, input: { id } }: ArditAction
 ): Promise<ContractResult> => {
-  const message = state.messages.find((m) => (m.id = id));
+  const message = state.messages.find((m) => m.id == id);
 
   if (!message) {
     throw new ContractError(`Message does not exist.`);
@@ -44,7 +44,7 @@ export const downvoteMessage = async (
     throw new ContractError(`Caller has already voted.`);
   }
 
-  message.votes.status++;
+  message.votes.status--;
   message.votes.addresses.push(caller);
 
   return { state };

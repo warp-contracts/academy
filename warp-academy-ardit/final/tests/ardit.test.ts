@@ -22,13 +22,13 @@ describe('Testing the Atomic NFT Token', () => {
   let arlocal: ArLocal;
   let warp: Warp;
   let ardit: Contract<ArditState>;
+  let ardit2: Contract<ArditState>;
+
   let contractSrc: string;
 
-  let contractTxId: string;
+  let contractId: string;
 
   beforeAll(async () => {
-    // note: each tests suit (i.e. file with tests that Jest is running concurrently
-    // with another files has to have ArLocal set to a different port!)
     arlocal = new ArLocal(1820, false);
     await arlocal.start();
 
@@ -43,7 +43,7 @@ describe('Testing the Atomic NFT Token', () => {
     user2Wallet = await warp.testing.generateWallet();
     user2 = await warp.arweave.wallets.jwkToAddress(user2Wallet);
 
-    user2Wallet = await warp.testing.generateWallet();
+    user3Wallet = await warp.testing.generateWallet();
     user3 = await warp.arweave.wallets.jwkToAddress(user3Wallet);
 
     initialState = {
@@ -52,13 +52,13 @@ describe('Testing the Atomic NFT Token', () => {
 
     contractSrc = fs.readFileSync(path.join(__dirname, '../dist/contract.js'), 'utf8');
 
-    const { contractTxId } = await warp.createContract.deploy({
+    ({ contractTxId: contractId } = await warp.createContract.deploy({
       wallet: ownerWallet,
       initState: JSON.stringify(initialState),
       src: contractSrc,
-    });
-    console.log('Deployed contract: ', contractTxId);
-    ardit = warp.contract<ArditState>(contractTxId).connect(ownerWallet);
+    }));
+    console.log('Deployed contract: ', contractId);
+    ardit = warp.contract<ArditState>(contractId).connect(ownerWallet);
   });
 
   afterAll(async () => {
@@ -66,7 +66,7 @@ describe('Testing the Atomic NFT Token', () => {
   });
 
   it('should properly deploy contract', async () => {
-    const contractTx = await warp.arweave.transactions.get(contractTxId);
+    const contractTx = await warp.arweave.transactions.get(contractId);
 
     expect(contractTx).not.toBeNull();
   });
@@ -80,6 +80,7 @@ describe('Testing the Atomic NFT Token', () => {
 
     const { cachedValue } = await ardit.readState();
     expect(cachedValue.state.messages[0]).toEqual({
+      id: 1,
       creator: owner,
       content: 'Hello world!',
       votes: { addresses: [], status: 0 },
@@ -103,17 +104,15 @@ describe('Testing the Atomic NFT Token', () => {
   });
 
   it('should not be possible to vote for non-existing message', async () => {
-    await expect(ardit.writeInteraction({ function: 'upvoteMessage', id: 2 }, { strict: true })).rejects.toThrow(
-      'Cannot create interaction: Message does not exist.'
-    );
+    ardit = warp.contract<ArditState>(contractId).connect(user2Wallet);
 
-    await expect(ardit.writeInteraction({ function: 'downvoteMessage', id: 2 }, { strict: true })).rejects.toThrow(
+    await expect(ardit.writeInteraction({ function: 'upvoteMessage', id: 5 }, { strict: true })).rejects.toThrow(
       'Cannot create interaction: Message does not exist.'
     );
   });
 
   it('should properly upvote message', async () => {
-    ardit = warp.contract<ArditState>(contractTxId).connect(user2Wallet);
+    ardit = warp.contract<ArditState>(contractId).connect(user2Wallet);
 
     await ardit.writeInteraction({ function: 'upvoteMessage', id: 1 });
 
@@ -122,7 +121,7 @@ describe('Testing the Atomic NFT Token', () => {
   });
 
   it('should not be possible to vote for the same message twice', async () => {
-    ardit = warp.contract<ArditState>(contractTxId).connect(user2Wallet);
+    ardit = warp.contract<ArditState>(contractId).connect(user2Wallet);
 
     await expect(ardit.writeInteraction({ function: 'upvoteMessage', id: 1 }, { strict: true })).rejects.toThrow(
       'Cannot create interaction: Caller has already voted.'
@@ -134,21 +133,22 @@ describe('Testing the Atomic NFT Token', () => {
   });
 
   it('should properly downvote message', async () => {
-    ardit = warp.contract<ArditState>(contractTxId).connect(user3Wallet);
+    ardit = warp.contract<ArditState>(contractId).connect(user3Wallet);
 
     await ardit.writeInteraction({ function: 'downvoteMessage', id: 1 });
 
     const { cachedValue } = await ardit.readState();
-    expect(cachedValue.state.messages[0].votes.status).toEqual(1);
+    expect(cachedValue.state.messages[0].votes.status).toEqual(0);
   });
 
   it('should properly view message', async () => {
-    const result = await ardit.viewState({ function: 'readMessage' });
+    const { result } = await ardit.viewState({ function: 'readMessage', id: 1 });
 
     expect(result).toEqual({
+      id: 1,
       creator: owner,
       content: 'Hello world!',
-      votes: { addresses: [], status: 0 },
+      votes: { addresses: [user2, user3], status: 0 },
     });
   });
 });
