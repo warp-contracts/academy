@@ -35,11 +35,9 @@ describe('Testing the Staking Logic', () => {
 
     warp = WarpFactory.forLocal(1822);
 
-    ownerWallet = await warp.testing.generateWallet();
-    owner = await warp.arweave.wallets.jwkToAddress(ownerWallet);
+    ({ jwk: ownerWallet, address: owner } = await warp.testing.generateWallet());
+    ({ jwk: user1Wallet, address: user1 } = await warp.testing.generateWallet());
 
-    user1Wallet = await warp.testing.generateWallet();
-    user1 = await warp.arweave.wallets.jwkToAddress(user1Wallet);
   });
 
   afterAll(async () => {

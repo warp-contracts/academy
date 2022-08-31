@@ -15,11 +15,8 @@ warp = WarpFactory.forLocal(1822);
 Then we can generate test wallets:
 
 ```javascript
-ownerWallet = await warp.testing.generateWallet();
-owner = await warp.arweave.wallets.jwkToAddress(ownerWallet);
-
-user1Wallet = await warp.testing.generateWallet();
-user1 = await warp.arweave.wallets.jwkToAddress(user1Wallet);
+  ({ jwk: ownerWallet, address: owner } = await warp.testing.generateWallet());
+  ({ jwk: user1Wallet, address: user1 } = await warp.testing.generateWallet());
 ```
 
 Let's start by deploying the two ERC20 token contracts. We're going to use a helper library `bindings/erc20-js-binding` and ERC20 source code, which is already copied to the `erc20` folder for your convenience.
