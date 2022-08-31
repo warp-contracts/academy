@@ -19,31 +19,33 @@ export const mint = async (
   }
 
   if (amountIn0 > 0) {
-    const token0TransferResult = await SmartWeave.contracts.write(state.token0, {
+    await SmartWeave.contracts.write(state.token0, {
       function: 'transferFrom',
       from: caller,
       to: SmartWeave.contract.id,
       amount: amountIn0,
-    });
-    if (token0TransferResult.type == 'ok') {
-      state.reserve0 += amountIn0;
-    } else {
-      throw new ContractError('Token0 transfer failed: ' + token0TransferResult.errorMessage);
-    }
+    }, true);
+    state.reserve0 += amountIn0;
+    // if (token0TransferResult.type == 'ok') {
+      
+    // } else {
+    //   throw new ContractError('Token0 transfer failed: ' + token0TransferResult.errorMessage);
+    // }
   }
 
   if (amountIn1 > 0) {
-    const token1TransferResult = await SmartWeave.contracts.write(state.token1, {
+    await SmartWeave.contracts.write(state.token1, {
       function: 'transferFrom',
       from: caller,
       to: SmartWeave.contract.id,
       amount: amountIn1,
     });
-    if (token1TransferResult.type == 'ok') {
-      state.reserve1 += amountIn1;
-    } else {
-      throw new ContractError('Token1 transfer failed: ' + token1TransferResult.errorMessage);
-    }
+    state.reserve1 += amountIn1;
+    // if (token1TransferResult.type == 'ok') {
+      
+    // } else {
+    //   throw new ContractError('Token1 transfer failed: ' + token1TransferResult.errorMessage);
+    // }
     
   }
 
