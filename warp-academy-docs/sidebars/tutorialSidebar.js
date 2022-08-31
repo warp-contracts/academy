@@ -150,6 +150,32 @@ const sidebars = {
         },
       ],
     },
+    {
+      type: 'category',
+      label: 'Ardit',
+      items: [
+        { type: 'doc', label: 'Intro', id: 'ardit/introduction/intro' },
+        {
+          type: 'doc',
+          label: 'Atomic NFT',
+          id: 'ardit/introduction/atomic-nft',
+        },
+        {
+          type: 'category',
+          label: 'Implementation',
+          items: [
+            {
+              type: 'doc',
+              label: 'Atomic NFT',
+              id: 'ardit/profit-sharing/profit-sharing-tokens',
+            },
+            {
+              type: 'doc',
+              label: 'Profit Sharing Communities',
+              id: 'pst/profit-sharing/profit-sharing-communities',
+            },
+          ],
+        },
   ],
 };
 
