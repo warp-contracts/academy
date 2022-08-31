@@ -2082,7 +2082,7 @@ arweave@1.11.4:
     bignumber.js "^9.0.2"
     util "^0.12.4"
 
-arweave@^1.10.13, arweave@^1.10.5, arweave@^1.11.4:
+arweave@1.11.6, arweave@^1.10.13, arweave@^1.10.5, arweave@^1.11.4:
   version "1.11.6"
   resolved "https://registry.yarnpkg.com/arweave/-/arweave-1.11.6.tgz#5afcded201c6f123dd62e5bfae1b72ca793ec7c2"
   integrity sha512-D6N6e2z7oZoxFhu/qElLwQ2T8DxZ8xIqDB+Y16KHvZbassIrrS9iALwxLdaFYNInuyElg6i7qotBMcShWbFSTw==
@@ -3314,6 +3314,11 @@ eventemitter3@^4.0.0:
   version "4.0.7"
   resolved "https://registry.yarnpkg.com/eventemitter3/-/eventemitter3-4.0.7.tgz#2de9b68f6528d5644ef5c59526a1b4a07306169f"
   integrity sha512-8guHBZCwKnFhYdHr2ysuRWErTwhoN2X8XELRlrRwpmfeY2jjuUN4taQMsULKUVo1K4DvZl+0pgfyoysHxvmvEw==
+
+events@3.3.0:
+  version "3.3.0"
+  resolved "https://registry.yarnpkg.com/events/-/events-3.3.0.tgz#31a95ad0a924e2d2c419a813aeb2c4e878ea7400"
+  integrity sha512-mQw+2fkQbALzQ7V0MY0IqdnXNOeTtP4r0lN9z7AAawCXgqea7bDii20AYrIBrFd/Hx0M2Ocz6S111CaFkUcb0Q==
 
 execa@^5.0.0:
   version "5.1.1"
@@ -5806,14 +5811,14 @@ redstone-isomorphic@1.1.0:
     safe-buffer "^5.1.2"
     undici "^4.12.2"
 
-redstone-isomorphic@1.1.6:
-  version "1.1.6"
-  resolved "https://registry.yarnpkg.com/redstone-isomorphic/-/redstone-isomorphic-1.1.6.tgz#513eaf38a7ce14b7e1e84a973aa111066be43f9c"
-  integrity sha512-q9N6/B1KHFBxeRsaqMZUelLorp7BLh50R4fUTf9LNkZPTMZ+sRRVWVE0aZT7lyKbXTLiEdk8kSOHPY4yQu//7Q==
+redstone-isomorphic@1.1.8:
+  version "1.1.8"
+  resolved "https://registry.yarnpkg.com/redstone-isomorphic/-/redstone-isomorphic-1.1.8.tgz#8870987c8f60c0155f32a2e29254faf0b460a6c8"
+  integrity sha512-8WFgGeoUx7mAStvbY/F0QMoyC7I4HO6pwRFRFxTiIrHFrtO7NYTAh4jIjLsds06ymRvXq6rrR6hev2/OuA29xw==
   dependencies:
     buffer "^6.0.3"
     safe-buffer "^5.1.2"
-    undici "^4.16.0"
+    undici "^5.8.0"
 
 redstone-wasm-json-toolkit@1.0.3:
   version "1.0.3"
@@ -6159,14 +6164,6 @@ source-map-support@0.5.13:
   version "0.5.13"
   resolved "https://registry.yarnpkg.com/source-map-support/-/source-map-support-0.5.13.tgz#31b24a9c2e73c2de85066c0feb7d44767ed52932"
   integrity sha512-SHSKFHadjVA5oR4PPqhtAVdcBWwRYVd6g6cAXnIbRiIwc2EhPrTuKUBdSLvlEKyIP3GCf89fltvcZiP9MMFA1w==
-  dependencies:
-    buffer-from "^1.0.0"
-    source-map "^0.6.0"
-
-source-map-support@^0.5.21:
-  version "0.5.21"
-  resolved "https://registry.yarnpkg.com/source-map-support/-/source-map-support-0.5.21.tgz#04fe7c7f9e1ed2d662233c28cb2b35b9f63f6e4f"
-  integrity sha512-uBHU3L3czsIyYXKX88fdrGovxdSCoTGDRZ6SYXtSRxLZUzHg5P/66Ht6uoUlHu9EZod+inXhKo3qQgwXUT/y1w==
   dependencies:
     buffer-from "^1.0.0"
     source-map "^0.6.0"
@@ -6606,13 +6603,6 @@ tslib@^2.1.0, tslib@^2.4.0:
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.4.0.tgz#7cecaa7f073ce680a05847aa77be941098f36dc3"
   integrity sha512-d6xOpEDfsi2CZVlPQzGeux8XMwLT9hssAsaPYExaQMuYskwb+x1x7J371tWlbBdWHroy99KnVB6qIkUbs5X3UQ==
 
-tslog@^3.2.2:
-  version "3.3.4"
-  resolved "https://registry.yarnpkg.com/tslog/-/tslog-3.3.4.tgz#083197a908c97b3b714a0576b9dac293f223f368"
-  integrity sha512-N0HHuHE0e/o75ALfkioFObknHR5dVchUad4F0XyFf3gXJYB++DewEzwGI/uIOM216E5a43ovnRNEeQIq9qgm4Q==
-  dependencies:
-    source-map-support "^0.5.21"
-
 tsscmp@1.0.6:
   version "1.0.6"
   resolved "https://registry.yarnpkg.com/tsscmp/-/tsscmp-1.0.6.tgz#85b99583ac3589ec4bfef825b5000aa911d605eb"
@@ -6690,10 +6680,15 @@ underscore@>=1.3.1:
   resolved "https://registry.yarnpkg.com/underscore/-/underscore-1.13.4.tgz#7886b46bbdf07f768e0052f1828e1dcab40c0dee"
   integrity sha512-BQFnUDuAQ4Yf/cYY5LNrK9NCJFKriaRbD9uR1fTeXnBeoa97W0i41qkZfGO9pSo8I5KzjAcSY2XYtdf0oKd7KQ==
 
-undici@^4.12.2, undici@^4.16.0:
+undici@^4.12.2:
   version "4.16.0"
   resolved "https://registry.yarnpkg.com/undici/-/undici-4.16.0.tgz#469bb87b3b918818d3d7843d91a1d08da357d5ff"
   integrity sha512-tkZSECUYi+/T1i4u+4+lwZmQgLXd4BLGlrc7KZPcLIW7Jpq99+Xpc30ONv7nS6F5UNOxp/HBZSSL9MafUrvJbw==
+
+undici@^5.8.0:
+  version "5.10.0"
+  resolved "https://registry.yarnpkg.com/undici/-/undici-5.10.0.tgz#dd9391087a90ccfbd007568db458674232ebf014"
+  integrity sha512-c8HsD3IbwmjjbLvoZuRI26TZic+TSEe8FPMLLOkN1AfYRhdjnKBU6yL+IwcSCbdZiX4e5t0lfMDLDCqj4Sq70g==
 
 unique-filename@^1.1.1:
   version "1.1.1"
@@ -6830,27 +6825,27 @@ walker@^1.0.8:
   dependencies:
     makeerror "1.0.12"
 
-warp-contracts@1.2.0-beta.10:
-  version "1.2.0-beta.10"
-  resolved "https://registry.yarnpkg.com/warp-contracts/-/warp-contracts-1.2.0-beta.10.tgz#9c3353b67b6add10485d95f0b208c2b0c07f956b"
-  integrity sha512-kvzD1mZlAHx8aNWHsgY8fSlP0smH76kDH3HyYtfMzmhygSnzsVjAsxm7a88z5p21L/4YiVavtL1/E0/Y+mFcsQ==
+warp-contracts@1.2.0-rc.2:
+  version "1.2.0-rc.2"
+  resolved "https://registry.yarnpkg.com/warp-contracts/-/warp-contracts-1.2.0-rc.2.tgz#af99ac783cf6ab7a409677f59801db04a4263078"
+  integrity sha512-qHhDj9bGr/DPtuad7fn5bYqFYc4T/GnbnojN6HCkqCClYIfE2QxpWz5pxS6Esy1U0XvR2Ym/Cbk/WmrRc9LP9g==
   dependencies:
     "@assemblyscript/loader" "^0.19.23"
     "@idena/vrf-js" "^1.0.1"
     archiver "^5.3.0"
-    arweave "1.11.4"
+    arweave "1.11.6"
     bignumber.js "^9.0.1"
     elliptic "^6.5.4"
+    events "3.3.0"
     fast-copy "^2.1.1"
     knex "^0.95.14"
     level "^8.0.0"
     lodash "^4.17.21"
     memory-level "^1.0.0"
-    redstone-isomorphic "1.1.6"
+    redstone-isomorphic "1.1.8"
     redstone-wasm-metering "1.0.3"
     safe-stable-stringify "2.3.1"
     stream-buffers "^3.0.2"
-    tslog "^3.2.2"
     unzipit "^1.4.0"
     vm2 "3.9.9"
 

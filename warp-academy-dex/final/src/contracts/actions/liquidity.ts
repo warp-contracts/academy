@@ -33,13 +33,18 @@ export const mint = async (
   }
 
   if (amountIn1 > 0) {
-    await SmartWeave.contracts.write(state.token1, {
+    const token1TransferResult = await SmartWeave.contracts.write(state.token1, {
       function: 'transferFrom',
       from: caller,
       to: SmartWeave.contract.id,
       amount: amountIn1,
     });
-    state.reserve1 += amountIn1;
+    if (token1TransferResult.type == 'ok') {
+      state.reserve1 += amountIn1;
+    } else {
+      throw new ContractError('Token1 transfer failed: ' + token1TransferResult.errorMessage);
+    }
+    
   }
 
   return { state };

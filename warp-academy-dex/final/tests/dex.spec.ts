@@ -112,7 +112,7 @@ describe('Testing the Staking Logic', () => {
     expect(await token1.currentState()).toEqual(token1State);
   });
 
-  it('should properly deploy contract ERC20 contract', async () => {
+  it('should properly deploy DEX contract', async () => {
     const initialDexState = {
       name: 'DEX',
       token0: token0.txId(),
@@ -131,11 +131,11 @@ describe('Testing the Staking Logic', () => {
 
     const dexContractTxId = deployedDex.contractTxId;
     console.log('Deployed DEX: ' + dexContractTxId);
-    dex = warp.contract(dexContractTxId);
-    dex.setEvaluationOptions({ internalWrites: true });
-    dex.connect(ownerWallet);
+    dex = warp.contract(dexContractTxId)
+          .setEvaluationOptions({ internalWrites: true })
+          .connect(ownerWallet) as Contract<DexState>;
 
-    let evalResult = await dex.readState();
+    let evalResult = await (await dex.readState()).cachedValue;
     expect(evalResult.state.token0).toEqual(token0.txId());
     expect(evalResult.state.token1).toEqual(token1.txId());
   });
@@ -171,7 +171,7 @@ describe('Testing the Staking Logic', () => {
       amountIn1: 2000,
     });
 
-    let evalResult = await dex.readState();
+    let evalResult = await (await dex.readState()).cachedValue;
 
     expect(evalResult.state.reserve0).toEqual(1000);
     expect((await token0.balanceOf(dex.txId())).balance).toEqual(1000);
@@ -265,7 +265,7 @@ describe('Testing the Staking Logic', () => {
     expect((await token0.balanceOf(user1)).balance).toEqual(90);
     expect((await token1.balanceOf(user1)).balance).toEqual(120);
 
-    let evalResult = await dex.readState();
+    let evalResult = await (await dex.readState()).cachedValue;
     expect(evalResult.state.reserve0).toEqual(1010);
     expect(evalResult.state.reserve1).toEqual(1980);
   });
@@ -289,7 +289,7 @@ describe('Testing the Staking Logic', () => {
     expect((await token0.balanceOf(user1)).balance).toEqual(100);
     expect((await token1.balanceOf(user1)).balance).toEqual(100);
 
-    let evalResult = await dex.readState();
+    let evalResult = await (await dex.readState()).cachedValue;
     expect(evalResult.state.reserve0).toEqual(1000);
     expect(evalResult.state.reserve1).toEqual(2000);
   });
@@ -311,7 +311,7 @@ describe('Testing the Staking Logic', () => {
       function: 'burn',
     });
 
-    let evalResult = await dex.readState();
+    let evalResult = await (await dex.readState()).cachedValue;
 
     expect(evalResult.state.reserve0).toEqual(0);
     expect((await token0.balanceOf(dex.txId())).balance).toEqual(0);
@@ -320,13 +320,4 @@ describe('Testing the Staking Logic', () => {
     expect((await token1.balanceOf(dex.txId())).balance).toEqual(0);
   });
 
-  // it('should not stake more than owned', async () => {
-  //   expect((await erc20.balanceOf(user1)).balance).toEqual(100);
-  //   expect((await erc20.balanceOf(stakingContractTxId)).balance).toEqual(0);
-  //   expect((await erc20.allowance(user1, stakingContractTxId)).allowance).toEqual(120);
-
-  //   await expect(staking.stake(110)).rejects.toThrow(
-  //     'Cannot create interaction: [CE:FailedTokenTransfer [CE:CallerBalanceNotEnough 100]]'
-  //   );
-  // });
 });

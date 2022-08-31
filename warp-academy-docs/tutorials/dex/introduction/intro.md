@@ -28,11 +28,7 @@ A market controlled by this curve will automatically adapt the price according t
 To work poperly the AMM requires certain amoount of tokens to be deposited to the contract. Theses tokens are usually described as *liquidity* and the actors that supply them are called *liquidity providers*
 
 
-## 🚀 Deployed version
-
-_TODO: Update addresses_
-
-We've already deployed this contract on the Arweave blockchain. Its transaction id is [Daj-MNSnH55TDfxqC7v4eq0lKzVIwh98srUaWqyuZtY](https://sonar.warp.cc/#/app/contract/Daj-MNSnH55TDfxqC7v4eq0lKzVIwh98srUaWqyuZtY). You can check its source code in our [SonAR.](https://sonar.warp.cc/#/app/contract/Daj-MNSnH55TDfxqC7v4eq0lKzVIwh98srUaWqyuZtY#code).
+## 🚀 Final version (cheat sheet)
 
 The final implementation is available in the [github repo](https://github.com/warp-contracts/academy/tree/main/warp-academy-dex).
 

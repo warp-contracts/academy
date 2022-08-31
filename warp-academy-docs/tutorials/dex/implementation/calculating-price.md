@@ -35,8 +35,6 @@ const calculateAmountOut = (
 
 The logic is very straightforward. First, we make sure that one and only one of the `amountIn0` and `amountIn1` is defined. The variable which is above zero will define which token is our source asset. Next, we calculate the equivalent amount of the second token, so the reserves after the swap will maintain the constant product invariant.
 
-If you're wondering how we transformed the constant product formula into the expression above we strongly recommend refreshing your algebra skills (you may easily find some [useful tools](https://www.dreamstime.com/math-educational-game-children-counting-equations-mathematics-worksheet-animals-faces-math-educational-game-children-image115042566) online)
-
 _❗ As you might have noticed the price varies with the amount of tokens we provide, therefore we prefered to call the function `calculateAmountOut` rather than simply calculatePrice._
 
 We will also implement a public (exported) view function that will allow external users to query the expected `amountOut` before making the swap:

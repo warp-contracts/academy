@@ -194,7 +194,7 @@ export class ERC20ContractImpl extends HandlerBasedContract<ERC20State> implemen
   }
 
   async currentState() {
-    return (await super.readState()).state;
+    return (await super.readState()).cachedValue.state;
   }
 
   async evolve(newSrcTxId: string): Promise<WriteInteractionResponse | null> {
