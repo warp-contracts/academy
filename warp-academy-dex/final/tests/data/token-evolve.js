@@ -21,9 +21,7 @@ export function handle(state, action) {
     }
 
     if (balances[caller] < qty) {
-      throw new ContractError(
-        `Caller balance not high enough to send ${qty} token(s)!`
-      );
+      throw new ContractError(`Caller balance not high enough to send ${qty} token(s)!`);
     }
 
     // Lower the token balance of the caller
@@ -64,7 +62,5 @@ export function handle(state, action) {
     return { state };
   }
 
-  throw new ContractError(
-    `No function supplied or function not recognised: "${input.function}"`
-  );
+  throw new ContractError(`No function supplied or function not recognised: "${input.function}"`);
 }
