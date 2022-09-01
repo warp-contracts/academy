@@ -38,17 +38,15 @@ if (amountIn0 > 0) {
     to: SmartWeave.contract.id,
     amount: amountIn0,
   });
-  if (token0TransferResult.type == 'ok') {
-    state.reserve0 += amountIn0;
-  } else {
-    throw new ContractError(
-      'Token0 transfer failed: ' + token0TransferResult.errorMessage
-    );
-  }
+  
+  state.reserve0 += amountIn0;
 }
 ```
 
-In the code above, we're changing a state of an external `ERC20` contract. Therefore we use the built-in `SmartWeave.contracts.write` method (one of two possible [internal calls](https://academy.warp.cc/features/internal-calls)) to pass as parameters the address of an external contract, function name, and a list of arguments. We also verify the call was successful, by checking if the result's type is `ok`. In case everything is fine, we update the state variable that keeps the size of the reserve. Otherwise, we immediately stop execution and throw an error.
+In the code above, we're changing a state of an external `ERC20` contract. Therefore, we use the built-in `SmartWeave.contracts.write` method (one of two possible [internal calls](https://academy.warp.cc/features/internal-calls)) to pass as parameters the address of an external contract, function name, and a list of arguments.
+Note that if the internal write will fail, the contract evaluation will automatically throw a `ContractError` - there's no need to manually check
+the result of the internal write. 
+In case everything is fine, we update the state variable that keeps the size of the reserve.
 
 We also need to implement a very similar logic to transfer the second token:
 

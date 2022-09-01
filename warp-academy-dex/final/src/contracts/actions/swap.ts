@@ -22,28 +22,20 @@ export const swap = async (
   { caller, input: { amountIn0, amountIn1 } }: DexAction
 ): Promise<ContractResult> => {
   //Get amount in
-  const transferInResult = await SmartWeave.contracts.write(amountIn0 > 0 ? state.token0 : state.token1, {
+  await SmartWeave.contracts.write(amountIn0 > 0 ? state.token0 : state.token1, {
     function: 'transferFrom',
     from: caller,
     to: SmartWeave.contract.id,
     amount: amountIn0 > 0 ? amountIn0 : amountIn1,
   });
 
-  if (transferInResult.type != 'ok') {
-    throw new ContractError('Tokens transfer in failed: ' + transferInResult.errorMessage);
-  }
-
   const amountOut = calculateAmountOut(state.reserve0, state.reserve1, amountIn0, amountIn1);
 
-  const transferOutResult = await SmartWeave.contracts.write(amountIn0 > 0 ? state.token1 : state.token0, {
+  await SmartWeave.contracts.write(amountIn0 > 0 ? state.token1 : state.token0, {
     function: 'transfer',
     to: caller,
     amount: amountOut,
   });
-
-  if (transferOutResult.type != 'ok') {
-    throw new ContractError('Tokens transfer out failed: ' + transferOutResult.errorMessage);
-  }
 
   // Update reserves
   if (amountIn0 > 0) {

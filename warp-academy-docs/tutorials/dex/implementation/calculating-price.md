@@ -6,7 +6,7 @@ We're going to use the formula to calculate the price described in the Intro sec
 x * y = k where x and y are the reserves
 ```
 
-( amount of token X in DEX ) \* ( amount of token Y in DEX ) = k
+( amount of token X in DEX ) x ( amount of token Y in DEX ) = k
 
 We implement the code creating the `calculateAmountOut` function:
 
@@ -27,7 +27,7 @@ const calculateAmountOut = (
   }
 
   return amountIn0 > 0
-    ? //TODO: Check if rounding and floats are deterministic
+    ? 
       Math.round((amountIn0 * reserve1) / (reserve0 + amountIn0))
     : Math.round((amountIn1 * reserve0) / (reserve1 + amountIn1));
 };

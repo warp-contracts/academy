@@ -26,11 +26,6 @@ export const mint = async (
       amount: amountIn0,
     }, true);
     state.reserve0 += amountIn0;
-    // if (token0TransferResult.type == 'ok') {
-      
-    // } else {
-    //   throw new ContractError('Token0 transfer failed: ' + token0TransferResult.errorMessage);
-    // }
   }
 
   if (amountIn1 > 0) {
@@ -41,12 +36,6 @@ export const mint = async (
       amount: amountIn1,
     });
     state.reserve1 += amountIn1;
-    // if (token1TransferResult.type == 'ok') {
-      
-    // } else {
-    //   throw new ContractError('Token1 transfer failed: ' + token1TransferResult.errorMessage);
-    // }
-    
   }
 
   return { state };

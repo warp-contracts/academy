@@ -9,7 +9,7 @@ import { DexState } from '../src/contracts/types/types';
 
 jest.setTimeout(120000);
 
-describe('Testing the Staking Logic', () => {
+describe('Testing the Dex Contract', () => {
   let ownerWallet: JWKInterface;
   let owner: string;
   let user1Wallet: JWKInterface;
@@ -24,14 +24,10 @@ describe('Testing the Staking Logic', () => {
   let dex: Contract<DexState>;
 
   beforeAll(async () => {
-    // note: each tests suit (i.e. file with tests that Jest is running concurrently
-    // with another files has to have ArLocal set to a different port!)
     arlocal = new ArLocal(1822, false);
     await arlocal.start();
 
     LoggerFactory.INST.logLevel('error');
-    //LoggerFactory.INST.logLevel('debug', 'WASM:Rust');
-    //LoggerFactory.INST.logLevel('debug', 'WasmContractHandlerApi');
 
     warp = WarpFactory.forLocal(1822);
 
@@ -139,21 +135,16 @@ describe('Testing the Staking Logic', () => {
   });
 
   it('should not allow minting liquidity without token transfer', async () => {
-    const {originalTxId} = await dex.writeInteraction(
+    await expect(
+      dex.writeInteraction(
         {
           function: 'mint',
           amountIn0: 1000,
           amountIn1: 2000,
         },
         { strict: true }
-      );
-
-
-      const result = await dex.readState();
-
-      expect(result.cachedValue.errorMessages[originalTxId]).toContain(
-        '[CE:CallerAllowanceNotEnough 0]'
-      );  
+      )
+    ).rejects.toThrow('CE:CallerAllowanceNotEnough 0');
   });
 
   it('should provide/mint dex liquidity', async () => {

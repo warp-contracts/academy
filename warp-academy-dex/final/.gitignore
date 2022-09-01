@@ -25,4 +25,7 @@ yarn-error.log*
 .yalc
 yalc.lock
 
+cache
 warp
+
+.idea
