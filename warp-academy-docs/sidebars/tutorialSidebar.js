@@ -32,6 +32,66 @@ const sidebars = {
     },
     {
       type: 'category',
+      label: 'Ardit',
+      items: [
+        { type: 'doc', label: 'Intro', id: 'ardit/introduction/intro' },
+        {
+          type: 'category',
+          label: 'Implementation',
+          items: [
+            {
+              type: 'doc',
+              label: 'Post message',
+              id: 'ardit/implementation/post-message',
+            },
+            {
+              type: 'doc',
+              label: 'Voting',
+              id: 'ardit/implementation/voting',
+            },
+            {
+              type: 'doc',
+              label: 'Read message',
+              id: 'ardit/implementation/read-message',
+            },
+            {
+              type: 'doc',
+              label: 'Handle',
+              id: 'ardit/implementation/handle',
+            },
+          ],
+        },
+        {
+          type: 'category',
+          label: 'Tests',
+          items: [
+            {
+              type: 'doc',
+              label: 'Preparations',
+              id: 'ardit/tests/preparations',
+            },
+            {
+              type: 'doc',
+              label: 'Execution',
+              id: 'ardit/tests/execution',
+            },
+          ],
+        },
+        {
+          type: 'category',
+          label: 'Deployment',
+          items: [
+            {
+              type: 'doc',
+              label: 'Deployment',
+              id: 'ardit/deployment/deployment',
+            },
+          ],
+        },
+      ],
+    },
+    {
+      type: 'category',
       label: 'PST',
       items: [
         { type: 'doc', label: 'Intro', id: 'pst/introduction/intro' },
