@@ -1,6 +1,6 @@
 # Contract deployment
 
-In order to deploy the contract to mainnet, we need to call an asynchronous function which will firstly create Warp instance...
+In order to deploy the contract to mainnet, we need to call a function which will firstly create Warp instance...
 
 ```ts
 // src/tools/deploy-contract.ts
