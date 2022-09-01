@@ -1,7 +1,6 @@
 const fs = require("fs");
 const path = require("path");
-const Arweave = require("arweave");
-const { WarpNodeFactory } = require("warp-contracts");
+const { WarpFactory } = require("warp-contracts");
 const jwk = require("../../.secrets/jwk.json");
 
 (async () => {
@@ -9,20 +8,19 @@ const jwk = require("../../.secrets/jwk.json");
   const contractSrc = fs.readFileSync(path.join(__dirname, "../contracts/loot/contract.js"), "utf8");
   const initialState = fs.readFileSync(path.join(__dirname, "../contracts/loot/initial-state.json"), "utf8");
 
-  // Arweave and Warp initialization
-  const arweave = Arweave.init({
-    host: "arweave.net",
-    port: 443,
-    protocol: "https",
-  });
-  const warp = WarpNodeFactory.memCached(arweave);
+  // Warp initialization for mainnet
+  const warp = WarpFactory.forMainnet();
 
   // Deploying contract
   console.log("Deployment started");
-  const contractTxId = await warp.createContract.deploy({
+  const result = await warp.createContract.deploy({
     wallet: jwk,
     initState: initialState,
-    src: contractSrc
+    src: contractSrc,
   });
-  console.log("Deployment completed: " + contractTxId);
+
+  console.log("Deployment completed: ", {
+    ...result,
+    sonar: `https://sonar.warp.cc/#/app/contract/${result.contractTxId}`
+  });
 })();

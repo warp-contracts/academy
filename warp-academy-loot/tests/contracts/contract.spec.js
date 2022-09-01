@@ -1,19 +1,19 @@
 const fs = require('fs');
 const path = require('path');
-const { default: ArLocal } = require('arlocal');
-const Arweave = require('arweave');
-const { LoggerFactory, WarpNodeFactory } = require('warp-contracts');
+const {default: ArLocal} = require('arlocal');
+const {LoggerFactory, WarpFactory} = require('warp-contracts');
 
 describe('Testing the Loot contract', () => {
   let contractSrc,
     initialState,
     wallet,
-    arweave,
     arlocal,
     warp,
     contract,
     walletAddress;
+
   let asset = '';
+
   const MOCK_ADDRESS = '0x1234',
     MOCK_ADDRESS_2 = '0x5678';
 
@@ -21,19 +21,13 @@ describe('Testing the Loot contract', () => {
     arlocal = new ArLocal(1985, false);
     await arlocal.start();
 
-    arweave = Arweave.init({
-      host: 'localhost',
-      port: 1985,
-      protocol: 'http',
-    });
-
     LoggerFactory.INST.logLevel('error');
 
-    warp = WarpNodeFactory.forTesting(arweave);
-    wallet = await arweave.wallets.generate();
-    walletAddress = await arweave.wallets.jwkToAddress(wallet);
+    // note: creating a "Warp" instance for local testing environment.
+    warp = WarpFactory.forLocal(1985);
 
-    await addFunds(arweave, wallet);
+    // note: warp.testing.generateWallet() automatically adds funds to the wallet
+    ({jwk: wallet, address: walletAddress} = await warp.testing.generateWallet());
 
     contractSrc = fs.readFileSync(
       path.join(__dirname, '../../src/contracts/loot/contract.js'),
@@ -44,16 +38,20 @@ describe('Testing the Loot contract', () => {
       'utf8'
     );
 
-    const contractTxId = await warp.createContract.deploy({
+    const {contractTxId} = await warp.createContract.deploy({
       wallet,
       initState: initialState,
       src: contractSrc,
     });
 
-    contract = warp.contract(contractTxId);
-    contract.connect(wallet);
+    contract = warp.contract(contractTxId)
+      .setEvaluationOptions({
+        allowBigInt: true
+      })
+      .connect(wallet);
 
-    await mineBlock(arweave);
+    // note: we need to mine block in ArLocal - so that contract deployment transaction was mined.
+    await warp.testing.mineBlock();
   });
 
   afterAll(async () => {
@@ -61,29 +59,29 @@ describe('Testing the Loot contract', () => {
   });
 
   it('Should have no assets right after deployment', async () => {
-    const { state } = await contract.readState();
-    expect(state.assets).toEqual({});
+    await warp.testing.mineBlock();
+    const {cachedValue} = await contract.readState();
+    expect(cachedValue.state.assets).toEqual({});
   });
 
   it('Should generate an asset', async () => {
+    // note: if Warp instance is created with 'forLocal' - the writeInteraction method
+    // automatically mines a new block - so that you won't have to do it manually in your tests.
+    // if you want to switch off automatic mining - set evaluationOptions.mineArLocalBlocks to false, e.g.
+    // contract.setEvaluationOptions({ mineArLocalBlocks: false })
     await contract.writeInteraction({
       function: 'generate',
     });
-    await mineBlock(arweave);
-  });
 
-  it('User should have a new asset', async () => {
-    await mineBlock(arweave);
-
-    const { result: assets } = await contract.viewState({
+    const {result: assets} = await contract.viewState({
       function: 'generatedAssets',
     });
     expect(assets).toBeInstanceOf(Array);
     asset = assets[0];
 
-    const { result: owner } = await contract.viewState({
+    const {result: owner} = await contract.viewState({
       function: 'getOwner',
-      data: { asset },
+      data: {asset},
     });
     expect(owner).toBe(walletAddress);
   });
@@ -96,10 +94,10 @@ describe('Testing the Loot contract', () => {
         asset,
       },
     });
-    await mineBlock(arweave);
-    const { result: owner } = await contract.viewState({
+
+    const {result: owner} = await contract.viewState({
       function: 'getOwner',
-      data: { asset },
+      data: {asset},
     });
     expect(owner).toBe(MOCK_ADDRESS);
   });
@@ -112,21 +110,12 @@ describe('Testing the Loot contract', () => {
         asset,
       },
     });
-    await mineBlock(arweave);
 
-    const { result: owner } = await contract.viewState({
+    const {result: owner} = await contract.viewState({
       function: 'getOwner',
-      data: { asset },
+      data: {asset},
     });
     expect(owner).toBe(MOCK_ADDRESS);
   });
 });
 
-async function addFunds(arweave, wallet) {
-  const walletAddress = await arweave.wallets.getAddress(wallet);
-  await arweave.api.get(`/mint/${walletAddress}/1000000000000000`);
-}
-
-async function mineBlock(arweave) {
-  await arweave.api.get('mine');
-}

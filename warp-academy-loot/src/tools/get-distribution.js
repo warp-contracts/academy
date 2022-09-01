@@ -1,38 +1,31 @@
-const Arweave = require('arweave');
-const { WarpNodeFactory, LoggerFactory } = require("warp-contracts");
+const {LoggerFactory, WarpFactory, defaultCacheOptions} = require("warp-contracts");
 const wallet = require("../../.secrets/jwk.json");
-const { loot: lootContractAddress } = require("../deployed-contracts.json");
+const {loot: lootContractAddress} = require("../deployed-contracts.json");
 
 (async () => {
-  // Set up Arweave client
-  const arweave = Arweave.init({
-    host: 'arweave.net',
-    port: 443,
-    protocol: 'https',
-  });
-
   // Set up Warp client
   LoggerFactory.INST.logLevel('error');
-  const warp = WarpNodeFactory.memCached(arweave);
+  const warp = WarpFactory.forMainnet({...defaultCacheOptions, inMemory: true});
 
   // Interacting with the contract
   const contract = warp
     .contract(lootContractAddress)
     .connect(wallet)
     .setEvaluationOptions({
-      waitForConfirmation: true,
+      allowBigInt: true,
     });
 
   // Read state
-  const state = await contract.readState();
+  console.log('Reading contract state');
+  const {cachedValue} = await contract.readState();
   console.log("Current state for contract: " + lootContractAddress);
-  console.log(JSON.stringify(state, null, 2));
+  console.dir(cachedValue.state, {depth: null});
 
   // Calculating distribution
   const ditribution = {};
-  for (const [_asset, owner] of Object.entries(state.state.assets)) {
+  for (const [_asset, owner] of Object.entries(cachedValue.state.assets)) {
     ditribution[owner] = (ditribution[owner] || 0) + 1;
   }
-  console.log("Printing owners with their asset count")
-  console.log(JSON.stringify(ditribution, null, 2));
+  console.log("Printing owners with their asset count");
+  console.dir(ditribution, {depth: null});
 })();

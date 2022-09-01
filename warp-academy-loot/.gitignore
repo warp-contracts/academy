@@ -30,3 +30,5 @@ yarn-error.log*
 
 .yalc
 yalc.lock
+
+src/tools/cache
