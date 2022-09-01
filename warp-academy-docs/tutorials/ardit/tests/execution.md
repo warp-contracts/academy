@@ -7,6 +7,8 @@ We will write a couple of tests which will help us understand some basics about 
 Let's start with checking if the contract has been deployed correctly and we are able to read the contract's state.
 
 ```js
+// tests/ardit.test.ts
+
 it('should properly deploy contract', async () => {
   const contractTx = await warp.arweave.transactions.get(contractId);
 
@@ -25,8 +27,13 @@ We are using SDK's `readState` method which reads the current state of our contr
 Let's test if we can post a message by calling Warp's `writeInteraction` method. As an argument we simply pass name of the function and the message content as the input of our interaction. We then read the contract state and check if the new message has been added to the state.
 
 ```js
+// tests/ardit.test.ts
+
 it('should properly post message', async () => {
-  await ardit.writeInteraction({ function: 'postMessage', content: 'Hello world!' });
+  await ardit.writeInteraction({
+    function: 'postMessage',
+    content: 'Hello world!',
+  });
 
   const { cachedValue } = await ardit.readState();
   expect(cachedValue.state.messages[0]).toEqual({
@@ -41,8 +48,12 @@ it('should properly post message', async () => {
 It is always good to check if function throws proper error if the input is incorrect.
 
 ```js
+// tests/ardit.test.ts
+
 it('should not post message with no content', async () => {
-  await expect(ardit.writeInteraction({ function: 'postMessage' }, { strict: true })).rejects.toThrow(
+  await expect(
+    ardit.writeInteraction({ function: 'postMessage' }, { strict: true })
+  ).rejects.toThrow(
     'Cannot create interaction: Creator must provide a message content.'
   );
 });
@@ -53,12 +64,24 @@ it('should not post message with no content', async () => {
 Let's check if voting functions work properly. Firstly, let's verify that creator of the message cannot vote for their own message and that we cannot vote for the message that does not exist.
 
 ```js
+// tests/ardit.test.ts
+
 it('should not be possible for creator to vote for they message', async () => {
-  await expect(ardit.writeInteraction({ function: 'upvoteMessage', id: 1 }, { strict: true })).rejects.toThrow(
+  await expect(
+    ardit.writeInteraction(
+      { function: 'upvoteMessage', id: 1 },
+      { strict: true }
+    )
+  ).rejects.toThrow(
     'Cannot create interaction: Message creator cannot vote for they own message.'
   );
 
-  await expect(ardit.writeInteraction({ function: 'downvoteMessage', id: 1 }, { strict: true })).rejects.toThrow(
+  await expect(
+    ardit.writeInteraction(
+      { function: 'downvoteMessage', id: 1 },
+      { strict: true }
+    )
+  ).rejects.toThrow(
     'Cannot create interaction: Message creator cannot vote for they own message.'
   );
 });
@@ -66,15 +89,20 @@ it('should not be possible for creator to vote for they message', async () => {
 it('should not be possible to vote for non-existing message', async () => {
   ardit = warp.contract < ArditState > contractId.connect(user2Wallet);
 
-  await expect(ardit.writeInteraction({ function: 'upvoteMessage', id: 5 }, { strict: true })).rejects.toThrow(
-    'Cannot create interaction: Message does not exist.'
-  );
+  await expect(
+    ardit.writeInteraction(
+      { function: 'upvoteMessage', id: 5 },
+      { strict: true }
+    )
+  ).rejects.toThrow('Cannot create interaction: Message does not exist.');
 });
 ```
 
 Now, let's check if we can upvote the message properly...
 
 ```js
+// tests/ardit.test.ts
+
 it('should properly upvote message', async () => {
   ardit = warp.contract < ArditState > contractId.connect(user2Wallet);
 
@@ -88,22 +116,32 @@ it('should properly upvote message', async () => {
 ...and that we are not able to vote for the same message twice.
 
 ```js
+// tests/ardit.test.ts
+
 it('should not be possible to vote for the same message twice', async () => {
   ardit = warp.contract < ArditState > contractId.connect(user2Wallet);
 
-  await expect(ardit.writeInteraction({ function: 'upvoteMessage', id: 1 }, { strict: true })).rejects.toThrow(
-    'Cannot create interaction: Caller has already voted.'
-  );
+  await expect(
+    ardit.writeInteraction(
+      { function: 'upvoteMessage', id: 1 },
+      { strict: true }
+    )
+  ).rejects.toThrow('Cannot create interaction: Caller has already voted.');
 
-  await expect(ardit.writeInteraction({ function: 'downvoteMessage', id: 1 }, { strict: true })).rejects.toThrow(
-    'Caller has already voted.'
-  );
+  await expect(
+    ardit.writeInteraction(
+      { function: 'downvoteMessage', id: 1 },
+      { strict: true }
+    )
+  ).rejects.toThrow('Caller has already voted.');
 });
 ```
 
 Let's verify if downvoting works as expected
 
 ```js
+// tests/ardit.test.ts
+
 it('should properly downvote message', async () => {
   ardit = warp.contract < ArditState > contractId.connect(user3Wallet);
 
@@ -119,6 +157,8 @@ it('should properly downvote message', async () => {
 Finally, let's verify our read function which should read the message based on its id. We will use `viewState` method from the Warp SDK which simply returns the result of the interaction.
 
 ```js
+// tests/ardit.test.ts
+
 it('should properly view message', async () => {
   const { result } = await ardit.viewState({ function: 'readMessage', id: 1 });
 

@@ -8,9 +8,7 @@ The idea of this tutorial is to build a smart contract which can be then used in
 
 ## 🚀 Deployed version
 
-_TODO: Update addresses_
-
-We've already deployed the contract source on the Arweave blockchain. Its transaction id is [xOnWzXwuZ8PYbrjOBpz-kEAV0l0_soyvrxAS35weysU](https://sonar.warp.cc/#/app/source/xOnWzXwuZ8PYbrjOBpz-kEAV0l0_soyvrxAS35weysU). You can check its source code in our [SonAR.](https://sonar.warp.cc/#/app/source/xOnWzXwuZ8PYbrjOBpz-kEAV0l0_soyvrxAS35weysU#code).
+We've already deployed the contract source on the Arweave blockchain. Its transaction id is [104Baqn4dDwL7ojuZtbMy5qitBa-WY1_sOai79TJ_Ig](https://sonar.warp.cc/#/app/source/104Baqn4dDwL7ojuZtbMy5qitBa-WY1_sOai79TJ_Ig). You can check its source code in our [SonAR.](https://sonar.warp.cc/#/app/source/104Baqn4dDwL7ojuZtbMy5qitBa-WY1_sOai79TJ_Ig#code).
 
 The final implementation is available in the [github repo](https://github.com/warp-contracts/academy/tree/main/warp-academy-ardit/final).
 
@@ -28,8 +26,6 @@ Please feel free to contact us [on Discord](https://redstone.finance/discord) if
 
 ## 💪 What will you learn
 
-- Deploying multiple contracts
-- Implementing cross-contract interactions (aka [internal writes](https://github.com/warp-contracts/warp#internal-writes))
-- Architecting a contract that may control other assets
-- Fully understanding how one of the most important DeFi protocol works under the hood
-  (Tons of satisfaction guaranteed :) )
+- Basic concepts of Smartweave
+- Warp SDK core methods
+- Implementing, testing and deploying a simple contract

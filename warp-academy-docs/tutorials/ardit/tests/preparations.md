@@ -7,6 +7,8 @@ It is more than important to carefully test your contract before deploying it to
 Head to [tests/ardit.test.ts](https://github.com/warp-contracts/academy/tree/main/warp-academy-pst/challenge/tests/contract.test.ts) and start by declaring all necessary variables in `beforeAll` - a callback which will be executed before all the tests. Remeber to import all the interfaces!
 
 ```js
+// tests/ardit.test.ts
+
 let ownerWallet: JWKInterface;
 let owner: string;
 let user2Wallet: JWKInterface;
@@ -24,6 +26,8 @@ let contractId: string;
 ## 🅰️ Setting up ArLocal
 
 ```js
+// tests/ardit.test.ts
+
 arlocal = new ArLocal(1820);
 await arlocal.start();
 ```
@@ -33,6 +37,8 @@ We initialize ArLocal - a local server resembling the real Arweave network - on 
 ## 🎛️ LoggerFactory
 
 ```js
+// tests/ardit.test.ts
+
 LoggerFactory.INST.logLevel('error');
 ```
 
@@ -48,6 +54,8 @@ For the tutorial purposes we will set logging level to `error`.
 ## 🪡 Setting up Warp
 
 ```js
+// tests/ardit.test.ts
+
 warp = WarpFactory.forLocal(1820);
 ```
 
@@ -56,6 +64,8 @@ Warp class in SDK is a base class that supplies the implementation of SmartWeave
 ## 👛 Generating wallet and adding funds
 
 ```js
+// tests/ardit.test.ts
+
 ({ jwk: ownerWallet, address: owner } = await warp.testing.generateWallet());
 ({ jwk: user2Wallet, address: user2 } = await warp.testing.generateWallet());
 ({ jwk: user3Wallet, address: user3 } = await warp.testing.generateWallet());
@@ -68,7 +78,12 @@ In order for tests to run properly we need to create wallets. We will create 3 a
 Ok, back to the test. Now, we need to find a way to read files with contract source we've prepared in the last section. In order to do that we will use NodeJS method `readFileSync`. Remember to import `fs` and `path` modules. We are pointing to the file we've prepared in [the last section](../writing-pst-contract/contract-source#-bundling-contract) using esbuild and prepared scripts.
 
 ```js
-contractSrc = fs.readFileSync(path.join(__dirname, '../dist/contract.js'), 'utf8');
+// tests/ardit.test.ts
+
+contractSrc = fs.readFileSync(
+  path.join(__dirname, '../dist/contract.js'),
+  'utf8'
+);
 ```
 
 ## ✍🏻 Setting initial state
@@ -76,6 +91,8 @@ contractSrc = fs.readFileSync(path.join(__dirname, '../dist/contract.js'), 'utf8
 We need to set the initial state of the contract which will be updated during interactions.
 
 ```js
+// tests/ardit.test.ts
+
 initialState = {
   messages: [],
 };
@@ -86,6 +103,8 @@ initialState = {
 Now, the moment we were all waiting for!
 
 ```js
+// tests/ardit.test.ts
+
 ({ contractTxId: contractId } = await warp.createContract.deploy({
   wallet: ownerWallet,
   initState: JSON.stringify(initialState),
@@ -100,6 +119,8 @@ What it does is take object with **wallet**, **initial state** and **contract so
 ## 🔌 Connecting to the contract
 
 ```js
+// tests/ardit.test.ts
+
 ardit = warp.contract(contractTxId).connect(wallet);
 ```
 
@@ -112,6 +133,8 @@ We then connect our wallet to the Ardit contract. Please remember that connectin
 After all tests will be executed, we will need to stop ArLocal instance. Add following code to the `afterAll` function:
 
 ```js
+// tests/ardit.test.ts
+
 await arlocal.stop();
 ```
 
