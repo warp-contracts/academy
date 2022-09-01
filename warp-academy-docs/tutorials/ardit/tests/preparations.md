@@ -56,17 +56,12 @@ Warp class in SDK is a base class that supplies the implementation of SmartWeave
 ## 👛 Generating wallet and adding funds
 
 ```js
-ownerWallet = await warp.testing.generateWallet();
-owner = await warp.arweave.wallets.jwkToAddress(ownerWallet);
-
-user2Wallet = await warp.testing.generateWallet();
-user2 = await warp.arweave.wallets.jwkToAddress(user2Wallet);
-
-user3Wallet = await warp.testing.generateWallet();
-user3 = await warp.arweave.wallets.jwkToAddress(user3Wallet);
+({ jwk: ownerWallet, address: owner } = await warp.testing.generateWallet());
+({ jwk: user2Wallet, address: user2 } = await warp.testing.generateWallet());
+({ jwk: user3Wallet, address: user3 } = await warp.testing.generateWallet());
 ```
 
-In order for tests to run properly we need to create wallets. We will create 3 as we will be testing our contract for different wallets. We can simply use `await warp.testing.generateWallet()` - Warp method which creates random wallet and funds it. Additionally, we will get the address for each of these wallets.
+In order for tests to run properly we need to create wallets. We will create 3 as we will be testing our contract for different wallets. We can simply use `await warp.testing.generateWallet()` - Warp method which creates random wallet and funds it.
 
 ## 📰 Reading contract source and initial state files
 

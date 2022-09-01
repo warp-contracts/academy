@@ -52,15 +52,9 @@ await addFunds(arweave, wallet);
 Read contract source and initial state files:
 
 ```js
-contractSrc = fs.readFileSync(
-  path.join(__dirname, '../../dist/contract.js'),
-  'utf8'
-);
+contractSrc = fs.readFileSync(path.join(__dirname, '../../dist/contract.js'), 'utf8');
 const stateFromFile: PstState = JSON.parse(
-  fs.readFileSync(
-    path.join(__dirname, '../../dist/contracts/initial-state.json'),
-    'utf8'
-  )
+  fs.readFileSync(path.join(__dirname, '../../dist/contracts/initial-state.json'), 'utf8')
 );
 ```
 

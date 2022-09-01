@@ -7110,10 +7110,10 @@ walker@^1.0.7:
   dependencies:
     makeerror "1.0.12"
 
-warp-contracts@1.2.0-rc.2:
-  version "1.2.0-rc.2"
-  resolved "https://registry.yarnpkg.com/warp-contracts/-/warp-contracts-1.2.0-rc.2.tgz#af99ac783cf6ab7a409677f59801db04a4263078"
-  integrity sha512-qHhDj9bGr/DPtuad7fn5bYqFYc4T/GnbnojN6HCkqCClYIfE2QxpWz5pxS6Esy1U0XvR2Ym/Cbk/WmrRc9LP9g==
+warp-contracts@1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/warp-contracts/-/warp-contracts-1.2.0.tgz#92f95195bdbc05958b7e5e0b90b6f1cdb090f228"
+  integrity sha512-3GgJ0o3W15GB116bgSsQMjlfpX6ku9o2rXa4HQgZIDK46TVHUeFyJuGzNf5NELDEFjFBUMVltRTXuu0ysewo/Q==
   dependencies:
     "@assemblyscript/loader" "^0.19.23"
     "@idena/vrf-js" "^1.0.1"

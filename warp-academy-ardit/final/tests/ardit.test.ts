@@ -36,14 +36,11 @@ describe('Testing the Atomic NFT Token', () => {
 
     warp = WarpFactory.forLocal(1820);
 
-    ownerWallet = await warp.testing.generateWallet();
-    owner = await warp.arweave.wallets.jwkToAddress(ownerWallet);
+    ({jwk: ownerWallet, address: owner} = await warp.testing.generateWallet());
 
-    user2Wallet = await warp.testing.generateWallet();
-    user2 = await warp.arweave.wallets.jwkToAddress(user2Wallet);
+    ({jwk: user2Wallet, address: user2} = await warp.testing.generateWallet());
 
-    user3Wallet = await warp.testing.generateWallet();
-    user3 = await warp.arweave.wallets.jwkToAddress(user3Wallet);
+    ({jwk: user3Wallet, address: user3} = await warp.testing.generateWallet());
 
     initialState = {
       messages: [],
