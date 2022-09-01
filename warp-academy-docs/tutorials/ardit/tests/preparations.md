@@ -73,9 +73,9 @@ Warp class in SDK is a base class that supplies the implementation of SmartWeave
 
 In order for tests to run properly we need to create wallets. We will create 3 as we will be testing our contract for different wallets. We can simply use `await warp.testing.generateWallet()` - Warp method which creates random wallet and funds it.
 
-## 📰 Reading contract source and initial state files
+## 📰 Reading contract source file
 
-Ok, back to the test. Now, we need to find a way to read files with contract source we've prepared in the last section. In order to do that we will use NodeJS method `readFileSync`. Remember to import `fs` and `path` modules. We are pointing to the file we've prepared in [the last section](../writing-pst-contract/contract-source#-bundling-contract) using esbuild and prepared scripts.
+Ok, back to the test. Now, we need to find a way to read file with the contract source we've prepared in the last section. In order to do that we will use NodeJS method `readFileSync`. Remember to import `fs` and `path` modules. We are pointing to the file we've prepared in [the last section](../implementation/handle.md) using esbuild and prepared scripts.
 
 ```js
 // tests/ardit.test.ts
