@@ -33,7 +33,6 @@ describe('Testing the Dex Contract', () => {
 
     ({ jwk: ownerWallet, address: owner } = await warp.testing.generateWallet());
     ({ jwk: user1Wallet, address: user1 } = await warp.testing.generateWallet());
-
   });
 
   afterAll(async () => {

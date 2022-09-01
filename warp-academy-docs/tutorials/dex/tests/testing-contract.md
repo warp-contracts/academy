@@ -1,6 +1,7 @@
 # Test your contract
 
-We strongly recommend you implement tests for all your smart contracts. It's generally a good practice and it will help you to avoid simple bugs before deploying contracts to the blockchain.
+We strongly recommend you implement tests for all your smart contracts.
+It's generally a good practice and will help you to avoid simple bugs before deploying contracts to the blockchain.
 
 We're going to use one of the most popular testing frameworks - [JEST](https://jestjs.io/) to orchestrate test execution.
 
@@ -32,11 +33,6 @@ import {
   ERC20State,
 } from '../erc20/bindings/erc20-js-binding';
 import { DexState } from '../src/contracts/types/types';
-
-(async () => {
-  // the pieces of code below should be placed here
-  // because they use `await`
-})();
 ```
 
 ## 🧑‍🔧 Configure `ArLocal` and `Warp`
@@ -54,11 +50,8 @@ await arlocal.start();
 warp = WarpFactory.forLocal(1822);
 
 //Generating test wallets
-ownerWallet = await warp.testing.generateWallet();
-owner = await warp.arweave.wallets.jwkToAddress(ownerWallet);
-
-user1Wallet = await warp.testing.generateWallet();
-user1 = await warp.arweave.wallets.jwkToAddress(user1Wallet);
+({ jwk: ownerWallet, address: owner } = await warp.testing.generateWallet());
+({ jwk: user1Wallet, address: user1 } = await warp.testing.generateWallet());
 ```
 
 ## 🔧 Deploy all the contracts
@@ -102,7 +95,8 @@ expect((await token1.balanceOf(dex.txId())).balance).toEqual(2000);
 
 ### Verifying contract constraints
 
-Testing only the positive scenario(aka [Happy path testing](https://en.wikipedia.org/wiki/Happy_path)) it's not enough. We should also try to provide edge case scenarios and see if a contract will prevent users' mistakes or malicious behavior.
+Testing only the positive scenario(aka [Happy path testing](https://en.wikipedia.org/wiki/Happy_path)) is not enough.
+We should also try to provide edge case scenarios and see if a contract will prevent users' mistakes or malicious behavior.
 
 Let's check how would the DEX contract react if we try to provide liquidity for the second time.
 
@@ -125,7 +119,8 @@ it('should prevent adding liquidity again', async () => {
 
 ### Swapping tokens
 
-Before we can swap tokens we need to approve the DEX to use user assets. Then we can connect the user's wallet to the DEX contract and execute the SWAP function. It's important not only to check if the expected amount of the second token is transferred to user's account, but we should also verify if all the parameters on the DEX contract update accordingly.
+Before we can swap tokens we need to approve the DEX to use user assets. Then we can connect the user's wallet to the DEX contract and execute the SWAP function.
+It's important not only to check if the expected amount of the second token is transferred to user's account, but we should also verify if all the parameters on the DEX contract update accordingly.
 
 ```javascript
 // File: tests/dex.spec.ts
@@ -181,8 +176,6 @@ it('should withdraw/burn dex liquidity when called by liquidity provider', async
 ```
 
 ## 🛑 Shut down `ArLocal`
-
-It's a good idea
 
 ```javascript
 // File: tests/dex.spec.ts
