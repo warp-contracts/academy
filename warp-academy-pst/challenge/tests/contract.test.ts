@@ -2,7 +2,7 @@ describe('Testing the Profit Sharing Token', () => {
   beforeAll(async () => {
     // ~~ Declare all variables ~~
 
-    // ~~ Set up ArLocal and instantiate Arweave ~~
+    // ~~ Set up ArLocal ~~
 
     // ~~ Initialize 'LoggerFactory' ~~
 

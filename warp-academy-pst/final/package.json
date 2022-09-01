@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
+    "serve": "if-node-version '>= 17' && NODE_OPTIONS=--openssl-legacy-provider vue-cli-service serve || vue-cli-service serve",
+    "build": "if-node-version '>= 17' && NODE_OPTIONS=--openssl-legacy-provider vue-cli-service build || vue-cli-service build",
     "build:contracts": "yarn run clean && yarn run build-ts && npm run cp",
     "build-ts": "node build.js",
     "clean": "rimraf ./dist",
@@ -14,21 +14,23 @@
     "test:node": "jest tests",
     "test:browser": "jest tests --config ./jest.browser.config.js"
   },
+  "engines": {
+    "node": ">=16.5"
+  },
   "dependencies": {
     "arlocal": "^1.1.42",
-    "arweave": "^1.11.4",
+    "arweave": "1.11.6",
     "babel-jest": "^27.5.0",
     "bootstrap": "^5.1.3",
     "core-js": "^3.6.5",
     "sass-loader": "^10",
-    "smartweave": "^0.4.46",
     "typescript": "^4.3.5",
     "vue": "^2.6.11",
     "vue-router": "^3.2.0",
     "vue-spinner": "^1.0.4",
     "vue-toasted": "^1.1.28",
     "vuex": "^3.4.0",
-    "warp-contracts": "1.0.1"
+    "warp-contracts": "1.2.1"
   },
   "devDependencies": {
     "@babel/preset-typescript": "^7.16.7",
@@ -48,6 +50,7 @@
     "eslint": "^6.7.2",
     "eslint-plugin-prettier": "^3.3.1",
     "eslint-plugin-vue": "^6.2.2",
+    "if-node-version": "^1.1.1",
     "jest": "^27.4.3",
     "node-sass": "^6.0.0",
     "prettier": "^2.2.1",

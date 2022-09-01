@@ -30,7 +30,7 @@ Please feel free to contact us [on Discord](https://redstone.finance/discord) if
 
 ```bash
 # Install dependencies
-$ yarn add arweave@1.11.4 warp-contracts@1.2.1
+$ yarn add arweave@1.11.6 warp-contracts@1.2.1
 
 # Install dev dependencies
 $ yarn add arlocal@1.1.42 jest -D

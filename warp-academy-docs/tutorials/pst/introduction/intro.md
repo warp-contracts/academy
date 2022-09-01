@@ -12,13 +12,13 @@ We will also give you some advice of how to deploy the contract to the Arweave m
 
 ## 🔨 What you will need
 
-- [Node.js](https://nodejs.org/en/download/) version 16.5 or above:
+- [Node.js](https://nodejs.org/en/download/) version 16.5 or above
 - [yarn](https://yarnpkg.com/getting-started/install) installed
 
 ## 🔗 Links
 
 We've already deployed final versions of the PST contract and application.
-You can view the contract in the contracts explorer - [SonAR](https://sonar.warp.cc/#/app/contract/NfOsoVlsQ4_hh_tLwvI4IkNQr0Ey5p3_uHTqKD1O3Ts?network=testnet). Application is available [here](https://pst.redstone.academy).
+You can view the contract in the contracts explorer - [SonAR](https://sonar.warp.cc/#/app/contract/Q1ga6CExJs-AARQi3mvtFiPcdZmXi_8e22QURdhrnug). Application is available [here](https://pst.academy.warp.cc/).
 
 In order to complete this tutorial you will need to fork [warp academy repository](https://github.com/warp-contracts/academy), head to [warp-academy-pst/challenge](https://github.com/warp-contracts/academy/tree/main/warp-academy-pst/challenge) folder and complete all the tasks in the next sections by writing some code.
 

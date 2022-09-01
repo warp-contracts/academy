@@ -1,34 +1,45 @@
 import fs from 'fs';
 import path from 'path';
-import Arweave from 'arweave';
-import { ArWallet, WarpNodeFactory } from 'warp-contracts';
-import jwk from '../../.secrets/jwk.json';
+import {LoggerFactory, WarpFactory} from 'warp-contracts';
 
+// note: remember to build the contract first - yarn build:contracts
 (async () => {
+  // Warp and Arweave initialization
+  LoggerFactory.INST.logLevel('error');
+  const warp = WarpFactory.forMainnet();
+  const arweave = warp.arweave;
+
+  // generating Arweave wallet
+  const jwk = await arweave.wallets.generate();
+  const walletAddress = await arweave.wallets.jwkToAddress(jwk);
+
   // Loading contract source and initial state from files
   const contractSrc = fs.readFileSync(
-    path.join(__dirname, '../contracts/pst/contract.js'),
+    path.join(__dirname, '../../dist/contract.js'),
     'utf8'
   );
-  const initialState = fs.readFileSync(
-    path.join(__dirname, '../contracts/pst/initial-state.json'),
+  const stateFromFile = JSON.parse(fs.readFileSync(
+    path.join(__dirname, '../../dist/contracts/initial-state.json'),
     'utf8'
-  );
+  ));
 
-  // Arweave and Warp initialization
-  const arweave = Arweave.init({
-    host: 'arweave.net',
-    port: 443,
-    protocol: 'https',
-  });
-  const warp = WarpNodeFactory.memCached(arweave);
+  const initialState = {
+    ...stateFromFile,
+    ...{
+      owner: walletAddress,
+    },
+  };
 
   // Deploying contract
   console.log('Deployment started');
-  const contractTxId = await warp.createContract.deploy({
-    wallet: jwk as ArWallet,
+  const result = await warp.createContract.deploy({
+    wallet: jwk,
     initState: initialState,
     src: contractSrc,
   });
-  console.log('Deployment completed: ' + contractTxId);
+
+  console.log('Deployment completed: ', {
+    ...result,
+    sonar: `https://sonar.warp.cc/#/app/contract/${result.contractTxId}`
+  });
 })();

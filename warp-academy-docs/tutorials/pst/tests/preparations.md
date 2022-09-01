@@ -11,26 +11,19 @@ let contractSrc: string;
 let wallet: JWKInterface;
 let walletAddress: string;
 let initialState: PstState;
-let arweave: Arweave;
 let arlocal: ArLocal;
 let warp: Warp;
 let pst: PstContract;
 ```
 
-## 🅰️ Setting up ArLocal and instantiating Arweave
+## 🅰️ Setting up ArLocal
 
 ```js
 arlocal = new ArLocal(1820);
 await arlocal.start();
-
-arweave = Arweave.init({
-  host: 'localhost',
-  port: 1820,
-  protocol: 'http',
-});
 ```
 
-We initialize ArLocal - a local server resembling the real Arweave network - on port 1820 (the default one is 1984) and start the instance. Then, we initialize Arweave by pointing to the running local testnet.
+We initialize ArLocal - a local server resembling the real Arweave network - on port 1820 (the default one is 1984) and start the instance.
 
 ## 🎛️ LoggerFactory
 
@@ -50,40 +43,34 @@ For the tutorial purposes we will set logging level to `error`.
 ## 🪡 Setting up Warp
 
 ```js
-warp = WarpNodeFactory.forTesting(arweave);
+warp = WarpFactory.forLocal(1820);
 ```
 
-Warp class in SDK is a base class that supplies the implementation of SmartWeave protocol. Check it out in SDK [https://github.com/warp-contracts/warp/blob/main/src/core/Warp.ts](https://github.com/warp-contracts/warp/blob/main/src/core/Warp.ts). Warp allows to plug-in different module implementations (like interactions loader or state evaluator) but as it is just the first tutorial, we will go with the most basic implementation. We will create a Warp instance by using `WarpNodeFactory` which is designed to be used in a node environment. We will also use `forTesting` method factory - at the moment the default gateway responsible for loading interactions is Warp gateway, as ArLocal is not aware of it we need to indicate that we are in testing environment and Warp gateway should not be used.
+Warp class in SDK is a base class that supplies the implementation of SmartWeave protocol.
+Check it out in SDK [https://github.com/warp-contracts/warp/blob/main/src/core/Warp.ts](https://github.com/warp-contracts/warp/blob/main/src/core/Warp.ts).  
+Warp allows to plug-in different module implementations (like interactions loader or state evaluator) but as it is just the entry-level tutorial,
+we will go with the most basic implementation.
+We will create a Warp instance by using `WarpFactory.forTesting()`.  
+This method creates a `Warp` instance that automatically connects to `ArLocal` instance.
+If you're not using `ArLocal` standard port, remember to pass its value into the `forTesting()` method
+(in our case `1820`).   
+The `forTesting` version enables few additional features:
+1. it automatically mines `ArLocal` block after writing a new contract interaction
+2. it simplifies the process of generating and funding a wallet
 
 ## 👛 Generating wallet and adding funds
 
 ```js
-wallet = await arweave.wallets.generate();
-walletAddress = await arweave.wallets.jwkToAddress(wallet);
+({ jwk: wallet, address: walletAddress } = await warp.testing.generateWallet());
 ```
 
-In order for tests to work we need to generate a wallet which will be connected to the contract and therefore responsible for signing the transactions. We also need to obtain the wallet address. We do this by using ArweaveJS SDK. We advise you to read [this documentation of wallets](https://github.com/ArweaveTeam/arweave-js#wallets-and-keys).
-
-We also need to fund the wallet with some tokens. Head to [academy-pst/challenge/utils/\_helpers.ts](https://github.com/warp-contracts/academy/tree/main/warp-academy-pst/challenge/utils/_helpers.ts) and write this asynchronous helper function.
-
-```js
-export async function addFunds(arweave: Arweave, wallet: JWKInterface) {
-  const walletAddress = await arweave.wallets.getAddress(wallet);
-  await arweave.api.get(`/mint/${walletAddress}/1000000000000000`);
-}
-```
-
-It takes two arguments - arweave instance and generated wallet. It declares wallet address using ArweaveJs and hit the `mint` Arweave endpoint which is responsible for minting tokens. Keep in mind that the above value is an amount of winstons.
+In order for tests to work we need to generate a wallet which will be connected to the contract and therefore responsible for signing the transactions.
+We also need to obtain the wallet address and fund the wallet with some tokens. 
+Fortunately - all of the above tasks are handled by the `warp.testing.generateWallet()` method.
 
 :::info
 1 Winston = 0.000000000001 AR
 :::
-
-No go back to the test and call the `addFunds` function:
-
-```js
-await addFunds(arweave, wallet);
-```
 
 ## 📰 Reading contract source and initial state files
 
@@ -123,7 +110,8 @@ const contractTxId = await warp.createContract.deploy({
 
 We are using Warp SDK's `deploy` method to deploy the contract. You can view the implementation here [https://github.com/warp-contracts/warp/blob/main/src/core/modules/impl/DefaultCreateContract.ts](https://github.com/warp-contracts/warp/blob/main/src/core/modules/impl/DefaultCreateContract.ts#L12).
 
-What it does is take object with **wallet**, **initial state** and **contract source** as contract data, create transaction using ArweaveJS SDK, add tags specific for Warp contract (we will discuss tags in the next paragraph), sign transaction using generated Arweave wallet and post it to the Arweave blockchain. If your are not familiar with creating transactions on Arweave we strongly recommend reading ArweaveJS documentation, it's the key part to understand transactions flow, you can read more about it [here](https://github.com/ArweaveTeam/arweave-js#transactions).
+What it does is take object with **wallet**, **initial state** and **contract source** as contract data, create transaction using ArweaveJS SDK, add tags specific for Warp contract (we will discuss tags in the next paragraph), sign transaction using generated Arweave wallet and post it to the Arweave blockchain.
+If you are not familiar with creating transactions on Arweave we strongly recommend reading ArweaveJS documentation, it's the key part to understand transactions flow, you can read more about it [here](https://github.com/ArweaveTeam/arweave-js#transactions).
 
 ## 🏷️ Tags
 
@@ -144,7 +132,7 @@ Tags are used to add metadata to the transaction, it helps documenting the data 
 }
 ```
 
-You can of course override them or add some more tags by passing property with `tags` key to the contract data passed to the `deploy` function.
+You can of course add some more tags by passing property with `tags` key to the contract data passed to the `deploy` function.
 
 ## 🔌 Connecting to the pst contract
 
@@ -158,18 +146,14 @@ We then connect our wallet to the pst contract. Please remember that connecting 
 
 ## 🚧 Mining blocks
 
-As you may recall from the Elementary section, blockchain mining means adding transactions to the blockchain ledger of transactions. In order to mine a block on the mainnet it is required for nodes to validate a transaction. When using ArLocal we need to mine a block manually. We will add another helper function to the `_helpers.ts` file:
+As you may recall from the Elementary section, blockchain mining means adding transactions to the blockchain ledger of transactions.
+In order to mine a block on the mainnet it is required for nodes to validate a transaction.
+When using ArLocal we need to mine a block manually.
+
+This can be achieved using a dedicated `Warp.testing` method:
 
 ```js
-export async function mineBlock(arweave: Arweave) {
-  await arweave.api.get('mine');
-}
-```
-
-We need to call this function so the transaction will be available on Arweave instance. As we deployed a contract in previous step, let's finish our `beforeAll` callback with calling `mineBlock` function:
-
-```js
-await mineBlock(arweave);
+await warp.testing.mineBlock();
 ```
 
 ## 🛑 Stopping ArLocal

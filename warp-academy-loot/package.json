@@ -17,7 +17,7 @@
     "@babel/polyfill": "^7.4.4",
     "ar-gql": "^0.0.6",
     "arlocal": "1.1.42",
-    "arweave": "1.11.4",
+    "arweave": "1.11.6",
     "core-js": "^2.6.5",
     "hex-rgb": "^5.0.0",
     "vue": "^2.6.10",

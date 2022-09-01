@@ -1,67 +1,52 @@
 # Contract deployment
 
-## 🅰️ Setting up Arweave
+## 🅰️ Setting up Warp
 
-As mentioned earlier, we will deploy our contract to the Warp public testnet. You will notice that it is very similiar to how we deployed the contract to ArLocal. We just need to write a NodeJS script which will generate and fund the Arweave wallet, read, contract source and initial state files and deploy the contract to the testnet. At the end of this chapter, I'll show you how to repeat all these steps in order to deploy contract to Arweave mainnet.
+As mentioned earlier, we will deploy our contract to the Arweave mainnet, using Warp Sequencer and Warp bundled contracts deployment.
+You will notice that it is very similar to how we deployed the contract to ArLocal.
+We just need to write a NodeJS script which will generate Arweave wallet, read, contract source and initial state files and deploy the contract to the mainnet.
 
-Like the last time - firstly, we will need to declare variables that will be needed in the script. Head to [challenge/src/tools/deploy-test-contract.ts](https://github.com/warp-contracts/warp-academy/blob/main/warp-academy-pst/challenge/src/tools/deploy-test-contract.ts) and add the following code:
+Head to [challenge/src/tools/deploy-contract.ts](https://github.com/warp-contracts/warp-academy/blob/main/warp-academy-pst/challenge/src/tools/deploy-contract.ts) and add the following code.
 
-```js
-let contractSrc: string;
-
-let wallet: JWKInterface;
-let walletAddress: string;
-
-let initialState: PstState;
-
-let arweave: Arweave;
-let warp: Warp;
-let pst: PstContract;
-```
-
-Then, we need to initialize Arweave, this time we will point to the Warp testnet. Write the following code in the asynchronous callback
-
-```js
-arweave = Arweave.init({
-  host: 'testnet.redstone.tools',
-  port: 443,
-  protocol: 'https',
-});
-```
-
-Exactly like the last time, we will set logging level to `error`:
+* Exactly like the last time, we will set logging level to `error`:
 
 ```js
 LoggerFactory.INST.logLevel('error');
 ```
 
-Initialize Warp:
+* Initialize Warp:
 
 ```js
-warp = WarpNodeFactory.memCached(arweave);
+const warp = WarpFactory.forMainnet();
 ```
 
-Generate wallet and add some funds using our helper functions:
+* Generate wallet:
 
 ```js
-wallet = await arweave.wallets.generate();
-walletAddress = await arweave.wallets.jwkToAddress(wallet);
-await addFunds(arweave, wallet);
+const jwk = await arweave.wallets.generate();
+const walletAddress = await arweave.wallets.jwkToAddress(jwk);
 ```
 
-Read contract source and initial state files:
+Obviously you may also use your own "real" wallet instead. You don't need to have any ARs on such wallet.   
+Remember to not make your jwk public!
+
+* Read contract source and initial state files:
 
 ```js
-contractSrc = fs.readFileSync(path.join(__dirname, '../../dist/contract.js'), 'utf8');
-const stateFromFile: PstState = JSON.parse(
-  fs.readFileSync(path.join(__dirname, '../../dist/contracts/initial-state.json'), 'utf8')
+const contractSrc = fs.readFileSync(
+  path.join(__dirname, '../../dist/contract.js'),
+  'utf8'
 );
+const stateFromFile = JSON.parse(fs.readFileSync(
+  path.join(__dirname, '../../dist/contracts/initial-state.json'),
+  'utf8'
+));
 ```
 
-Override contract's owner address with the generated wallet address:
+* Override contract's owner address with the generated wallet address:
 
 ```js
-initialState = {
+const initialState = {
   ...stateFromFile,
   ...{
     owner: walletAddress,
@@ -69,7 +54,9 @@ initialState = {
 };
 ```
 
-And deploy contract using exactly the same method that is used in the tests. We will log the contract id to the console, so we can relate to it while writing interactions.
+* Deploy contract using exactly the same method that is used in the tests. We will log the deployment result
+(which contains contract transaction id and contract source transaction id) as well as link to SonAR - that will
+navigate directly to the deployed contract.
 
 ```js
 const contractTxId = await warp.createContract.deploy({
@@ -78,7 +65,10 @@ const contractTxId = await warp.createContract.deploy({
   src: contractSrc,
 });
 
-console.log(contractTxId);
+console.log('Deployment completed: ', {
+  ...result,
+  sonar: `https://sonar.warp.cc/#/app/contract/${result.contractTxId}`
+});
 ```
 
 The script is ready!
@@ -88,7 +78,7 @@ The script is ready!
 All we need to do now is run the prepared script. We will use a typescript execution engine for NodeJS - ts-node. Run the following script in the root folder:
 
 ```bash
-yarn ts-node src/tools/deploy-test-contract.ts
+yarn ts-node src/tools/deploy-contract.ts
 ```
 
 :::tip
@@ -96,31 +86,18 @@ Remember that you need to bundle contract source file before deploying the contr
 :::
 
 Congratulations!
-You've just deployed a contract to the Warp testnet. You should see the contract id in the console output. You can also visit [SonAR](htttps://sonar.warp.cc), switch to the testnet and search your contract :)
+You've just deployed a contract to the Arweave mainnet. You should see the contract id in the console output.
+## ➡️ Deploying to Warp testnet
 
-## ➡️ Deploying to Arweave mainnet
-
-There aren't many differences between deploying to testnet and mainnet. All you need to do is point to the right host:
-
-```js
-const arweave = Arweave.init({
-  host: 'arweave.net',
-  port: 443,
-  protocol: 'https',
-});
-```
-
-...and instead of using dynamically generated wallet you will need to use your real one. One way of doing that is using [ArConnect browser extension](https://www.arconnect.io/). You will receive your wallet's key in json format which you will need to put in your project. Remember to secure it correctly, e.g. by putting in `.secrets` folder and adding the folder to `.gitignore` file.
-
-Now, the only thing you need to do is import the file with the wallet key and point to it when deploying your contract:
+There aren't many differences between deploying to testnet and mainnet. All you need to create a `Warp` instance like this:
 
 ```js
-  const contractTxId = await warp.createContract.deploy({
-    wallet: jwk as ArWallet,
-    initState: initialState,
-    src: contractSrc
-  });
+const warp = WarpFactory.forTestnet();
 ```
 
-Remember to not make your jwk public!
-After deploying the contract to the mainnet you can also view it in SonAR. You just need to wait for the blocks to be mined. It can take up to 20 minutes.
+...and generate and fund the wallet using the `warp.testing.genereteWallet()` method - exactly the same as in the tests.  
+
+After deploying the contract to the testnet you can also view it in SonAR (remember to switch to 'testnet' in SonAR).
+  
+The full deployment script for Warp testnet is here [final/src/tools/deploy-test-contract.ts](https://github.com/warp-contracts/warp-academy/blob/main/warp-academy-pst/final/src/tools/deploy-test-contract.ts).
+

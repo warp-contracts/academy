@@ -33,17 +33,17 @@ export default new Vuex.Store({
   actions: {
     async loadState({ commit }) {
       const wallet = await arweave.wallets.generate();
-
       const walletAddress = await arweave.wallets.getAddress(wallet);
-      await arweave.api.get(`/mint/${walletAddress}/1000000000000000`);
+
       // Interacting with the contract
       const contract: Contract = warp
         .pst(deployedContracts.fc)
         .connect(wallet);
+
       commit('setContract', contract);
-      const { state, validity } = await contract.readState();
-      commit('setState', state);
-      commit('setValidity', validity);
+      const { cachedValue } = await contract.readState();
+      commit('setState', cachedValue.state);
+      commit('setValidity', cachedValue.validity);
       commit('setWalletAddress', walletAddress);
     },
   },

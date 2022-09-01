@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import { arweave, warp } from '../pst-contract';
+import { arweave, warp } from '../environment';
 import { deployedContracts } from '../deployed-contracts';
 import { PstState } from '@/contracts/types/types';
 

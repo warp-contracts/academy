@@ -14,19 +14,18 @@ Let's fill it up with some content!
 
 ## 🗼 Setting up Arweave and Warp
 
-As always, we will start by setting up Arweave and Warp clients. Head to [challenge/src/pst-contract.ts](https://github.com/warp-contracts/academy/blob/main/warp-academy-pst/challenge/src/pst-contract.ts) and initialize both of them.
+As always, we will start by setting up Warp and Arweave clients.
+Head to [challenge/src/environment.ts](https://github.com/warp-contracts/academy/blob/main/warp-academy-pst/challenge/src/environment.ts) and initialize both of them.
 
 ```js
-export const arweave: Arweave = Arweave.init({
-  host: 'testnet.redstone.tools',
-  port: 443,
-  protocol: 'https',
-});
+// initialize Warp instance for use with Arweave mainnet
+LoggerFactory.INST.logLevel('info');
+export const warp: Warp = WarpFactory.forMainnet();
 
-export const warp: Warp = WarpWebFactory.memCachedBased(arweave).useArweaveGateway().build();
+// you don't need to initialize Arweave instance manually - just use the Arweave instance from Warp
+export const arweave: Arweave = warp.arweave;
 ```
 
-This time, we are using SDK's `WarpWebFactory` instead of `WarpNodeFactory` which will be safe to use in a web environment. Additionally, as we are in are in the test environment, we need to indicate that we don't want to use the default Warp gateway (if you would like to switch to mainnet - just delete this factory method).
 Remember to export them as we will use them in a store for our app.
 
 ## 🆔 Indicating contract id
@@ -35,13 +34,12 @@ Head to [challenge/src/deployed-contracts.ts](https://github.com/warp-contracts/
 
 ## 💰 Generating wallet and adding funds
 
-Head to [challenge/src/store/index.ts](https://github.com/warp-contracts/academy/blob/main/warp-academy-pst/challenge/src/store/index.ts). Generate Arweave wallet, get wallet address and add some funds to it in dedicated places:
+Head to [challenge/src/store/index.ts](https://github.com/warp-contracts/academy/blob/main/warp-academy-pst/challenge/src/store/index.ts).
+Generate Arweave wallet and get wallet address.
 
 ```js
 const wallet = await arweave.wallets.generate();
-
 const walletAddress = await arweave.wallets.getAddress(wallet);
-await arweave.api.get(`/mint/${walletAddress}/1000000000000000`);
 ```
 
 ## 🔌 Connecting contract and wallet to Warp client
@@ -62,17 +60,20 @@ const { state } = await contract.currentState();
 
 That's it for the preparations! As you may notice, we used some things we've already learned while writing tests and deploying our contract.
 
-## 🅰️ Preparing Arweave mainnet environment
+## 🅰️ Using real wallet
 
-If you want to create an application which enables interaction with the mainnet contract the only things you need to change in this section is indicating correct `host` in Arweave initialization (exactly like the last time - `arweave.net`) and pointing to the real wallet. This time it is best to detect if the user has ArConnect already installed. If yes - `arweaveWallet` object will be available in the `window` object and therefore you will be able to use ArConnect `connect` method. You can see its API in [ArConnect docs](https://docs.th8ta.org/arconnect/functions). You can also request necessary permissions. You can check a list of available permissions [here](https://docs.th8ta.org/arconnect/permissions).
+To use the real wallet, it is best to detect if the user has ArConnect already installed.
+If yes - `arweaveWallet` object will be available in the `window` object, and therefore you will be able to use ArConnect `connect` method.
+You can see its API in [ArConnect docs](https://docs.th8ta.org/arconnect/functions).
+You can also request necessary permissions. You can check a list of available permissions [here](https://docs.th8ta.org/arconnect/permissions).
 
 ```js
 await window.arweaveWallet.connect(['ACCESS_ADDRESS', 'SIGN_TRANSACTION']);
 ```
 
-This time we don't need a generating wallet or to fund it. Just remember that if the user of your app wants to interact with the contract, some AR tokens will be needed on their account.
-
-After you connect user wallet to the application you will need to use the `use_wallet` hook when initializing the contract. It will then connect the contract to the user's wallet. You can achieve this by writing following code:
+This time we don't need a generating wallet or to fund it.
+After you connect user wallet to the application you will need to use the `use_wallet` hook when initializing the contract.
+It will then connect the contract to the user's wallet. You can achieve this by writing following code:
 
 ```js
 const contract = warp.pst(deployedContracts.fc).connect('use_wallet`);

@@ -1,14 +1,9 @@
 import Arweave from 'arweave';
-import { LoggerFactory, WarpWebFactory, Warp } from 'warp-contracts';
+import { LoggerFactory, WarpFactory, Warp } from 'warp-contracts';
 
-// Set up Arweave client
-export const arweave: Arweave = Arweave.init({
-  host: 'testnet.redstone.tools',
-  port: 443,
-  protocol: 'https',
-});
+// initialize Warp instance for use with Arweave mainnet
+LoggerFactory.INST.logLevel('info');
+export const warp: Warp = WarpFactory.forMainnet();
 
-LoggerFactory.INST.logLevel('debug');
-
-// const warp = new WarpWebFactory.memCached(arweave);
-export const warp: Warp = WarpWebFactory.memCachedBased(arweave).useArweaveGateway().build();
+// you don't need to initialize Arweave instance manually - just use the Arweave instance from Warp
+export const arweave: Arweave = warp.arweave;

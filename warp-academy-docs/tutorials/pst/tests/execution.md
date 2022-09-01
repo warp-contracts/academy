@@ -24,13 +24,14 @@ await pst.writeInteraction({
   qty: 2000,
 });
 
-await mineBlock(arweave);
 expect((await pst.currentState()).balances[walletAddress]).toEqual(2000);
 ```
 
 We are using SDK's `writeInteraction` method which creates, signs and posts transactions with specific input to Arweave and returns a transaction id. We will call the mint function which should mint specific amount of FC tokens to the previously generated caller's wallet.
 
-As we posted a transaction which changes the contract's state, we need to mine a block by using the `mineBlock` function and read contract state to verify if `mint` function has correctly updated the state and minted some tokens to the caller's wallet.
+As we posted a transaction which changes the contract's state, we need to mine a block.
+Fortunately - as we've mentioned in previous chapter - the `Warp` instance obtained from `Warp.forLocal()` makes this
+for us automatically after each `writeInteraction` call.
 
 ## 💸 Transfering tokens
 
@@ -50,14 +51,11 @@ One last test to write. It will introduce us to the SDK's method - `dryWrite`. I
 Write following code in `should properly perform dry write with overwritten caller` test.
 
 ```js
-    const newWallet = await arweave.wallets.generate();
-    const overwrittenCaller = await arweave.wallets.jwkToAddress(newWallet);
+    const { address: overwrittenCaller } = await warp.testing.generateWallet();
     await pst.transfer({
       target: overwrittenCaller,
       qty: 1000,
     });
-
-    await mineBlock(arweave);
 
     const result: InteractionResult<PstState, unknown> = await pst.dryWrite(
       {
