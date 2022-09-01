@@ -139,16 +139,21 @@ describe('Testing the Staking Logic', () => {
   });
 
   it('should not allow minting liquidity without token transfer', async () => {
-    await expect(
-      dex.writeInteraction(
+    const {originalTxId} = await dex.writeInteraction(
         {
           function: 'mint',
           amountIn0: 1000,
           amountIn1: 2000,
         },
         { strict: true }
-      )
-    ).rejects.toThrow('Cannot create interaction: Token0 transfer failed: [CE:CallerAllowanceNotEnough 0]');
+      );
+
+
+      const result = await dex.readState();
+
+      expect(result.cachedValue.errorMessages[originalTxId]).toContain(
+        '[CE:CallerAllowanceNotEnough 0]'
+      );  
   });
 
   it('should provide/mint dex liquidity', async () => {
