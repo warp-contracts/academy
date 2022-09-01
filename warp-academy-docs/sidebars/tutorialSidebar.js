@@ -184,7 +184,7 @@ const sidebars = {
         { type: 'doc', label: 'Intro', id: 'loot/introduction/intro' },
         {
           type: 'category',
-          label: 'Implementating contract',
+          label: 'Implementing contract',
           items: [
             {
               type: 'doc',
@@ -217,7 +217,7 @@ const sidebars = {
         { type: 'doc', label: 'Intro', id: 'dex/introduction/intro' },
         {
           type: 'category',
-          label: 'Implementating contract',
+          label: 'Implementing contract',
           items: [
             {
               type: 'doc',
