@@ -12,7 +12,7 @@ in the root of the `challenge` folder. As for now, you will not see much when ru
 
 Let's fill it up with some content!
 
-## 🗼 Setting up Arweave and Warp
+## 🗼 Setting up Warp
 
 As always, we will start by setting up Warp and Arweave clients.
 Head to [challenge/src/environment.ts](https://github.com/warp-contracts/academy/blob/main/warp-academy-pst/challenge/src/environment.ts) and initialize both of them.

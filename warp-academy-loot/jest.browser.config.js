@@ -11,7 +11,4 @@ module.exports = {
   transformIgnorePatterns: ['<rootDir>/node_modules/(?!@assemblyscript/.*)'],
 
   transform: { '^.+\\.(js|jsx)$': 'babel-jest' },
-
-  testEnvironmentOptions: {
-  }
 };

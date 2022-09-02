@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
-const {LoggerFactory, WarpFactory} = require('warp-contracts');
-const {default: ArLocal} = require('arlocal');
+const { LoggerFactory, WarpFactory } = require('warp-contracts');
+const { default: ArLocal } = require('arlocal');
 
 (async () => {
   let arLocal;
@@ -16,12 +16,12 @@ const {default: ArLocal} = require('arlocal');
 
     let wallet;
     // note: warp.testing.generateWallet() automatically adds funds to the wallet
-    ({jwk: wallet} = await warp.testing.generateWallet());
+    ({ jwk: wallet } = await warp.testing.generateWallet());
 
     // Deploying contract
     const contractSrc = fs.readFileSync(path.join(__dirname, '../contracts/loot/contract.js'), 'utf8');
     const initialState = fs.readFileSync(path.join(__dirname, '../contracts/loot/initial-state.json'), 'utf8');
-    const {contractTxId} = await warp.createContract.deploy({
+    const { contractTxId } = await warp.createContract.deploy({
       wallet,
       initState: initialState,
       src: contractSrc,
@@ -30,14 +30,12 @@ const {default: ArLocal} = require('arlocal');
     await warp.testing.mineBlock();
 
     // Interacting with the contract
-    const contract = warp.contract(contractTxId)
-      .setEvaluationOptions({allowBigInt: true})
-      .connect(wallet);
+    const contract = warp.contract(contractTxId).setEvaluationOptions({ allowBigInt: true }).connect(wallet);
 
     // Read state
-    const {cachedValue} = await contract.readState();
+    const { cachedValue } = await contract.readState();
     console.log('State before any interactions');
-    console.dir(cachedValue.state, {depth: null});
+    console.dir(cachedValue.state, { depth: null });
 
     // Write interaction
     console.log("Sending 'generate' interaction...");
@@ -45,16 +43,16 @@ const {default: ArLocal} = require('arlocal');
     // automatically mines a new block - so that you won't have to do it manually in your tests.
     // if you want to switch off automatic mining - set evaluationOptions.mineArLocalBlocks to false, e.g.
     // contract.setEvaluationOptions({ mineArLocalBlocks: false })
-    await contract.writeInteraction({function: 'generate'});
+    await contract.writeInteraction({ function: 'generate' });
     console.log('Interaction has been sent');
 
     // Read state after interaction
     const stateAfterInteraction = await contract.readState();
     console.log('State after 1 interaction');
-    console.dir(stateAfterInteraction.cachedValue.state, {depth: null});
+    console.dir(stateAfterInteraction.cachedValue.state, { depth: null });
 
     // Using generatedAssets contract function
-    const {result: generatedAssets} = await contract.viewState({
+    const { result: generatedAssets } = await contract.viewState({
       function: 'generatedAssets',
     });
     const generatedAsset = generatedAssets[0];
@@ -72,22 +70,21 @@ const {default: ArLocal} = require('arlocal');
     console.log('Interaction has been sent');
 
     // Getting the new owner of the asset
-    const {result: newOwner} = await contract.viewState({
+    const { result: newOwner } = await contract.viewState({
       function: 'getOwner',
-      data: {asset: generatedAsset},
+      data: { asset: generatedAsset },
     });
     console.log(`New owner of the asset ${generatedAsset}: ${newOwner}`);
 
     // Generating the new asset
     console.log("Sending 'generate' interaction...");
-    await contract.writeInteraction({function: 'generate'});
+    await contract.writeInteraction({ function: 'generate' });
     console.log('Interaction has been sent');
 
     // Getting the final state
     console.log(`Getting final state`);
     const finalState = await contract.readState();
-    console.dir(finalState.cachedValue.state, {depth: null});
-
+    console.dir(finalState.cachedValue.state, { depth: null });
   } finally {
     // Shutting down ArLocal
     await arLocal.stop();

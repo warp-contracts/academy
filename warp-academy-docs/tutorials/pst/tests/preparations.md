@@ -53,8 +53,9 @@ we will go with the most basic implementation.
 We will create a Warp instance by using `WarpFactory.forTesting()`.  
 This method creates a `Warp` instance that automatically connects to `ArLocal` instance.
 If you're not using `ArLocal` standard port, remember to pass its value into the `forTesting()` method
-(in our case `1820`).   
+(in our case `1820`).  
 The `forTesting` version enables few additional features:
+
 1. it automatically mines `ArLocal` block after writing a new contract interaction
 2. it simplifies the process of generating and funding a wallet
 
@@ -65,7 +66,7 @@ The `forTesting` version enables few additional features:
 ```
 
 In order for tests to work we need to generate a wallet which will be connected to the contract and therefore responsible for signing the transactions.
-We also need to obtain the wallet address and fund the wallet with some tokens. 
+We also need to obtain the wallet address and fund the wallet with some tokens.
 Fortunately - all of the above tasks are handled by the `warp.testing.generateWallet()` method.
 
 :::info
