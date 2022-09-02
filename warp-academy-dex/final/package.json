@@ -17,7 +17,7 @@
   },
   "dependencies": {
     "arweave": "1.11.6",
-    "warp-contracts": "1.2.1"
+    "warp-contracts": "1.2.2"
   },
   "devDependencies": {
     "@babel/preset-typescript": "^7.16.7",
