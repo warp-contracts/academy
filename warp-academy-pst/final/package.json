@@ -30,7 +30,7 @@
     "vue-spinner": "^1.0.4",
     "vue-toasted": "^1.1.28",
     "vuex": "^3.4.0",
-    "warp-contracts": "1.2.1"
+    "warp-contracts": "1.2.2"
   },
   "devDependencies": {
     "@babel/preset-typescript": "^7.16.7",

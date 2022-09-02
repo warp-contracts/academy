@@ -29,7 +29,7 @@
     "vue-virtual-scroller": "^1.0.10",
     "vuetify": "^2.4.0",
     "vuex": "^3.0.1",
-    "warp-contracts": "1.2.1"
+    "warp-contracts": "1.2.2"
   },
   "devDependencies": {
     "@babel/core": "^7.17.8",

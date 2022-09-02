@@ -14,7 +14,7 @@ Install all dependencies connected with SmartWeave contracts. Do not worry, you 
 Run following command:
 
 ```bash
-yarn add arweave@1.11.6 arlocal@1.1.42 warp-contracts@1.2.1
+yarn add arweave@1.11.6 arlocal@1.1.42 warp-contracts@1.2.2
 ```
 
 You're good to go!
