@@ -1,8 +1,4 @@
 (async () => {
-// ~~ Declare variables ~~
-
-// ~~ Initialize Arweave ~~
-
 // ~~ Initialize `LoggerFactory` ~~
 
 // ~~ Initialize Warp ~~

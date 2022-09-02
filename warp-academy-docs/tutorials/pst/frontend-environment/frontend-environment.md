@@ -13,7 +13,7 @@ To quickly walk you through the structure of the project:
 
 1. [challenge/src/main.ts](https://github.com/warp-contracts/warp-academy/blob/main/warp-academy-pst/challenge/src/main.ts) - is a starting point for the application.
 
-2. [challenge/src/pst-contract.ts](https://github.com/warp-contracts/warp-academy/blob/main/warp-academy-pst/challenge/src/pst-contract.ts) - here we define Arweave and SmartWeave instances and export them.
+2. [challenge/src/environment.ts](https://github.com/warp-contracts/warp-academy/blob/main/warp-academy-pst/challenge/src/environment.ts) - here we define Arweave and SmartWeave instances and export them.
 
 3. [challenge/src/deployed-contracts.ts](https://github.com/warp-contracts/warp-academy/blob/main/warp-academy-pst/challenge/src/deployed-contracts.ts) - here we indicate deployed contract id.
 

@@ -1,6 +1,7 @@
 # Interacting with the contract
 
-We are displaying all the balances in the `BalancesList` component. We have access to the list thanks to `state` property we defined in the store in the Preparations section. Now all we need to do is find a way to properly mint some FC tokens to the wallet and transfer tokens between addresses.
+We are displaying all the balances in the `BalancesList` component. We have access to the list thanks to `state` property we defined in the store in the Preparations section.
+Now all we need to do is find a way to properly mint some FC tokens to the wallet and transfer tokens between addresses.
 
 ## 🤑 Mint tokens
 
@@ -8,16 +9,10 @@ We need to add `mint` function so it will be possible to fill up the wallet with
 Head to [challenge/src/components/Header/Header.vue](https://github.com/warp-contracts/academy/blob/main/warp-academy-pst/challenge/src/components/Header/Header.vue) and add declaration to `txId` variable in `mint` function by calling SDK's `writeInteraction` method:
 
 ```js
-const txId = await this.contract.writeInteraction({
+const {originalTxId: txId} = await this.contract.writeInteraction({
   function: 'mint',
   qty: parseInt(this.$refs.balanceMint.value),
 });
-```
-
-Mine a block (remember that you only need to do this when using testnets):
-
-```js
-await this.arweave.api.get('mine');
 ```
 
 ...and set the balances by calling SDK's `currentState` method:
@@ -31,16 +26,10 @@ const newResult = await this.contract.currentState();
 Head to [challenge/src/components/BalancesList/BalancesList.vue](https://github.com/warp-contracts/academy/blob/main/warp-academy-pst/challenge/src/components/BalancesList/BalancesList.vue) and add declaration to `tx` variable by calling SDK's `transfer` method:
 
 ```js
-const tx = await this.contract.transfer({
-  target: address,
-  qty: parseInt(qty),
+const {originalTxId: txId} = await this.contract.writeInteraction({
+  function: 'mint',
+  qty: parseInt(this.$refs.balanceMint.value),
 });
-```
-
-Right after writing above interaction, mine a block:
-
-```js
-await this.arweave.api.get('mine');
 ```
 
 Finally, set the new balances list by calling `currentState` method:

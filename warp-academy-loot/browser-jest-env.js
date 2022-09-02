@@ -12,7 +12,7 @@ class MyEnvironment extends JsDomEnv {
           TextDecoder,
           TextEncoder,
           setImmediate: null,
-          clearImmediate: null,
+          clearImmediate: function() {},
         }),
       })
     );

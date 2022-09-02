@@ -31,7 +31,7 @@ export default Vue.extend({
       }
       this.$toasted.show('Processing...');
 
-      // ~~ Post `mint` interaction and mine a block ~~
+      // ~~ Post `mint` interaction ~~
       const txId = null;
 
       // ~~ Set the balances by calling `currentState` method ~~

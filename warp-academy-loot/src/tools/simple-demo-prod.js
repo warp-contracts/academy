@@ -1,45 +1,51 @@
-const Arweave = require('arweave');
-const { WarpNodeFactory, LoggerFactory } = require("warp-contracts");
+const {LoggerFactory, WarpFactory, defaultCacheOptions} = require("warp-contracts");
 const wallet = require("../../.secrets/jwk.json");
-const { loot: lootContractAddress } = require("../deployed-contracts.json");
+const fs = require("fs");
+const path = require("path");
 
 (async () => {
-  // Set up Arweave client
-  const arweave = Arweave.init({
-    host: 'arweave.net',
-    port: 443,
-    protocol: 'https',
-  });
-
   // Set up Warp client
   LoggerFactory.INST.logLevel('error');
-  const warp = WarpNodeFactory.memCached(arweave);
+
+  // note: by default 'forMainnet' creates a Warp instance that is using persistent cache
+  // we're setting the "inMemory" here for the cache options - so that no cache files
+  // would be stored between script calls.
+  const warp = WarpFactory.forMainnet({...defaultCacheOptions, inMemory: true});
+
+  // Deploying contract
+  const contractSrc = fs.readFileSync(path.join(__dirname, '../contracts/loot/contract.js'), 'utf8');
+  const initialState = fs.readFileSync(path.join(__dirname, '../contracts/loot/initial-state.json'), 'utf8');
+  const {contractTxId} = await warp.createContract.deploy({
+    wallet,
+    initState: initialState,
+    src: contractSrc,
+  });
 
   // Interacting with the contract
   const contract = warp
-    .contract(lootContractAddress)
+    .contract(contractTxId)
     .connect(wallet)
     .setEvaluationOptions({
-      waitForConfirmation: true,
+      allowBigInt: true,
     });
 
   // Read state
-  const state = await contract.readState();
+  const result1 = await contract.readState();
   console.log("State before any interactions");
-  console.log(JSON.stringify(state, null, 2));
+  console.dir(result1.cachedValue.state, {depth: null});
 
   // Write interaction
   console.log("Sending 'generate' interaction...");
-  await contract.writeInteraction({ function: "generate" });
+  await contract.writeInteraction({function: "generate"});
   console.log("Interaction has been sent");
 
   // Read state after interaction
   const stateAfterInteraction = await contract.readState();
   console.log("State after 1 interaction");
-  console.log(JSON.stringify(stateAfterInteraction, null, 2));
+  console.dir(stateAfterInteraction.cachedValue.state, {depth: null});
 
   // Using generatedAssets contract function
-  const { result: generatedAssets } = await contract.viewState({
+  const {result: generatedAssets} = await contract.viewState({
     function: "generatedAssets"
   });
   const generatedAsset = generatedAssets[0];
@@ -57,19 +63,19 @@ const { loot: lootContractAddress } = require("../deployed-contracts.json");
   console.log("Interaction has been sent");
 
   // Getting the new owner of the asset
-  const { result: newOwner } = await contract.viewState({
+  const {result: newOwner} = await contract.viewState({
     function: "getOwner",
-    data: { asset: generatedAsset }
+    data: {asset: generatedAsset}
   });
   console.log(`New owner of the asset ${generatedAsset}: ${newOwner}`);
 
   // Generating the new asset
   console.log("Sending 'generate' interaction...");
-  await contract.writeInteraction({ function: "generate" });
+  await contract.writeInteraction({function: "generate"});
   console.log("Interaction has been sent");
 
   // Getting the final state
   console.log(`Getting final state`);
   const finalState = await contract.readState();
-  console.log(JSON.stringify(finalState, null, 2));
+  console.dir(finalState.cachedValue.state, {depth: null});
 })();

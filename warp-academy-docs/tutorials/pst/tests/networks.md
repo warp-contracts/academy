@@ -28,7 +28,7 @@ Here you can find [Arweave Network launch report](https://arweave.medium.com/arw
 
 Unlike mainnet, testnet means that the network is not running on its full capacity. It is used by developers to test different kind of actions and features before posting them to mainnet.
 
-We will make use of two kinds of testnets.
+It is possible to use two kinds of testnets.
 
 1. **ArLocal** - is a local server which resembles Arweave mainnet. You need to run it locally on your computer.
 
@@ -44,4 +44,4 @@ You can read more about ArLocal in a [dedicated repository](https://github.com/t
 Warp public testnet is available [here](https://testnet.redstone.tools).
 :::
 
-We will use ArLocal for our tests and Warp public testnet for deploying contract and writing interactions. The main aim of the testnet is to a create close-to-real environment which is very similair to Arweave. There are of course small differences which we will point out.
+We will use ArLocal for our tests and Arweave mainnet for deploying contract and writing interactions.

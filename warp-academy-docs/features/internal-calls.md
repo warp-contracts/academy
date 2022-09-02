@@ -1,3 +1,4 @@
+
 # Internal calls
 
 ### Internal reads
@@ -22,7 +23,9 @@ if (action.input.function === 'readContract') {
 
 Internal write on the other hand, is a way for contracts to write interactions to some external contract.
 
-In order for internal writes to work we need to set `evaluationOptions` to `true`. If you are not familiar with the `EvaluationOptions` interface, check out [Warp SDK](https://github.com/warp-contracts/warp/blob/main/src/core/modules/StateEvaluator.ts#L123). Basically, setting `evaluationOptions` lets us change the behavior of some of the contract features.
+In order for internal writes to work we need to set `internalWrites` evaluation option to `true`.
+If you are not familiar with the `EvaluationOptions` interface, check out [Warp SDK](https://github.com/warp-contracts/warp/blob/main/src/core/modules/StateEvaluator.ts#L123).
+Basically, setting `evaluationOptions` lets us change the behavior of some contract features.
 
 ```ts
 const callingContract = smartweave
@@ -54,11 +57,20 @@ if (action.input.function === 'addAndWrite') {
 }
 ```
 
-The internal writes method first evaluates the target (specified by the `contractTxId` given in the first parameter) contract's state up to the "current" block height (ie. block height of the interaction that is calling the write method) and then applies the input (specified as the second parameter of the write method). The result is memoized in cache.
+The internal writes method first evaluates the target (specified by the `contractTxId` given in the first parameter) contract's state up to the "current" block height (i.e. block height of the interaction that is calling the write method) and then applies the input (specified as the second parameter of the write method). 
+The result is memoized in cache.
+If the internal write will throw an exception - the original transaction (the 'callee' transaction) will throw `ContractError` by default -
+you don't have to manually check the result of the internal write.
 
-For each newly created interaction with a given contract - a dry run is performed and the call report of the dry-run is analyzed. A list of all inner-calls between contracts is generated. For each generated inner call - an additional tag is generated: `{'interactWrite': contractTxId}` - where contractTxId is the callee contract.
 
-When state is evaluated for the given contract ("Contract A") all the interactions - direct and internalWrites. If it is an internalWrite interaction - contract specified in the internalWrite ("Contract B") tag is loaded and its state is evaluated. This will cause the write method to be called. After evaluating the "Contract B" contract state - the latest state of the "Contract A" is loaded from cache (it has been updated by the write method) and evaluation moves to the next interaction.
+For each newly created interaction with a given contract - a dry run is performed and the call report of the dry-run is analyzed.
+A list of all inner-calls between contracts is generated.
+For each generated inner call - an additional tag is generated: `{'interactWrite': contractTxId}` - where `contractTxId` is the callee contract.
+
+When state is evaluated for the given contract ("Contract A") all of its interactions - direct and internalWrites - are being loaded.
+During the state evaluation - if it is an internalWrite interaction - contract specified in the internalWrite ("Contract B") tag is loaded and its state is evaluated.
+This will cause the write method to be called.
+After evaluating the "Contract B" contract state - the latest state of the "Contract A" is loaded from cache (it has been updated by the write method) and evaluation moves to the next interaction.
 
 ### Conclusion
 

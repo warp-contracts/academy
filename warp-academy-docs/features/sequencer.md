@@ -6,7 +6,8 @@ That's way we introduced the **Warp Sequencer** which uses **Bundlr Network** un
 
 ### Sequencer
 
-At the core of bundling transactions lies the sequencer which bundles and assigns order to SmartWeave interactions. The algorithm responsible for ordering transactions is backwards compatible which means that interactions registered with sequencer can be used together with those sent directly to **Arweave**. The ordering follows the [FIFO approach](https://www.investopedia.com/terms/f/fifo.asp), taking into account the sequencer's timestamp, current **Arweave** network block height and is salted with the sequencer's key - to prevent front running.
+At the core of bundling transactions is the sequencer which bundles and assigns order to SmartWeave interactions.
+The algorithm responsible for ordering transactions is backwards compatible which means that interactions registered with sequencer can be used together with those sent directly to **Arweave**. The ordering follows the [FIFO approach](https://www.investopedia.com/terms/f/fifo.asp), taking into account the sequencer's timestamp, current **Arweave** network block height and is salted with the sequencer's key - to prevent front running.
 
 ### Bundlr
 

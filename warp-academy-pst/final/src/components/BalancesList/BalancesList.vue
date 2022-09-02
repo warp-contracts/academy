@@ -38,23 +38,11 @@
 import Vue from 'vue';
 import { mapState } from 'vuex';
 import PacmanLoader from 'vue-spinner/src/PacmanLoader.vue';
-import { loadContract, readContract } from 'smartweave';
 
 export default Vue.extend({
   name: 'BalancesList',
   props: {
     balances: Array,
-  },
-  async mounted() {
-    // const res = await this.arweave.transactions.get(
-    //   '6hzHw8wwOuojRMpFOzlJCWJm2ls1Ch5L1U2gFLQI7NM'
-    // );
-    var result = await readContract(
-      this.arweave,
-      'NfOsoVlsQ4_hh_tLwvI4IkNQr0Ey5p3_uHTqKD1O3Ts'
-    );
-    // const contractOwner = await this.arweave.wallets.ownerToAddress(res.owner);
-    console.log(result);
   },
   data() {
     return {
@@ -84,17 +72,16 @@ export default Vue.extend({
         return;
       }
       this.$toasted.show('Processing...');
-      const tx = await this.contract.transfer({
+      const {originalTxId: txId} = await this.contract.transfer({
         target: address,
         qty: parseInt(qty),
       });
-      await this.arweave.api.get('mine');
       let newResult = await this.contract.currentState();
       if (newResult) {
         this.$toasted.clear();
         this.$toasted.global.success('Processed!');
         this.$toasted.global.close(
-          `<div>Interaction id: <a href="https://sonar.warp.cc/#/app/interaction/${tx}" target="_blank">${tx}</a></div>`
+          `<div>Interaction id: <a href="https://sonar.warp.cc/#/app/interaction/${txId}" target="_blank">${txId}</a></div>`
         );
       }
       this.$parent.updateBalances(newResult);
