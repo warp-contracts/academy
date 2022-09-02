@@ -1,0 +1,44 @@
+name: CI
+on: push
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+      - name: Install Ardit
+        run: yarn
+        working-directory: warp-academy-ardit/final
+      - name: Build Ardit
+        run: yarn build
+        working-directory: warp-academy-ardit/final
+      - name: Test Ardit
+        run: yarn test
+        working-directory: warp-academy-ardit/final
+      - name: Install Loot
+        run: yarn
+        working-directory: warp-academy-loot
+      - name: Test Loot
+        run: yarn test:contracts
+        working-directory: warp-academy-loot
+      - name: Install Pst
+        run: yarn
+        working-directory: warp-academy-pst/final
+      - name: Build Pst
+        run: yarn build:contracts
+        working-directory: warp-academy-pst/final
+      - name: Test Pst
+        run: yarn test
+        working-directory: warp-academy-pst/final
+      - name: Install Dex
+        run: yarn
+        working-directory: warp-academy-dex/final
+      - name: Build Dex
+        run: yarn build
+        working-directory: warp-academy-dex/final
+      - name: Test Dex
+        run: yarn test
+        working-directory: warp-academy-dex/final
+
