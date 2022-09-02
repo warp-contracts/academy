@@ -21,7 +21,7 @@ jobs:
         run: yarn
         working-directory: warp-academy-loot
       - name: Test Loot
-        run: yarn test
+        run: yarn test:contracts
         working-directory: warp-academy-loot
       - name: Install Pst
         run: yarn
