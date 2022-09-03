@@ -8,7 +8,7 @@ The idea of this tutorial is to build a smart contract which can be then used in
 
 ## 🚀 Deployed version
 
-We've already deployed the contract source on the Arweave blockchain. Its transaction id is [104Baqn4dDwL7ojuZtbMy5qitBa-WY1_sOai79TJ_Ig](https://sonar.warp.cc/#/app/source/104Baqn4dDwL7ojuZtbMy5qitBa-WY1_sOai79TJ_Ig). You can check its source code in our [SonAR.](https://sonar.warp.cc/#/app/source/104Baqn4dDwL7ojuZtbMy5qitBa-WY1_sOai79TJ_Ig#code).
+We've already deployed the contract source on the Arweave blockchain. Its transaction id is [104Baqn4dDwL7ojuZtbMy5qitBa-WY1_sOai79TJ_Ig](https://sonar.warp.cc/#/app/contract/104Baqn4dDwL7ojuZtbMy5qitBa-WY1_sOai79TJ_Ig). You can check its source code in our [SonAR.](https://sonar.warp.cc/#/app/contract/104Baqn4dDwL7ojuZtbMy5qitBa-WY1_sOai79TJ_Ig#code).
 
 The final implementation is available in the [github repo](https://github.com/warp-contracts/academy/tree/main/warp-academy-ardit/final).
 
