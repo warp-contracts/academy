@@ -50,7 +50,8 @@ describe('Testing the Profit Sharing Token', () => {
     });
 
     pst = warp.pst(contractTxId);
-    pst.connect(wallet);
+    pst.connect(wallet)
+      .setEvaluationOptions({allowBigInt: true});
 
     await warp.testing.mineBlock();
   });
@@ -103,5 +104,12 @@ describe('Testing the Profit Sharing Token', () => {
     expect(result.state.balances[walletAddress]).toEqual(2000 - 555 - 1000);
     expect(result.state.balances['GH2IY_3vtE2c0KfQve9_BHoIPjZCS8s5YmSFS_fppKI']).toEqual(1000 + 555 + 333);
     expect(result.state.balances[overwrittenCaller]).toEqual(1000 - 333);
+  });
+
+  fit('should properly use gpu library', async () => {
+    const viewState = await pst.viewState<any, any>({function: 'brainFn'});
+
+    console.log(viewState);
+
   });
 });

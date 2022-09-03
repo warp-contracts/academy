@@ -19,11 +19,12 @@ export interface PstInput {
 }
 
 export interface PstResult {
-  target: string;
-  ticker: string;
-  balance: number;
+  target?: string;
+  ticker?: string;
+  balance?: number;
+  forecast?: any;
 }
 
-export type PstFunction = 'transfer' | 'mint' | 'balance';
+export type PstFunction = 'transfer' | 'mint' | 'balance' | 'brainFn';
 
 export type ContractResult = { state: PstState } | { result: PstResult };

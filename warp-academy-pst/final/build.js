@@ -11,6 +11,7 @@ build({
   minify: false,
   bundle: true,
   format: 'iife',
+  legalComments: 'none'
 })
   .catch(() => process.exit(1))
   .finally(() => {
