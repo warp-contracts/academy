@@ -28,7 +28,7 @@ const config = {
           lastVersion: 'current',
           onlyIncludeVersions: ['current'],
           editUrl: ({ docPath }) => {
-            return `https://github.com/warp-contracts/warp/tree/main/warp-academy-docs/tutorials/${docPath}`;
+            return ` https://github.com/warp-contracts/academy/blob/main/warp-academy-docs/tutorials/${docPath}`;
           },
         },
         theme: {
@@ -51,7 +51,7 @@ const config = {
         path: 'features',
         routeBasePath: 'features',
         editUrl: ({ docPath }) => {
-          return `https://github.com/warp-contracts/warp/tree/main/warp-academy-docs/features/${docPath}`;
+          return `https://github.com/warp-contracts/academy/tree/main/warp-academy-docs/features/${docPath}`;
         },
         sidebarPath: require.resolve('./sidebars/featuresSidebar.js'),
       },
