@@ -247,7 +247,7 @@ build({
   });
 ```
 
-Now we just need to add a few commands to our `package.json` file that will simply remove everything from `dist` folder (which contains the minimized version of the source code), run the bundling script and additionally - copy `initial-state.json` file to the `dist` folder so we'll have all the files we need to deploy the contract in one place.
+Now we just need to add a few commands to our `package.json` file that will simply remove everything from `dist` folder (which contains the minimized version of the source code), run the bundling script and additionally - copy `initial-state.json` file to the `dist` folder so we'll have all the files we need to deploy the contract in one place. Just remember that you need to have `rimraf` installed - either globally or as a `devDependency`.
 
 ```json
     "build:contracts": "yarn run clean && yarn run build-ts && npm run cp",
