@@ -4,5 +4,4 @@ export const url = {
   arweaveNet: 'https://arweave.net',
   warpGateway: 'https://gateway.redstone.finance',
   loot: 'https://www.lootproject.com',
-  cache: 'https://cache.redstone.tools',
 };
