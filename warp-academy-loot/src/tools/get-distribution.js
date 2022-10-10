@@ -21,11 +21,10 @@ const {loot: lootContractAddress} = require("../deployed-contracts.json");
   console.log("Current state for contract: " + lootContractAddress);
   console.dir(cachedValue.state, {depth: null});
 
-  // Calculating distribution
-  const ditribution = {};
-  for (const [_asset, owner] of Object.entries(cachedValue.state.assets)) {
-    ditribution[owner] = (ditribution[owner] || 0) + 1;
-  }
+  // Calculating distributionklio
+  const distribution = Object.values(cachedValue.state.assets).reduce((accumulator, asset) => {
+    return {...accumulator, [asset]: (accumulator[asset] || 0) + 1}
+  }, {});
   console.log("Printing owners with their asset count");
   console.dir(ditribution, {depth: null});
 })();
