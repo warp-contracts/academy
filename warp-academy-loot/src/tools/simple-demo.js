@@ -85,7 +85,11 @@ const { default: ArLocal } = require('arlocal');
     console.log(`Getting final state`);
     const finalState = await contract.readState();
     console.dir(finalState.cachedValue.state, { depth: null });
-  } finally {
+  } catch(error) {
+    console.error(`Single demo error ${error.name}`)
+    console.error(error.message)
+  }
+  finally {
     // Shutting down ArLocal
     await arLocal.stop();
   }
