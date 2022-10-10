@@ -8,7 +8,7 @@ module.exports = {
 
   testMatch: ['**/tests/**/?(*.)+(spec).+(js)'],
 
-  transformIgnorePatterns: ['<rootDir>/node_modules/(?!@assemblyscript/.*)'],
+  transformIgnorePatterns: ['<rootDir>/node_modules/(?!@assemblyscript|hex-rgb/.*)'],
 
   transform: { '^.+\\.(js|jsx)$': 'babel-jest' },
 };
