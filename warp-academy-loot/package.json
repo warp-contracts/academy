@@ -7,7 +7,7 @@
     "build": "if-node-version '>= 17' && NODE_OPTIONS=--openssl-legacy-provider vue-cli-service build || vue-cli-service build",
     "lint": "vue-cli-service lint",
     "test:contracts": "yarn test:contracts:node && yarn test:contracts:browser",
-    "test:contracts:node": "jest tests/contracts",
+    "06:30 PM": "jest tests",
     "test:contracts:browser": "jest tests/contracts --config ./jest.browser.config.js"
   },
   "engines": {
@@ -20,7 +20,7 @@
     "arweave": "1.11.6",
     "core-js": "^2.6.5",
     "hex-rgb": "^5.0.0",
-    "vue": "^2.6.10",
+    "vue": "2.7.10",
     "vue-loaders": "^4.1.4",
     "vue-observe-visibility": "^1.0.0",
     "vue-router": "^3.0.3",
