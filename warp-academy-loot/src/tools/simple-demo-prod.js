@@ -12,14 +12,21 @@ const path = require("path");
   // would be stored between script calls.
   const warp = WarpFactory.forMainnet({...defaultCacheOptions, inMemory: true});
 
-  // Deploying contract
-  const contractSrc = fs.readFileSync(path.join(__dirname, '../contracts/loot/contract.js'), 'utf8');
-  const initialState = fs.readFileSync(path.join(__dirname, '../contracts/loot/initial-state.json'), 'utf8');
-  const {contractTxId} = await warp.createContract.deploy({
-    wallet,
-    initState: initialState,
-    src: contractSrc,
-  });
+	// Deploying contract
+	const initialStatePromise = fs.promises.readFile(
+		path.join(__dirname, '../contracts/loot/initial-state.json'),
+		'utf8'
+	);
+	const contractSrcPromise = fs.promises.readFile(
+		path.join(__dirname, '../contracts/loot/contract.js'),
+		'utf8'
+	);
+  const [initState, src] = await Promise.all([initialStatePromise, contractSrcPromise])
+	const { contractTxId } = await warp.createContract.deploy({
+		wallet,
+		initState,
+		src,
+	});
 
   // Interacting with the contract
   const contract = warp

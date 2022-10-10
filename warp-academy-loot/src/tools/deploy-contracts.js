@@ -5,9 +5,9 @@ const jwk = require("../../.secrets/jwk.json");
 
 (async () => {
   // Loading contract source and initial state from files
-  const contractSrc = fs.readFileSync(path.join(__dirname, "../contracts/loot/contract.js"), "utf8");
-  const initialState = fs.readFileSync(path.join(__dirname, "../contracts/loot/initial-state.json"), "utf8");
-
+  const contractSrcPromise = fs.promises.readFile(path.join(__dirname, "../contracts/loot/contract.js"), "utf8");
+  const initialStatePromise = fs.promises.readFile(path.join(__dirname, "../contracts/loot/initial-state.json"), "utf8");
+  const [contractSrc, initialState] = await Promise.all([contractSrcPromise, initialStatePromise])
   // Warp initialization for mainnet
   const warp = WarpFactory.forMainnet();
 

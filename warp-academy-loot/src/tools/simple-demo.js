@@ -14,17 +14,17 @@ const { default: ArLocal } = require('arlocal');
     LoggerFactory.INST.logLevel('error');
     const warp = WarpFactory.forLocal(1985);
 
-    let wallet;
     // note: warp.testing.generateWallet() automatically adds funds to the wallet
-    ({ jwk: wallet } = await warp.testing.generateWallet());
+    const walletPromise =  warp.testing.generateWallet();
 
     // Deploying contract
-    const contractSrc = fs.readFileSync(path.join(__dirname, '../contracts/loot/contract.js'), 'utf8');
-    const initialState = fs.readFileSync(path.join(__dirname, '../contracts/loot/initial-state.json'), 'utf8');
+    const contractSrcPromise = fs.promises.readFile(path.join(__dirname, '../contracts/loot/contract.js'), 'utf8');
+    const initialStatePromise = fs.promises.readFile(path.join(__dirname, '../contracts/loot/initial-state.json'), 'utf8');
+    const [src, initState, { jwk: wallet }] = await Promise.all([contractSrcPromise, initialStatePromise, walletPromise]);
     const { contractTxId } = await warp.createContract.deploy({
       wallet,
-      initState: initialState,
-      src: contractSrc,
+      initState,
+      src,
     });
     // note: we need to mine block in ArLocal - so that contract deployment transaction was mined.
     await warp.testing.mineBlock();
