@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 export async function handle(state, action) {
 
   const COLORS = ["green", "red", "yellow", "blue", "black", "brown", "pink", "orange", "purple", "gray"];
@@ -30,7 +31,8 @@ export async function handle(state, action) {
     return Number(randomBigInt % BigInt(max));
   }
 
-  switch (action.input.function) {
+  const {input:{ 'function': contractHandleFunction}} = action;
+  switch (contractHandleFunction) {
 
     case "name": {
       return { result: state.name };
@@ -48,43 +50,39 @@ export async function handle(state, action) {
     }
 
     case "getOwner": {
-      const asset = action.input.data.asset;
-      if (state.assets[asset]) {
-        return { result: state.assets[asset] };
-      } else {
-        return { result: `The asset "${asset}" doesn't exist yet` };
+      const {input:{ data: {asset}}} = action;
+      if (!state.assets[asset]) {
+         throw new ContractError(`The asset "${asset}" doesn't exist yet`);
       }
+      return { result: state.assets[asset] };
     }
 
     case "generate": {
-      const colorIndex = await getRandomIntNumber(COLORS.length, "color");
-      const materialIndex = await getRandomIntNumber(MATERIALS.length, "material");
-      const itemIndex = await getRandomIntNumber(ITEMS.length, "item");
-      const asset = COLORS[colorIndex] + " " + MATERIALS[materialIndex] + " " + ITEMS[itemIndex];
-
-      if (!state.assets[asset]) {
-        state.assets[asset] = action.caller;
-      } else {
+      const {caller} = action;
+      const colorIndexPromise = getRandomIntNumber(COLORS.length, "color");
+      const materialIndexPromise = getRandomIntNumber(MATERIALS.length, "material");
+      const itemIndexPromise = getRandomIntNumber(ITEMS.length, "item");
+      const [colorIndex, materialIndex, itemIndex] = await Promise.all([colorIndexPromise, materialIndexPromise, itemIndexPromise]);
+      const asset = `${COLORS[colorIndex]} ${MATERIALS[materialIndex]} ${ITEMS[itemIndex]}`
+      if (state.assets[asset]) {
         throw new ContractError(
           `Generated item (${asset}) is already owned by: ${state.assets[asset]}`);
       }
-      return { state };
+      return {state: {...state, assets: {...state.assets, [asset]: caller}}};
     }
       
 
     case "transfer": {
-      const toAddress = action.input.data.to;
-      const asset = action.input.data.asset;
-      if (state.assets[asset] !== action.caller) {
-        throw new ContractError("Can not transfer asset that doesn't belong to sender");
+      const {input:{ data: {asset, to: toAddress}}, caller} = action;
+      if (state.assets[asset] !== caller) {
+        throw new ContractError("A sender must own the transferred asset");
       }
-      state.assets[asset] = toAddress;
-      return { state };
+      return { state: {...state, assets: {...state.assets, [asset]: toAddress}} };
     }
     
     default: {
-      throw new ContractError(
-        `Unsupported contract function: ${functionName}`);
+      throw new ContractError (
+        `Unsupported contract function: ${contractHandleFunction}`);
     }
 
   }
