@@ -12,7 +12,6 @@ export const useContractStore = defineStore('contract', {
       warp: null,
       contract: null,
       wallet: null,
-      connectingError: false,
     };
   },
   actions: {
@@ -30,12 +29,10 @@ export const useContractStore = defineStore('contract', {
         name: 'Ardit',
         // logo: 'URL of your logo to be displayed to users'
       });
-      // const loader = toast.loading("Connecting...");
       await arweaveWebWallet.setUrl('arweave.app');
       await arweaveWebWallet.connect();
       this.wallet = arweaveWebWallet;
       await this.contract.connect('use_wallet');
-      // toast.remove(loader);
       createToast('Conntected!', {
         type: 'success',
       });
