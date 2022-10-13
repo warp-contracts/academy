@@ -18,7 +18,8 @@ const addInteraction = async (functionType, msg) => {
         :key="msg.id"
       >
         <p>{{ msg.content }}</p>
-        <h3>
+        <h3 class="creator-info">
+          <p>Creator:</p>
           <a
             target="_blank"
             :href="`https://viewblock.io/arweave/address/${msg.creator}`"
@@ -82,11 +83,18 @@ const addInteraction = async (functionType, msg) => {
       font-size: 1.8rem;
       color: white;
     }
-    h3 {
+    .creator-info {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
       margin-left: auto;
       margin-top: 1rem;
       a {
         color: white;
+      }
+      p {
+        font-size: 1.2rem;
+        margin-right: 0.5rem;
       }
     }
 

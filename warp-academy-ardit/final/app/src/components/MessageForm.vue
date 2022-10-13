@@ -19,7 +19,7 @@ const sendContent = async () => {
 <template>
   <section>
     <div class="wallet-menu">
-      <button @click="store.connectWallet()">CONNECT WALLET</button>
+      <button class="connect-btn" @click="store.connectWallet()">CONNECT WALLET</button>
     </div>
     <form>
       <div class="form__group field">
@@ -34,7 +34,7 @@ const sendContent = async () => {
         />
         <label for="message" class="form__label">Message</label>
       </div>
-      <button @click.prevent="sendContent">Send</button>
+      <button class="send-btn" @click.prevent="sendContent">Send</button>
     </form>
   </section>
 </template>
@@ -57,13 +57,19 @@ section {
     align-items: center;
     margin-top: 5rem;
 
-    button {
+    .connect-btn {
       width: 60%;
       height: 5rem;
       background-color: $secondary;
       color: $white;
       border: none;
       cursor: pointer;
+      transition: all .2s ease;
+
+      &:hover {
+        border: 1px solid $secondary;
+        background-color: transparent;
+      }
     }
   }
 }
@@ -136,7 +142,7 @@ form {
     }
   }
 
-  button {
+  .send-btn {
     width: 10rem;
     height: 3rem;
     margin-top: 2rem;
@@ -144,6 +150,11 @@ form {
     background-color: $contrast;
     color: $white;
     border: none;
+    transition: background 0.2s ease;
+
+    &:hover {
+      background-color: $contrastHover;
+    }
   }
 }
 </style>

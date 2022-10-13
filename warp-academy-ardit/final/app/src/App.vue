@@ -9,24 +9,39 @@
 </template>
 
 <script setup>
-import { useContractStore } from "./stores/contract";
-import TheHeader from "./components/TheHeader.vue";
-import MessageForm from "./components/MessageForm.vue";
-import MessagesList from "./components/MessagesList.vue";
+import { useContractStore } from './stores/contract';
+import TheHeader from './components/TheHeader.vue';
+import MessageForm from './components/MessageForm.vue';
+import MessagesList from './components/MessagesList.vue';
 
 const store = useContractStore();
 
-store.getContract();
+const init = async () => {
+  await store.initWarp();
+  await store.getContract();
+};
+
+init();
 </script>
 
 <style lang="scss">
-@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100;0,200;0,400;0,500;0,600;0,700;1,100;1,400;1,500;1,600;1,700&display=swap");
-@import "./style/colors";
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100;0,200;0,400;0,500;0,600;0,700;1,100;1,400;1,500;1,600;1,700&display=swap');
+@import './style/colors';
+::-webkit-scrollbar {
+  -webkit-appearance: none;
+  width: 7px;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+  background-color: rgba(0, 0, 0, 0.5);
+  -webkit-box-shadow: 0 0 1px rgba(255, 255, 255, 0.5);
+}
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Roboto Mono", monospace;
+  font-family: 'Roboto Mono', monospace;
   font-size: 10px;
 }
 

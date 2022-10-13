@@ -5,8 +5,8 @@ const store = useContractStore();
 
 <template>
   <header>
-    <h1>Ardit</h1>
-    <h2>
+    <h1 class="app-title">Ardit</h1>
+    <h2 class="contract-id">
       <p>Contract id:</p>
       <a
         target="_blank"
@@ -29,15 +29,18 @@ header {
   justify-content: center;
   align-items: center;
 
+  padding-top: 5rem;
   background-color: $background;
 
-  h1 {
+  .app-title {
     font-size: 2.2rem;
     color: $white;
   }
-  h2 {
+  .contract-id {
     display: flex;
     flex-direction: row;
+
+    margin-top: 1rem;
     color: $white;
     p {
       font-size: 1.2rem;

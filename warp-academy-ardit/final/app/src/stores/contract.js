@@ -2,12 +2,13 @@ import { defineStore } from 'pinia';
 import { WarpFactory } from 'warp-contracts/web';
 import { ArweaveWebWallet } from 'arweave-wallet-connector';
 import { createToast } from 'mosha-vue-toastify';
+import { contractId } from '../constants.js';
 
 export const useContractStore = defineStore('contract', {
   state: () => {
     return {
       contractState: [],
-      contractId: '48G_IllU9G-PRyl4Ods88STtQ1h0Eo8zHQUHdNlHKZw',
+      contractId: contractId,
       messages: [],
       warp: null,
       contract: null,
@@ -15,19 +16,19 @@ export const useContractStore = defineStore('contract', {
     };
   },
   actions: {
-    async getContract() {
+    async initWarp() {
       this.warp = await WarpFactory.forMainnet();
+    },
+
+    async getContract() {
       this.contract = await this.warp.contract(this.contractId);
       const { cachedValue } = await this.contract.readState();
       this.contractState = cachedValue.state;
-
-      console.log(this.contractState);
     },
 
     async connectWallet() {
       let arweaveWebWallet = new ArweaveWebWallet({
         name: 'Ardit',
-        // logo: 'URL of your logo to be displayed to users'
       });
       await arweaveWebWallet.setUrl('arweave.app');
       await arweaveWebWallet.connect();
