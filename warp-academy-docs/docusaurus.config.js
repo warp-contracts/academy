@@ -43,7 +43,6 @@ const config = {
       }),
     ],
 
-    'use_wallet'
   ],
   plugins: [
     [

@@ -61,6 +61,16 @@ const sidebars = {
             },
           ],
         },
+
+        {
+          type: 'category',
+          label: 'ArweaveWalletConnector',
+          items: [
+            { type: 'doc', label: 'Connection', id: 'ardit/wallet/connection' },
+            { type: 'doc', label: 'Interactions', id: 'ardit/wallet/interactions' },
+          ],
+        },
+
         {
           type: 'category',
           label: 'Tests',
