@@ -64,15 +64,6 @@ const sidebars = {
 
         {
           type: 'category',
-          label: 'ArweaveWalletConnector',
-          items: [
-            { type: 'doc', label: 'Connection', id: 'ardit/wallet/connection' },
-            { type: 'doc', label: 'Interactions', id: 'ardit/wallet/interactions' },
-          ],
-        },
-
-        {
-          type: 'category',
           label: 'Tests',
           items: [
             {
@@ -95,6 +86,22 @@ const sidebars = {
               type: 'doc',
               label: 'Deployment',
               id: 'ardit/deployment/deployment',
+            },
+          ],
+        },
+        {
+          type: 'category',
+          label: 'Application',
+          items: [
+            {
+              type: 'doc',
+              label: 'Initialization',
+              id: 'ardit/application/initialization',
+            },
+            {
+              type: 'doc',
+              label: 'Interactions',
+              id: 'ardit/application/interactions',
             },
           ],
         },
@@ -248,7 +255,7 @@ const sidebars = {
               type: 'doc',
               label: 'Removing liquidity',
               id: 'dex/implementation/removing-liquidity',
-            }
+            },
           ],
         },
         {
@@ -262,7 +269,7 @@ const sidebars = {
           id: 'dex/deployment/deployment',
         },
       ],
-    }
+    },
   ],
 };
 
