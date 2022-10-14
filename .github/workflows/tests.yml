@@ -10,13 +10,13 @@ jobs:
           node-version: '16'
       - name: Install Ardit
         run: yarn
-        working-directory: warp-academy-ardit/final
+        working-directory: warp-academy-ardit/final/contract
       - name: Build Ardit
         run: yarn build
-        working-directory: warp-academy-ardit/final
+        working-directory: warp-academy-ardit/final/contract
       - name: Test Ardit
         run: yarn test
-        working-directory: warp-academy-ardit/final
+        working-directory: warp-academy-ardit/final/contract
       - name: Install Loot
         run: yarn
         working-directory: warp-academy-loot
