@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "arweave-wallet-connector": "^0.0.31",
+    "base64-js": "^1.5.1",
     "core-js": "^3.8.3",
     "mosha-vue-toastify": "^1.0.23",
     "pinia": "^2.0.22",
@@ -19,6 +20,7 @@
   "devDependencies": {
     "@babel/core": "^7.12.16",
     "@babel/eslint-parser": "^7.12.16",
+    "@metamask/onboarding": "^1.0.0",
     "@vue/cli-plugin-babel": "~5.0.0",
     "@vue/cli-plugin-eslint": "~5.0.0",
     "@vue/cli-service": "~5.0.0",
