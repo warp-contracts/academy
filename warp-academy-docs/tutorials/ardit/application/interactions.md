@@ -1,7 +1,7 @@
 # Interactions
 
 Since our wallet is connected, we can make interactions (posting messages, voting) with the contract.
-To do this, firstly we need to connect with the contract and in the next step, we can write interaction.
+To do this, firstly we need to connect to the contract and in the next step - write interaction.
 
 ```js
 //src/stores/contract.js
@@ -43,9 +43,9 @@ There is how this condition can look like:
     },
 ```
 
-We are calling `getContract()` method to view updated contract state after successfull interaction.
+We are calling `getContract()` method to view the updated contract state after successfull interaction.
 
-postMessage interaction look very similiar:
+`postMessage` interaction looks very similair:
 
 ```js
 //src/stores/contract.js

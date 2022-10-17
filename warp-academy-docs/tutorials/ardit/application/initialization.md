@@ -1,24 +1,24 @@
-# Wallet connection
+# Initialization
 
-After successful deployment of the contract, we can now create app dedicated to adding and viewing content from contract state.
-There you can check our app source code: [link](https://github.com/warp-contracts/academy/tree/main/warp-academy-ardit/final/app)
-You can also test live version here: [https://arditmsg.vercel.app/](https://arditmsg.vercel.app/)
+After successful deployment of the contract, we can now create app dedicated to adding and viewing content from the contract state.
+You can check Ardit application source code under this [link](https://github.com/warp-contracts/academy/tree/main/warp-academy-ardit/final/app)
+You can also test live version [here](https://arditmsg.vercel.app/)
 
-Before we integrate wallet connector with our app, we need to do few things:
+In order to interact with the contract in the application, we need to follow below steps:
 
-## 1. Warp initialization
+## Warp initialization
 
-Same as for [contract deploy](https://academy.warp.cc/tutorials/ardit/deployment/) we need to create Warp instance
+Same as for [contract deploy](https://academy.warp.cc/tutorials/ardit/deployment/) we need to create Warp instance for the mainnet:
 
 ```js
 //src/stores/contract.js
 
 async initWarp() {
       this.warp = await WarpFactory.forMainnet();
-    },
+    }
 ```
 
-## 2. Contract setup
+## Contract setup
 
 Next step is to setup our contract, so we can read its state and later perform the interactions.
 
@@ -31,14 +31,14 @@ Next step is to setup our contract, so we can read its state and later perform t
       this.contractState = cachedValue.state;
     },
 ```
-## 3. Finally - wallet connector
+## Wallet connection
 
-Now our app is prepared to be integrated with ArweavWalletConnector. It is a tool which allows application to authorize users by their wallet without having to access the private keys directly. Users do not to install anything and are not restricted to specific device types or operating systems. It is easy to use for both parties - developers and users.
-Currently, ['arweave.app' ](https://arweave.app/) is a dedicated wallet provider, but other providers will be reachable from the connector module in the future.
+Our application is prepared to be integrated with ArweaveWalletConnector. It is a tool which allows application to authorize users by their wallet without having to access the private keys directly. Users do not to install anything and are not restricted to specific device types or operating systems. It is easy to use for both parties - developers and users.
+Currently, [`arweave.app`](https://arweave.app/) is a dedicated wallet provider, but other providers will be reachable from the connector module in the future.
 
-To install ArweaveWalletConnector, follow the instructions from this [repository.](https://github.com/jfbeats/ArweaveWalletConnector)
+To install ArweaveWalletConnector, follow the instructions from [this repository.](https://github.com/jfbeats/ArweaveWalletConnector)
 
-Once we are finished, our code should be similiar to this:
+Once we are finished, our code should look something like this:
 
 ```js
 //src/stores/contract.js
@@ -54,5 +54,5 @@ Once we are finished, our code should be similiar to this:
     }
 ```
 
-And now, for example, we can assign `connectWallet()` method to the button.
-If we have done everything correctly, after calling `connectWallet()` method we should see popup, from which we can pick our wallet, that we want to connect with.
+And now, we can for example assign `connectWallet()` method to the button's click event.
+If we have done everything correctly, after calling `connectWallet()` method we should see the popup, from which we can pick our wallet that we want to connect with.
