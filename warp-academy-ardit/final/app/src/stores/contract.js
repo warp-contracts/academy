@@ -46,22 +46,8 @@ const evmSignature = async (tx) => {
 
   console.log("Connected account: " + accounts[0]);
 
-  //Requesting signature
-  tx.signature = await window.ethereum.request({
-    method: 'personal_sign',
-    params: [accounts[0], JSON.stringify(tx)],
-  });
-  console.log("Signature: " + tx.signature);
-
-
   //Setup owner as the metamask account which signed the message
   tx.owner = accounts[0];
-
-  //Setting tx.id -> to be consistent with arweave-js specification which states that
-  //tx.id = sha-256(signature)
-  //TODO: Abstract the crypto interface to be consistent with Node.js
-  //Currently it's based on the subtle crypto from arweave-js
-  tx.id = await encodeTxId(tx.signature);
 
   //Adding tag that marks the different signature schema
   //TODO: Switch from btoa to proper Base64 encoding
@@ -69,6 +55,22 @@ const evmSignature = async (tx) => {
     name: btoa("Signature-schema"), 
     value: btoa("EVM")
   });
+
+  //Requesting signature
+  tx.signature = await window.ethereum.request({
+    method: 'personal_sign',
+    params: [accounts[0], JSON.stringify(tx)],
+  });
+  console.log("Signature: " + tx.signature);
+  
+
+  //Setting tx.id -> to be consistent with arweave-js specification which states that
+  //tx.id = sha-256(signature)
+  //TODO: Abstract the crypto interface to be consistent with Node.js
+  //Currently it's based on the subtle crypto from arweave-js
+  tx.id = await encodeTxId(tx.signature);
+
+  
   
   console.log(tx);
   return tx;
