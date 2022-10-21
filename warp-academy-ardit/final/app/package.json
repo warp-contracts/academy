@@ -12,11 +12,13 @@
     "arweave-wallet-connector": "^0.0.31",
     "base64-js": "^1.5.1",
     "core-js": "^3.8.3",
+    "ethers": "^5.7.2",
     "mosha-vue-toastify": "^1.0.23",
     "pinia": "^2.0.22",
     "vue": "^3.2.13",
     "vue-router": "^4.0.13",
-    "warp-contracts": "^1.2.13"
+    "warp-contracts": "^1.2.13",
+    "web3": "^1.8.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.16",
