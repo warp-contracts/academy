@@ -56,5 +56,5 @@ if (!MetaMaskOnboarding.isMetaMaskInstalled()) {
 A special tag is added to all bundled transactions which were signed using EVM wallet:
 
 ```ts
-{ 'Signature-Type`: 'ethereum' }
+{ 'Signature-Type': 'ethereum' }
 ```

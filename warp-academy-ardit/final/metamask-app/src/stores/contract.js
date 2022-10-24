@@ -36,7 +36,7 @@ export const useContractStore = defineStore('contract', {
         return;
       }
 
-      await this.contract.connect({ signer: evmSignature, signatureType: 'ethereum' });
+      await this.contract.connect(evmSignature);
       createToast('Conntected!', {
         type: 'success',
       });
