@@ -1,6 +1,5 @@
 import { defineStore } from 'pinia';
 import { WarpFactory } from 'warp-contracts/web';
-// import { ArweaveWebWallet } from 'arweave-wallet-connector';
 import { createToast } from 'mosha-vue-toastify';
 import { contractId } from '../constants.js';
 import { evmSignature, EvmSignatureVerificationPlugin } from 'warp-signature';

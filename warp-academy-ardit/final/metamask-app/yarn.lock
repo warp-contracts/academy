@@ -8364,8 +8364,10 @@ warp-contracts@1.2.14-beta.6:
     unzipit "^1.4.0"
     vm2 "3.9.9"
 
-"warp-signature@file:.yalc/warp-signature":
-  version "1.0.1-alpha.8"
+warp-signature@1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/warp-signature/-/warp-signature-1.0.1.tgz#4b9bcce18283bb43bc23dcf048f6f104db441d11"
+  integrity sha512-lrSEjYDEr0r32SRAsvMEKjFnZbW2JjYulPA1zYnb//iFXsrHSzm7M53M0u7X0GL9vn6sSTMzrYcly7F3G8YDWQ==
   dependencies:
     "@metamask/onboarding" "^1.0.1"
     "@metamask/providers" "^10.0.0"
