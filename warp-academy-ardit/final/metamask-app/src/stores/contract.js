@@ -3,7 +3,7 @@ import { WarpFactory } from 'warp-contracts/web';
 // import { ArweaveWebWallet } from 'arweave-wallet-connector';
 import { createToast } from 'mosha-vue-toastify';
 import { contractId } from '../constants.js';
-import { evmSignature } from 'warp-signature';
+import { evmSignature, EvmSignatureVerificationPlugin } from 'warp-signature';
 import MetaMaskOnboarding from '@metamask/onboarding';
 
 export const useContractStore = defineStore('contract', {
@@ -19,7 +19,7 @@ export const useContractStore = defineStore('contract', {
   },
   actions: {
     async initWarp() {
-      this.warp = await WarpFactory.forMainnet();
+      this.warp = await WarpFactory.forMainnet().use(new EvmSignatureVerificationPlugin());
     },
 
     async getContract() {
@@ -36,7 +36,10 @@ export const useContractStore = defineStore('contract', {
         return;
       }
 
-      await this.contract.connect(evmSignature);
+      await this.contract.connect({
+        signer: evmSignature,
+        signatureType: 'ethereum',
+      });
       createToast('Conntected!', {
         type: 'success',
       });
@@ -53,10 +56,15 @@ export const useContractStore = defineStore('contract', {
             type: 'danger',
           });
         } else {
-          await this.contract.connect().writeInteraction({
-            function: functionType,
-            id: message.messageId,
-          });
+          await this.contract
+            .connect({
+              signer: evmSignature,
+              signatureType: 'ethereum',
+            })
+            .writeInteraction({
+              function: functionType,
+              id: message.messageId,
+            });
           createToast('Voted!', {
             type: 'success',
           });
@@ -72,10 +80,15 @@ export const useContractStore = defineStore('contract', {
 
     async addContent(payload) {
       try {
-        await this.contract.writeInteraction({
-          function: 'postMessage',
-          content: payload,
-        });
+        await this.contract
+          .connect({
+            signer: evmSignature,
+            signatureType: 'ethereum',
+          })
+          .writeInteraction({
+            function: 'postMessage',
+            content: payload,
+          });
       } catch (error) {
         console.log(error);
         createToast('Wallet not connected!', {
