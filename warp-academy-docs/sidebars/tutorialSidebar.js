@@ -107,6 +107,7 @@ const sidebars = {
         },
       ],
     },
+    { type: 'doc', label: 'EVM wallet', id: 'evm-wallet' },
     {
       type: 'category',
       label: 'PST',
