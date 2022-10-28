@@ -6,7 +6,7 @@ Apart from Arweave wallet, you can connect EVM wallet to your contract. By readi
 
 1. You can connect EVM wallet only in browser environment.
 2. User needs to have Metamask plugin installed.
-4. It is possible to use EVM wallet only when bundling transaction. See [this feature](https://academy.warp.cc/features/bundled-interactions).
+3. It is possible to use EVM wallet only when bundling transaction. See [this feature](https://academy.warp.cc/features/bundled-interactions).
 
 Most importantly - these obstacles will not last forever as Warp team is planning to develop the feature further. For now, treat is an experimental feature which can expand the capabilities of your application by inviting users from other blockchain than Arweave. As always - if you find it useful or would like to make a suggestion, please reach to the Warp team on [on Discord](https://discord.com/invite/PVxBZKFr46).
 
@@ -24,15 +24,19 @@ yarn add warp-signature
 
 ### `evmSignature`
 
-`warp-signature` package exposes a `evmSignature` function which can be passed to the `connect` method of the Warp SDK. If you pass a signing function (it's our case!) instead of Arweave wallet, you also need to specify `signatureType`. Currently, it is possible to indicate `arweave` or `ethereum` signature type. So the final connection method should look like this:
+`warp-signature` package exposes a `evmSignature` function which can be passed to the `connect` method of the Warp SDK. This method is responsible for signing the transaction with your EVM wallet. If you pass a signing function (it's our case!) instead of Arweave wallet, you also need to specify `signatureType`. Currently, it is possible to indicate `arweave` or `ethereum` signature type. So the final connection method should look like this:
 
 ```ts
+import { evmSignature } from 'warp-signature';
+
 await this.contract.connect({ signer: evmSignature, signatureType: 'ethereum' });
 ```
 
 You can connect EVM wallet by creating a special `Connect` button and attaching proper event handler or directly in the `writeInteraction` method like this:
 
 ```ts
+import { evmSignature } from 'warp-signature';
+
 await this.contract.connect({ signer: evmSignature, signatureType: 'ethereum' }).writeInteraction({
   function: 'function',
 });
@@ -48,6 +52,18 @@ yarn add @metamask/onboarding
 if (!MetaMaskOnboarding.isMetaMaskInstalled()) {
   ...
 }
+```
+
+### evmSignatureVerification
+
+All the evm-signed transactions can be verified during contract state evaluation in order to avoid potential malicious actors trying to manipulate the state. In order to verify all the contract interactions, you need to use a special plugin exposed by `warp-signature` library. The plugin will check each interaction and if the transaction fails the verification it is omitted while evaluating the state. `ethers` library is used to verify the interaction based on its signature.
+
+This is how you use the plugin in your contract:
+
+```ts
+import { EvmSignatureVerificationPlugin } from 'warp-signature';
+
+const warp = await WarpFactory.forMainnet().use(new EvmSignatureVerificationPlugin());
 ```
 
 ### Tags
