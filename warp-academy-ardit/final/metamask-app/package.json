@@ -15,7 +15,7 @@
     "pinia": "^2.0.22",
     "vue": "^3.2.13",
     "vue-router": "^4.0.13",
-    "warp-contracts": "1.2.14-beta.6",
+    "warp-contracts": "1.2.15",
     "warp-signature": "1.0.1"
   },
   "devDependencies": {
