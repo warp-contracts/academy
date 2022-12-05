@@ -1,8 +1,8 @@
 import { defineStore } from 'pinia';
-import { WarpFactory } from 'warp-contracts/web';
+import { WarpFactory, defaultCacheOptions } from 'warp-contracts/web';
 import { createToast } from 'mosha-vue-toastify';
 import { contractId } from '../constants.js';
-import { evmSignature, EvmSignatureVerificationPlugin } from 'warp-signature';
+import { evmSignature, EvmSignatureVerificationWebPlugin } from 'warp-contracts-plugin-signature';
 import MetaMaskOnboarding from '@metamask/onboarding';
 
 export const useContractStore = defineStore('contract', {
@@ -18,7 +18,9 @@ export const useContractStore = defineStore('contract', {
   },
   actions: {
     async initWarp() {
-      this.warp = await WarpFactory.forMainnet().use(new EvmSignatureVerificationPlugin());
+      this.warp = WarpFactory.forMainnet({ ...defaultCacheOptions, inMemory: true }).use(
+        new EvmSignatureVerificationWebPlugin()
+      );
     },
 
     async getContract() {

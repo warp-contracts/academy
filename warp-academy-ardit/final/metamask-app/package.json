@@ -15,8 +15,8 @@
     "pinia": "^2.0.22",
     "vue": "^3.2.13",
     "vue-router": "^4.0.13",
-    "warp-contracts": "1.2.15",
-    "warp-signature": "1.0.1"
+    "warp-contracts": "1.2.32",
+    "warp-contracts-plugin-signature": "1.0.7"
   },
   "devDependencies": {
     "@babel/core": "^7.12.16",
