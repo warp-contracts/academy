@@ -44,6 +44,7 @@ const sidebars = {
     { type: 'doc', label: 'Evolve', id: 'evolve' },
     { type: 'doc', label: 'Internal calls', id: 'internal-calls' },
     { type: 'doc', label: 'VRF', id: 'vrf' },
+    { type: 'doc', label: 'SmartWeave Global', id: 'smartweave-global' },
   ],
 };
 
