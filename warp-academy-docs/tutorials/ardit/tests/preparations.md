@@ -4,7 +4,7 @@ It is more than important to carefully test your contract before deploying it to
 
 ## 🔤 Declaring variables
 
-Head to [tests/ardit.test.ts](https://github.com/warp-contracts/academy/tree/main/warp-academy-pst/challenge/tests/contract.test.ts) and start by declaring all necessary variables in `beforeAll` - a callback which will be executed before all the tests. Remeber to import all the interfaces!
+Head to [tests/ardit.test.ts](https://github.com/warp-contracts/academy/tree/main/warp-academy-ardit/final/contract/tests/ardit.test.ts) and start by declaring all necessary variables in `beforeAll` - a callback which will be executed before all the tests. Remeber to import all the interfaces!
 
 ```js
 // tests/ardit.test.ts
