@@ -64,7 +64,7 @@ export const useContractStore = defineStore('contract', {
             })
             .writeInteraction({
               function: functionType,
-              id: message.messageId,
+              id: message.id,
             });
           createToast('Voted!', {
             type: 'success',
