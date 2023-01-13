@@ -214,7 +214,7 @@ export async function handle(
 
 ## 🎨 Bundling contract
 
-Now comes the tricky part. We need to find a way to bundle our contract source so its output code is in Javascript and not typescript. We will use esbuild tool to achieve that result but of course you can use whichever bundler you'd like. We will not go into the details but you can view the bundling script here [https://github.com/warp-contracts/academy/blob/main/warp-academy-pst/challenge/build.js](https://github.com/warp-contracts/warp/blob/main/warp-academy-pst/challenge/build.js).
+Now comes the tricky part. We need to find a way to bundle our contract source so its output code is in Javascript and not typescript. We will use esbuild tool to achieve that result but of course you can use whichever bundler you'd like. We will not go into the details but you can view the bundling script here [https://github.com/warp-contracts/academy/blob/main/warp-academy-pst/challenge/build.js](https://github.com/warp-contracts/academy/blob/main/warp-academy-pst/challenge/build.js).
 
 It takes the contract source file as an esbuild source file, bundles it and put's its compiled Javascript version in a `dist` folder.
 
