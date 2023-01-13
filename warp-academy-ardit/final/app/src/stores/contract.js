@@ -52,7 +52,7 @@ export const useContractStore = defineStore('contract', {
         } else {
           await this.contract.connect('use_wallet').writeInteraction({
             function: functionType,
-            id: message.messageId,
+            id: message.id,
           });
           createToast('Voted!', {
             type: 'success',

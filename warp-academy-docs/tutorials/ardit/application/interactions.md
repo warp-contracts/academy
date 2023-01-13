@@ -32,7 +32,7 @@ There is how this condition can look like:
           //if all good, make an interaction
           await this.contract.connect('use_wallet').writeInteraction({
             function: functionType,
-            id: message.messageId,
+            id: message.id,
           });
           this.getContract(); //update ui, co we can immediately see effect of our interaction
         }
