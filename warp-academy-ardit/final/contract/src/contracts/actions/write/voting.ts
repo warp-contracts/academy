@@ -2,10 +2,10 @@ import { ArditAction, ArditState, ContractResult } from '../../types/types';
 
 declare const ContractError;
 
-export const upvoteMessage = async (
+export const upvoteMessage = (
   state: ArditState,
   { caller, input: { id } }: ArditAction
-): Promise<ContractResult> => {
+): ContractResult => {
   const message = state.messages.find((m) => m.id == id);
 
   if (!message) {
@@ -26,10 +26,10 @@ export const upvoteMessage = async (
   return { state };
 };
 
-export const downvoteMessage = async (
+export const downvoteMessage = (
   state: ArditState,
   { caller, input: { id } }: ArditAction
-): Promise<ContractResult> => {
+): ContractResult => {
   const message = state.messages.find((m) => (m.id = id));
 
   if (!message) {

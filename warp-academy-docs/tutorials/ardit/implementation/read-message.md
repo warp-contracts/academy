@@ -5,10 +5,10 @@ Let's create last function for our Ardit contract. This one will be a view funct
 ```ts
 // src/contracts/actions/read/readMessage.ts
 
-export const readMessage = async (
+export const readMessage = (
   state: ArditState,
   { input: { id } }: ArditAction
-): Promise<ContractResult> => {
+): ContractResult => {
   const message = state.messages.find((m) => m.id == id);
 
   if (!message) {

@@ -5,10 +5,10 @@ We will create two additional functions which let us upvote or downvote a messag
 ```ts
 // src/contracts/actions/write/voting.ts
 
-export const upvoteMessage = async (
+export const upvoteMessage = (
   state: ArditState,
   { caller, input: { id } }: ArditAction
-): Promise<ContractResult> => {};
+): ContractResult => {};
 ```
 
 As the last function, it takes state and action as parameters and return promise of type `ContractResult`. Let's fill in the body of the function.
@@ -45,10 +45,10 @@ Same applies to the second voting function - `downvoteMessage`. The only differe
 ```ts
 // src/contracts/actions/write/voting.ts
 
-export const downvoteMessage = async (
+export const downvoteMessage = (
   state: ArditState,
   { caller, input: { id } }: ArditAction
-): Promise<ContractResult> => {
+): ContractResult => {
   const message = state.messages.find((m) => (m.id = id));
 
   if (!message) {
