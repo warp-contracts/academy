@@ -22,13 +22,13 @@ const config = {
       /** @type {import('@docusaurus/preset-classic').Options} */
       ({
         docs: {
-          routeBasePath: 'tutorials',
-          path: 'tutorials',
-          sidebarPath: require.resolve('./sidebars/tutorialSidebar.js'),
+          routeBasePath: 'docs',
+          path: 'docs',
+          sidebarPath: require.resolve('./sidebars/docsSidebar.js'),
           lastVersion: 'current',
           onlyIncludeVersions: ['current'],
           editUrl: ({ docPath }) => {
-            return ` https://github.com/warp-contracts/academy/blob/main/warp-academy-docs/tutorials/${docPath}`;
+            return ` https://github.com/warp-contracts/academy/blob/main/warp-academy-docs/docs/${docPath}`;
           },
         },
         theme: {
@@ -44,16 +44,40 @@ const config = {
     ],
   ],
   plugins: [
+    // [
+    //   '@docusaurus/plugin-content-docs',
+    //   {
+    //     id: 'features',
+    //     path: 'features',
+    //     routeBasePath: 'features',
+    //     editUrl: ({ docPath }) => {
+    //       return `https://github.com/warp-contracts/academy/tree/main/warp-academy-docs/features/${docPath}`;
+    //     },
+    //     sidebarPath: require.resolve('./sidebars/featuresSidebar.js'),
+    //   },
+    // ],
     [
       '@docusaurus/plugin-content-docs',
       {
-        id: 'features',
-        path: 'features',
-        routeBasePath: 'features',
+        id: 'tutorials',
+        path: 'tutorials',
+        routeBasePath: 'tutorials',
         editUrl: ({ docPath }) => {
-          return `https://github.com/warp-contracts/academy/tree/main/warp-academy-docs/features/${docPath}`;
+          return `https://github.com/warp-contracts/academy/tree/main/warp-academy-docs/tutorials/${docPath}`;
         },
-        sidebarPath: require.resolve('./sidebars/featuresSidebar.js'),
+        sidebarPath: require.resolve('./sidebars/tutorialSidebar.js'),
+      },
+    ],
+    [
+      '@docusaurus/plugin-content-docs',
+      {
+        id: 'standards',
+        path: 'standards',
+        routeBasePath: 'standards',
+        editUrl: ({ docPath }) => {
+          return `https://github.com/warp-contracts/academy/tree/main/warp-academy-docs/standards/${docPath}`;
+        },
+        sidebarPath: require.resolve('./sidebars/standardsSidebar.js'),
       },
     ],
   ],
@@ -74,14 +98,24 @@ const config = {
         items: [
           {
             type: 'doc',
-            docId: 'tutorials-intro',
+            docId: 'docs-intro',
+            position: 'left',
+            label: 'Docs',
+          },
+          {
+            to: 'tutorials/elementary/blockchain',
             position: 'left',
             label: 'Tutorials',
           },
+          // {
+          //   label: 'Features',
+          //   position: 'left',
+          //   to: 'features/features-intro',
+          // },
           {
-            label: 'Features',
+            label: 'Contract Standards',
             position: 'left',
-            to: 'features/features-intro',
+            to: 'standards/standards-intro',
           },
           {
             href: 'https://github.com/warp-contracts/warp',
@@ -93,23 +127,41 @@ const config = {
       footer: {
         links: [
           {
-            title: 'Tutorials',
+            title: 'Docs',
             items: [
               {
-                label: 'Tutorials',
-                to: '/tutorials/tutorials-intro',
+                label: 'Docs',
+                to: '/docs/docs-intro',
               },
             ],
           },
           {
-            title: 'Features',
+            title: 'Tutorials',
             items: [
               {
-                label: 'Features',
-                to: '/features/features-intro',
+                label: 'Tutorials',
+                to: '/tutorials/elementary/blockchain',
               },
             ],
           },
+          {
+            title: 'Contract standards',
+            items: [
+              {
+                label: 'Contract standards',
+                to: '/standards/standards-intro',
+              },
+            ],
+          },
+          // {
+          //   title: 'Features',
+          //   items: [
+          //     {
+          //       label: 'Features',
+          //       to: '/features/features-intro',
+          //     },
+          //   ],
+          // },
           {
             title: 'Community',
             items: [
