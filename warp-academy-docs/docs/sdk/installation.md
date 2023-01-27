@@ -1,6 +1,6 @@
 # Installation
 
-Warp SDK requires node.js version 16.5+.
+Warp Contracts SDK requires Node.js version 16.5+.
 
 ### Using npm
 

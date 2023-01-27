@@ -4,7 +4,8 @@ All contracts have access to a global object `SmartWeave`. It provides access to
 
 List of available options:
 
-* transaction informations:
+#### JavaScript
+* current transaction data:
   - SmartWeave.transaction.id
   - SmartWeave.transaction.owner
   - SmartWeave.transaction.tags
@@ -50,3 +51,7 @@ List of available options:
   - SmartWeave.gasLimit
 
 * extensions - additional `SmartWeave` options which can be for example injected through dedicated plugins (an example of such in [`warp-contracts-plugins` repository](https://github.com/warp-contracts/warp-contracts-plugins)).s
+
+
+#### Rust
+TODO

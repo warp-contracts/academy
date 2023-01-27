@@ -1,6 +1,8 @@
-# WarpFactory
+# Obtaining Warp instance
 
-To properly initialize Warp you can use one of three methods available in WarpFactory class which simplifies the process of creating Warp.
+`Warp` instance allows to interact with contracts (read state, write new interactions, deploy new contracts).
+
+To properly initialize `Warp` you can use one of three methods available in `WarpFactory`.
 
 ### forLocal
 
@@ -18,7 +20,8 @@ Default parameters (each of them can be adjusted to your needs):
 
 #### forTestnet
 
-Creates a Warp instance suitable for testing.
+Creates a Warp instance suitable for using with Warp Testnet. All contracts and interactions are underneath posted to
+Arweave mainnet, but have a special set of tag that allow to differentiate them from the mainnet transactions.
 
 ```typescript
 warp = WarpFactory.forTestnet();
@@ -32,7 +35,7 @@ Default parameters (each of them can be adjusted to your needs):
 #### forMainnet
 
 Creates a Warp instance suitable for use with mainnet.
-By default, the [Warp gateway](https://github.com/warp-contracts/gateway#warp-gateway) is being used for:
+By default, the [Warp gateway](https://academy.warp.cc/docs/gateway/overview) is being used for:
 
 1.  deploying contracts
 2.  writing new transactions through Warp Sequencer
