@@ -5,10 +5,10 @@ Let's start by creating our first function - `postMessage` which will allow us t
 ```ts
 // src/contracts/actions/write/postMessage.ts
 
-export const postMessage = async (
+export const postMessage = (
   state: ArditState,
   { caller, input: { content } }: ArditAction
-): Promise<ContractResult> => {};
+): ContractResult => {};
 ```
 
 As we are using Typescript, let's prepare some types first. Firstly - state of the contract which will be updated when users will interact with it. It's just an array of messages posted by users, each of the message needs its own `id`, `creator`, `content` and `votes` object with current `status` and list of `addresses` which have voted for the message.
@@ -74,7 +74,7 @@ if (!content) {
   throw new ContractError(`Creator must provide a message content.`);
 }
 
-const id = messages.length == 0 ? 1 : messages.length + 1;
+const id = messages.length + 1;
 
 state.messages.push({
   id,

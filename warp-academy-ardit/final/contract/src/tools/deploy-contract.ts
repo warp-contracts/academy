@@ -19,4 +19,3 @@ import jwk from '../../.secrets/jwk.json';
   });
   console.log('Deployment completed: ' + contractTxId);
 })();
-``;
