@@ -1,11 +1,14 @@
 # WASM
 
-WASM provides proper sandboxing ensuring execution environment isolation which guarantees security to the contracts execution. As for now - **Assemblyscript**, **Rust** and **Go** languages are supported. WASM contracts templates containing example PST contract implementation within tools for compiling contracts to WASM, testing, deploying (locally, on testnet and mainnet) and writing interactions are available in a [dedicated repository](https://github.com/warp-contracts/warp-wasm-templates).
+WASM provides a secure and properly sandboxed execution environment for contracts execution.
+As for now - **Assemblyscript**, **Rust** and **Go** languages are supported.
+WASM contracts templates containing example PST contract implementation within tools for compiling contracts to WASM, testing, deploying
+(locally, on testnet and mainnet) and writing interactions are available in a [dedicated repository](https://github.com/warp-contracts/warp-wasm-templates).
 
 Using SDKs' methods works exactly the same as in case of a regular JS contract. While deploying the contract, you just need to pass some additional arguments:
 
 ```ts
-const contractTxId = await warp.createContract.deploy({
+const contractTxId = await warp.deploy({
   wallet,
   initState: JSON.stringify(initialState),
   src: contractSrc,

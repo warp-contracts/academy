@@ -62,3 +62,9 @@ All exports are stored under `warp` global variable.
   const warp = warp.WarpFactory.forMainnet();
 </script>
 ```
+
+#### Web bundlers and meta-frameworks
+Different meta-frameworks (like Next.js, Vite) and web-bundlers (like webpack 4,5, esbuild, etc.) have different
+requirements re. code packaging.  
+
+Examples of using the Warp Contracts SDK with different meta-frameworks and web bundles are available [here](https://github.com/warp-contracts/bundlers#bundlers).
