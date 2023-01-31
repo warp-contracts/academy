@@ -1,6 +1,6 @@
 # Register contract
 
-Typically, deploying a contract through Warp Gateway requires wrapping contract transaction in another transaction (Warp Gateway posts a contract transaction to the Bundlr Network as a data of the bundled transaction - more about in [this doc](https://academy.warp.cc/docs/sdk/bundled-contract/)).
+Typically, deploying a contract through Warp Gateway requires wrapping contract transaction in another transaction (Warp Gateway posts a contract transaction to the Bundlr Network as a data of the bundled transaction - more about in [this doc](https://academy.warp.cc/docs/sdk/advanced/bundled-contract/)).
 
 This process does not allow to create a legit AtomicNFT as the data of the nested transaction (our contract) cannot be served via Arweave gateway (it will be possible as soon as Nested Bundles will be implemented by Warp).
 
