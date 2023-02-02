@@ -79,7 +79,128 @@ const sidebars = {
     {
       type: 'category',
       label: 'Warp Gateway',
-      items: [{ type: 'doc', label: 'Overview', id: 'gateway/overview' }],
+      items: [
+        { type: 'doc', label: 'Overview', id: 'gateway/overview' },
+        { type: 'doc', label: 'Installation & running', id: 'gateway/installation' },
+        {
+          type: 'category',
+          label: 'HTTP Api',
+          items: [
+            {
+              type: 'category',
+              label: 'GET requests',
+              items: [
+                {
+                  type: 'doc',
+                  label: 'Contracts',
+                  id: 'gateway/http/get/contracts',
+                },
+                {
+                  type: 'doc',
+                  label: 'Contract',
+                  id: 'gateway/http/get/contract',
+                },
+                {
+                  type: 'doc',
+                  label: 'Contract data',
+                  id: 'gateway/http/get/contract-data',
+                },
+                {
+                  type: 'doc',
+                  label: 'Search',
+                  id: 'gateway/http/get/search',
+                },
+                {
+                  type: 'doc',
+                  label: 'NFTs owned by address',
+                  id: 'gateway/http/get/nft-owned-by-address',
+                },
+                {
+                  type: 'doc',
+                  label: 'Interactions',
+                  id: 'gateway/http/get/interactions',
+                },
+                {
+                  type: 'doc',
+                  label: 'Interaction',
+                  id: 'gateway/http/get/interaction',
+                },
+                {
+                  type: 'doc',
+                  label: 'Stats - total transactions',
+                  id: 'gateway/http/get/stats-total-txs',
+                },
+                {
+                  type: 'doc',
+                  label: 'Stats - transactions per day',
+                  id: 'gateway/http/get/stats-per-day',
+                },
+                {
+                  type: 'doc',
+                  label: 'Arweave network info',
+                  id: 'gateway/http/get/arweave-info',
+                },
+                {
+                  type: 'doc',
+                  label: 'Arweave network info',
+                  id: 'gateway/http/get/arweave-info',
+                },
+                {
+                  type: 'doc',
+                  label: 'Arweave network block height',
+                  id: 'gateway/http/get/arweave-block',
+                },
+                {
+                  type: 'doc',
+                  label: 'Contract source',
+                  id: 'gateway/http/get/contract-source',
+                },
+                {
+                  type: 'doc',
+                  label: 'Contracts by source',
+                  id: 'gateway/http/get/contracts-by-source',
+                },
+                {
+                  type: 'doc',
+                  label: 'Creator',
+                  id: 'gateway/http/get/creator',
+                },
+              ],
+            },
+            {
+              type: 'category',
+              label: 'POST requests',
+              items: [
+                {
+                  type: 'doc',
+                  label: 'Deploy contract',
+                  id: 'gateway/http/post/deploy-contract',
+                },
+                {
+                  type: 'doc',
+                  label: 'Deploy contract source',
+                  id: 'gateway/http/post/deploy-source',
+                },
+                {
+                  type: 'doc',
+                  label: 'Deploy bundled contract',
+                  id: 'gateway/http/post/deploy-bundled',
+                },
+                {
+                  type: 'doc',
+                  label: 'Register contract',
+                  id: 'gateway/http/post/register-contract',
+                },
+                {
+                  type: 'doc',
+                  label: 'Sequencer',
+                  id: 'gateway/http/post/sequencer',
+                }
+              ],
+            },
+          ],
+        },
+      ],
     },
     { type: 'category', label: 'Warp Contracts CLI', items: [
       {
