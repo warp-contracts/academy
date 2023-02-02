@@ -19,66 +19,94 @@ const sidebars = {
   // But you can create a sidebar manually
 
   tutorialSidebar: [
-    {type: 'doc', label: 'Intro', id: 'docs-intro'},
+    { type: 'doc', label: 'Intro', id: 'docs-intro' },
     {
       type: 'category',
       label: 'Warp Contracts SDK',
       items: [
-        {type: 'doc', label: 'Overview', id: 'sdk/overview'},
+        { type: 'doc', label: 'Overview', id: 'sdk/overview' },
         {
-          type: 'category', label: 'Basics', items: [
-            {type: 'doc', label: 'Installation', id: 'sdk/basic/installation'},
-            {type: 'doc', label: 'Warp Factory', id: 'sdk/basic/factory'},
-            {type: 'doc', label: 'Contract methods', id: 'sdk/basic/contract-methods'},
-            {type: 'doc', label: 'Contract Deployment', id: 'sdk/basic/deployment'},
-            {type: 'doc', label: 'Contracts upgrades', id: 'sdk/basic/evolve'},
-            {type: 'doc', label: 'SmartWeave Global API', id: 'sdk/basic/smartweave-global'},
-          ]
+          type: 'category',
+          label: 'Basics',
+          items: [
+            { type: 'doc', label: 'Installation', id: 'sdk/basic/installation' },
+            { type: 'doc', label: 'Warp Factory', id: 'sdk/basic/factory' },
+            { type: 'doc', label: 'Contract methods', id: 'sdk/basic/contract-methods' },
+            { type: 'doc', label: 'Contract Deployment', id: 'sdk/basic/deployment' },
+            { type: 'doc', label: 'Contracts upgrades', id: 'sdk/basic/evolve' },
+            { type: 'doc', label: 'SmartWeave Global API', id: 'sdk/basic/smartweave-global' },
+          ],
         },
         {
-          type: 'category', label: 'Advanced', items: [
-            {type: 'doc', label: 'SmartWeave protocol', id: 'sdk/advanced/smartweave-protocol'},
-            {type: 'doc', label: 'Internal contract calls', id: 'sdk/advanced/internal-calls'},
-            {type: 'doc', label: 'Plugins', id: 'sdk/advanced/plugins'},
-            {type: 'doc', label: 'Contract manifest', id: 'sdk/advanced/manifest'},
-            {type: 'doc', label: 'KV Storage', id: 'sdk/advanced/kv-storage'},
-            {type: 'doc', label: 'Custom Warp instance', id: 'sdk/advanced/custom-warp'},
-            {type: 'doc', label: 'Custom transactions signing', id: 'sdk/advanced/custom-signing'},
-            {type: 'doc', label: 'Bundled contract format', id: 'sdk/advanced/bundled-contract'},
-            {type: 'doc', label: 'Register contract', id: 'sdk/advanced/register-contract'},
-            {type: 'doc', label: 'VM2 sandboxing', id: 'sdk/advanced/vm2'},
-            {type: 'doc', label: 'VRF', id: 'sdk/advanced/vrf'},
-            {type: 'doc', label: 'Unsafe client', id: 'sdk/advanced/unsafe-client'},
-            {type: 'doc', label: 'Cache', id: 'sdk/advanced/cache'},
-          ]
+          type: 'category',
+          label: 'Advanced',
+          items: [
+            { type: 'doc', label: 'SmartWeave protocol', id: 'sdk/advanced/smartweave-protocol' },
+            { type: 'doc', label: 'Internal contract calls', id: 'sdk/advanced/internal-calls' },
+            {
+              type: 'category',
+              label: 'Plugins',
+              items: [
+                { type: 'doc', label: 'Overview', id: 'sdk/advanced/plugins/overview' },
+                { type: 'doc', label: 'Subscription', id: 'sdk/advanced/plugins/subscription' },
+                { type: 'doc', label: 'Signature', id: 'sdk/advanced/plugins/signature' },
+                { type: 'doc', label: 'Evaluation Progress', id: 'sdk/advanced/plugins/evaluation-progress' },
+                { type: 'doc', label: 'Isolated-VM', id: 'sdk/advanced/plugins/isolated-vm' },
+                { type: 'doc', label: 'SmartWeave extension - NLP', id: 'sdk/advanced/plugins/nlp' },
+                { type: 'doc', label: 'SmartWeave extension - Ethers', id: 'sdk/advanced/plugins/ethers' },
+                { type: 'doc', label: 'Custom SmartWeave extension', id: 'sdk/advanced/plugins/custom-extension' },
+              ],
+            },
+            { type: 'doc', label: 'Contract manifest', id: 'sdk/advanced/manifest' },
+            { type: 'doc', label: 'KV Storage', id: 'sdk/advanced/kv-storage' },
+            { type: 'doc', label: 'Custom Warp instance', id: 'sdk/advanced/custom-warp' },
+            { type: 'doc', label: 'Custom transactions signing', id: 'sdk/advanced/custom-signing' },
+            { type: 'doc', label: 'Bundled contract format', id: 'sdk/advanced/bundled-contract' },
+            { type: 'doc', label: 'Register contract', id: 'sdk/advanced/register-contract' },
+            { type: 'doc', label: 'VM2 sandboxing', id: 'sdk/advanced/vm2' },
+            { type: 'doc', label: 'VRF', id: 'sdk/advanced/vrf' },
+            { type: 'doc', label: 'Unsafe client', id: 'sdk/advanced/unsafe-client' },
+            { type: 'doc', label: 'Cache', id: 'sdk/advanced/cache' },
+          ],
         },
       ],
     },
     {
       type: 'category',
       label: 'Warp Sequencer',
-      items: [{type: 'doc', label: 'Overview', id: 'sdk/advanced/bundled-interaction'}],
+      items: [{ type: 'doc', label: 'Overview', id: 'sdk/advanced/bundled-interaction' }],
     },
     {
       type: 'category',
       label: 'Warp Gateway',
-      items: [{type: 'doc', label: 'Overview', id: 'gateway/overview'}],
+      items: [{ type: 'doc', label: 'Overview', id: 'gateway/overview' }],
     },
-    {type: 'doc', label: 'CLI', id: 'cli/installation'},
+    { type: 'category', label: 'Warp Contracts CLI', items: [
+      {
+        type: 'doc',
+        label: 'Installation',
+        id: 'cli/installation'
+      },
+      {
+        type: 'doc',
+        label: 'Usage',
+        id: 'cli/usage'
+      },
+      {
+        type: 'doc',
+        label: 'Commands',
+        id: 'cli/commands'
+      }
+    ] },
     {
       type: 'doc',
       label: 'Warp D.R.E. Node',
-      id: 'dre/overview'
+      id: 'dre/overview',
     },
     {
       type: 'doc',
       label: 'Warp Aggregate Node',
-      id: 'aggregate-node/overview'
-    },
-    {
-      type: 'category',
-      label: 'Warp Plugins',
-      items: [{type: 'doc', label: 'Overview', id: 'plugins/overview'}],
+      id: 'aggregate-node/overview',
     },
     // { type: 'doc', label: 'Evolve', id: 'evolve' },
     // { type: 'doc', label: 'Internal calls', id: 'internal-calls' },

@@ -67,19 +67,7 @@ const config = {
         },
         sidebarPath: require.resolve('./sidebars/tutorialSidebar.js'),
       },
-    ],
-    [
-      '@docusaurus/plugin-content-docs',
-      {
-        id: 'standards',
-        path: 'standards',
-        routeBasePath: 'standards',
-        editUrl: ({ docPath }) => {
-          return `https://github.com/warp-contracts/academy/tree/main/warp-academy-docs/standards/${docPath}`;
-        },
-        sidebarPath: require.resolve('./sidebars/standardsSidebar.js'),
-      },
-    ],
+    ]
   ],
 
   themeConfig:
@@ -113,11 +101,6 @@ const config = {
           //   to: 'features/features-intro',
           // },
           {
-            label: 'Contract Standards',
-            position: 'left',
-            to: 'standards/standards-intro',
-          },
-          {
             href: 'https://github.com/warp-contracts/warp',
             label: 'GitHub',
             position: 'right',
@@ -141,15 +124,6 @@ const config = {
               {
                 label: 'Tutorials',
                 to: '/tutorials/elementary/blockchain',
-              },
-            ],
-          },
-          {
-            title: 'Contract standards',
-            items: [
-              {
-                label: 'Contract standards',
-                to: '/standards/standards-intro',
               },
             ],
           },
