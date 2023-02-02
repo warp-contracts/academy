@@ -67,8 +67,13 @@ const sidebars = {
     {type: 'doc', label: 'CLI', id: 'cli/installation'},
     {
       type: 'doc',
-      label: 'Warp D.R.E.',
+      label: 'Warp D.R.E. Node',
       id: 'dre/overview'
+    },
+    {
+      type: 'doc',
+      label: 'Warp Aggregate Node',
+      id: 'aggregate-node/overview'
     },
     {
       type: 'category',
