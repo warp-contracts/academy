@@ -72,9 +72,14 @@ const sidebars = {
       ],
     },
     {
-      type: 'category',
+      type: 'doc',
       label: 'Warp Sequencer',
-      items: [{ type: 'doc', label: 'Overview', id: 'sdk/advanced/bundled-interaction' }],
+      id: 'sdk/advanced/bundled-interaction',
+    },
+    {
+      type: 'doc',
+      label: 'Warp Syncer',
+      id: 'syncer/overview',
     },
     {
       type: 'category',

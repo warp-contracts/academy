@@ -1,8 +1,8 @@
 // @ts-check
 // Note: type annotations allow type checking and IDEs autocompletion
 
-const lightCodeTheme = require('prism-react-renderer/themes/github');
-const darkCodeTheme = require('prism-react-renderer/themes/dracula');
+const lightCodeTheme = require('prism-react-renderer/themes/vsLight');
+const darkCodeTheme = require('prism-react-renderer/themes/vsDark');
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
@@ -15,6 +15,10 @@ const config = {
   favicon: 'img/smartweave.png',
   organizationName: 'facebook', // Usually your GitHub org/user name.
   projectName: 'docusaurus', // Usually your repo name.
+  themes: ['@docusaurus/theme-mermaid'],
+  markdown: {
+    mermaid: true,
+  },
 
   presets: [
     [
@@ -76,7 +80,6 @@ const config = {
       colorMode: {
         defaultMode: 'dark',
       },
-      hideableSidebar: true,
       navbar: {
         title: 'Warp Academy',
         logo: {
@@ -183,6 +186,11 @@ const config = {
 
         indexName: 'redstone-academy',
       },
+      docs: {
+        sidebar: {
+          hideable: true
+        }
+      }
     }),
 };
 
