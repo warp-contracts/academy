@@ -1,9 +1,9 @@
 # Key-Value Storage for contracts
 
 An alternative way for storing state for contracts.
-
-**NOTE:** Consider this as an experimental feature (though already used by our own contracts), with some constraints (see below).
-
+:::caution
+Consider this as an experimental feature (though already used by our own contracts), with some constraints (see below).
+:::
 ### Why?
 Imagine a PST contract with millions of entries in the 'balances' map.
 With the traditional way of storing a state - a change for one entry, requires passing to contract the whole state (the json) and then storing/caching it again - with only this one change.
@@ -22,7 +22,9 @@ The `Contract` interface has a new method added:
 `getStorageValues(keys: string[]): Promise<SortKeyCacheResult<Map<string, any>>>`
 \- which allows to check the latest values for the passed array of keys.
 
+:::info
 All the changes in the KV storage done within one given interaction are atomic - either all will be applied, or none (in case of an `ContractError`) - this is handled by the `commit`/`rollback` mechanism.
+:::
 
 #### Enabling KV storage for contract
 In order to use a KV storage in the contract, either:
@@ -47,8 +49,9 @@ warp.pst(contractTxId).setEvaluationOptions({
     }) as PstContract
 ```    
 
-**NOTE** with the KV Storage, the 'traditional', json-based state can be still used for storing some of the data (e.g. the name and the ticker of the PST)
-
+:::info
+With the KV Storage, the 'traditional', json-based state can be still used for storing some of the data (e.g. the name and the ticker of the PST)
+:::
 #### Example usage in the contract
 Examples of using the storage in the contract code (in a standard, PST `transfer` method):
 
