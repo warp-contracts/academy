@@ -26,6 +26,11 @@ Creates a Warp instance suitable for using with Warp Testnet.
 All contracts and interactions are underneath posted to
 Arweave mainnet, but have a special set of tag that allow to differentiate them from the mainnet transactions.
 
+:::info
+Testnet transactions have additional `Warp-Testnet` tag with a value set to testnet version (e.g. `1.0.0`).
+Example [testnet transaction](https://sonar.warp.cc/#/app/interaction/YGEGvaaScY3rjp995IvC3A75Wc49pKb2rlAqUWIAGRQ?network=testnet).
+:::
+
 ```typescript
 const warp = WarpFactory.forTestnet();
 ```
