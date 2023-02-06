@@ -1,7 +1,15 @@
 # WASM
 
 WASM provides a secure and properly sandboxed execution environment for contracts execution.
-As for now - **Assemblyscript**, **Rust** and **Go** languages are supported.
+As for now - **Rust** is being supported.
+
+:::info
+Historically Warp Contracts SDK had a support for Go and AssemblyScript.
+Because of some technical issues, immaturity and lack of interest in the community -
+we've decided to focus on Rust.
+The support for AS and Go has been removed in this [PR](https://github.com/warp-contracts/warp/issues/348).
+:::
+
 WASM contracts templates containing example PST contract implementation within tools for compiling contracts to WASM, testing, deploying
 (locally, on testnet and mainnet) and writing interactions are available in a [dedicated repository](https://github.com/warp-contracts/warp-wasm-templates).
 

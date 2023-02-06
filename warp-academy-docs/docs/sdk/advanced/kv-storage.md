@@ -10,7 +10,7 @@ With the traditional way of storing a state - a change for one entry, requires p
 This is a big issue both from the storage perspective (we have to cache very similar, very big json's) and performance perspective - as the state needs to be deep-copied before each interaction - to assure a transactional processing (i.e. either all changes from a given interactions should be applied - or none, in case the contract would throw an Error).
 
 ### Solution
-This PR introduces an alternative way of storing a contract state - via a Key-Value storage (backed-up by default by the LevelDB).
+An alternative way of storing a contract state - via a Key-Value storage (backed-up by default by the LevelDB) has been introduced.
 This allows to store and/or retrieve only required parts of the state within any given interaction - instead of having to process the whole BIG json each time.
 
 #### API
@@ -90,8 +90,10 @@ const dooValue = result.get('doo');
 ```
 
 ### Constraints
+:::caution
 Currently - when using KV storage - no interactions with foreign contracts are allowed. Such support will be added in the future PRs.
 The bindings for the Rust are not yet implemented - will be added in https://github.com/warp-contracts/warp/issues/330
+:::
 
 ### Implementation details
 1. the 'put' method adds an entry to the array. All entries from this array are 'committed' to the underneath storage only when SDK verifies that the result of the given interaction is successful.
@@ -106,7 +108,12 @@ WarpFactory.forMainnet()
     dbLocation: `./cache/warp/kv/lmdb_2/${contractTxId}`
   }))
 ```
-**NOTE** the cache for each contract has to be stored in a separate db file - that's why the `useKVStorageFactory` has the `contractTxId` as an argument.
+
+:::info
+The cache for each contract has to be stored in a separate db file - that's why the `useKVStorageFactory` has the `contractTxId` as an argument.
+:::
+
+
 
 
 

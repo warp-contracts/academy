@@ -1,7 +1,7 @@
 # SmartWeave Global API
 
 All contracts have access to a global object `SmartWeave`.
-It provides access to additional API for getting further information or using utility and crypto functions from inside the contracts execution.
+It provides access to additional API for getting further information or using utility and crypto functions from inside the contract execution.
 It also allows to interact with other contracts and read other contracts states.
 
 List of available options:

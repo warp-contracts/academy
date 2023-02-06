@@ -42,7 +42,12 @@ const sidebars = {
           label: 'Advanced',
           items: [
             { type: 'doc', label: 'SmartWeave protocol', id: 'sdk/advanced/smartweave-protocol' },
+            { type: 'doc', label: 'WASM', id: 'sdk/advanced/wasm' },
             { type: 'doc', label: 'Internal contract calls', id: 'sdk/advanced/internal-calls' },
+            { type: 'doc', label: 'Contract manifest', id: 'sdk/advanced/manifest' },
+            { type: 'doc', label: 'KV Storage', id: 'sdk/advanced/kv-storage' },
+            { type: 'doc', label: 'Custom Warp instance', id: 'sdk/advanced/custom-warp' },
+            { type: 'doc', label: 'Custom transactions signing', id: 'sdk/advanced/custom-signing' },
             {
               type: 'category',
               label: 'Plugins',
@@ -57,10 +62,6 @@ const sidebars = {
                 { type: 'doc', label: 'Custom SmartWeave extension', id: 'sdk/advanced/plugins/custom-extension' },
               ],
             },
-            { type: 'doc', label: 'Contract manifest', id: 'sdk/advanced/manifest' },
-            { type: 'doc', label: 'KV Storage', id: 'sdk/advanced/kv-storage' },
-            { type: 'doc', label: 'Custom Warp instance', id: 'sdk/advanced/custom-warp' },
-            { type: 'doc', label: 'Custom transactions signing', id: 'sdk/advanced/custom-signing' },
             { type: 'doc', label: 'Bundled contract format', id: 'sdk/advanced/bundled-contract' },
             { type: 'doc', label: 'Register contract', id: 'sdk/advanced/register-contract' },
             { type: 'doc', label: 'VM2 sandboxing', id: 'sdk/advanced/vm2' },

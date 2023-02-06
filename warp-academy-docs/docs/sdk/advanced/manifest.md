@@ -85,7 +85,11 @@ In this case the more secure setting of the Contract B should be reflected - and
 should be blocked (i.e. it should not be even created during the `A.writeInteraction` - when a dry-run
 is being performed, and we're evaluating a list of internal writes for a newly created interaction).
 
+:::info
+
 All rules are defined in [https://github.com/warp-contracts/warp/blob/main/src/contract/EvaluationOptionsEvaluator.ts#L21](https://github.com/warp-contracts/warp/blob/main/src/contract/EvaluationOptionsEvaluator.ts#L21)
+
+:::
 
 ### `sourceType` evaluation option
 A special evaluation option - `sourceType` allows to control what kind of the interactions the SDK will load to
@@ -95,7 +99,9 @@ The possible values are:
 - `SourceType.WARP_SEQUENCER` - only Warp Sequencer registered transactions will be loaded
 - `SourceType.BOTH` - both Warp Sequencer and direct Arweave transactions will be loaded
 
-You can specify this option in a contract manifest to make sure that all clients will use the transactions of the same source:
+:::tip
+
+You can specify this option in a contract manifest to make sure that all clients will use the transactions of the same source, e.g.:
 
 ```ts
 const {contractTxId, srcTxId} = await warp.deploy({
@@ -109,3 +115,5 @@ const {contractTxId, srcTxId} = await warp.deploy({
       }
     });
 ```  
+
+:::

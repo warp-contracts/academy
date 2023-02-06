@@ -6,7 +6,7 @@ Warp Syncer is a service for syncing with Arweave nodes. It downloads all transa
 We use Make for build orchestration. To generate binaries simply use `make` in the root directory
 
 ### Local development
-Seting up a local dev environment for the first time:
+Setting up a local dev environment for the first time:
 ```sh
 # Start all needed services
 docker-compose up -d 

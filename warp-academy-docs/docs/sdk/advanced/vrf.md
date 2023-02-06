@@ -50,5 +50,11 @@ function verifyVrf(vrf: VrfData, sortKey: string, arweave: Arweave): boolean {
 }
 ```
 
+:::info
+
 The Warp Contracts SDK makes such [verification automatically](https://github.com/warp-contracts/warp/blob/main/src/core/modules/impl/DefaultStateEvaluator.ts#L107).
+
+:::
+
+
 

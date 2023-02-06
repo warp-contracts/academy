@@ -2,7 +2,9 @@
 
 `Warp` instance allows to interact with contracts (read state, write new interactions, deploy new contracts).
 
+:::tip
 To properly initialize `Warp` you can use one of three methods available in `WarpFactory`.
+:::
 
 ### Local development 
 

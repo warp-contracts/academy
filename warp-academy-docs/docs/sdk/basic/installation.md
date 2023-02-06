@@ -1,7 +1,5 @@
 # Installation
 
-Warp Contracts SDK requires Node.js version 16.5+.
-
 ### Using npm
 
 `npm install warp-contracts`
@@ -9,6 +7,10 @@ Warp Contracts SDK requires Node.js version 16.5+.
 ### Using yarn
 
 `yarn add warp-contracts`
+
+:::caution
+Warp Contracts SDK requires Node.js version 16.5+.
+:::caution
 
 ## Import
 
@@ -67,4 +69,6 @@ All exports are stored under `warp` global variable.
 Different meta-frameworks (like Next.js, Vite) and web-bundlers (like webpack 4,5, esbuild, etc.) have different
 requirements re. code packaging.  
 
+:::tip
 Examples of using the Warp Contracts SDK with different meta-frameworks and web bundles are available [here](https://github.com/warp-contracts/bundlers#bundlers).
+:::

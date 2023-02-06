@@ -6,7 +6,9 @@ Simply call:
 const contract: Contract = warp.contract('<contract_tx_id>');
 ```
 
+:::info
 The `Contract` instance gives us access to several methods that allow to interact with our SmartWeave contract.
+:::
 
 ## Basic `Contract` methods
 

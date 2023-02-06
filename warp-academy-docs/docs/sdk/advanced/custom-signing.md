@@ -24,5 +24,12 @@ await contract.connect({ signer: customSigningFunction, signatureType: 'arweave'
 ```
 
 Custom signing function is then used to sign the transaction.
+
+:::tip
+
 The most common use case for that is signing transaction with EVM wallet.
 More about it in the [`Signature plugin` section](https://academy.warp.cc/docs/sdk/advanced/plugins/signature).
+
+
+:::
+
