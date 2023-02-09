@@ -99,16 +99,24 @@ This also means that the sequencing algorithm is fully backwards compatible with
 
 #### 2. Generates tags for the Bundlr transaction
 
-| Tag Name                                    | Tag Value                                                     |
-| ------------------------------------------- | ------------------------------------------------------------- |
-| `Sequencer`                                 | `RedStone`                                                    |
-| `Sequencer-Owner`                           | The original owner/signar of the contract transaction         |
-| `Sequencer-Mills`                           | The sequence value used by the Sequencer for this transaction |
-| `Sequencer-Sort-Key`                        | The generated sort key for this transaction                   |
-| `Sequencer-Tx-Id`                           | The original transaction id                                   |
-| `Sequencer-Block-Height`                    | The block height used for generating the sort key             |
-| `Sequencer-Block-Id`                        | The block hash used for generating the sort key               |
-| ...all the tags of the original transaction |                                                               |
+| Tag Name                                    | Tag Value                                                                       |
+|---------------------------------------------|---------------------------------------------------------------------------------|
+| `Sequencer`                                 | `RedStone`                                                                      |
+| `Sequencer-Owner`                           | The original owner/signar of the contract transaction                           |
+| `Sequencer-Mills`                           | The sequence value used by the Sequencer for this transaction                   |
+| `Sequencer-Sort-Key`                        | The generated sort key for this transaction                                     |
+| `Sequencer-Last-Sort-Key`                   | The sort key of the previous transaction |
+| `Sequencer-Tx-Id`                           | The original transaction id                                                     |
+| `Sequencer-Block-Height`                    | The block height used for generating the sort key                               |
+| `Sequencer-Block-Id`                        | The block hash used for generating the sort key                                 |
+| ...all the tags of the original transaction |                                                                                 |
+
+:::tip
+The `Sequencer-Last-Sort-Key` tells what is the sort key of the 'previous' transaction in the sequencer and
+can be used to verify whether all transactions have been properly loaded (i.e. if one
+decides to load them directly from L1 nodes) and none is missing.
+:::
+
 
 Additional set of tags are added in case user requests generating a random value using VRF (Verifiable Random Function):
 
@@ -126,6 +134,11 @@ Using the `sort_key`, `vrf-proof` and `vrf-pubkey`, the client can always verify
 #### 3. Uploads the original transaction to Bundlr
 
 ..with tags generated in point 2.
+
+:::info
+Obviously the data-item is signed by the Sequencer's wallet - and as such can be easily verified.
+The Sequencer wallet address is `jnioZFibZSCcV8o-HkBXYPYEYNib4tqfexP0kCBXX_M`.
+:::
 
 **NOTE** The original transaction is not modified in any way - this is to preserve the original
 signature!
