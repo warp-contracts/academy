@@ -226,9 +226,12 @@ const sidebars = {
       }
     ] },
     {
-      type: 'doc',
+      type: 'category',
       label: 'Warp D.R.E. Node',
-      id: 'dre/overview',
+      items: [
+        { type: 'doc', label: 'Overview', id: 'dre/overview' },
+        { type: 'doc', label: 'Installation & running', id: 'dre/installation' },
+      ],
     },
     {
       type: 'doc',
