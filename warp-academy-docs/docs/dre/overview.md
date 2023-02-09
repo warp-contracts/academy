@@ -10,7 +10,7 @@ A Delegated Resolution Environment for Warp Contracts.
     * [3. Events](#3-events)
     * [4. Blacklisting](#4-blacklisting)
     * [5. Endpoints](#5-endpoints)
-* [How to run?](#how-to-run)
+* [How to run?](installation)
 * [Future work](#future-work)
 
 ## The reasoning
