@@ -32,7 +32,6 @@ make docker-run
 
 ```
 
-
 ## Configuration
 
 Syncer has a default configuration that works in local development (*src/utils/config)*. To overwrite it you can a json configuration file or ENV variables:
@@ -74,9 +73,7 @@ Syncer has a default configuration that works in local development (*src/utils/c
 | SYNCER_PEERMONITORNUMWORKERS | Number of workers that check peers in parallel |
 | SYNCER_STOREBATCHSIZE |Num of Interactions that are stored in the Store before being inserted into the database in one db transaction and batch. |
 | SYNCER_STOREMAXTIMEINQUEUE | Maximal time interactions wait to be inserted.  After this time insert is forced. Example values: 400ms, 1s, 1m  |
-| SYNCER_STOREMAXBACKOFFINTERVAL
-StoreMaxBackoffInterval | Max time between failed retries to save data. |
-
+| SYNCER_STOREMAXBACKOFFINTERVAL | StoreMaxBackoffInterval | Max time between failed retries to save data. |
 
 ## Architecture
 ### Syncing interactions from Arweave
