@@ -90,16 +90,67 @@ echo END
    3. Run `ssh -i <path_to_key_pair_file> admin@<instance_public_ip>`
 3. Check if you have access to docker: `docker ps`. Check /var/log/user-data.log in case it's not accessible
 4. Go to warp-dre-node directory: `cd ~/warp-dre-node`
-4. Set all [required variables](#environment-variables): `nano .env`
+5. Set all [required variables](#environment-variables): `nano .env`
    1. ENV - change to prod, if you run D.R.E. node in production mode
    2. NODE_JWK_KEY - paste your arweave wallet JSON string. Creation of the wallet is described in the [pre requirements](#pre-requirements) section
-5. Run `docker compose up -d` to start D.R.E. node
-6. Check if containers started successfully: `docker ps`
-7. Check if D.R.E. node is running: go to `http://<instance ip>/status`
+6. Run `docker compose up -d` to start D.R.E. node
+7. Check if containers started successfully: `docker ps`
+8. Check if D.R.E. node is running: go to `http://<instance ip>/status`
 
 ### GCP
 
-TBD
+1. Choose Debian 11 AMI (you can choose any system you prefer)
+2. Instance type
+   1. e2-small for test proposes
+   2. e2-standard-2 or bigger for production
+3. Firewall:
+   1. Set flag: "Allow HTTP traffic"
+4. Storage: 60Gb, gp2
+5. Advanced options
+   1. Disk - add additional disk - 60Gb
+   2. Managenent -> Automation -> Paste content to install docker and D.R.E.:
+
+```shell
+#!/bin/bash -ex
+exec > >(tee /var/log/user-data.log|logger -t user-data -s 2>/dev/console) 2>&1
+echo BEGIN
+sudo apt-get update
+sudo apt-get install -y \
+    ca-certificates \
+    curl \
+    gnupg \
+    lsb-release
+sudo mkdir -p /etc/apt/keyrings
+curl -fsSL https://download.docker.com/linux/debian/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+echo \
+"deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/debian \
+  $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+sudo apt-get update
+sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+
+sudo useradd -g docker -s /bin/bash -m dre
+
+cd /home/dre
+git clone https://github.com/warp-contracts/warp-dre-node.git
+cp warp-dre-node/.env{.defaults,}
+sudo chown -R dre warp-dre-node 
+echo END
+```
+
+#### Configure the instance and run D.R.E. node
+
+1. Wait until instance will be in the running state
+2. Login to the instance using SSH (you can do it in the GCP console)
+3. Login to dre user: `sudo su dre`
+4. Check if you have access to docker: `docker ps`. Check /var/log/user-data.log in case it's not accessible
+5. Go to warp-dre-node directory: `cd ~/warp-dre-node`
+6. Set all [required variables](#environment-variables): `nano .env`
+   1. ENV - change to prod, if you run D.R.E. node in production mode
+   2. NODE_JWK_KEY - paste your arweave wallet JSON string. Creation of the wallet is described in the [pre requirements](#pre-requirements) section
+7. Run `docker compose up -d` to start D.R.E. node
+8. Check if containers started successfully: `docker ps`
+9. Check if D.R.E. node is running: go to `http://<instance ip>/status`
+
 
 ### DigitalOcean
 
