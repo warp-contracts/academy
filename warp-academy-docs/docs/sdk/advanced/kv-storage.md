@@ -95,7 +95,6 @@ const dooValue = result.get('doo');
 ### Constraints
 :::caution
 Currently - when using KV storage - no interactions with foreign contracts are allowed. Such support will be added in the future PRs.
-The bindings for the Rust are not yet implemented - will be added in https://github.com/warp-contracts/warp/issues/330
 :::
 
 ### Implementation details
