@@ -99,7 +99,7 @@ Currently - when using KV storage - no interactions with foreign contracts are a
 
 ### Implementation details
 1. the 'put' method adds an entry to the array. All entries from this array are 'committed' to the underneath storage only when SDK verifies that the result of the given interaction is successful.
-2. all entries have the sortKey added to the the stored key (the sortKey is taken from the `SmartWeave._activeTx`).
+2. all entries have the sortKey added to the stored key (the sortKey is taken from the `SmartWeave._activeTx`).
 3. The underlying storage is an implementation of the SDKs `SortKeyCache` interface. By default it is using the LevelDB (with a file based storage for node.js env and IndexedDB storage for browser env)
 4. Any storage compatible with `SortKeyCache` interface can be used (e.g. https://github.com/warp-contracts/warp-contracts-lmdb#warp-contracts-lmdb-cache).
    In order to configure custom storage - use the `warp.useKVStorageFactory` method, e.g.:
