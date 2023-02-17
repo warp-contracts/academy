@@ -61,7 +61,7 @@ LmdbCache constructor accepts a second param with custom configuration.
 | Option                | Required   | Description                                                                                                                           |
 |-----------------------|------------|---------------------------------------------------------------------------------------------------------------------------------------|
 | maxEntriesPerContract |   false    | Maximum number of interactions stored per contract id - above this threshold adding another entry triggers removing old interactions. |
-| minEntriesPerContract |   false    | Minimum number of interactions stored per contract id. Value used when removing old iteractions.                                      |
+| minEntriesPerContract |   false    | Minimum number of interactions stored per contract id. Value used when removing old interactions.                                      |
 
 #### Usage
 
