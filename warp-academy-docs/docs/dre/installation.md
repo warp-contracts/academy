@@ -64,6 +64,7 @@ sudo apt-get update
 sudo apt-get install -y \
     ca-certificates \
     curl \
+    wget \
     gnupg \
     lsb-release
 sudo mkdir -p /etc/apt/keyrings
@@ -73,11 +74,16 @@ echo \
   $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 sudo apt-get update
 sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
-sudo usermod -aG docker admin
-cd /home/admin
-git clone https://github.com/warp-contracts/warp-dre-node.git
-cp warp-dre-node/.env{.defaults,}
-sudo chown -R admin warp-dre-node 
+
+sudo useradd -g docker -s /bin/bash -m dre
+
+cd /home/dre
+mkdir warp-dre-node
+export DRE_RELEASE=$(curl -sL https://api.github.com/repos/warp-contracts/warp-dre-node/releases/latest | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
+echo "export DRE_IMAGE_TAG=$DRE_RELEASE" >> .bashrc
+wget -O- https://github.com/warp-contracts/warp-dre-node/releases/download/$DRE_RELEASE/docker-compose.yml > warp-dre-node/docker-compose.yml
+echo $'env=prod\nNODE_JWK_KEY=' > warp-dre-node/.env 
+sudo chown -R dre warp-dre-node
 echo END
 ```
 
@@ -88,14 +94,15 @@ echo END
    1. Open terminal
    2. Run `chmod 400 <path_to_key_pair_file>` to set correct permissions to the key pair file
    3. Run `ssh -i <path_to_key_pair_file> admin@<instance_public_ip>`
-3. Check if you have access to docker: `docker ps`. Check /var/log/user-data.log in case it's not accessible
-4. Go to warp-dre-node directory: `cd ~/warp-dre-node`
-5. Set all [required variables](#environment-variables): `nano .env`
+3. Login as dre user: `sudo su dre`
+4. Check if you have access to docker: `docker ps`. Check /var/log/user-data.log in case it's not accessible
+5. Go to warp-dre-node directory: `cd ~/warp-dre-node`
+6. Set all [required variables](#environment-variables): `nano .env`
    1. ENV - change to prod, if you run D.R.E. node in production mode
    2. NODE_JWK_KEY - paste your arweave wallet JSON string. Creation of the wallet is described in the [pre requirements](#pre-requirements) section
-6. Run `docker compose up -d` to start D.R.E. node
-7. Check if containers started successfully: `docker ps`
-8. Check if D.R.E. node is running: go to `http://<instance ip>/status`
+7. Run `docker compose up -d` to start D.R.E. node
+8. Check if containers started successfully: `docker ps`
+9. Check if D.R.E. node is running: go to `http://<instance ip>/status`
 
 ### GCP
 
@@ -118,6 +125,7 @@ sudo apt-get update
 sudo apt-get install -y \
     ca-certificates \
     curl \
+    wget \
     gnupg \
     lsb-release
 sudo mkdir -p /etc/apt/keyrings
@@ -131,9 +139,12 @@ sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plug
 sudo useradd -g docker -s /bin/bash -m dre
 
 cd /home/dre
-git clone https://github.com/warp-contracts/warp-dre-node.git
-cp warp-dre-node/.env{.defaults,}
-sudo chown -R dre warp-dre-node 
+mkdir warp-dre-node
+export DRE_RELEASE=$(curl -sL https://api.github.com/repos/warp-contracts/warp-dre-node/releases/latest | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
+echo "export DRE_IMAGE_TAG=$DRE_RELEASE" >> .bashrc
+wget -O- https://github.com/warp-contracts/warp-dre-node/releases/download/$DRE_RELEASE/docker-compose.yml > warp-dre-node/docker-compose.yml
+echo $'env=prod\nNODE_JWK_KEY=' > warp-dre-node/.env 
+sudo chown -R dre warp-dre-node
 echo END
 ```
 
@@ -141,7 +152,7 @@ echo END
 
 1. Wait until instance will be in the running state
 2. Login to the instance using SSH (you can do it in the GCP console)
-3. Login to dre user: `sudo su dre`
+3. Login as dre user: `sudo su dre`
 4. Check if you have access to docker: `docker ps`. Check /var/log/user-data.log in case it's not accessible
 5. Go to warp-dre-node directory: `cd ~/warp-dre-node`
 6. Set all [required variables](#environment-variables): `nano .env`
@@ -171,6 +182,7 @@ sudo apt-get update
 sudo apt-get install -y \
     ca-certificates \
     curl \
+    wget \
     gnupg \
     lsb-release
 sudo mkdir -p /etc/apt/keyrings
@@ -184,16 +196,19 @@ sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plug
 sudo useradd -g docker -s /bin/bash -m dre
 
 cd /home/dre
-git clone https://github.com/warp-contracts/warp-dre-node.git
-cp warp-dre-node/.env{.defaults,}
-sudo chown -R dre warp-dre-node 
+mkdir warp-dre-node
+export DRE_RELEASE=$(curl -sL https://api.github.com/repos/warp-contracts/warp-dre-node/releases/latest | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
+echo "export DRE_IMAGE_TAG=$DRE_RELEASE" >> .bashrc
+wget -O- https://github.com/warp-contracts/warp-dre-node/releases/download/$DRE_RELEASE/docker-compose.yml > warp-dre-node/docker-compose.yml
+echo $'env=prod\nNODE_JWK_KEY=' > warp-dre-node/.env 
+sudo chown -R dre warp-dre-node
 echo END
 ```
 
 #### Configure the instance and run D.R.E. node
 
 1. Login to the instance
-2. Login to dre user: `sudo su dre`
+2. Login as dre user: `sudo su dre`
 3. Check if you have access to docker: `docker ps`. Check /var/log/user-data.log in case it's not accessible
 4. Go to warp-dre-node directory: `cd ~/warp-dre-node`
 5. Set all [required variables](#environment-variables): `nano .env`
