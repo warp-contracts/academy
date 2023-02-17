@@ -5,7 +5,7 @@ This document describes the core concepts behind the Warp bundled contract forma
 ## Introduction
 
 The idea behind Warp Bundled Contract Format is to increase the Developer and User Experience.  
-Normally, when a contract is being deployed on Arweave, one have to wait some time:
+Normally, when a contract is being deployed on Arweave, one has to wait some time:
 
 1. for the contract's transactions mining (~2 minutes)
 2. for the proper contract's transactions confirmation (assuming at least 10 blocks - ~20 minutes)
