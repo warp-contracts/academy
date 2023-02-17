@@ -5,7 +5,7 @@ This document describes the core concepts behind the Warp Sequencer.
 ## Introduction
 
 The idea behind Warp Sequencer is to increase the Developer and User Experience.  
-Normally, when an interaction with a contract is being sent to Arweave, one have to wait some time:
+Normally, when an interaction with a contract is being sent to Arweave, one has to wait some time:
 
 1. for the transaction mining (~2 minutes)
 2. for the proper transaction confirmation (assuming at least 10 blocks - ~20 minutes).
@@ -185,9 +185,9 @@ query {
 
 The Warp `/gateway/v2/interactions-sort-key` endpoint allows to retrieve all the given contract interactions currently
 indexed by the Warp Gateway - both the direct Arweave transactions and Warp Sequencer transactions.
-This method is used by the default by the Warp SDK - in case of `forMainnet` instance is being used.
+This method is used by default by the Warp SDK - in case of `forMainnet` instance is being used.
 
-## Futher development
+## Further development
 
 1. Blind/trustless sequencing - https://github.com/warp-contracts/gateway/issues/48
 2. Sequencer decentralization - https://github.com/warp-contracts/gateway/issues/93
