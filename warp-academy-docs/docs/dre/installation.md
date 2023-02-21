@@ -44,17 +44,18 @@ docker compose up -d
 ### AWS (EC2)
 
 #### Create EC2 instance
-1. Choose Debian 11 AMI (you can choose any system you prefer)
-2. Instance type
+1. Go to EC2 instace creation page (services -> compute -> ec2 -> launch instance)
+2. Choose Debian 11 AMI (you can choose any system you prefer)
+3. Instance type
    1. t3.micro for test proposes
    2. t3.medium or bigger for production
-3. Key pair (login)
+4. Key pair (login)
    1. Create new key pair
    2. Download key pair and save it in safe place. You will need it to login to the instance after creation
-4. Network settings:
+5. Network settings:
    1. Set flag: "Allow HTTP traffic from the internet"
-5. Storage: 60Gb, gp2
-6. Advanced details -> User data -> Paste content to install docker and D.R.E.:
+6. Storage: 60Gb, gp2
+7. Advanced details -> User data -> Paste content to install docker and D.R.E.:
 
 ```shell
 #!/bin/bash -ex
@@ -106,14 +107,15 @@ echo END
 
 ### GCP
 
-1. Choose Debian 11 AMI (you can choose any system you prefer)
-2. Instance type
+1. Go to VM instance create page (compute engine -> VM instances)
+2. Choose Debian 11 AMI (you can choose any system you prefer)
+3. Instance type
    1. e2-small for test proposes
    2. e2-standard-2 or bigger for production
-3. Firewall:
+4. Firewall:
    1. Set flag: "Allow HTTP traffic"
-4. Storage: 60Gb, gp2
-5. Advanced options
+5. Storage: 60Gb, gp2
+6. Advanced options
    1. Disk - add additional disk - 60Gb
    2. Managenent -> Automation -> Paste content to install docker and D.R.E.:
 
@@ -167,12 +169,13 @@ echo END
 
 **Create droplet**
 
-1. Choose Debian 11 as OS 
-2. Instance type
+1. Go to droplet creation page (create -> droplets)
+2. Choose Debian 11 as OS 
+3. Instance type
    1. Basic -> Regular -> 1Gb/1CPU instance - for test proposes
    2. General propose -> 8 GB/2 CPUs or bigger for production
-3. Enable backups (optional)
-4. Advanced options -> Add Initialization scripts -> Paste content to install docker and D.R.E.:
+4. Enable backups (optional)
+5. Advanced options -> Add Initialization scripts -> Paste content to install docker and D.R.E.:
 
 ```shell
 #!/bin/bash -ex
