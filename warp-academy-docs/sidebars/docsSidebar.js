@@ -53,6 +53,7 @@ const sidebars = {
               label: 'Plugins',
               items: [
                 { type: 'doc', label: 'Overview', id: 'sdk/advanced/plugins/overview' },
+                { type: 'doc', label: 'Deployment', id: 'sdk/advanced/plugins/deployment' },
                 { type: 'doc', label: 'Subscription', id: 'sdk/advanced/plugins/subscription' },
                 { type: 'doc', label: 'Signature', id: 'sdk/advanced/plugins/signature' },
                 { type: 'doc', label: 'Evaluation Progress', id: 'sdk/advanced/plugins/evaluation-progress' },

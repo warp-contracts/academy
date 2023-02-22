@@ -42,12 +42,19 @@ It's very important that we set the `evolve` property in the state to exactly th
 
 So now we have everything ready in our contract. Let's perform the evolve.
 
-### Create new contract source transaction
+### Create new contract source data item
 
-In order to properly evolve, we should first create new contract source transaction:
+In order to properly evolve, we should first create new contract source data item. We can also create contract source transaction instead of data item if we want to post it later directly to Arweave and not use Bundlr to upload it. If we want to create a transaction - `disableBundling` parameter should be set to `true`.
+
+:::caution
+`createSource` method requires installing [`warp-contracts-plugin-deploy`](https://www.npmjs.com/package/warp-contracts-plugin-deploy). Learn more about this plugin in [`Deploy Plugin` section](https://academy.warp.cc/sdk/advanced/plugins/deployment).
+:::caution
 
 ```typescript
-async function createSourceTx(sourceData: SourceData, wallet: ArWallet | CustomSignature): Promise<Transaction>;
+async function createSource(
+  wallet: ArWallet | CustomSignature | Signer,
+  disableBundling: boolean = false
+): Promise<Transaction>;
 ```
 
 ```typescript
@@ -62,25 +69,39 @@ interface SourceData {
   <summary>Example</summary>
 
 ```typescript
-const newSrcTx = await warp.createSourceTx({ src: newSource }, wallet);
+import { DeployPlugin } from 'warp-contracts-plugin-deploy';
+import { WarpFactory } from 'warp-contracts';
+
+const wallet = JSON.parse(fs.readFileSync('<path_to_wallet>', 'utf-8'));
+const contractSrc = fs.readFileSync(path.join('<path_to_your_contract.js>'), 'utf8');
+
+const warp = WarpFactory.forMainnet().use(new DeployPlugin());
+const newSource = await warp.createSource({ src: contractSrc}, new ArweaveSigner(wallet));
 ```
 
 </details>
 
-### Save new contract source transaction
+### Save new contract source
 
-Then, we need to save freshly created source transaction using `saveSourceTx` method. It saves source transaction created using `createSourceTx` method; by default source transaction is sent to Warp Gateway where it is uploaded to Bundlr, if in local environment or bundle is disabled using
-disableBundling method - source transaction is sent directly to Arweave, returns source transaction id.
+Then, we need to save freshly created source transaction using `saveSource` method. It saves source transaction created using `createSource` method; by default source transaction is sent to Warp Gateway where it is uploaded to Bundlr, if in local environment or bundle is disabled using disableBundling method - source transaction is sent directly to Arweave, returns source id.
+
+:::caution
+`saveSource` method requires installing [`warp-contracts-plugin-deploy`](https://www.npmjs.com/package/warp-contracts-plugin-deploy). Learn more about this plugin in [`Deploy Plugin` section](https://academy.warp.cc/sdk/advanced/plugins/deployment).
+:::caution
 
 ```ts
-async function saveSourceTx(sourceTx: Transaction, disableBundling?: boolean): Promise<string>;
+async function saveSource(src: DataItem | Transaction, disableBundling?: boolean): Promise<string>;
 ```
 
 <details>
   <summary>Example</summary>
 
 ```typescript
-const newSrcTxId = await warp.saveSourceTx(srcTx);
+import { DeployPlugin } from 'warp-contracts-plugin-deploy';
+import { WarpFactory } from 'warp-contracts';
+
+const warp = WarpFactory.forMainnet().use(new DeployPlugin());
+const newSrcId = await warp.saveSource(src);
 ```
 
 </details>
@@ -90,7 +111,7 @@ const newSrcTxId = await warp.saveSourceTx(srcTx);
 We can also save new WASM contract source (even if the original contract source was written in pure Javascript). The only difference is that we need to pass new contract source directory as `wasmSrcCodeDir`. Additionally - but only if we want to save Rust contract source, we need to pass a path to wasm-bindgen javascript code which was generated during the build.
 
 ```js
-const srcTx = await warp.createSourceTx(
+const src = await warp.createSource(
   {
     src: newContractSrc,
     wasmSrcCodeDir: path.join(__dirname, '../data/wasm/rust/src'),

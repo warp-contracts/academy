@@ -43,10 +43,17 @@ const data = fs.readFileSync('tools/data/data.txt');
 const tx = await bundlr.upload(data, { tags: contractTags });
 ```
 
-3. Finally, contract is sent to Warp Gateway where it is indexes so it can be immediately available for all Warp tools, contract data can be also served by Arweave gateway:
+3. Finally, contract is sent to Warp Gateway where it is indexed so it can be immediately available for all Warp tools, contract data can be also served by Arweave gateway.
+
+:::caution
+`register` method requires installing [`warp-contracts-plugin-deploy`](https://www.npmjs.com/package/warp-contracts-plugin-deploy). Learn more about this plugin in [`Deploy Plugin` section](https://academy.warp.cc/sdk/advanced/plugins/deployment).
+:::caution
 
 ```ts
-const warp = WarpFactory.forMainnet();
+import { WarpFactory } from 'warp-contracts';
+import { DeployPlugin } from 'warp-contracts-plugin-deploy';
+
+const warp = WarpFactory.forMainnet().use(new DeployPlugin());
 const { contractTxId } = await warp.register(tx.id, 'node2');
 console.log(`Check the data: https://arweave.net/${contractTxId}`);
 ```
