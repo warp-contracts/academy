@@ -12,6 +12,7 @@ List of available options:
   - `SmartWeave.transaction.owner`
   - `SmartWeave.transaction.tags` (tags are already decoded)
   - `SmartWeave.transaction.quantity`
+  - `SmartWeave.transaction.target`
   - `SmartWeave.transaction.reward`
 
 * contract
