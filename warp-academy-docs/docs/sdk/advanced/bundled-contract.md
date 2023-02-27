@@ -30,79 +30,91 @@ the entry barrier, both for developers and given protocol users.
 
 ## How it works
 
-Instead of posting the contract and contract source transactions directly to Arweave mainnet, both are sent to Warp
-Gateway (`/gateway/contracts/deploy` endpoint) (this is the default behaviour of Warp's SDK `warp.createContract.deploy` function, when `forMainnet` instance is being used).
+### Nested bundles
 
-The Warp Gateway then:
+Bundling allows to write multiple data items into one top level transaction. A data item differs from a regular transaction by not allowing to transfer AR tokens and passing reward but it has most of the transaction's properties - such as owner, data, tags, owner and id.
 
-1. Posts contract transactions (i.e. the base contract transaction and contract source transaction - or only the
-   contract transaction, if deploying from existing source) to the Bundlr network. Each contract transaction is sent as
-   a separate Bundlr transaction - as the `data` of the bundled transaction. The Bundlr transaction in this case might
-   be considered as a "carrier" of the original transaction. Additionally - some additional tags to the Bundlr transaction
-   are added.
+In a nutshell, the nested bundles concept means that such data item of a bundle can also be a bundle containg other data items. According to ANS-104 standard it can lead to theoretically unbounded levels of nesting.
+
+You can read the specification for nested bundles standard in [ANS-104](https://github.com/ArweaveTeam/arweave-standards/blob/master/ans/ANS-104.md#31-nested-bundle).
+
+### Warp Gateway
+
+Instead of posting the contract and contract source transactions directly to Arweave mainnet, [Warp Plugin](https://academy.warp.cc/sdk/advanced/plugins/deployment) creates data items from either both of them (when using `deploy` method) or only contract (when using `deployFromSourceTx` method) and send them to Warp Gateway where they are wrapped in a nested bundled and uploaded to Bundlr.
+
+:::info
+Bundling contract is the default behaviour of Warp's SDK `warp.deploy` function, when `forMainnet` instance is being used.
+:::
+
+The Warp Gateway uses nested bundle concept to deploy contract and contract source to Arweave:
+
+![protocol](./assets/nested_bundle.png)
+
+1. The validity and tags of the data items are verified.
+
+2. Data items are wrapped in a bundle:
 
 ```ts
-const bTx = bundlr.createTransaction(JSON.stringify(transaction), { tags });
-await bTx.sign();
-const bundlrResponse = await bTx.upload();
+const bundle = await bundleData([dataItem]);
 ```
 
-Transaction which is sent to Bundlr, consists of:
+3. Another data item - a nested bundle containg our contract or contract source data item - is created:
 
-| Transaction field                           | Value                                                 |
-| ------------------------------------------- | ----------------------------------------------------- |
-| `data`                                      | The original transaction, JSON stringified            |
-| `tag['Uploader']`                           | `RedStone`                                            |
-| `tag['Uploader-Contract-Owner']`            | The original owner/signar of the contract transaction |
-| `tag['Uploader-Tx-Id']`                     | The id of the original transaction                    |
-| ...all the tags of the original transaction |                                                       |
+```ts
+const bundlrTx = bundlr.createTransaction(bundle.getRaw(), tags);
+```
 
-**NOTE** The original transaction is not modified in any way - this is to preserve the original
-signature!
+A nested bundle contains following tags:
 
-2. After receiving proper response and receipt from Bundlr, the Warp gateway indexes the contract
-   transactions data internally - to make them instantly available.
+```ts
+      { name: 'Bundle-Format', value: 'binary' },
+      { name: 'Bundle-Version', value: '2.0.0' },
+      { name: 'App-Name', value: 'Warp' },
+      { name: 'Action', value: 'WarpContractDeployment' }
+```
 
-3. Finally, the Warp gateway returns an object as a `response` - that consists of fields:
+4. Our nested bundle is signed and uploaded to Bundlr which then post it to Arweave:
 
-- `response.contractId` - the original contract tx id
-- `response.bundleContractId` - the Bundlr contract tx id
-- `response.srcTxId` - the original contract source transaction id
-- `response.bundleSrcId` - the Bundlr source tx id.
+```ts
+await bundlrTx.sign();
+const bundlrResponse = await bundlr.uploader.uploadTransaction(bundlrTx, { getReceiptSignature: true });
+```
+
+5. After receiving proper response and receipt from Bundlr, the Warp gateway indexes the contract transactions data internally - to make them instantly available.
+
+6. Finally, the Warp gateway returns an object as a `response` - that consists of fields:
+
+- `response.contractTxId` - contract id
+- `response.srcTxId` - contract source id
+- `response.bundlrTxId` - id of the nested bundle containing contract and contract source data items
 
 ## Resulting transaction structure
 
-This is how the example contract transaction `hs9JlOG0LMkTa4VdJ-nf6I46kLbWbCpvZczdl3N-ASQ` looks like on [ViewBlock](https://viewblock.io/arweave/tx/Yy9WoplIYqy03O7_ovUr4TrvwryxHEneuNep7ATDftI).
+This is how the example contract `o0SKH5SER-pJa50rxB891ZoumWdt8PBindQAtvhbeYw` looks like on [ViewBlock](https://viewblock.io/arweave/tx/o0SKH5SER-pJa50rxB891ZoumWdt8PBindQAtvhbeYw).
 
-**NOTE** Keep in mind that it takes some time before Bundlr posts given bundle to Arweave and ViewBlock actually index such bundle and its contents - usually it may take 1-2 days.
-![img_2.png](./assets/bundled_contract_1.png)
+:::note
 
-1. The `Yy9WoplIYqy03O7_ovUr4TrvwryxHEneuNep7ATDftI` is the id of the bundled item - assigned by Bundlr during data item creation - according to ANS-104 [specs](https://github.com/ArweaveTeam/arweave-standards/blob/master/ans/ANS-104.md#2-dataitem-signature-and-id).
-2. The `udJBlYAXNhFnjeb1YABQzqqVog3VpcauonBbO1MSwvc` is the id of the Arweave bundle transaction - that contains a data item from point 1, stored in `data` field - according to ANS-104 [specs](https://github.com/ArweaveTeam/arweave-standards/blob/master/ans/ANS-104.md#12-transaction-body-format)  
-   **NOTE** This is the only "real" Arweave transaction
-3. The `hs9JlOG0LMkTa4VdJ-nf6I46kLbWbCpvZczdl3N-ASQ` is the original transaction id - as it was created and signed by the original protocol user.
-   The transaction with this id is effectively a content of the bundle item (point 1.) - i.e. is stored in `dataItem.data` [field](https://github.com/ArweaveTeam/arweave-standards/blob/master/ans/ANS-104.md#13-dataitem-format)
+Keep in mind that it takes some time before Bundlr posts given bundle to Arweave and ViewBlock actually index such bundle and its contents - usually it may take 1-2 days.
 
-**NOTE** Only the last transaction (from point 3.) is effectively important from the SmartWeave protocol perspective - it is the transaction that the protocol 'sees' when it loads the contract.
+:::
+
+1. The `o0SKH5SER-pJa50rxB891ZoumWdt8PBindQAtvhbeYw` is the id of the contract data item - according to ANS-104 [specs](https://github.com/ArweaveTeam/arweave-standards/blob/master/ans/ANS-104.md#2-dataitem-signature-and-id).
+2. The `gZYT07AIXZ9oQ0xkUIJC6IMVYh82prapK-VS34h_G30` is the id of the Arweave nested bundle transaction - that contains a data item from point 1, according to ANS-104 [specs](https://github.com/ArweaveTeam/arweave-standards/blob/master/ans/ANS-104.md#31-nested-bundle)
+
+:::note
+The first data item is effectively important from the SmartWeave protocol perspective - it is the transaction that the protocol 'sees' when it loads the contract.
+:::
 
 ## Contract transaction retrieval via Arweave gateway
 
-1. Directly via `response.bundleContractId` - e.g. https://arweave.net/Yy9WoplIYqy03O7_ovUr4TrvwryxHEneuNep7ATDftI  
-   **NOTE 1** The response object contains the full, original tx - including its data and id (`hs9JlOG0LMkTa4VdJ-nf6I46kLbWbCpvZczdl3N-ASQ` in this case).  
-   **NOTE 2** The `data` field contains the original contract's data. Usually it is an initial contract state or an asset - for AtomicNFT contracts.  
-   **NOTE 3** The `Yy9WoplIYqy03O7_ovUr4TrvwryxHEneuNep7ATDftI` is the Bundlr's tx id - assigned by
-   the `bundlr.createTransaction()`.
-   It is part of `ANS-104` bundle, that is uploaded to Arweave by Bundlr network - with the original tx as a `data-item`.
+1. Arweave gateway, using `response.contractTxId`: https://arweave.net/o0SKH5SER-pJa50rxB891ZoumWdt8PBindQAtvhbeYw
 
-2. Using the GQL endpoint, using the original contract tx id (`hs9JlOG0LMkTa4VdJ-nf6I46kLbWbCpvZczdl3N-ASQ` in this case) and `Uploader-Tx-Id` tag, e.g.
+2. Arweave GQL:, using `response.contractTxId`
 
 ```qql
 query {
   transactions(
-    tags: [{
-      name: "Uploader-Tx-Id",
-      values: ["hs9JlOG0LMkTa4VdJ-nf6I46kLbWbCpvZczdl3N-ASQ"]
-    }]
+    ids: ["o0SKH5SER-pJa50rxB891ZoumWdt8PBindQAtvhbeYw ]
   ) {
     edges {
       node {
@@ -124,75 +136,50 @@ Example Response:
 
 ```json
 {
-  "transactions": {
-    "edges": [
-      {
-        "node": {
-          "id": "Yy9WoplIYqy03O7_ovUr4TrvwryxHEneuNep7ATDftI",
-          "tags": [
-            {
-              "name": "Uploader",
-              "value": "RedStone"
-            },
-            {
-              "name": "Uploader-Contract-Owner",
-              "value": "33F0QHcb22W7LwWR1iRC8Az1ntZG09XQ03YWuw2ABqA"
-            },
-            {
-              "name": "Uploader-Tx-Id",
-              "value": "hs9JlOG0LMkTa4VdJ-nf6I46kLbWbCpvZczdl3N-ASQ"
-            },
-            {
-              "name": "Uploader-Bundler",
-              "value": "https://node2.bundlr.network"
-            },
-            {
-              "name": "App-Name",
-              "value": "SmartWeaveContract"
-            },
-            {
-              "name": "App-Version",
-              "value": "0.3.0"
-            },
-            {
-              "name": "Contract-Src",
-              "value": "cK9mwwuR2CR72ubcI34ClssjQUL5G7cZEd649CVPJWw"
-            },
-            {
-              "name": "SDK",
-              "value": "RedStone"
-            },
-            {
-              "name": "Content-Type",
-              "value": "application/json"
+  "data": {
+    "transactions": {
+      "edges": [
+        {
+          "node": {
+            "id": "o0SKH5SER-pJa50rxB891ZoumWdt8PBindQAtvhbeYw",
+            "tags": [
+              {
+                "name": "App-Name",
+                "value": "SmartWeaveContract"
+              },
+              {
+                "name": "App-Version",
+                "value": "0.3.0"
+              },
+              {
+                "name": "Contract-Src",
+                "value": "rOjueBWSZOIBEtm9hAO3h2INlEJvCMneUp76R_cYFgo"
+              },
+              {
+                "name": "SDK",
+                "value": "Warp"
+              },
+              {
+                "name": "Nonce",
+                "value": "1676981079385"
+              },
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "block": {
+              "height": 1123534
             }
-          ],
-          "block": {
-            "height": 1013105
           }
         }
-      }
-    ]
+      ]
+    }
   }
 }
 ```
 
-**NOTE** The `transactions.edges.node.id` is an id of the Bundlr transaction - the 'carrier' of the original transaction.
-
 ## Contract transaction retrieval via Warp gateway
 
-The Warp `/gateway/contract` endpoint allows to retrieve the Bundle contracts data directly via the original tx id.
+The Warp `/gateway/contract` endpoint allows to retrieve contract via `response.contractTxId`.
 This endpoint is used by default for loading contracts data by the Warp SDK - when `forMainnet` instance is being used.
-
-## Contract transaction data retrieval
-
-1. Using the Warp gateway - `gateway/contract-data/:original-tx-id`.
-   E.g.: https://gateway.redstone.finance/gateway/contract-data/hs9JlOG0LMkTa4VdJ-nf6I46kLbWbCpvZczdl3N-ASQ.  
-   This endpoint underneath maps the original tx id to the Bundlr tx id.
-   Having the original Bundlr tx id - it loads the original tx data either from arweave.net cache - or fallbacks to the Bundlr node.
-   The data is then decoded using a dedicated function - https://github.com/warp-contracts/gateway/blob/main/src/gateway/router/routes/contractDataRoute.ts#L57
-2. Using Arweave gateway -
-   1. get the Bundlr tx id - as shown in the GQL example
-   2. load the tx data using the `arweave.net/{txId}` endpoint
-   3. decode the response `data` field using the https://github.com/warp-contracts/gateway/blob/main/src/gateway/router/routes/contractDataRoute.ts#L57
-      algorithm.

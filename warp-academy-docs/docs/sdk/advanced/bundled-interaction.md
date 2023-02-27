@@ -101,7 +101,7 @@ This also means that the sequencing algorithm is fully backwards compatible with
 
 | Tag Name                                    | Tag Value                                                                       |
 |---------------------------------------------|---------------------------------------------------------------------------------|
-| `Sequencer`                                 | `RedStone`                                                                      |
+| `Sequencer`                                 | `Warp`                                                                      |
 | `Sequencer-Owner`                           | The original owner/signar of the contract transaction                           |
 | `Sequencer-Mills`                           | The sequence value used by the Sequencer for this transaction                   |
 | `Sequencer-Sort-Key`                        | The generated sort key for this transaction                                     |
