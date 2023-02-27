@@ -16,7 +16,7 @@ npm install warp-contracts-plugin-deploy
 ...and then attach it to the `Warp` instance:
 
 ```ts
-import { DeployPlugin } from 'warp-contracts-deploy-plugin';
+import { DeployPlugin } from 'warp-contracts-plugin-deploy';
 import { WarpFactory } from 'warp-contracts';
 
 const warp = WarpFactory.forMainnet().use(new DeployPlugin());
