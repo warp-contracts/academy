@@ -1,6 +1,6 @@
 # Overview
 
-Warp Contracts SDK is the implementation of the SmartWeave [Protocol](https://academy.warp.cc/docs/sdk/advanced/smartweave-protocol) - a smart contracts protocol on the Arweave blockchain.
+Warp Contracts SDK is the implementation of the [SmartWeave Protocol](https://academy.warp.cc/docs/sdk/advanced/smartweave-protocol) - a smart contracts protocol on the Arweave blockchain.
 
 :::info
 In a nutshell - SmartWeave protocol decouples the execution of the contracts from the consensus (i.e. the ordering of the transactions).

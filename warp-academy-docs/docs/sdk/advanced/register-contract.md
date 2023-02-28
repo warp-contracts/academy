@@ -6,7 +6,7 @@ This process does not allow to create a legit AtomicNFT as the data of the neste
 
 Therefore, a new contract creation method has been exposed in Warp SDK. Let's go through the process.
 
-1. User needs to prepare contract transaction, all the tags required by the [SmartWeave protocol](https://github.com/warp-contracts/warp/blob/main/docs/SMARTWEAVE_PROTOCOL.md#contract-creation) need to be included, initial state should be set in the tag, tags specific for AtomicNFT ('Title', 'Description', 'Type', 'Content-Type') should also be included in the contract tags.
+1. User needs to prepare contract transaction, all the tags required by the [SmartWeave Protocol](https://academy.warp.cc/docs/sdk/advanced/smartweave-protocol) need to be included, initial state should be set in the tag, tags specific for AtomicNFT ('Title', 'Description', 'Type', 'Content-Type') should also be included in the contract tags.
 
 ```ts
 const contractTags = [
