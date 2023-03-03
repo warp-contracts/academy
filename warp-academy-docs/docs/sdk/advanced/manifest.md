@@ -1,18 +1,5 @@
 # Contract Manifest
 
-### Evaluation options
-Evaluation options is a set of options that allow to configure how the Warp Contracts SDK will behave during contract evaluation.
-The evaluation options are set via the `setEvalutionOptions` method on the `Contract` instance, example:
-```ts
-  warp.contract('<contract_tx_id>')
-      .setEvaluationOptions({
-        unsafeClient: "allow"
-      });
-```
-
-The full set of currently available evaluation options is available [here](https://github.com/warp-contracts/warp/blob/main/src/core/modules/StateEvaluator.ts#L147).
-
-### Manifest
 To ensure that each client will evaluate the contract with the same evaluation options set - a
 contract manifest can be specified during contract deployment.
 The contract manifest is a set of evaluation options that are required by the contract to properly execute.  
@@ -88,32 +75,5 @@ is being performed, and we're evaluating a list of internal writes for a newly c
 :::info
 
 All rules are defined in [https://github.com/warp-contracts/warp/blob/main/src/contract/EvaluationOptionsEvaluator.ts#L21](https://github.com/warp-contracts/warp/blob/main/src/contract/EvaluationOptionsEvaluator.ts#L21)
-
-:::
-
-### `sourceType` evaluation option
-A special evaluation option - `sourceType` allows to control what kind of the interactions the SDK will load to
-evaluate the contract state.  
-The possible values are:
-- `SourceType.ARWEAVE` - only direct, Arweave transactions will be loaded 
-- `SourceType.WARP_SEQUENCER` - only Warp Sequencer registered transactions will be loaded
-- `SourceType.BOTH` - both Warp Sequencer and direct Arweave transactions will be loaded
-
-:::tip
-
-You can specify this option in a contract manifest to make sure that all clients will use the transactions of the same source, e.g.:
-
-```ts
-const {contractTxId, srcTxId} = await warp.deploy({
-      wallet,
-      initState: initialState,
-      src: jsContractSrc,
-      evaluationManifest: {
-        evaluationOptions: {
-          sourceType: SourceType.ARWEAVE
-        }
-      }
-    });
-```  
 
 :::
