@@ -44,6 +44,7 @@ const sidebars = {
             { type: 'doc', label: 'SmartWeave protocol', id: 'sdk/advanced/smartweave-protocol' },
             { type: 'doc', label: 'WASM', id: 'sdk/advanced/wasm' },
             { type: 'doc', label: 'Internal contract calls', id: 'sdk/advanced/internal-calls' },
+            { type: 'doc', label: 'Evaluation options', id: 'sdk/advanced/evaluation-options' },
             { type: 'doc', label: 'Contract manifest', id: 'sdk/advanced/manifest' },
             { type: 'doc', label: 'KV Storage', id: 'sdk/advanced/kv-storage' },
             { type: 'doc', label: 'Custom Warp instance', id: 'sdk/advanced/custom-warp' },
