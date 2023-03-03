@@ -198,7 +198,8 @@ and ignored.
     * `id` - the contract tx id
     * `state` - `true|false` - whether state should be returned. `true` by default  
     * `validity` - `true|false` - whether validity should be returned. `false` by default
-    * `errorMessages` -`true|false` - whether error messages should be returned. `false` be default
+    * `errorMessages` -`true|false` - whether error messages should be returned. `false` by default
+    * `errors` - whether errors thrown during the evaluation process should be returned (e.g. the errors thrown by Warp Gateway, Arweave gateway). `false` by default
     * `events` `true|false` - whether events for this contract should be returned.. `false` by default
     * `query` - a [jsonpath-plus](https://www.npmjs.com/package/jsonpath-plus) expression that allows to query the
       current state (for example query for the balance of a concrete wallet address).
