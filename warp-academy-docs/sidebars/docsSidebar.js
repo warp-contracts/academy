@@ -46,6 +46,7 @@ const sidebars = {
             { type: 'doc', label: 'Internal contract calls', id: 'sdk/advanced/internal-calls' },
             { type: 'doc', label: 'Evaluation options', id: 'sdk/advanced/evaluation-options' },
             { type: 'doc', label: 'Contract manifest', id: 'sdk/advanced/manifest' },
+            { type: 'doc', label: 'Constructor', id: 'sdk/advanced/constructor' },
             { type: 'doc', label: 'KV Storage', id: 'sdk/advanced/kv-storage' },
             { type: 'doc', label: 'Custom Warp instance', id: 'sdk/advanced/custom-warp' },
             { type: 'doc', label: 'Custom transactions signing', id: 'sdk/advanced/custom-signing' },
@@ -210,23 +211,25 @@ const sidebars = {
         },
       ],
     },
-    { type: 'category', label: 'Warp Contracts CLI', items: [
-      {
-        type: 'doc',
-        label: 'Installation',
-        id: 'cli/installation'
-      },
-      {
-        type: 'doc',
-        label: 'Usage',
-        id: 'cli/usage'
-      },
-      {
-        type: 'doc',
-        label: 'Commands',
-        id: 'cli/commands'
-      }
-    ] },
+    {
+      type: 'category', label: 'Warp Contracts CLI', items: [
+        {
+          type: 'doc',
+          label: 'Installation',
+          id: 'cli/installation'
+        },
+        {
+          type: 'doc',
+          label: 'Usage',
+          id: 'cli/usage'
+        },
+        {
+          type: 'doc',
+          label: 'Commands',
+          id: 'cli/commands'
+        }
+      ]
+    },
     {
       type: 'category',
       label: 'Warp D.R.E. Node',
