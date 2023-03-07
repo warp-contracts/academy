@@ -16,7 +16,13 @@ This allows to store and/or retrieve only required parts of the state within any
 #### API
 The `SmartWeave` 'global' object has 2 new methods added:
 1. `SmartWeave.kv.put(key, value)` - allows to store a value (e.g. a wallet balance)
-2. `SmartWeave.kv.get(key)` - allows to retrieve a value from the storage by its key
+2. `SmartWeave.kv.get(key)` - allows to retrieve the latest value from the storage by its key
+
+:::caution
+Get operations retrieve the latest value it can find, including all the previous interactions.
+Currently, it is not possible to delete a value or set value to null.
+In order to have a `delete like` functionality please consider setting an empty value, like an empty string.
+:::
 
 The `Contract` interface has a new method added:
 `getStorageValues(keys: string[]): Promise<SortKeyCacheResult<Map<string, any>>>`
