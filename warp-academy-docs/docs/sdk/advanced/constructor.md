@@ -7,7 +7,8 @@ Consider this as an experimental feature (though already used by our own contrac
 :::
 
 :::caution
-Internal calls feature is not available in constructor code.
+`Internal calls`, `SmartWeave.block` and `SmartWeave.vrf` features are not available in constructor.
+If you find this features necessary please don't hesitate to create [future request](https://github.com/warp-contracts/warp/issues/new).
 
 Feature is only available for contracts written in JS
 :::
