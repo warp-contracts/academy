@@ -1,6 +1,11 @@
 # Warp Sequencer
 
-This document describes the core concepts behind the Warp Sequencer.
+Warp Sequencer is a module that is responsible for submitting users' transactions into Arweave (via [Bundlr Network](https://bundlr.network/)).  
+During the process, the transactions are indexed in [Warp Gateway](https://docs.warp.cc/docs/gateway/overview).
+This makes them instantly available for further processing (e.g. state evaluation) - unlike in traditional processing,
+where user has to wait several minutes for transaction mining and confirmation.
+
+Additionally, the Warp Sequencer does not require users to have any cryptocurrencies (AR, ETH, etc.) on their wallets. 
 
 ## Introduction
 
