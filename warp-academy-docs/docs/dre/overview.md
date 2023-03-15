@@ -1,6 +1,8 @@
 # Warp D.R.E.
 
-A Delegated Resolution Environment for Warp Contracts.
+A Delegated Resolution Environment for Warp Contracts.  
+D.R.E. nodes are a special kind of nodes that are responsible for evaluating and serving contracts' states - 
+in a decentralized manner - taking the burden of the state evaluation from the end users.
 
 * [The reasoning](#the-reasoning)
 * [Nodes](#nodes)
