@@ -104,17 +104,18 @@ This also means that the sequencing algorithm is fully backwards compatible with
 
 #### 2. Generates tags for the Bundlr transaction
 
-| Tag Name                                    | Tag Value                                                                       |
-|---------------------------------------------|---------------------------------------------------------------------------------|
-| `Sequencer`                                 | `Warp`                                                                      |
-| `Sequencer-Owner`                           | The original owner/signar of the contract transaction                           |
-| `Sequencer-Mills`                           | The sequence value used by the Sequencer for this transaction                   |
-| `Sequencer-Sort-Key`                        | The generated sort key for this transaction                                     |
-| `Sequencer-Last-Sort-Key`                   | The sort key of the previous transaction |
-| `Sequencer-Tx-Id`                           | The original transaction id                                                     |
-| `Sequencer-Block-Height`                    | The block height used for generating the sort key                               |
-| `Sequencer-Block-Id`                        | The block hash used for generating the sort key                                 |
-| ...all the tags of the original transaction |                                                                                 |
+| Tag Name                                    | Tag Value                                                            |
+|---------------------------------------------|----------------------------------------------------------------------|
+| `Sequencer`                                 | `Warp`                                                               |
+| `Sequencer-Owner`                           | The original owner/signar of the contract transaction                |
+| `Sequencer-Mills`                           | The sequence value used by the Sequencer for this transaction        |
+| `Sequencer-Sort-Key`                        | The generated sort key for this transaction                          |
+| `Sequencer-Last-Sort-Key`                   | The sort key of the previous transaction                             |
+| `Sequencer-Tx-Id`                           | The original transaction id                                          |
+| `Sequencer-Block-Height`                    | The block height used for generating the sort key                    |
+| `Sequencer-Block-Id`                        | The block hash used for generating the sort key                      |
+| `Sequencer-Block-Timestamp`                 | The timestamp of the block that was used for generating the sort key |
+| ...all the tags of the original transaction |                                                                      |
 
 :::tip
 The `Sequencer-Last-Sort-Key` tells what is the sort key of the 'previous' transaction in the sequencer and
