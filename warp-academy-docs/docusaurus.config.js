@@ -8,7 +8,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/vsDark');
 const config = {
   title: 'Warp Academy',
   tagline: 'Dinosaurs are cool',
-  url: 'https://your-docusaurus-test-site.com',
+  url: 'https://docs.warp.cc',
   baseUrl: '/',
   onBrokenLinks: 'ignore',
   onBrokenMarkdownLinks: 'warn',
@@ -71,7 +71,7 @@ const config = {
         },
         sidebarPath: require.resolve('./sidebars/tutorialSidebar.js'),
       },
-    ]
+    ],
   ],
 
   themeConfig:
@@ -188,9 +188,9 @@ const config = {
       },
       docs: {
         sidebar: {
-          hideable: true
-        }
-      }
+          hideable: true,
+        },
+      },
     }),
 };
 
