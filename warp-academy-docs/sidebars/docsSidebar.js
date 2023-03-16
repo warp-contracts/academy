@@ -50,6 +50,7 @@ const sidebars = {
             { type: 'doc', label: 'KV Storage', id: 'sdk/advanced/kv-storage' },
             { type: 'doc', label: 'Custom Warp instance', id: 'sdk/advanced/custom-warp' },
             { type: 'doc', label: 'Custom transactions signing', id: 'sdk/advanced/custom-signing' },
+            { type: 'doc', label: 'Arweave interactions loader', id: 'sdk/advanced/arweave-interaction-loader' },
             {
               type: 'category',
               label: 'Plugins',
