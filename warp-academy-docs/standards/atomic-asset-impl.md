@@ -8,6 +8,14 @@ Libraries exposes functions, which as first argument accept current state of con
 You should check `atomic-asset` standard [state](./atomic-asset.md#state), to avoid clash of state fields names.
 :::
 
+## Discoverability
+
+To find existing contracts implementing the atomic-asset standard, we can use `tags` that are part of every Arweave transaction.
+Tags can be specified [during deployment](../docs/sdk/advanced/register-contract) of atomic-asset.
+
+- During deployment following tag should be added : `{name: 'Indexed-By', value: 'atomic-asset'}`
+  - This tag is supported by [warp-aggregate-node](../docs//aggregate-node/overview.md). Thus allow to query assets by its owner - [documentation](../docs//aggregate-node/overview.md#nft-by-owner)
+
 ## State
 
 These is state structure for both implementations.
@@ -61,7 +69,7 @@ These is state structure for both implementations.
 ## Deployment
 
 :::info
-Deployment of atomic-asset require extra step, which is described [here](../docs/sdk/advanced/register-contract)
+Deployment of atomic-asset requires extra step, which is described [here](../docs/sdk/advanced/register-contract)
 :::
 
 - You can deploy from source code like any other `warp-contract` [usage](../docs/sdk/basic/deployment#deploy) and use deployed `srcTxId` as described [here](../docs/sdk/advanced/register-contract)
