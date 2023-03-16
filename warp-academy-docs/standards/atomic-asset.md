@@ -3,9 +3,11 @@
 ## What is atomic asset?
 
 An atomic asset is the concept, where **asset** (like an image) and **smart contract** are deployed atomically - in one logical transaction.
-It is possible, thanks to unique properties of arweave blockchain. Typically, a blockchain asset is stored on a storage system (for example, IPFS), and only a smart contract is deployed on-chain (for example, the ERC721 standard). Why to choose atomic asset:
+It is possible, thanks to unique properties of Arweave blockchain. Typically, a blockchain asset is stored on a storage system (for example - IPFS), and only a smart contract is deployed on-chain (for example - the ERC721 standard).
 
-- Standards like ERC-721 on Ethereum usually point to the external links of the NFT’s asset, and are stored outside of the Ethereum Virtual Machine, thus you have no guarantee that it will be stored there permanently. In scenario where storage provider is centralized you could wake up empty-handed (NFT contract pointing to a non-existing URI). However, even if you use a decentralized means of storage like IPFS, it doesn't offer the same level of assurance regarding data availability as Arweave. (you can read more [here](https://arweave.news/nfts-storage-arweave-vs-ipfs/)). In one example an artist named [neitherconfirm](https://twitter.com/neitherconfirm/status/1369285946198396928?s=20) changed the media files referenced by 26 of his NFTs to stock images of rugs. The artist later commented, “All discussions about the value of NFTs are meaningless as long as the token is not inseparable from the artwork its
+### Why to choose atomic asset:
+
+- Standards like ERC-721 on Ethereum usually point to the external links of the NFT’s asset, and are stored outside of the Ethereum Virtual Machine, thus you have no guarantee that it will be stored there permanently. In scenario where storage provider is centralized you could wake up empty-handed (NFT contract pointing to a non-existing URI). However, even if you use a decentralized means of storage like IPFS, it doesn't offer the same level of assurance regarding data availability as Arweave. (you can read more [here](https://arweave.news/nfts-storage-arweave-vs-ipfs/)). In one example an artist named [neitherconfirm](https://twitter.com/neitherconfirm/status/1369285946198396928?s=20) changed the media files referenced by 26 of his NFTs to stock images of rugs. The artist later commented, “All discussions about the value of NFTs are meaningless as long as the token is not inseparable from the artwork itself"
 - With atomic assets, there is no possibility to create two (or more) contracts pointing to the same data, definition of the ownership is bounded to the asset not the other way around. "With Atomic NFTs, the address of the NFT smart contract _is_ the address of the NFT’s data. Permanent, on-chain assets, and no external metadata. One address. How NFTs were supposed to be" - Sam Williams, Arweave founder.
 - Take the red pill 💊! Be the owner of your data, not the link to the data! 😎
 
@@ -20,9 +22,9 @@ As we described earlier Atomic asset is a general idea, like [NFT](https://en.wi
 - If the contract is `NFT` then `totalSupply == 1` and `owner` field is set
 - If the contract is fungible token, then `totalSupply > 1` and `owner` field is empty
 - `atomic-asset` is always binded to only one asset. This standard doesn't support multiple assets per one contract
-- Unique id of asset is his transaction id
-- `balance` per account can be never < 0
-- `allowance` per account can be never < 0
+- Unique id of asset is its transaction id
+- `balance` per account can never be < 0
+- `allowance` per account can never be < 0
 
 ## Interface
 

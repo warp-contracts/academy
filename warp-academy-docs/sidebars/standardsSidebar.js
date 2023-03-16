@@ -18,7 +18,7 @@ const sidebars = {
 
     // But you can create a sidebar manually
 
-    tutorialSidebar: [
+    standardsSidebar: [
         {
             type: 'doc',
             label: 'Intro',
