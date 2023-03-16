@@ -46,29 +46,94 @@ In order to use most of the deployment methods, you will need a wallet which ser
 - [`Metamask`](https://metamask.io)
 - [`ethers`](https://docs.ethers.org/v5)
 
-Then, all you need to do is save wallet's keyfile and include it in your project (preferably in `.secrets` folder which won't be exposed to the public).
-
 You will then pass wallet to the deployment methods by setting it as a constructor to one of the dedicated objects. They can all be imported from `warp-contracts-plugin-deploy`:
 
-**server environment**
+**SERVER ENVIRONMENT**
 
 - `ArweaveSigner`
 - `EthereumSigner`
 
-**browser environment**
+All you need to do is save wallet's keyfile and include it in your project (preferably in `.secrets` folder which won't be exposed to the public).
+
+**Example `Arweave Signer`**
+
+```typescript
+const wallet = JSON.parse(fs.readFileSync('<path_to_wallet>', 'utf-8'));
+const { contractTxId } = await warp.deploy({
+  wallet: new ArweaveSigner(wallet),
+  initState: JSON.stringify(initialState),
+  src: contractSrc,
+});
+```
+
+**BROWSER ENVIRONMENT**
 
 - `InjectedArweaveSigner`
 - `InjectedEthereumSigner`
 
-<details>
-  <summary>Example</summary>
+**Example `InjectedArweaveSigner` using `arweave.app`(https://arweave.app) with `arweave-wallet-connector`**
 
 ```typescript
-const wallet = JSON.parse(fs.readFileSync('<path_to_wallet>', 'utf-8'));
-const signer = new ArweaveSigner(wallet);
+const wallet = new ArweaveWebWallet({
+  name: 'Your application name',
+  logo: 'URL of your logo to be displayed to users',
+});
+
+wallet.setUrl('arweave.app');
+await wallet.connect();
+const userSigner = new InjectedArweaveSigner(wallet.namespaces.arweaveWallet);
+await userSigner.setPublicKey();
+const { contractTxId } = await warp.deploy({
+  wallet: userSigner,
+  initState: JSON.stringify(initialState),
+  src: contractSrc,
+});
 ```
 
-</details>
+**Example `InjectedArweaveSigner` using `ArConnect`**
+
+```typescript
+if (window.arweaveWallet) {
+  await window.arweaveWallet.connect(['ACCESS_ADDRESS', 'SIGN_TRANSACTION', 'ACCESS_PUBLIC_KEY', 'SIGNATURE']);
+}
+const userSigner = new InjectedArweaveSigner(window.arweaveWallet);
+await userSigner.setPublicKey();
+const { contractTxId } = await warp.deploy({
+  wallet: userSigner,
+  initState: JSON.stringify(initialState),
+  src: contractSrc,
+});
+```
+
+**Example `InjectedEthereumSigner` using `Metamask` and `ethers version 5`**
+
+```typescript
+await window.ethereum.request({ method: 'eth_requestAccounts' });
+const provider = new ethers.providers.Web3Provider(window.ethereum);
+const userSigner = new InjectedEthereumSigner(provider);
+await userSigner.setPublicKey();
+const { contractTxId } = await warp.deploy({
+  wallet: userSigner,
+  initState: JSON.stringify(initialState),
+  src: contractSrc,
+});
+```
+
+**Example `InjectedEthereumSigner` using `Metamask` and `ethers version 6`**
+
+```typescript
+await window.ethereum.request({ method: 'eth_requestAccounts' });
+const provider = new ethers.BrowserProvider(window.ethereum);
+const signer = await provider.getSigner();
+provider.getSigner = () => signer;
+const userSigner = new InjectedEthereumSigner(wallet);
+await userSigner.setPublicKey();
+const { contractTxId } = await warp.deploy({
+  wallet: userSigner,
+  initState: JSON.stringify(initialState),
+  src: contractSrc,
+});
+```
 
 ### Initial state
 
