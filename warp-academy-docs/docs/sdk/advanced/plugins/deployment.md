@@ -55,7 +55,7 @@ You will then pass wallet to the deployment methods by setting it as a construct
 
 All you need to do is save wallet's keyfile and include it in your project (preferably in `.secrets` folder which won't be exposed to the public).
 
-**Example `Arweave Signer`**
+**`Arweave Signer`**
 
 ```typescript
 const wallet = JSON.parse(fs.readFileSync('<path_to_wallet>', 'utf-8'));
@@ -71,7 +71,7 @@ const { contractTxId } = await warp.deploy({
 - `InjectedArweaveSigner`
 - `InjectedEthereumSigner`
 
-**Example `InjectedArweaveSigner` using `arweave.app`(https://arweave.app) with `arweave-wallet-connector`**
+**`InjectedArweaveSigner` using [`arweave.app`](https://arweave.app) with [`arweave-wallet-connector`](https://github.com/jfbeats/ArweaveWalletConnector)**
 
 ```typescript
 const wallet = new ArweaveWebWallet({
@@ -90,7 +90,7 @@ const { contractTxId } = await warp.deploy({
 });
 ```
 
-**Example `InjectedArweaveSigner` using `ArConnect`**
+**`InjectedArweaveSigner` using [`ArConnect`](https://www.arconnect.io/)**
 
 ```typescript
 if (window.arweaveWallet) {
@@ -105,7 +105,7 @@ const { contractTxId } = await warp.deploy({
 });
 ```
 
-**Example `InjectedEthereumSigner` using `Metamask` and `ethers version 5`**
+**`InjectedEthereumSigner` using [`Metamask`](https://metamask.io/) and [`ethers version 5`](https://docs.ethers.org/v5/)**
 
 ```typescript
 await window.ethereum.request({ method: 'eth_requestAccounts' });
@@ -119,7 +119,7 @@ const { contractTxId } = await warp.deploy({
 });
 ```
 
-**Example `InjectedEthereumSigner` using `Metamask` and `ethers version 6`**
+**`InjectedEthereumSigner` using [`Metamask`](https://metamask.io/) and [`ethers version 6`](https://docs.ethers.org/v6/)**
 
 ```typescript
 await window.ethereum.request({ method: 'eth_requestAccounts' });
