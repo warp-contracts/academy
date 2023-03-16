@@ -34,10 +34,11 @@ The purpose of implementing Warp D.R.E. is to address the following issues.
 
 ## Nodes
 
-Currently, there are two nodes available
+Currently, there are three nodes available
 
 1. **The East Side** - https://dre-1.warp.cc
 2. **The West Side** - https://dre-2.warp.cc
+2. **The South Side** - https://dre-4.warp.cc
 
 To verify if your contract is available - check the `/contract` endpoint,  
 eg: https://dre-1.warp.cc/contract?id=-8A6RexFkpfWwuyVO98wzSFZh0d6VJuI-buTJvlwOJQ&events=true
@@ -192,6 +193,11 @@ Whenever a contract reaches a certain amount of failures (3 for both dre-1 and d
 and ignored.
 
 ### 5. Endpoints
+
+:::tip
+If you're using Rust, you can interact with D.R.E. with the help of a great library developed by the [https://archivetheweb.com/](archivetheweb)
+team - [https://github.com/archivetheweb/warp_dre](https://github.com/archivetheweb/warp_dre).
+:::
 
 1. `/`, `/status` - contains information about node manifest, workers configuration,
    queues status, etc.
