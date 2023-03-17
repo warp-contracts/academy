@@ -2,9 +2,10 @@
 
 Typically, deploying a contract through Warp Gateway requires wrapping contract transaction in another transaction (Warp Gateway posts a contract transaction to the Bundlr Network as a data of the bundled transaction - more about in [this doc](https://academy.warp.cc/docs/sdk/advanced/bundled-contract/)).
 
-This process does not allow to create a legit AtomicNFT as the data of the nested transaction (our contract) cannot be served via Arweave gateway (it will be possible as soon as Nested Bundles will be implemented by Warp).
+As Warp Contracts has implemented the Nested Bundled standard development process, we can now create a legit AtomicNFT as the nested transaction (our contract) can be served via Arweave.
 
-Therefore, a new contract creation method has been exposed in Warp SDK. Let's go through the process.
+
+Here is a method for creating a contract. Let's go through the process.
 
 1. User needs to prepare contract transaction, all the tags required by the [SmartWeave Protocol](https://academy.warp.cc/docs/sdk/advanced/smartweave-protocol) need to be included, initial state should be set in the tag, tags specific for AtomicNFT ('Title', 'Description', 'Type', 'Content-Type') should also be included in the contract tags.
 
