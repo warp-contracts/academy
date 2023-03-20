@@ -5,7 +5,7 @@ By default in order to sign any transactions, user's wallet of type [`JWKInterfa
 It is also possible to pass as wallet property object of type `CustomSignature`. Interface for the discussed below:
 
 ```ts
-type SignatureType = "arweave" | "ethereum";
+type SignatureType = 'arweave' | 'ethereum';
 type SigningFunction = (tx: Transaction) => Promise<void>;
 
 type CustomSignature = {
@@ -29,11 +29,9 @@ const customSigningFunction = async (tx: Transaction) => {
   await sign(tx);
 };
 
-await contract
-  .connect({ signer: customSigningFunction, signatureType: "arweave" })
-  .writeInteraction({
-    function: "function",
-  });
+await contract.connect({ signer: customSigningFunction, type: 'arweave' }).writeInteraction({
+  function: 'function',
+});
 ```
 
 Custom signing function is then used to sign the transaction.
