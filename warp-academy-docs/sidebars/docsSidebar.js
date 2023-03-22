@@ -42,7 +42,14 @@ const sidebars = {
           label: 'Advanced',
           items: [
             { type: 'doc', label: 'SmartWeave protocol', id: 'sdk/advanced/smartweave-protocol' },
-            { type: 'doc', label: 'WASM', id: 'sdk/advanced/wasm' },
+            {
+              type: 'category',
+              label: 'WASM',
+              items: [
+                { type: 'doc', label: 'Overview', id: 'sdk/advanced/wasm/overview' },
+                { type: 'doc', label: 'Rust template', id: 'sdk/advanced/wasm/rust-template' },
+              ]
+            },
             { type: 'doc', label: 'Internal contract calls', id: 'sdk/advanced/internal-calls' },
             { type: 'doc', label: 'Evaluation options', id: 'sdk/advanced/evaluation-options' },
             { type: 'doc', label: 'Contract manifest', id: 'sdk/advanced/manifest' },
