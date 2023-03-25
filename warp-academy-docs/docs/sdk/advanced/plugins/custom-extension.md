@@ -39,4 +39,4 @@ Extension can be later used inside the contract as follow:
 SmartWeave.extensions.custom.someCustomMethod();
 ```
 
-Example of SmartWeave extensions plugins are [`EthersPlugin`](https://academy.warp.cc/docs/sdk/advanced/ethers) and [`NlpPlugin`](https://academy.warp.cc/docs/sdk/advanced/nlp).
+Example of SmartWeave extensions plugins are [`EthersPlugin`](https://docs.warp.cc/docs/sdk/advanced/plugins/ethers) and [`NlpPlugin`](https://docs.warp.cc/docs/sdk/advanced/plugins/nlp).
