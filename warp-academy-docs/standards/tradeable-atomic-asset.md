@@ -1,11 +1,13 @@
 # Introduction
 
-Warp team has implemented `atomic-asset` standard in two languages Rust and Typescript.
-You can use implementations directly, or leverage libraries which allows to compose own implementations of standard.
+The Warp team has implemented `atomic-asset` and `tradeable` standard in two languages Rust and Typescript.
+The default implementation is composed from two standards [atomic-asset](./atomic-asset.md) and [tradeable](./tradeable.md).
 
-:::danger
+You can use implementations directly, or leverage libraries which allows to compose own implementations.
+Thanks to libraries it is up to you, which interfaces will you expose.:::danger
+
 Libraries exposes functions, which as first argument accept current state of contract and return modified state.
-You should check `atomic-asset` standard [state](./atomic-asset.md#state), to avoid clash of state fields names.
+You should check [State section](./tradeable-atomic-asset.md#state) to avoid clash of state fields names.
 :::
 
 ## Discoverability
@@ -14,7 +16,7 @@ To find existing contracts implementing the atomic-asset standard, we can use `t
 Tags can be specified [during deployment](../docs/sdk/advanced/register-contract) of atomic-asset.
 
 - During deployment following tag should be added : `{name: 'Indexed-By', value: 'atomic-asset'}`
-  - This tag is supported by [warp-aggregate-node](../docs//aggregate-node/overview.md). Thus allow to query assets by its owner - [documentation](../docs//aggregate-node/overview.md#nft-by-owner)
+  - This tag is supported by [warp-aggregate-node](../docs/aggregate-node/overview.md). Thus allow to query assets by its owner - [documentation](../docs/aggregate-node/overview.md#nft-by-owner)
 
 ## State
 
@@ -70,6 +72,10 @@ These is state structure for both implementations.
 
 :::info
 Deployment of atomic-asset requires extra step, which is described [here](../docs/sdk/advanced/register-contract)
+:::
+
+:::info
+Pre-deployed srcTxId are implementing `atomic-asset` and `tradeable` interfaces.
 :::
 
 - You can deploy from source code like any other `warp-contract` [usage](../docs/sdk/basic/deployment#deploy) and use deployed `srcTxId` as described [here](../docs/sdk/advanced/register-contract)

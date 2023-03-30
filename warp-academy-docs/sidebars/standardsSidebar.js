@@ -30,13 +30,18 @@ const sidebars = {
             items: [
                 {
                     type: 'doc',
-                    label: 'Standard',
+                    label: 'Atomic-asset',
                     id: 'atomic-asset',
                 },
                 {
                     type: 'doc',
-                    label: 'Warp implementation',
-                    id: 'atomic-asset-impl',
+                    label: 'Tradeable',
+                    id: 'tradeable',
+                },
+                {
+                    type: 'doc',
+                    label: 'Implementation',
+                    id: 'tradeable-atomic-asset',
                 },
             ],
         }
