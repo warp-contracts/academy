@@ -24,7 +24,6 @@ As we described earlier Atomic asset is a general idea, like [NFT](https://en.wi
 - `atomic-asset` is always binded to only one asset. This standard doesn't support multiple assets per one contract
 - Unique id of asset is its transaction id
 - `balance` per account can never be < 0
-- `allowance` per account can never be < 0
 
 ## Interface
 
@@ -36,53 +35,6 @@ transfer(to: string, amount: uint) => void
 
 - Transfers `amount` of tokens to address `to`. The function SHOULD throw if the message caller’s account balance does not have enough tokens to spend
 - Transfers of 0 values MUST be treated as normal transfers
-
-### transferFrom
-
-```ts
-transferFrom(from: string, to: string, amount: uint) => void
-```
-
-- Transfers `amount` of tokens from address `from` to address `to`.
-- The transferFrom method is used for a withdraw workflow, allowing contracts to transfer tokens on your behalf. This can be used for example to allow a contract to transfer tokens on your behalf and/or to charge fees in sub-currencies. The function SHOULD throw unless the `from` account has deliberately authorized the sender of the message via some mechanism
-- Transfers of 0 values MUST be treated as normal transfers
-
-### approve
-
-```ts
-approve(spender: string, amount: uint) => void
-```
-
-- Allows `spender` to withdraw from your account multiple times, up to the `amount`. If this function is called again it overwrites the current allowance with `amount`
-- To prevent attack vectors like the one described [here](https://docs.google.com/document/d/1YLPtQxZu1UAvO9cZ1O2RPXBbT0mooh4DYKjA_jp-RLM/edit) clients SHOULD make sure to create user interfaces in such a way that they set the allowance first to 0 before setting it to another value for the same spender or use `increaseAllowance` or `decreaseAllowance` which are safe. TOUGH The contract itself shouldn’t enforce it
-
-### allowance
-
-```ts
-allowance(owner: string, spender: string) => {allowance: uint, owner: string, spender: string}
-```
-
-- view state method - does not modify the state
-- Returns the `allowance` which `spender` is still allowed to withdraw from `owner`
-
-### increaseAllowance
-
-```ts
-increaseAllowance(spender: string, amountToAdd: uint) => void
-```
-
-- Increase allowance for `spender` by given `amountToAdd`
-- `amountToAdd` can be equal to zero
-
-### decreaseAllowance
-
-```ts
-decreaseAllowance(spender: string, amountToSubtract: uint) => void
-```
-
-- Decrease allowance for `spender` by given `amountToSubtract`
-- MUST fail if `amountToSubtract > currentAllowance`
-- `amountToSubtract` can be equal to zero
 
 ### balanceOf
 
