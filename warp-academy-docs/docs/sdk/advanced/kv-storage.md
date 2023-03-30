@@ -14,22 +14,28 @@ An alternative way of storing a contract state - via a Key-Value storage (backed
 This allows to store and/or retrieve only required parts of the state within any given interaction - instead of having to process the whole BIG json each time.
 
 #### API
-The `SmartWeave` 'global' object has 2 new methods added:
+The `SmartWeave` 'global' object has the following methods:
 1. `SmartWeave.kv.put(key, value)` - allows to store a value (e.g. a wallet balance)
 2. `SmartWeave.kv.get(key)` - allows to retrieve the latest value from the storage by its key
+3. `SmartWeave.kv.del(key)` - allows to delete the value from the storage by its key. 
+    The value is not actually deleted, but marked as such. 
+    That means that the value will be readable for contracts interacting on lower sortKey.
+4. `SmartWeave.kv.keys(options: SortKeyCacheRangeOptions)` - allows to fetch kv storage keys for a specified range
+5. `SmartWeave.kv.kvMap(options: SortKeyCacheRangeOptions)` - allows to fetch key value map for a specified range
 
-:::caution
-Get operations retrieve the latest value it can find, including all the previous interactions.
-Currently, it is not possible to delete a value or set value to null.
-In order to have a `delete like` functionality please consider setting an empty value, like an empty string.
-:::
 
 The `Contract` interface has a new method added:
 `getStorageValues(keys: string[]): Promise<SortKeyCacheResult<Map<string, any>>>`
 \- which allows to check the latest values for the passed array of keys.
 
-:::info
-All the changes in the KV storage done within one given interaction are atomic - either all will be applied, or none (in case of an `ContractError`) - this is handled by the `commit`/`rollback` mechanism.
+:::caution
+The KV storage transaction mechanism has changed.
+In order to meet the new requirements we introduced a new range key value access functionality.
+It is now possible to access keys and values by a specified range and limit.
+These changes are possible thanks to a new `commit`/`rollback` approach. 
+Active transaction stores items directly to the underlying kv storage.
+This allows to use more advanced kv storage functionality.
+In case an interaction fails the rollback batch is executed to restore the storage state from before the failed interacion.
 :::
 
 #### Enabling KV storage for contract
@@ -91,6 +97,15 @@ Examples of using the storage in the contract code (in a standard, PST `transfer
 
 The full contract example is available here: https://github.com/warp-contracts/warp/blob/24c47c01c5f85734e5be69a18bd3092e2a99c1a7/src/__tests__/integration/data/kv-storage.js
 
+#### Example of retrieving kv entries for a specified range
+
+```js 
+let partialSum = 0;
+for await (let part of (await SmartWeave.kv.kvMap({ gte: 'pref.', lte: 'pref.\xff'})).values()) {
+    partialSum = partialSum + parseInt(part);
+}
+```
+
 #### Example of retrieving the values via SDK
 ```ts
 const result = (await contract.getStorageValues(['voo', 'doo'])).cachedValue;
@@ -104,7 +119,7 @@ Currently - when using KV storage - no interactions with foreign contracts are a
 :::
 
 ### Implementation details
-1. the 'put' method adds an entry to the array. All entries from this array are 'committed' to the underneath storage only when SDK verifies that the result of the given interaction is successful.
+1. both 'put' and 'del' methods create new entries in kv storage under a current transaction sort key. In case of an error, entries inserted during active transaction are removed.
 2. all entries have the sortKey added to the stored key (the sortKey is taken from the `SmartWeave._activeTx`).
 3. The underlying storage is an implementation of the SDKs `SortKeyCache` interface. By default it is using the LevelDB (with a file based storage for node.js env and IndexedDB storage for browser env)
 4. Any storage compatible with `SortKeyCache` interface can be used (e.g. https://github.com/warp-contracts/warp-contracts-lmdb#warp-contracts-lmdb-cache).
