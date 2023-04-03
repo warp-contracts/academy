@@ -1,12 +1,12 @@
 # Register contract
 
-Typically, deploying a contract through Warp Gateway requires wrapping contract transaction in another transaction (Warp Gateway posts a contract transaction to the Bundlr Network as a data of the bundled transaction - more about in [this doc](https://academy.warp.cc/docs/sdk/advanced/bundled-contract/)).
+Typically, deploying a contract through Warp Gateway requires wrapping contract transaction in another transaction (Warp Gateway posts a contract transaction to the Bundlr Network as a data of the bundled transaction - more about in [this doc](/docs/sdk/advanced/bundled-contract)).
 
 This process does not allow to create a legit AtomicNFT as the data of the nested transaction (our contract) cannot be served via Arweave gateway (it will be possible as soon as Nested Bundles will be implemented by Warp).
 
 Therefore, a new contract creation method has been exposed in Warp SDK. Let's go through the process.
 
-1. User needs to prepare contract transaction, all the tags required by the [SmartWeave Protocol](https://academy.warp.cc/docs/sdk/advanced/smartweave-protocol) need to be included, initial state should be set in the tag, tags specific for AtomicNFT ('Title', 'Description', 'Type', 'Content-Type') should also be included in the contract tags.
+1. User needs to prepare contract transaction, all the tags required by the [SmartWeave Protocol](/docs/sdk/advanced/smartweave-protocol) need to be included, initial state should be set in the tag, tags specific for AtomicNFT ('Title', 'Description', 'Type', 'Content-Type') should also be included in the contract tags.
 
 ```ts
 const contractTags = [
@@ -46,7 +46,7 @@ const tx = await bundlr.upload(data, { tags: contractTags });
 3. Finally, contract is sent to Warp Gateway where it is indexed so it can be immediately available for all Warp tools, contract data can be also served by Arweave gateway.
 
 :::caution
-`register` method requires installing [`warp-contracts-plugin-deploy`](https://www.npmjs.com/package/warp-contracts-plugin-deploy). Learn more about this plugin in [`Deploy Plugin` section](https://academy.warp.cc/sdk/advanced/plugins/deployment).
+`register` method requires installing [`warp-contracts-plugin-deploy`](https://www.npmjs.com/package/warp-contracts-plugin-deploy). Learn more about this plugin in [`Deploy Plugin` section](plugins/deployment).
 :::caution
 
 ```ts

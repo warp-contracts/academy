@@ -153,7 +153,7 @@ When passing initial state as an argument to the deployment method, it should be
 
 ### Contract Source
 
-Contract source is the essence of the contract containing all interaction functions. It has to be written in Javascript (or compiled to either Javascript or WASM) and then passed to the deployment method. You can learn a lot more about how to write contract source in one of the tutorials - [Ardit](https://academy.warp.cc/tutorials/ardit/introduction/intro) or [PST](https://academy.warp.cc/tutorials/pst/introduction/intro).
+Contract source is the essence of the contract containing all interaction functions. It has to be written in Javascript (or compiled to either Javascript or WASM) and then passed to the deployment method. You can learn a lot more about how to write contract source in one of the tutorials - [Ardit](/tutorials/ardit/introduction/intro) or [PST](../../../../tutorials/pst/introduction/intro).
 
 ### Deployment methods
 
@@ -252,16 +252,16 @@ const { contractTxId } = await warp.deployBundled(rawDataItem);
 
 #### register
 
-Registering contract is descirbed in details in [`Register contract` section](https://academy.warp.cc/docs/sdk/advanced/register-contract).
+Registering contract is descirbed in details in [`Register contract` section](/docs/sdk/advanced/register-contract).
 
 #### createSource
 
-Creating source is described in details in [`Contracts upgrades` section](https://academy.warp.cc/docs/sdk/basic/evolve#create-new-contract-source-transaction).
+Creating source is described in details in [`Contracts upgrades` section](/docs/sdk/basic/evolve#create-new-contract-source-transaction).
 
 #### saveSource
 
-Saving source is described in details in [`Contracts upgrades` section](https://academy.warp.cc/docs/sdk/basic/evolve#save-new-contract-source-transaction).
+Saving source is described in details in [`Contracts upgrades` section](/docs/sdk/basic/evolve#save-new-contract-source).
 
 ### Bundled contract format
 
-You can learn more about how your contract is being posted to Arweave in [Bundled contract format section](https://academy.warp.cc/docs/sdk/advanced/bundled-contract).
+You can learn more about how your contract is being posted to Arweave in [Bundled contract format section](/docs/sdk/advanced/bundled-contract).

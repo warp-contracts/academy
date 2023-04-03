@@ -1,18 +1,18 @@
 # EVM wallet connection
 
-In the [last tutorial](https://academy.warp.cc/tutorials/ardit/application/initialization#wallet-connection) we learned how to connect Arweave wallet to the contract using [ArweaveWalletConnector](https://github.com/jfbeats/ArweaveWalletConnector).
+In the [last tutorial](/tutorials/ardit/application/initialization#wallet-connection) we learned how to connect Arweave wallet to the contract using [ArweaveWalletConnector](https://github.com/jfbeats/ArweaveWalletConnector).
 
 Apart from Arweave wallet, you can connect EVM wallet to your contract. By reading this tutorial, you will know how to use a non-Arweave wallet in your application but before that - keep in mind following limits of the feature:
 
 1. You can connect EVM wallet only in browser environment.
 2. User needs to have Metamask plugin installed.
-3. It is possible to use EVM wallet only when bundling transaction. See [this feature](https://academy.warp.cc/features/bundled-interactions).
+3. It is possible to use EVM wallet only when bundling transaction. See [this feature](/docs/sdk/advanced/bundled-interaction).
 
 Most importantly - these obstacles will not last forever as Warp team is planning to develop the feature further. For now, treat is an experimental feature which can expand the capabilities of your application by inviting users from other blockchain than Arweave. As always - if you find it useful or would like to make a suggestion, please reach to the Warp team on [on Discord](https://discord.com/invite/PVxBZKFr46).
 
 You can find the code of final application which signs Warp transactions with EVM wallet [here](https://github.com/warp-contracts/academy/tree/main/warp-academy-ardit/final/metamask-app).
 
-Application has been already deployed. [Check it out!](link)
+Application has been already deployed. [Check it out!](https://evm-metamask.vercel.app/)
 
 ### `warp-contracts-plugin-signature`
 

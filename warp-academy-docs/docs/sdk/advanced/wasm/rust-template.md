@@ -4,7 +4,7 @@
 repository contains an example SmartWeave contracts in Rust and building them into WASM binaries which can be then processed by Warp SDK.
 
 It contains an example implementation of a PST contract - which you can use as a base for implementing your own contract.
-If you are not familiar with the concept of Profit Sharing Tokens, check out a [tutorial](https://academy.warp.cc/tutorials/pst/introduction/intro) for writing your first PST contract in our Warp Academy.
+If you are not familiar with the concept of Profit Sharing Tokens, check out a [tutorial](/tutorials/pst/introduction/intro) for writing your first PST contract in our Warp Academy.
 
 - [Installation](#-installation)
 - [Typescript bindings](#typescript-bindings)

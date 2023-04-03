@@ -8,7 +8,7 @@ In order to interact with the contract in the application, we need to follow bel
 
 ## Warp initialization
 
-Same as for [contract deploy](https://academy.warp.cc/tutorials/ardit/deployment/) we need to create Warp instance for the mainnet:
+Same as for [contract deploy](/tutorials/ardit/deployment/) we need to create Warp instance for the mainnet:
 
 ```js
 //src/stores/contract.js

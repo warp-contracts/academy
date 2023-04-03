@@ -20,7 +20,7 @@ type CustomSignature = {
 - `getAddress` - optional field, if set it will be used to determine owner of transaction.
   Very useful
 
-  [More info about example implementation of custom signatures](https://academy.warp.cc/docs/sdk/advanced/plugins/signature)
+  [More info about example implementation of custom signatures](/docs/sdk/advanced/plugins/signature)
 
 An example of a method which uses custom signing functionality:
 
@@ -39,6 +39,6 @@ Custom signing function is then used to sign the transaction.
 :::tip
 
 The most common use case for that is signing transaction with EVM wallet.
-More about it in the [`Signature plugin` section](https://academy.warp.cc/docs/sdk/advanced/plugins/signature).
+More about it in the [`Signature plugin` section](/docs/sdk/advanced/plugins/signature).
 
 :::

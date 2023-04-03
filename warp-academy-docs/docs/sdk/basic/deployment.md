@@ -1,7 +1,7 @@
 # Contract Deployment
 
-In order to read contracts' state or write new interactions - you must first deploy it to the Arweave network.  
-This obviously requires a prepared contract code - if you want to write your first contract - head to the [ArDit tutorial](https://academy.warp.cc/tutorials/ardit/introduction/intro).
+In order to read contracts' state or write new interactions - you must first deploy it to the Arweave network.
+This obviously requires a prepared contract code - if you want to write your first contract - head to the [ArDit tutorial](/tutorials/ardit/introduction/intro).
 
 ### DeployPlugin
 
@@ -32,4 +32,4 @@ Further informations about deployment - including all possible deployment method
 
 ### Bundled contract format
 
-You can learn more about how your contract is being posted to Arweave in [Bundled contract format section](https://academy.warp.cc/docs/sdk/advanced/bundled-contract).
+You can learn more about how your contract is being posted to Arweave in [Bundled contract format section](/docs/sdk/advanced/bundled-contract).

@@ -1,6 +1,6 @@
 # Custom SmartWeave extension plugin
 
-Warp Contracts SDK enables custom SmartWeave extension plugin configuration. It will attach desired extension to global object accessible from inside a contract - `SmartWeave.extensions` (more about SmartWeave global API in [this section](https://academy.warp.cc/docs/sdk/basic/smartweave-global)).
+Warp Contracts SDK enables custom SmartWeave extension plugin configuration. It will attach desired extension to global object accessible from inside a contract - `SmartWeave.extensions` (more about SmartWeave global API in [this section](/docs/sdk/basic/smartweave-global)).
 
 ### Implementation
 
@@ -39,7 +39,7 @@ Extension can be later used inside the contract as follow:
 SmartWeave.extensions.custom.someCustomMethod();
 ```
 
-Example of SmartWeave extensions plugins are [`EthersPlugin`](https://docs.warp.cc/docs/sdk/advanced/plugins/ethers) and [`NlpPlugin`](https://docs.warp.cc/docs/sdk/advanced/plugins/nlp).
+Example of SmartWeave extensions plugins are [`EthersPlugin`](/docs/sdk/advanced/plugins/ethers) and [`NlpPlugin`](/docs/sdk/advanced/plugins/nlp).
 
 ### Rust contracts compatible plugins
 

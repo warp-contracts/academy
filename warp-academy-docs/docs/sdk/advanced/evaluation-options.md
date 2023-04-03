@@ -22,7 +22,7 @@ The possible values are:
 
 :::tip
 
-You can specify this option in a [contract manifest](https://academy.warp.cc/docs/sdk/advanced/manifest/) to make sure that all clients will use the transactions of the same source, e.g.:
+You can specify this option in a [contract manifest](/docs/sdk/advanced/manifest/) to make sure that all clients will use the transactions of the same source, e.g.:
 
 ```ts
 const {contractTxId, srcTxId} = await warp.deploy({

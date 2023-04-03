@@ -45,7 +45,7 @@ You can read more about smart contracts on Arweave in the following resources:
 
 You can find SmartWeave protocol here:
 
-[https://academy.warp.cc/docs/sdk/advanced/smartweave-protocol](https://academy.warp.cc/docs/sdk/advanced/smartweave-protocol).
+[/docs/sdk/advanced/smartweave-protocol](/docs/sdk/advanced/smartweave-protocol).
 
 :::
 

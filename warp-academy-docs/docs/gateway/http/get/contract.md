@@ -4,7 +4,7 @@
 
 Method: `GET`
 
-`/gateway/contract?txId=<txId>&srcTxId=<srcTxId>` - returns contract and source transactions informations. By default original source transaction id is loaded. However, one can indicate another source transaction id as a parameter (when e.g. contract has been evolved, more about evolving process [here](https://academy.warp.cc/docs/sdk/evolve)).
+`/gateway/contract?txId=<txId>&srcTxId=<srcTxId>` - returns contract and source transactions informations. By default original source transaction id is loaded. However, one can indicate another source transaction id as a parameter (when e.g. contract has been evolved, more about evolving process [here](/docs/sdk/basic/evolve)).
 
 Parameters:
 

@@ -14,4 +14,4 @@ The current available solution ("general-purpose" Arweave gateway) has some flaw
 
 Warp Gateway is a fast and reliable way to load SmartWeave transactions. Several tasks are responsible for retrieving interactions and contracts data from Arweave gateway and Arweave peers directly. Data is then indexed in the gateway allowing to load interactions for the contract in seconds.
 
-Additionally, a few endpoints are exposed so it is possible to upload contracts or interactions through Bundlr and index them in the gateway (more about it in the [HTTP Api section](https://academy.warp.cc/docs/gateway/http/get/contracts)).
+Additionally, a few endpoints are exposed so it is possible to upload contracts or interactions through Bundlr and index them in the gateway (more about it in the [HTTP Api section](/docs/gateway/http/get/contracts)).
