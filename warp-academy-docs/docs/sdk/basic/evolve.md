@@ -121,6 +121,14 @@ const src = await warp.createSource(
 );
 ```
 
+:::note
+At the moment there is no good method to change rust contract's state object structure on evolve.
+This is because the first interaction after evolve will get the last known state as an input and that
+comes from older contract version and has old structure. The only changes one can do are the changes
+that are backward compatible in terms of state deserialization perspective, e.g. adding an `Option` field
+to the state or change field name in rust but make serialization recognize the old name via serde annotations.
+:::
+
 ### Call `evolve` interaction
 
 Lastly, we need to call `evolve` interaction. **Warp SDK** provides another easy method. Here is its API:
