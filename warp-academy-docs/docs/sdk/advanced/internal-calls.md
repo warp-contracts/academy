@@ -18,6 +18,30 @@ if (action.input.function === 'readContract') {
 }
 ```
 
+### Internal view state
+
+Internal view state is a way for a contract to ask other contract about its state. This is different from internal read in the following ways:
+
+- internal read simply provides a whole state of one contract to another. The state is usually taken from SDK cache (or evaluated if there are new interactions).
+There is no interaction between contracts
+- internal view state is a contract method. Caller has to provide input for the method and callee calculates requested 'view' on a state (usually not the whole state) based on the
+current state and the input of view state method
+
+Here's how we use it in the contract:
+
+```js
+const balanceResult = await SmartWeave.contracts.viewContractState(action.input.contractId, {
+  function: "balance",
+  target: action.input.wallet
+});
+
+if (balanceResult.type == 'ok' && balanceResult.result.balance > 0) {
+  // contract logic
+}
+
+return { state };
+```
+
 ### Internal writes
 
 Internal write on the other hand, is a way for contracts to write interactions to some external contract.
