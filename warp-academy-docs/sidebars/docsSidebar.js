@@ -72,6 +72,7 @@ const sidebars = {
                 { type: 'doc', label: 'SmartWeave extension - Ethers', id: 'sdk/advanced/plugins/ethers' },
                 { type: 'doc', label: 'Custom SmartWeave extension', id: 'sdk/advanced/plugins/custom-extension' },
                 { type: 'doc', label: 'VM2', id: 'sdk/advanced/plugins/vm2' },
+                { type: 'doc', label: 'Blacklist', id: 'sdk/advanced/plugins/blacklist' },
               ],
             },
             { type: 'doc', label: 'Bundled contract format', id: 'sdk/advanced/bundled-contract' },
