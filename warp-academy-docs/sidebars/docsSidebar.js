@@ -48,7 +48,7 @@ const sidebars = {
               items: [
                 { type: 'doc', label: 'Overview', id: 'sdk/advanced/wasm/overview' },
                 { type: 'doc', label: 'Rust template', id: 'sdk/advanced/wasm/rust-template' },
-              ]
+              ],
             },
             { type: 'doc', label: 'Internal contract calls', id: 'sdk/advanced/internal-calls' },
             { type: 'doc', label: 'Evaluation options', id: 'sdk/advanced/evaluation-options' },
@@ -71,6 +71,7 @@ const sidebars = {
                 { type: 'doc', label: 'SmartWeave extension - NLP', id: 'sdk/advanced/plugins/nlp' },
                 { type: 'doc', label: 'SmartWeave extension - Ethers', id: 'sdk/advanced/plugins/ethers' },
                 { type: 'doc', label: 'Custom SmartWeave extension', id: 'sdk/advanced/plugins/custom-extension' },
+                { type: 'doc', label: 'Blacklist', id: 'sdk/advanced/plugins/blacklist' },
               ],
             },
             { type: 'doc', label: 'Bundled contract format', id: 'sdk/advanced/bundled-contract' },
@@ -212,7 +213,7 @@ const sidebars = {
                   type: 'doc',
                   label: 'Sequencer',
                   id: 'gateway/http/post/sequencer',
-                }
+                },
               ],
             },
           ],
@@ -220,23 +221,25 @@ const sidebars = {
       ],
     },
     {
-      type: 'category', label: 'Warp Contracts CLI', items: [
+      type: 'category',
+      label: 'Warp Contracts CLI',
+      items: [
         {
           type: 'doc',
           label: 'Installation',
-          id: 'cli/installation'
+          id: 'cli/installation',
         },
         {
           type: 'doc',
           label: 'Usage',
-          id: 'cli/usage'
+          id: 'cli/usage',
         },
         {
           type: 'doc',
           label: 'Commands',
-          id: 'cli/commands'
-        }
-      ]
+          id: 'cli/commands',
+        },
+      ],
     },
     {
       type: 'category',
