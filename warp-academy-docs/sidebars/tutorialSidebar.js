@@ -270,6 +270,22 @@ const sidebars = {
         },
       ],
     },
+    {
+      type: 'category',
+      label: 'ML',
+      items: [
+        { type: 'doc', label: 'Prologue', id: 'ml/prologue' },
+        { type: 'doc', label: "What's Cooking Doc", id: 'ml/whats-cooking' },
+        { type: 'doc', label: "Chapter I - The Oracle", id: 'ml/chapter-1' },
+        { type: 'doc', label: "Chapter II - Trust no one", id: 'ml/chapter-2' },
+        { type: 'doc', label: "Chapter III - No pain, no gain", id: 'ml/chapter-3' },
+        { type: 'doc', label: "Chapter IV - Back to the future", id: 'ml/chapter-4' },
+        { type: 'doc', label: "Chapter V - Fire & forget", id: 'ml/chapter-5' },
+        { type: 'doc', label: "Chapter VI - Curb Your Enthusiasm", id: 'ml/chapter-6' },
+        { type: 'doc', label: "Epilogue", id: 'ml/epilogue' },
+        { type: 'doc', label: "Appendix", id: 'ml/appendix' },
+      ],
+    },
   ],
 };
 
