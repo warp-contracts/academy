@@ -73,6 +73,10 @@ const { contractTxId } = await warp.deploy({
 
 **`InjectedArweaveSigner` using [`arweave.app`](https://arweave.app) with [`arweave-wallet-connector`](https://github.com/jfbeats/ArweaveWalletConnector)**
 
+:::caution
+At least `arweave-wallet-connector@1.0.2` is required.
+:::
+
 ```typescript
 const wallet = new ArweaveWebWallet({
   name: 'Your application name',
@@ -81,7 +85,7 @@ const wallet = new ArweaveWebWallet({
 
 wallet.setUrl('arweave.app');
 await wallet.connect();
-const userSigner = new InjectedArweaveSigner(wallet.namespaces.arweaveWallet);
+const userSigner = new InjectedArweaveSigner(wallet);
 await userSigner.setPublicKey();
 const { contractTxId } = await warp.deploy({
   wallet: userSigner,
