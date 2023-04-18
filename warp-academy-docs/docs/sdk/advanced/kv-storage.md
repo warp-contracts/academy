@@ -2,7 +2,7 @@
 
 An alternative way for storing state for contracts.
 :::caution
-Consider this as an experimental feature (though already used by our own contracts), with some constraints (see below).
+Consider this as an experimental feature (though already used by our own contracts).
 :::
 ### Why?
 Imagine a PST contract with millions of entries in the 'balances' map.
@@ -112,11 +112,6 @@ const result = (await contract.getStorageValues(['voo', 'doo'])).cachedValue;
 const fooValue = result.get('voo');
 const dooValue = result.get('doo');
 ```
-
-### Constraints
-:::caution
-Currently - when using KV storage - no interactions with foreign contracts are allowed. Such support will be added in the future PRs.
-:::
 
 ### Implementation details
 1. both 'put' and 'del' methods create new entries in kv storage under a current transaction sort key. In case of an error, entries inserted during active transaction are removed.
