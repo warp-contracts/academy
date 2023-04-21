@@ -5,24 +5,24 @@ It is possible to provide an isolated execution environment in the JavaScript im
 ## Installation
 
 :::caution
-Using the plugin requires at least `warp-contracts` version `1.4.1`. If your are using older version of the Warp SDK, please refer to the description [here](../vm2.md)
+Using the plugin requires at least `warp-contracts` version `1.4.1`. If you are using older version of the Warp SDK, please refer to the description [here](../vm2.md)
 :::
 
 ```sh
-npm install warp-contracts-plugins-vm2
+npm install warp-contracts-plugin-vm2
 
 or
 
-yarn add warp-contracts-plugins-vm2
+yarn add warp-contracts-plugin-vm2
 ```
 
 ## Usage
 
-In order to execute the contract in a sanboxed environment provided by VM2, attach the plugin when creating Warp instance.
+In order to execute the contract in a sandboxed environment provided by VM2, attach the plugin when creating Warp instance.
 
 ```ts
 import { WarpFactory } from 'warp-contracts';
-import { VM2Plugin } from 'warp-contracts-plugin-deploy';
+import { VM2Plugin } from 'warp-contracts-plugin-vm2';
 
 const warp = WarpFactory.forMainnet().use(new VM2Plugin());
 ```
