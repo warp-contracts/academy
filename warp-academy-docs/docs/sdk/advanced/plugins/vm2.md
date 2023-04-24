@@ -4,15 +4,15 @@ It is possible to provide an isolated execution environment in the JavaScript im
 
 ## Installation
 
-:::caution
-Using the plugin requires at least `warp-contracts` version `1.4.1`. If you are using older version of the Warp SDK, please refer to the description [here](../vm2.md)
-:::
+- using npm
 
 ```sh
 npm install warp-contracts-plugin-vm2
+```
 
-or
+- using yarn
 
+```
 yarn add warp-contracts-plugin-vm2
 ```
 
@@ -26,3 +26,14 @@ import { VM2Plugin } from 'warp-contracts-plugin-vm2';
 
 const warp = WarpFactory.forMainnet().use(new VM2Plugin());
 ```
+
+:::caution
+Using the plugin requires at least `warp-contracts` version `1.4.1`. For older versions of the SDK, in order to isolate the environment within VM2 please set [`evaluationOptions`](../evaluation-options.md) while connecting the contract to Warp:
+
+```js
+contract = warp.contract(contractTxId).setEvaluationOptions({
+  useVM2: true,
+});
+```
+
+:::

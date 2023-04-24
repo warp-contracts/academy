@@ -77,7 +77,6 @@ const sidebars = {
             },
             { type: 'doc', label: 'Bundled contract format', id: 'sdk/advanced/bundled-contract' },
             { type: 'doc', label: 'Register contract', id: 'sdk/advanced/register-contract' },
-            { type: 'doc', label: 'VM2 sandboxing', id: 'sdk/advanced/vm2' },
             { type: 'doc', label: 'VRF', id: 'sdk/advanced/vrf' },
             { type: 'doc', label: 'Unsafe client', id: 'sdk/advanced/unsafe-client' },
             { type: 'doc', label: 'Cache', id: 'sdk/advanced/cache' },
