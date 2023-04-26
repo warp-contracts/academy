@@ -81,7 +81,7 @@ const wallet = new ArweaveWebWallet({
 
 wallet.setUrl('arweave.app');
 await wallet.connect();
-const userSigner = new InjectedArweaveSigner(wallet.namespaces.arweaveWallet);
+const userSigner = new InjectedArweaveSigner(wallet);
 await userSigner.setPublicKey();
 const { contractTxId } = await warp.deploy({
   wallet: userSigner,
