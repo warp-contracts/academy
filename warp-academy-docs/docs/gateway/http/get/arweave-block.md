@@ -1,4 +1,4 @@
-# Arweave info endpoint
+# Arweave block endpoint
 
 Method: `GET`
 

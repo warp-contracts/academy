@@ -161,11 +161,6 @@ const sidebars = {
                 },
                 {
                   type: 'doc',
-                  label: 'Arweave network info',
-                  id: 'gateway/http/get/arweave-info',
-                },
-                {
-                  type: 'doc',
                   label: 'Arweave network block height',
                   id: 'gateway/http/get/arweave-block',
                 },
