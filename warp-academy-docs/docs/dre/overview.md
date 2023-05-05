@@ -237,17 +237,3 @@ team - [https://github.com/archivetheweb/warp_dre](https://github.com/archivethe
 
    Chill out and wait 10s
    ```
-
-## Future work
-
-1. Sync the local state with D.R.E. inside the Warp Contract SDK while connecting to a contract
-   (i.e. while calling `warp.contract(<contract_tx_id)`).
-2. Replace Redis with [Streamr](https://streamr.network/) - in progress
-3. More nodes
-4. One-command deployment via Docker
-5. `unsafeClient` compatible nodes
-6. Bundle all the evaluated states
-7. A decentralized validation layer built on of the D.R.E. nodes
-8. Stats/dashboard
-
-
