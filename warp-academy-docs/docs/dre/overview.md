@@ -34,11 +34,13 @@ The purpose of implementing Warp D.R.E. is to address the following issues.
 
 ## Nodes
 
-Currently, there are three nodes available
+Currently, there are five nodes are available:
 
-1. **The East Side** - https://dre-1.warp.cc
-2. **The West Side** - https://dre-2.warp.cc
-2. **The South Side** - https://dre-4.warp.cc
+1. https://dre-1.warp.cc
+2. https://dre-2.warp.cc
+3. https://dre-3.warp.cc
+4. https://dre-4.warp.cc
+5. https://dre-5.warp.cc
 
 To verify if your contract is available - check the `/contract` endpoint,  
 eg: https://dre-1.warp.cc/contract?id=-8A6RexFkpfWwuyVO98wzSFZh0d6VJuI-buTJvlwOJQ&events=true
