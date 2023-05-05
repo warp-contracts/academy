@@ -107,7 +107,7 @@ D.R.E. is currently using two kinds of caches
 2. [better-sqlite3](https://github.com/WiseLibs/better-sqlite3#better-sqlite3-) based cache. This cache is used for
    serving data via D.R.E. endpoints - in order not to interfere
    with the Warp Contracts SDK internal cache.
-   It also serves as a from of a backup.  
+   It also serves as a form of a backup.  
    [WAL mode](https://github.com/WiseLibs/better-sqlite3/blob/master/docs/performance.md#performance) is being used for
    increased performance.
 
