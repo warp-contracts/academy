@@ -121,7 +121,7 @@ yarn add warp-contracts-sqlite
 ```
 
 #### Custom options
-LmdbCache constructor accepts a second param with custom configuration.
+SqliteContractCache constructor accepts a second param with custom configuration.
 
 | Option                | Required   | Description                                                                                                                           |
 |-----------------------|------------|---------------------------------------------------------------------------------------------------------------------------------------|
