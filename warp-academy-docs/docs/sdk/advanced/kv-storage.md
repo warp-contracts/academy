@@ -99,10 +99,28 @@ The full contract example is available here: https://github.com/warp-contracts/w
 
 #### Example of retrieving kv entries for a specified range
 
+This is a simple example of fetching values, filtered by key prefix, in order to calculate the sum of all of them.
 ```js 
 let partialSum = 0;
-for await (let part of (await SmartWeave.kv.kvMap({ gte: 'pref.', lte: 'pref.\xff'})).values()) {
+for await (let part of (await SmartWeave.kv.kvMap({ gte: 'pref.', lt: 'pref.\xff'})).values()) {
     partialSum = partialSum + parseInt(part);
+}
+```
+
+Here is a full list of range options used by `SmartWeave.kv.kvMap`
+```ts
+/**
+ * Range option for fetching items from kv storage {@link SortKeyCache}
+ * @param gte - greater than equals
+ * @param lt - less than
+ * @param reverse - reverses the order
+ * @param limit - limits output elements
+ */
+export interface SortKeyCacheRangeOptions {
+  gte?: string;
+  lt?: string;
+  reverse?: boolean | undefined;
+  limit?: number | undefined;
 }
 ```
 
