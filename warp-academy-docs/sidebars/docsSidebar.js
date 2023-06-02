@@ -83,6 +83,13 @@ const sidebars = {
             { type: 'doc', label: 'Cache', id: 'sdk/advanced/cache' },
           ],
         },
+        {
+          type: 'category',
+          label: 'Legacy',
+          items: [
+            { type: 'doc', label: 'Bundled contract format - legacy', id: 'sdk/legacy/bundled-contract-format-legacy' },
+          ],
+        },
       ],
     },
     {
