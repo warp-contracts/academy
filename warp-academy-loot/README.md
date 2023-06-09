@@ -13,7 +13,7 @@ Users also will be able to transfer their assets to others.
 Check out the code explanation and getting started guide [here](./docs/LOOT_CONTRACT_TUTORIAL.md)
 
 ### 🙋‍♂️ Need help?
-Please feel free to contact us [on Discord](https://redstone.finance/discord) if you have any questions.
+Please feel free to contact us [on Discord](https://discord.com/invite/McehtcpmST) if you have any questions.
 
 ## Project setup
 ```
