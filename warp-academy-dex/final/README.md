@@ -29,7 +29,7 @@ To work properly the AMM requires a certain amount of tokens to be deposited int
 
 ## 🙋‍♂️ Need help?
 
-Please feel free to contact us [on Discord](https://redstone.finance/discord) if you have any questions.
+Please feel free to contact us [on Discord](https://discord.com/invite/McehtcpmST) if you have any questions.
 
 ## 🧰 Prerequisites
 
