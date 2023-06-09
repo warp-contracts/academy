@@ -11,5 +11,5 @@ We believe that it is best to learn by example, so [Tutorials section](/tutorial
 **Warp Academy** is designed for everyone no matter what their background. Our mission is to encourage more people to start learning and building on Arweave. The course is constantly updated, and we will be adding new materials regularly.
 
 :::info
-If you will ever feel that something is missing in the chapter, or you will find the information incorrect please contact us on our [Discord Server](https://discord.com/invite/PVxBZKFr46) or edit page using dedicated **Edit this page** feature at the bottom of each section.
+If you will ever feel that something is missing in the chapter, or you will find the information incorrect please contact us on our [Discord Server](https://discord.com/invite/McehtcpmST) or edit page using dedicated **Edit this page** feature at the bottom of each section.
 :::
