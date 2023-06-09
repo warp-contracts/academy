@@ -40,4 +40,4 @@ let newResult = await this.contract.currentState();
 
 ## ✨ Conclusion
 
-And that's it! The application should now work correctly. Congratulations! If you completed this tutorial succesfully feel free to publish your code on Github and share it on `[our Discord](https://discord.com/invite/PVxBZKFr46).
+And that's it! The application should now work correctly. Congratulations! If you completed this tutorial succesfully feel free to publish your code on Github and share it on `[our Discord](https://discord.com/invite/McehtcpmST).

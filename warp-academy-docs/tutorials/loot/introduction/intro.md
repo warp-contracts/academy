@@ -17,7 +17,7 @@ Final implementation is available in the [github repo](https://github.com/warp-c
 
 ## 🙋‍♂️ Need help?
 
-Please feel free to contact us [on Discord](https://redstone.finance/discord) if you have any questions.
+Please feel free to contact us [on Discord](https://discord.com/invite/McehtcpmST) if you have any questions.
 
 ## 🧰 Prerequisites
 
