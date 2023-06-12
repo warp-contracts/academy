@@ -49,7 +49,7 @@ export const downvoteMessage = (
   state: ArditState,
   { caller, input: { id } }: ArditAction
 ): ContractResult => {
-  const message = state.messages.find((m) => (m.id = id));
+  const message = state.messages.find((m) => (m.id == id));
 
   if (!message) {
     throw new ContractError(`Message does not exist.`);
