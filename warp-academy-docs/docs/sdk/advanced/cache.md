@@ -91,3 +91,59 @@ const warp = WarpFactory
     dbLocation: `./cache/warp/src`
   }));
 ```
+
+### SQLite cache
+
+Warp Contracts implementation of the `BasicSortKeyCache` using the [better-sqlite3](https://github.com/JoshuaWise/better-sqlite3) database.
+
+:::tip
+warp-contracts-sqlite uses incremental auto vacuum mode to reduce the size of the storage.
+:::
+
+One of the disadvantages of LMDB is its size.
+Although Warp LmdbCache implements data pruning to reduce the number of stored entries, 
+the LMDB storage only increases in size over time.
+
+Since state caching is crucial in D.R.E. nodes, state cache efficiency and size is very important.
+These factors have driven us to create yet another cache implementation. This time with a help of better-sqlite3.
+
+This implementation uses:
+- [Incremental](https://www.sqlite.org/pragma.html#pragma_auto_vacuum) auto vacuum mode, which means that the sqlite will reuse space marked as deleted,
+- [WAL mode](https://github.com/WiseLibs/better-sqlite3/blob/master/docs/performance.md), which greatly improves concurrent read and writes performance.
+
+#### Installation
+:::caution
+SQLite based cache is compatible only with Node.js env.
+:::
+
+```
+yarn add warp-contracts-sqlite
+```
+
+#### Custom options
+SqliteContractCache constructor accepts a second param with custom configuration.
+
+| Option                | Required   | Description                                                                                                                           |
+|-----------------------|------------|---------------------------------------------------------------------------------------------------------------------------------------|
+| maxEntriesPerContract |   false    | Maximum number of interactions stored per contract id - above this threshold adding another entry triggers removing old interactions. |
+
+
+#### Usage
+
+```typescript
+    const warp = WarpFactory.forMainnet().useStateCache(
+    new SqliteContractCache(
+      {
+        ...defaultCacheOptions,
+        dbLocation: `./cache/warp/sqlite/state`
+      },
+      {
+        maxEntriesPerContract: 20
+      }
+    )
+  )
+```
+
+:::info
+Requires `warp-contracts` SDK ver. min. 1.4.7
+:::

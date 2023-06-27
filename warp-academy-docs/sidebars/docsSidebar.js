@@ -42,7 +42,14 @@ const sidebars = {
           label: 'Advanced',
           items: [
             { type: 'doc', label: 'SmartWeave protocol', id: 'sdk/advanced/smartweave-protocol' },
-            { type: 'doc', label: 'WASM', id: 'sdk/advanced/wasm' },
+            {
+              type: 'category',
+              label: 'WASM',
+              items: [
+                { type: 'doc', label: 'Overview', id: 'sdk/advanced/wasm/overview' },
+                { type: 'doc', label: 'Rust template', id: 'sdk/advanced/wasm/rust-template' },
+              ],
+            },
             { type: 'doc', label: 'Internal contract calls', id: 'sdk/advanced/internal-calls' },
             { type: 'doc', label: 'Evaluation options', id: 'sdk/advanced/evaluation-options' },
             { type: 'doc', label: 'Contract manifest', id: 'sdk/advanced/manifest' },
@@ -50,6 +57,7 @@ const sidebars = {
             { type: 'doc', label: 'KV Storage', id: 'sdk/advanced/kv-storage' },
             { type: 'doc', label: 'Custom Warp instance', id: 'sdk/advanced/custom-warp' },
             { type: 'doc', label: 'Custom transactions signing', id: 'sdk/advanced/custom-signing' },
+            { type: 'doc', label: 'Arweave interactions loader', id: 'sdk/advanced/arweave-interaction-loader' },
             {
               type: 'category',
               label: 'Plugins',
@@ -63,14 +71,23 @@ const sidebars = {
                 { type: 'doc', label: 'SmartWeave extension - NLP', id: 'sdk/advanced/plugins/nlp' },
                 { type: 'doc', label: 'SmartWeave extension - Ethers', id: 'sdk/advanced/plugins/ethers' },
                 { type: 'doc', label: 'Custom SmartWeave extension', id: 'sdk/advanced/plugins/custom-extension' },
+                { type: 'doc', label: 'VM2', id: 'sdk/advanced/plugins/vm2' },
+                { type: 'doc', label: 'Blacklist', id: 'sdk/advanced/plugins/blacklist' },
+                { type: 'doc', label: 'VRF', id: 'sdk/advanced/plugins/vrf' },
               ],
             },
             { type: 'doc', label: 'Bundled contract format', id: 'sdk/advanced/bundled-contract' },
             { type: 'doc', label: 'Register contract', id: 'sdk/advanced/register-contract' },
-            { type: 'doc', label: 'VM2 sandboxing', id: 'sdk/advanced/vm2' },
             { type: 'doc', label: 'VRF', id: 'sdk/advanced/vrf' },
             { type: 'doc', label: 'Unsafe client', id: 'sdk/advanced/unsafe-client' },
             { type: 'doc', label: 'Cache', id: 'sdk/advanced/cache' },
+          ],
+        },
+        {
+          type: 'category',
+          label: 'Legacy',
+          items: [
+            { type: 'doc', label: 'Bundled contract format - legacy', id: 'sdk/legacy/bundled-contract-format-legacy' },
           ],
         },
       ],
@@ -151,11 +168,6 @@ const sidebars = {
                 },
                 {
                   type: 'doc',
-                  label: 'Arweave network info',
-                  id: 'gateway/http/get/arweave-info',
-                },
-                {
-                  type: 'doc',
                   label: 'Arweave network block height',
                   id: 'gateway/http/get/arweave-block',
                 },
@@ -204,7 +216,7 @@ const sidebars = {
                   type: 'doc',
                   label: 'Sequencer',
                   id: 'gateway/http/post/sequencer',
-                }
+                },
               ],
             },
           ],
@@ -212,23 +224,25 @@ const sidebars = {
       ],
     },
     {
-      type: 'category', label: 'Warp Contracts CLI', items: [
+      type: 'category',
+      label: 'Warp Contracts CLI',
+      items: [
         {
           type: 'doc',
           label: 'Installation',
-          id: 'cli/installation'
+          id: 'cli/installation',
         },
         {
           type: 'doc',
           label: 'Usage',
-          id: 'cli/usage'
+          id: 'cli/usage',
         },
         {
           type: 'doc',
           label: 'Commands',
-          id: 'cli/commands'
-        }
-      ]
+          id: 'cli/commands',
+        },
+      ],
     },
     {
       type: 'category',

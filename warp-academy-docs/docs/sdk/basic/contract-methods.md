@@ -22,7 +22,7 @@ async function readState(sortKeyOrBlockHeight?: string | number): Promise<SortKe
 
 Returns the state of the contract. If no `sortKeyOrBlockHeight` is passed, the most recent state will be evaluated and returned.
 
-- `sortKeyOrBlockHeight` - either a sort key (see [SmartWeave Protocol](https://academy.warp.cc/docs/sdk/smartweave-protocol) to read more about sort keys) or block height at which the contract's state should be returned
+- `sortKeyOrBlockHeight` - either a sort key (see [SmartWeave Protocol](/docs/sdk/advanced/smartweave-protocol) to read more about sort keys) or block height at which the contract's state should be returned
 
 The result contains fields:
 - `sortKey` - that sort key at which the state has been evaluated

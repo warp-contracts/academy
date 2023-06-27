@@ -29,7 +29,11 @@ A full example of using a VRF in a simple guessing game is available [here](http
 
 
 ### Verification
-In order to verify the transaction's VRF data:
+If you want the `warp-contracts` SDK to verify the VRF's proof:
+1. up until version `1.4.3` it is done automatically by the SDK 
+2. from version `1.4.4` - you need to attach the [VRF plugin](plugins/vrf) first.
+
+The verification code itself:
 ```ts
 function verifyVrf(vrf: VrfData, sortKey: string, arweave: Arweave): boolean {
     const keys = EC.keyFromPublic(vrf.pubkey, 'hex');
@@ -49,12 +53,6 @@ function verifyVrf(vrf: VrfData, sortKey: string, arweave: Arweave): boolean {
     return arweave.utils.bufferTob64Url(hash) == vrf.index;
 }
 ```
-
-:::info
-
-The Warp Contracts SDK makes such [verification automatically](https://github.com/warp-contracts/warp/blob/main/src/core/modules/impl/DefaultStateEvaluator.ts#L107).
-
-:::
 
 
 

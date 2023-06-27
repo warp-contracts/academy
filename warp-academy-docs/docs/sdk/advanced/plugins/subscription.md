@@ -44,16 +44,14 @@ class CustomSubscriptionPlugin extends WarpSubscriptionPlugin<void> {
     // process the new message;
   }
 }
-
-const warp = WarpFactory.forMainnet();
-warp.use(new CustomSubscriptionPlugin(contractTxId, warp));
 ```
 
 Usage:
 
 ```ts
 const warp = WarpFactory.forMainnet();
-warp.use(new CustomSubscriptionPlugin(contractTxId, warp));
+const contract = warp.contract(contractTxId);
+warp.use(new CustomSubscriptionPlugin(contract, warp));
 ```
 
 ## StateUpdatePlugin
@@ -65,6 +63,7 @@ Usage:
 
 ```ts
 const warp = WarpFactory.forMainnet();
+const contract = warp.contract(contractTxId);
 warp.use(new StateUpdatePlugin(contractTxId, warp));
 ```
 

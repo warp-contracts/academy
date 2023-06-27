@@ -46,29 +46,94 @@ In order to use most of the deployment methods, you will need a wallet which ser
 - [`Metamask`](https://metamask.io)
 - [`ethers`](https://docs.ethers.org/v5)
 
-Then, all you need to do is save wallet's keyfile and include it in your project (preferably in `.secrets` folder which won't be exposed to the public).
-
 You will then pass wallet to the deployment methods by setting it as a constructor to one of the dedicated objects. They can all be imported from `warp-contracts-plugin-deploy`:
 
-**server environment**
+**SERVER ENVIRONMENT**
 
 - `ArweaveSigner`
 - `EthereumSigner`
 
-**browser environment**
+All you need to do is save wallet's keyfile and include it in your project (preferably in `.secrets` folder which won't be exposed to the public).
+
+**`Arweave Signer`**
+
+```typescript
+const wallet = JSON.parse(fs.readFileSync('<path_to_wallet>', 'utf-8'));
+const { contractTxId } = await warp.deploy({
+  wallet: new ArweaveSigner(wallet),
+  initState: JSON.stringify(initialState),
+  src: contractSrc,
+});
+```
+
+**BROWSER ENVIRONMENT**
 
 - `InjectedArweaveSigner`
 - `InjectedEthereumSigner`
 
-<details>
-  <summary>Example</summary>
+**`InjectedArweaveSigner` using [`arweave.app`](https://arweave.app) with [`arweave-wallet-connector`](https://github.com/jfbeats/ArweaveWalletConnector)**
 
 ```typescript
-const wallet = JSON.parse(fs.readFileSync('<path_to_wallet>', 'utf-8'));
-const signer = new ArweaveSigner(wallet);
+const wallet = new ArweaveWebWallet({
+  name: 'Your application name',
+  logo: 'URL of your logo to be displayed to users',
+});
+
+wallet.setUrl('arweave.app');
+await wallet.connect();
+const userSigner = new InjectedArweaveSigner(wallet);
+await userSigner.setPublicKey();
+const { contractTxId } = await warp.deploy({
+  wallet: userSigner,
+  initState: JSON.stringify(initialState),
+  src: contractSrc,
+});
 ```
 
-</details>
+**`InjectedArweaveSigner` using [`ArConnect`](https://www.arconnect.io/)**
+
+```typescript
+if (window.arweaveWallet) {
+  await window.arweaveWallet.connect(['ACCESS_ADDRESS', 'SIGN_TRANSACTION', 'ACCESS_PUBLIC_KEY', 'SIGNATURE']);
+}
+const userSigner = new InjectedArweaveSigner(window.arweaveWallet);
+await userSigner.setPublicKey();
+const { contractTxId } = await warp.deploy({
+  wallet: userSigner,
+  initState: JSON.stringify(initialState),
+  src: contractSrc,
+});
+```
+
+**`InjectedEthereumSigner` using [`Metamask`](https://metamask.io/) and [`ethers version 5`](https://docs.ethers.org/v5/)**
+
+```typescript
+await window.ethereum.request({ method: 'eth_requestAccounts' });
+const provider = new ethers.providers.Web3Provider(window.ethereum);
+const userSigner = new InjectedEthereumSigner(provider);
+await userSigner.setPublicKey();
+const { contractTxId } = await warp.deploy({
+  wallet: userSigner,
+  initState: JSON.stringify(initialState),
+  src: contractSrc,
+});
+```
+
+**`InjectedEthereumSigner` using [`Metamask`](https://metamask.io/) and [`ethers version 6`](https://docs.ethers.org/v6/)**
+
+```typescript
+await window.ethereum.request({ method: 'eth_requestAccounts' });
+const provider = new ethers.BrowserProvider(window.ethereum);
+const signer = await provider.getSigner();
+provider.getSigner = () => signer;
+const userSigner = new InjectedEthereumSigner(wallet);
+await userSigner.setPublicKey();
+const { contractTxId } = await warp.deploy({
+  wallet: userSigner,
+  initState: JSON.stringify(initialState),
+  src: contractSrc,
+});
+```
 
 ### Initial state
 
@@ -88,7 +153,7 @@ When passing initial state as an argument to the deployment method, it should be
 
 ### Contract Source
 
-Contract source is the essence of the contract containing all interaction functions. It has to be written in Javascript (or compiled to either Javascript or WASM) and then passed to the deployment method. You can learn a lot more about how to write contract source in one of the tutorials - [Ardit](https://academy.warp.cc/tutorials/ardit/introduction/intro) or [PST](https://academy.warp.cc/tutorials/pst/introduction/intro).
+Contract source is the essence of the contract containing all interaction functions. It has to be written in Javascript (or compiled to either Javascript or WASM) and then passed to the deployment method. You can learn a lot more about how to write contract source in one of the tutorials - [Ardit](/tutorials/ardit/introduction/intro) or [PST](../../../../tutorials/pst/introduction/intro).
 
 ### Deployment methods
 
@@ -187,16 +252,16 @@ const { contractTxId } = await warp.deployBundled(rawDataItem);
 
 #### register
 
-Registering contract is descirbed in details in [`Register contract` section](https://academy.warp.cc/docs/sdk/advanced/register-contract).
+Registering contract is descirbed in details in [`Register contract` section](/docs/sdk/advanced/register-contract).
 
 #### createSource
 
-Creating source is described in details in [`Contracts upgrades` section](https://academy.warp.cc/docs/sdk/basic/evolve#create-new-contract-source-transaction).
+Creating source is described in details in [`Contracts upgrades` section](/docs/sdk/basic/evolve#create-new-contract-source-transaction).
 
 #### saveSource
 
-Saving source is described in details in [`Contracts upgrades` section](https://academy.warp.cc/docs/sdk/basic/evolve#save-new-contract-source-transaction).
+Saving source is described in details in [`Contracts upgrades` section](/docs/sdk/basic/evolve#save-new-contract-source).
 
 ### Bundled contract format
 
-You can learn more about how your contract is being posted to Arweave in [Bundled contract format section](https://academy.warp.cc/docs/sdk/advanced/bundled-contract).
+You can learn more about how your contract is being posted to Arweave in [Bundled contract format section](/docs/sdk/advanced/bundled-contract).

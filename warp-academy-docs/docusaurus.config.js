@@ -161,7 +161,7 @@ const config = {
             items: [
               {
                 label: 'Discord',
-                href: 'https://discord.com/invite/PVxBZKFr46',
+                href: 'https://discord.com/invite/McehtcpmST',
               },
               {
                 label: 'Twitter',
@@ -195,6 +195,7 @@ const config = {
       prism: {
         theme: lightCodeTheme,
         darkTheme: darkCodeTheme,
+        additionalLanguages: ['rust', 'toml'],
       },
       algolia: {
         appId: 'MCHYFKZV38',

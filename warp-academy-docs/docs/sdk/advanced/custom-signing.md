@@ -5,7 +5,7 @@ By default in order to sign any transactions, user's wallet of type [`JWKInterfa
 It is also possible to pass as wallet property object of type `CustomSignature`. Interface for the discussed below:
 
 ```ts
-type SignatureType = "arweave" | "ethereum";
+type SignatureType = 'arweave' | 'ethereum';
 type SigningFunction = (tx: Transaction) => Promise<void>;
 
 type CustomSignature = {
@@ -20,7 +20,7 @@ type CustomSignature = {
 - `getAddress` - optional field, if set it will be used to determine owner of transaction.
   Very useful
 
-  [More info about example implementation of custom signatures](https://academy.warp.cc/docs/sdk/advanced/plugins/signature)
+  [More info about example implementation of custom signatures](/docs/sdk/advanced/plugins/signature)
 
 An example of a method which uses custom signing functionality:
 
@@ -29,11 +29,9 @@ const customSigningFunction = async (tx: Transaction) => {
   await sign(tx);
 };
 
-await contract
-  .connect({ signer: customSigningFunction, signatureType: "arweave" })
-  .writeInteraction({
-    function: "function",
-  });
+await contract.connect({ signer: customSigningFunction, type: 'arweave' }).writeInteraction({
+  function: 'function',
+});
 ```
 
 Custom signing function is then used to sign the transaction.
@@ -41,6 +39,6 @@ Custom signing function is then used to sign the transaction.
 :::tip
 
 The most common use case for that is signing transaction with EVM wallet.
-More about it in the [`Signature plugin` section](https://academy.warp.cc/docs/sdk/advanced/plugins/signature).
+More about it in the [`Signature plugin` section](/docs/sdk/advanced/plugins/signature).
 
 :::

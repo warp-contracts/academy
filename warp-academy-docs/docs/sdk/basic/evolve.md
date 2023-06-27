@@ -47,7 +47,7 @@ So now we have everything ready in our contract. Let's perform the evolve.
 In order to properly evolve, we should first create new contract source data item. We can also create contract source transaction instead of data item if we want to post it later directly to Arweave and not use Bundlr to upload it. If we want to create a transaction - `disableBundling` parameter should be set to `true`.
 
 :::caution
-`createSource` method requires installing [`warp-contracts-plugin-deploy`](https://www.npmjs.com/package/warp-contracts-plugin-deploy). Learn more about this plugin in [`Deploy Plugin` section](https://academy.warp.cc/sdk/advanced/plugins/deployment).
+`createSource` method requires installing [`warp-contracts-plugin-deploy`](https://www.npmjs.com/package/warp-contracts-plugin-deploy). Learn more about this plugin in [`Deploy Plugin` section](/docs/sdk/advanced/plugins/deployment).
 :::caution
 
 ```typescript
@@ -86,7 +86,7 @@ const newSource = await warp.createSource({ src: contractSrc}, new ArweaveSigner
 Then, we need to save freshly created source transaction using `saveSource` method. It saves source transaction created using `createSource` method; by default source transaction is sent to Warp Gateway where it is uploaded to Bundlr, if in local environment or bundle is disabled using disableBundling method - source transaction is sent directly to Arweave, returns source id.
 
 :::caution
-`saveSource` method requires installing [`warp-contracts-plugin-deploy`](https://www.npmjs.com/package/warp-contracts-plugin-deploy). Learn more about this plugin in [`Deploy Plugin` section](https://academy.warp.cc/sdk/advanced/plugins/deployment).
+`saveSource` method requires installing [`warp-contracts-plugin-deploy`](https://www.npmjs.com/package/warp-contracts-plugin-deploy). Learn more about this plugin in [`Deploy Plugin` section](/docs/sdk/advanced/plugins/deployment).
 :::caution
 
 ```ts
@@ -120,6 +120,14 @@ const src = await warp.createSource(
   wallet
 );
 ```
+
+:::note
+At the moment there is no good method to change rust contract's state object structure on evolve.
+This is because the first interaction after evolve will get the last known state as an input and that
+comes from older contract version and has old structure. The only changes one can do are the changes
+that are backward compatible in terms of state deserialization perspective, e.g. adding an `Option` field
+to the state or change field name in rust but make serialization recognize the old name via serde annotations.
+:::
 
 ### Call `evolve` interaction
 

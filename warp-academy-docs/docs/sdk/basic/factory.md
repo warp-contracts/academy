@@ -43,7 +43,7 @@ Default parameters (each of them can be adjusted to your needs):
 ### Mainnet
 
 Creates a Warp instance suitable for use with Arweave mainnet.
-By default, the [Warp gateway](https://academy.warp.cc/docs/gateway/overview) is being used for:
+By default, the [Warp gateway](/docs/gateway/overview) is being used for:
 
 1.  deploying contracts
 2.  writing new transactions through Warp Sequencer

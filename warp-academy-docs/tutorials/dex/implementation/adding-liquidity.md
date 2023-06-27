@@ -43,7 +43,7 @@ if (amountIn0 > 0) {
 }
 ```
 
-In the code above, we're changing a state of an external `ERC20` contract. Therefore, we use the built-in `SmartWeave.contracts.write` method (one of two possible [internal calls](https://academy.warp.cc/features/internal-calls)) to pass as parameters the address of an external contract, function name, and a list of arguments.
+In the code above, we're changing a state of an external `ERC20` contract. Therefore, we use the built-in `SmartWeave.contracts.write` method (one of two possible [internal calls](/docs/sdk/advanced/internal-calls)) to pass as parameters the address of an external contract, function name, and a list of arguments.
 Note that if the internal write will fail, the contract evaluation will automatically throw a `ContractError` - there's no need to manually check
 the result of the internal write. 
 In case everything is fine, we update the state variable that keeps the size of the reserve.

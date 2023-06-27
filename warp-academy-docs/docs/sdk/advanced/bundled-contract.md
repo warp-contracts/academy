@@ -40,7 +40,7 @@ You can read the specification for nested bundles standard in [ANS-104](https://
 
 ### Warp Gateway
 
-Instead of posting the contract and contract source transactions directly to Arweave mainnet, [Warp Plugin](https://academy.warp.cc/sdk/advanced/plugins/deployment) creates data items from either both of them (when using `deploy` method) or only contract (when using `deployFromSourceTx` method) and send them to Warp Gateway where they are wrapped in a nested bundled and uploaded to Bundlr.
+Instead of posting the contract and contract source transactions directly to Arweave mainnet, [Warp Plugin](/docs/sdk/advanced/plugins/deployment) creates data items from either both of them (when using `deploy` method) or only contract (when using `deployFromSourceTx` method) and send them to Warp Gateway where they are wrapped in a nested bundled and uploaded to Bundlr.
 
 :::info
 Bundling contract is the default behaviour of Warp's SDK `warp.deploy` function, when `forMainnet` instance is being used.
