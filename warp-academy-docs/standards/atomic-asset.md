@@ -25,6 +25,7 @@ As we described earlier Atomic asset is a general idea, like [NFT](https://en.wi
 - Unique id of asset is its transaction id
 - `balance` per account can never be < 0
 
+
 ## Interface
 
 ### transfer
