@@ -2,7 +2,7 @@
 
 ## What is tradeable?
 
-Tradeable is standard. It describes the interface that makes trading easier on [decentralized exchanges](https://cointelegraph.com/learn/what-are-decentralized-exchanges-and-how-do-dexs-work). The idea is to allow other accounts to transfer our assets if we approve them to do so. This concept is mainly used with accounts that are contracts, so they can manage our assets in logic constrained by smart-contract code.
+Tradeable is standard. It describes the interface that enables trading on (some) [decentralized exchanges](https://cointelegraph.com/learn/what-are-decentralized-exchanges-and-how-do-dexs-work). The idea is to allow other accounts to transfer our assets if we approve them to do so. This concept is mainly used with accounts that are contracts, so they can manage our assets in logic constrained by smart-contract code.
 
 It exposes the same concept of allowance and approval known from [ERC20](https://eips.ethereum.org/EIPS/eip-20) or [ERC721](https://eips.ethereum.org/EIPS/eip-721).
 
