@@ -88,6 +88,13 @@ const sidebars = {
           label: 'Legacy',
           items: [
             { type: 'doc', label: 'Bundled contract format - legacy', id: 'sdk/legacy/bundled-contract-format-legacy' },
+            { type: 'doc', label: 'Warp Sequencer - legacy', id: 'sdk/legacy/bundled-interaction-legacy' },
+            { type: 'doc', label: 'Custom signing - legacy', id: 'sdk/legacy/custom-signing-legacy' },
+            {
+              type: 'doc',
+              label: 'Warp Contracts Signature Plugin - legacy',
+              id: 'sdk/legacy/plugin-signature-legacy',
+            },
           ],
         },
       ],

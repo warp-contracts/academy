@@ -1,51 +1,62 @@
-# Warp Contracts Signature plugin
+# Warp Signature
 
-Warp Signature is a tool to be used in [Warp](https://github.com/warp-contracts/warp) contracts. It allows to sign transactions using non-Arweave wallet. Currently, it is possible to connect to:
+> :warning: **`warp-contracts-plugin-signature` works with `warp-contracts` version at least 1.4.13. To sign transactions when using `warp-contracts` <= 1.4.12, please use `warp-contracts-plugin-signature` version <= 1.0.12.**
 
-- EVM wallet using Metamask plugin in browser environment
-- EVM wallet using [ethers.Signer](https://docs.ethers.org/v5/api/signer/) interface in Node.js
+This package allows to sign data items with some specific Signer's implementations. Currently, it is possible to sign data items using following signers:
 
-## MetaMask Signing transactions
+- InjectedArweaveSigner - ArweaveSigner for browser
+- EthereumSigner
+- InjectedEthereumSigner - EthereumSigner for browser
+
+All the implementations are based on [`arbundles` package](https://github.com/Bundlr-Network/arbundles).
+
+Example usage:
+
+**Injected Arweave Signer**
 
 ```ts
-import { evmSignature } from 'warp-contracts-plugin-signature';
+import { InjectedArweaveSigner } from 'warp-contracts-plugin-signature';
+import { ArweaveWebWallet } from 'arweave-wallet-connector';
+import { WarpFactory } from 'warp-contracts';
 
-await this.contract.connect({ signer: evmSignature, signatureType: 'ethereum' }).writeInteraction({
-  function: 'function',
+const wallet = new ArweaveWebWallet({
+  name: 'Your application name',
+  logo: 'URL of your logo to be displayed to users',
 });
+
+wallet.setUrl('arweave.app');
+await wallet.connect();
+const userSigner = new InjectedArweaveSigner(wallet);
+await userSigner.setPublicKey();
+
+const warp = WarpFactory.forMainnet();
+const contract = warp.contract(contract_id).connect(userSigner);
 ```
 
-## ethers.Signer Signing transactions
+**InjectedEthereumSigner**
 
 ```ts
-import { buildEvmSignature } from 'warp-contracts-plugin-signature/server';
-import { Wallet } from 'ethers';
+import { EthereumSigner } from 'warp-contracts-plugin-signature';
+import { WarpFactory } from 'warp-contracts';
 
-// for example using ethers.Wallet
-const signer = Wallet.createRandom();
-const evmSignature = buildEvmSignature(signer);
-
-await this.contract.connect({ signer: evmSignature, signatureType: 'ethereum' }).writeInteraction({
-  function: 'function',
-});
+const warp = WarpFactory.forMainnet();
+const contract = warp.contract(contract_id).connect(new EthereumSigner(private_key));
 ```
 
-## Signature verification
-
-In order to verify signatures for the given contract, one needs to use `EvmSignatureVerificationPlugin` while initializing Warp. Plugin will be then fired up when reading contract state and all interactions' signatures will be then verified. If incorrect signature will be detected, contract state will be evaluated without it.
+**InjectedEthereumSigner**
 
 ```ts
-const warp = await WarpFactory.forMainnet().use(new EvmSignatureVerificationPlugin());
+import { InjectedEthereumSigner } from 'warp-contracts-plugin-signature';
+import { WarpFactory } from 'warp-contracts';
+import { providers } from 'ethers';
+
+await window.ethereum.enable();
+
+const wallet = new providers.Web3Provider(window.ethereum);
+
+const userSigner = new InjectedEthereumSigner(wallet);
+await userSigner.setPublicKey();
+
+const warp = WarpFactory.forMainnet();
+const contract = warp.contract(contract_id).connect(userSigner);
 ```
-
-## Future plans
-
-1. Usage of other wallets (e.g. Solana) and plugins.
-
-## Common problems
-
-### Next.js server side imports
-
-"Next.js requires that any code you import from `node_modules` need to be compatible with Node.js" - [discussed here](https://github.com/vercel/next.js/issues/31518). So to be able to import "only" `web` compatible lib like this one we have to use workaround with dynamic `import()`.
-
-`const { evmSignature, EvmSignatureVerificationWebPlugin } = await import('warp-signature');`
