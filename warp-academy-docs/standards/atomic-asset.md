@@ -16,6 +16,8 @@ It is possible, thanks to unique properties of Arweave blockchain. Typically, a 
 As we described earlier Atomic asset is a general idea, like [NFT](https://en.wikipedia.org/wiki/Non-fungible_token), this kind of definition is great, however, not specific enough for composability (example: Let's imagine, that you want to build `atomic asset` marketplace, you have to know how to consume existing `atomic assets` - which method to call on a contract to transfer it and what parameters should be passed).
 \*\*atomic-asset&& standard is here to help, by determining the interface describing the smart contract behind atomic-asset. So when building a new marketplace (or other any product), you don't have to think about multiple implementations, per project.
 
+[👉 SWS-1 Atomic Asset Standard Interface](https://specs.g8way.io/?tx=FHoS7GZ-MiLy7Uaw0GFFX_DcLrgSpUBV6TtxB-mqAQ0)
+
 # Behavior
 
 - An atomic asset can be [fungible](https://www.blockchain-council.org/blockchain/a-quick-guide-to-fungible-vs-non-fungible-tokens/) or [non fungible token](https://en.wikipedia.org/wiki/Non-fungible_token).
