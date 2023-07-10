@@ -80,7 +80,7 @@ if (action.input.function === 'addAndWrite') {
 }
 ```
 
-The internal writes method first evaluates the target (specified by the `contractTxId` given in the first parameter) contract's state up to the "current" block height (i.e. block height of the interaction that is calling the write method) and then applies the input (specified as the second parameter of the write method).
+The internal writes method first evaluates the target (specified by the `contractTxId` given in the first parameter) contract's state, taking into account all interactions with a sort key less than the current one (i.e. the sort key of the interaction that is calling the write method) and then applies the input (specified as the second parameter of the write method).
 The result is memoized in cache.
 If the internal write will throw an exception - the original transaction (the 'callee' transaction) will throw `ContractError` by default -
 you don't have to manually check the result of the internal write.
