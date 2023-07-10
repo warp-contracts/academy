@@ -44,6 +44,27 @@ const sidebars = {
                     id: 'tradeable-atomic-asset',
                 },
             ],
+        },
+        {
+            type: 'category',
+            label: 'Atomic Asset (Jim & Atticus)',
+            items: [
+                {
+                    type: 'doc',
+                    label: 'Atomic Asset Interface',
+                    id: 'standards-jim-atticus/atomic-asset-interface'
+                },
+                {
+                    type: 'doc',
+                    label: 'Atomic Token Interface',
+                    id: 'standards-jim-atticus/atomic-token-interface'
+                },
+                {
+                    type: 'doc',
+                    label: 'Composability & Inheritance',
+                    id: 'standards-jim-atticus/composability-and-inheritance'
+                }
+            ]
         }
     ]
 };
