@@ -74,6 +74,7 @@ const sidebars = {
                 { type: 'doc', label: 'VM2', id: 'sdk/advanced/plugins/vm2' },
                 { type: 'doc', label: 'Blacklist', id: 'sdk/advanced/plugins/blacklist' },
                 { type: 'doc', label: 'VRF', id: 'sdk/advanced/plugins/vrf' },
+                { type: 'doc', label: 'Fetch Options', id: 'sdk/advanced/plugins/fetch-options' },
               ],
             },
             { type: 'doc', label: 'Bundled contract format', id: 'sdk/advanced/bundled-contract' },
