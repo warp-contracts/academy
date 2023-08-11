@@ -1,4 +1,4 @@
-# Arweave client
+# Introduction
 
 Syncer uses its own REST API client for interfacing with Arweave nodes. It is heavily inspired by goar (https://github.com/everFinance/goar), but it's a complete rewrite.
 

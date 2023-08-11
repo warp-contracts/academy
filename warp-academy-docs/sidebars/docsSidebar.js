@@ -115,7 +115,19 @@ const sidebars = {
           label: 'Services', 
           items: [
             { type: 'doc', label: 'Syncer', id: 'syncer/services/syncer' },
-        ]}
+            { type: 'doc', label: 'Forwarder', id: 'syncer/services/forwarder' },
+            { type: 'doc', label: 'Contractor', id: 'syncer/services/contractor' },
+            { type: 'doc', label: 'Bundler', id: 'syncer/services/bundler' },
+            { type: 'doc', label: 'Checker', id: 'syncer/services/checker' },
+        ]},
+        { type: 'category', 
+          label: 'Internals', 
+          items: [
+            { type: 'doc', label: 'Tasks', id: 'syncer/internals/tasks' },
+            { type: 'doc', label: 'Peer Handling', id: 'syncer/internals/peer-handling' },
+            { type: 'doc', label: 'Arweave API Client', id: 'syncer/internals/arweave-client' },
+            { type: 'doc', label: 'Bundlr API Client', id: 'syncer/internals/bundlr-client' },
+        ]},
       ],       
     },
     {
