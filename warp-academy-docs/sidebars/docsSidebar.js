@@ -106,9 +106,17 @@ const sidebars = {
       id: 'sdk/advanced/bundled-interaction',
     },
     {
-      type: 'doc',
+      type: 'category',
       label: 'Warp Syncer',
-      id: 'syncer/overview',
+      items: [
+        { type: 'doc', label: 'Introduction', id: 'syncer/introduction' },
+        { type: 'doc', label: 'Configuration', id: 'syncer/configuration' },
+        { type: 'category', 
+          label: 'Services', 
+          items: [
+            { type: 'doc', label: 'Syncer', id: 'syncer/services/syncer' },
+        ]}
+      ],       
     },
     {
       type: 'category',
