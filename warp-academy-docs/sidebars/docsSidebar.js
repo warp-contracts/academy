@@ -123,6 +123,7 @@ const sidebars = {
         { type: 'category', 
           label: 'Internals', 
           items: [
+            { type: 'doc', label: 'Development', id: 'syncer/internals/development' },
             { type: 'doc', label: 'Tasks', id: 'syncer/internals/tasks' },
             { type: 'doc', label: 'Peer Handling', id: 'syncer/internals/peer-handling' },
             { type: 'doc', label: 'Arweave API Client', id: 'syncer/internals/arweave-client' },
