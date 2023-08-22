@@ -33,7 +33,7 @@ const warp = WarpFactory.forMainnet();
 const contract = warp.contract(contract_id).connect(userSigner);
 ```
 
-**InjectedEthereumSigner**
+**EthereumSigner**
 
 ```ts
 import { EthereumSigner } from 'warp-contracts-plugin-signature';
