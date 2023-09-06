@@ -18,7 +18,7 @@ It's designed to maintain the efficiency of Warp Contracts while seamlessly inte
 
 For a seamless integration of L1 and L2 transactions, we need a sequencing method that bridges both dimensions. Relying solely on Arweave's block height is constraining since multiple SmartWeave activities can occur within a single 2-minute block. That's where Warp's `SortKey` comes into play. The measure assigns a unique value to each contract transaction, allowing the SmartWeave protocol to arrange transactions in a lexicographic sequence. 
 
-The generation algorithm can be reviewed [here](https://github.com/warp-contracts/warp/blob/main/src/core/modules/impl/LexicographicalInteractionsSorter.ts#L30)
+The generation algorithm can be reviewed [*here*.](https://github.com/warp-contracts/warp/blob/main/src/core/modules/impl/LexicographicalInteractionsSorter.ts#L30)
 
 Crucially, the `lastSortKey` parameter aids in pinpointing the `SortKey` of the preceding transaction, ensuring a consistently ordered chain of SmartWeave transactions.
 
@@ -29,17 +29,17 @@ To qualify for Syncer's inclusion, interactions must satisfy **two conditions**:
 - Syncer waits for 10 blocks before downloading transactions and interactions.
 - Syncer demands consensus from 10 out of 15 internally selected network nodes, based on sync timing and performance.
 
-<span id="syncer_workflow_high_level">Once these criteria are met, Syncer proceeds to its primary synchronization modules. On a high level, these actions consist of downloading transactions, parsing all of their interactions, and saving them into an internal Postgres database.</span>
+<p id="syncer-workflow-high-level">Once these criteria are met, Syncer proceeds to its primary synchronization modules. On a high level, these actions consist of downloading transactions, parsing all of their interactions, and saving them into an internal Postgres database.</p>
 
-Developer Look: Syncer's Infrastructure: [here](/docs/syncer/services/syncer#data-consistency)
+Developer Look: Syncer's Infrastructure: [*here*.](/docs/syncer/services/syncer#data-consistency)
 
 Afterward, Syncer moves to assign the ID of the latest block that it has processed.  
 
 It's worth noting the deep integration between the Warp Syncer and Sequencer, both vital components of the SDK that closely interplay. At present, the Sequencer derives `SortKey` based on the latest block height served by Syncer.
 
-If you're keen on delving deeper into the intricacies of Warp Sequencer, you can find more information [here](/docs/sdk/advanced/bundled-interaction). 
+If you're keen on delving deeper into the intricacies of Warp Sequencer, you can find more information [*here*.](/docs/sdk/advanced/bundled-interaction). 
 
-In the earlier version of Warp Syncer, the `SortKey` for L2 interactions was determined using the `block_height` metric, fetched directly from the arweave.net gateway. Now, the Sequencer sources the block height metric from the internal Postgres database. This metric represents the latest block height captured after the primary synchronization module, outlined [here](#syncer_workflow_high_level). This updated approach offers enhanced finality guarantees for the synced block. By eliminating the risk of including forked blocks, it ensures that the Sequencer's L2 transactions will always have a `SortKey` higher than the last fully synced Arweave block. This maintains the integrity of the transaction sequence and ensures determinism.
+In the earlier version of Warp Syncer, the `SortKey` for L2 interactions was determined using the `block_height` metric, fetched directly from the arweave.net gateway. Now, the Sequencer sources the block height metric from the internal Postgres database. This metric represents the latest block height captured after the primary synchronization module, outlined <a> href="#syncer-workflow-high-level"*here*</a>. This updated approach offers enhanced finality guarantees for the synced block. By eliminating the risk of including forked blocks, it ensures that the Sequencer's L2 transactions will always have a `SortKey` higher than the last fully synced Arweave block. This maintains the integrity of the transaction sequence and ensures determinism.
 
 This method also provides a safety cushion against potential cascading issues, ensuring the Warp stack doesn't succumb to a singular point of failure. If the Sequencer were to generate a `SortKey` using the current block height and the Syncer went offline, transactions from the block at the time of the failure might not sync upon restart. Consequently, [DRE]( /docs/dre/overview#the-reasoning) execution nodes could miss these transactions, as they would jump to a higher `SortKey` set by the Warp Sequencer.
 
