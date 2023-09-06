@@ -39,7 +39,7 @@ Afterward, Syncer moves to assign the ID of the latest block that it has process
 
 It's worth noting the deep integration between the Warp Syncer and Sequencer, both vital components of the SDK that closely interplay. At present, the Sequencer derives `SortKey` based on the latest block height served by Syncer.
 
-If you're keen on delving deeper into the intricacies of Warp Sequencer, you can find more information [*here*.](/docs/sdk/advanced/bundled-interaction). 
+If you're keen on delving deeper into the intricacies of Warp Sequencer, you can find more information [*here*](/docs/sdk/advanced/bundled-interaction). 
 
 In the earlier version of Warp Syncer, the `SortKey` for L2 interactions was determined using the `block_height` metric, fetched directly from the arweave.net gateway. Now, the Sequencer sources the block height metric from the internal Postgres database. This metric represents the latest block height captured after the primary synchronization module, outlined [*here*.](/docs/syncer/introduction#high-level-syncer-workflow) This updated approach offers enhanced finality guarantees for the synced block. By eliminating the risk of including forked blocks, it ensures that the Sequencer's L2 transactions will always have a `SortKey` higher than the last fully synced Arweave block. This maintains the integrity of the transaction sequence and ensures determinism.
 
