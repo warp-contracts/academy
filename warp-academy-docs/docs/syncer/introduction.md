@@ -29,7 +29,9 @@ To qualify for Syncer's inclusion, interactions must satisfy **two conditions**:
 - Syncer waits for 10 blocks before downloading transactions and interactions.
 - Syncer demands consensus from 10 out of 15 internally selected network nodes, based on sync timing and performance.
 
-<p id="syncer-workflow-high-level">Once these criteria are met, Syncer proceeds to its primary synchronization modules. On a high level, these actions consist of downloading transactions, parsing all of their interactions, and saving them into an internal Postgres database.</p>
+#### High Level Syncer Workflow
+
+Once these criteria are met, Syncer proceeds to its primary synchronization modules. On a high level, these actions consist of downloading transactions, parsing all of their interactions, and saving them into an internal Postgres database.
 
 Developer Look: Syncer's Infrastructure: [*here*.](/docs/syncer/services/syncer#data-consistency)
 
@@ -39,7 +41,7 @@ It's worth noting the deep integration between the Warp Syncer and Sequencer, bo
 
 If you're keen on delving deeper into the intricacies of Warp Sequencer, you can find more information [*here*.](/docs/sdk/advanced/bundled-interaction). 
 
-In the earlier version of Warp Syncer, the `SortKey` for L2 interactions was determined using the `block_height` metric, fetched directly from the arweave.net gateway. Now, the Sequencer sources the block height metric from the internal Postgres database. This metric represents the latest block height captured after the primary synchronization module, outlined <a> href="#syncer-workflow-high-level"*here*</a>. This updated approach offers enhanced finality guarantees for the synced block. By eliminating the risk of including forked blocks, it ensures that the Sequencer's L2 transactions will always have a `SortKey` higher than the last fully synced Arweave block. This maintains the integrity of the transaction sequence and ensures determinism.
+In the earlier version of Warp Syncer, the `SortKey` for L2 interactions was determined using the `block_height` metric, fetched directly from the arweave.net gateway. Now, the Sequencer sources the block height metric from the internal Postgres database. This metric represents the latest block height captured after the primary synchronization module, outlined [*here*.](/docs/syncer/introduction#high-level-syncer-workflow) This updated approach offers enhanced finality guarantees for the synced block. By eliminating the risk of including forked blocks, it ensures that the Sequencer's L2 transactions will always have a `SortKey` higher than the last fully synced Arweave block. This maintains the integrity of the transaction sequence and ensures determinism.
 
 This method also provides a safety cushion against potential cascading issues, ensuring the Warp stack doesn't succumb to a singular point of failure. If the Sequencer were to generate a `SortKey` using the current block height and the Syncer went offline, transactions from the block at the time of the failure might not sync upon restart. Consequently, [DRE]( /docs/dre/overview#the-reasoning) execution nodes could miss these transactions, as they would jump to a higher `SortKey` set by the Warp Sequencer.
 
