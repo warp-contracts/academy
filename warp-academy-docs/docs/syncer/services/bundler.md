@@ -36,12 +36,12 @@ Here are some details about how Checker works internally. Each box in the diagra
 
 ```mermaid
 flowchart TD
-    Notifier --> |Data Item| Collector
-    Database --> |Notify Data Item| Notifier
-    Poller --> |Data Item| Collector
-    Database <--> |Get Data Item| Poller
-    Collector -->|Data Item| Bundler
-    Bundler --> |Data Item| Confirmer
+    Notifier --> |DataItem| Collector
+    Database --> |Notify DataItem| Notifier
+    Poller --> |DataItem| Collector
+    Database <--> |Get DataItem| Poller
+    Collector -->|DataItem| Bundler
+    Bundler --> |DataItem| Confirmer
     Confirmer --> |Bundler State| Database
     NetworkMonitor --> |Network height| Confirmer
 
