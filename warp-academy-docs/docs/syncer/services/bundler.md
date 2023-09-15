@@ -1,6 +1,6 @@
 # Introduction
 
-Bundler sends interactions to bundlr.network. Interactions are saved in a Postgres database as ANS-104 data items.
+Bundler sends interactions to [bundlr.network](https://bundlr.network/). Interactions are saved in a Postgres database as ANS-104 DataItems.
 Bundler gets those data items in two ways:
 
 - with a Postgres notification
@@ -8,18 +8,18 @@ Bundler gets those data items in two ways:
 
 ## Notifications
 
-If the data item is small enough (<7900B) it fits into the notification and gets sent to bundlr.network immediately.
-If it's bigger only is id is sent in the notification, and the data item is fetched from the database.
-Bundler detects that it has too many data items to send and then it temporarily pauses Postgres notifications. It starts them again after it makes room in the input queue.
+If the DataItem is under 7900B, it fits into the notification, and it's immediately sent to bundlr.network.
+For larger DataItems, only the DataItem’s ID is relayed, with the actual data retrieved from the database.
+During high traffic, if the Bundler module identifies an overflow of DataItems, it temporarily pauses Postgres notifications and resumes once there's sufficient space in the input queue.
 
 ## Polling
 
-Data items that don't get sent through a notification are handled by the polling mechanism. It periodically asks for unhandled data items and tries to send them to bundlr.netowrk.
-Our system automatically scalles polling Bundlers in order to handle any traffic. 
+DataItems that don't get sent through a notification are handled by the polling mechanism. It periodically asks for unhandled DataItems and tries to send them to bundlr.netowrk.
+Our system dynamically scales Bundlers to accommodate any traffic volume.
 
 ## Handling errors
 
-Bundler handles retrying if sending a data item failed. It has a backoff mechanism in case it's a temporar error, but data items are also resent by the polling mechanism.
+Bundler automatically retries if a DataItem transmission fails. It employs a backoff strategy for temporary errors, but the polling mechanism also resends DataItems.
 
 
 ## Run
