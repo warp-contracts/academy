@@ -3,8 +3,8 @@
 Bundler sends interactions to [bundlr.network](https://bundlr.network/). Interactions are saved in a Postgres database as ANS-104 DataItems.
 Bundler gets those data items in two ways:
 
-- with a Postgres notification
-- with polling
+- with a Postgres Notification
+- with Polling
 
 ## Notifications
 
