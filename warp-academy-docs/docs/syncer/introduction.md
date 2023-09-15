@@ -27,7 +27,7 @@ For some time, the `lastSortKey` has been an integral part of the Warp SDK. What
 To qualify for Syncer's inclusion, interactions must satisfy **two conditions**:
 
 - Syncer waits for 10 blocks before downloading transactions and interactions.
-- Syncer demands consensus from 10 out of 15 internally selected network nodes, based on sync timing and performance.
+- Syncer demands consensus from 10 out of 15 internally selected network nodes, based on sync timing and performance. More details on the schema, [*here*.] (/docs/syncer/internals/peer-handling)
 
 #### High Level Syncer Workflow
 
