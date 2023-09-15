@@ -41,7 +41,7 @@ make run
 Every release is built and pushed to dockerhub, e.g. `warpredstone/syncer:0.2.0`. The latest release is tagged as `warpredstone/syncer:latest`.
 
 :::info
-Running in docker is the recomended way of running Warp-Syncer services.
+It's recommended to run Warp-Syncer services using Docker.
 :::
 
-Warp-Syncer is developed, tested and run on Linux. It should be possible to run it on Windows and Mac though.
+Warp-Syncer is developed, tested and run on Linux. However, it should be possible to operate it on Windows and MacOS as well.

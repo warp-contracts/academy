@@ -1,7 +1,6 @@
 # Introduction
 
-Checker monitors the state of L2 interactions to make sure they end up in Arweave. For each bundle sent to bundlr.network Checker periodically checks if it's already in FINISHED state. It checks bundles created sufficiently long time ago, 
-
+Checker oversees L2 interactions to ensure they ultimately seed on Arweave. Checker periodically verifies each bundle sent to bundlr.network to see if it's reached the FINISHED state. It specifically checks bundles that were created at least 160 Arweave blocks before the current block height.
 
 ## Run
 
@@ -12,7 +11,7 @@ Checker monitors the state of L2 interactions to make sure they end up in Arweav
 
 ### Internals
 
-Here are some details about how Checker works internally. Each box in the diagram is a separate `Task` that may spawn multiple goroutines, everything is set up in `src/check/controller.go`.
+Here's an inside look at how Checker operates. Each box in the diagram is a separate `Task` that may spawn multiple goroutines, everything is set up in `src/check/controller.go`.
 
 
 ```mermaid

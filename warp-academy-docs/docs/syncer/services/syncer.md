@@ -6,10 +6,10 @@ It constantly monitors the Arweave network for new blocks, downloads transaction
 ## Run
 
 ```bash
-# Start from the last saved block
+# Begin from the latest saved block
 ./syncer sync
 
-# Overwrite some columns in a range of blocks and stop
+# Overwrite some columns within a block range and stop
 ./syncer sync --start=1237269 --stop=1237269 --DANGEROUS_replace_existing_data
 ```
 
@@ -17,7 +17,7 @@ It constantly monitors the Arweave network for new blocks, downloads transaction
 
 Interactions parsed from transactions get inserted into an SQL database in batches, within one database transaction. Interactions from many blocks **may** get inserted in one db transaction, e.g. when syncer is catching up and downloading many blocks back-to-back. It is **not** possible that interactions from one Arweave block get divided into different DB transactions.
 
-Info about the last synced block is saved in the same database transaction as interactions from that block.
+Info about the latest synced block is saved in the same database transaction as interactions from that block.
 
 ### Internals
 

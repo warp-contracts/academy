@@ -6,16 +6,16 @@ It constantly monitors the Arweave network for new blocks, downloads transaction
 ## Run
 
 ```bash
-# Start from the last saved block
+# Start from the latest saved block
 ./syncer contract
 
-# Overwrite contracts in a range of blocks and stop
+# Overwrite contracts within a block range and stop
 ./syncer contract --start=1237269 --stop=1237269 --DANGEROUS_replace_existing_data
 ```
 
 ### Internals
 
-Here are some details about how Contractor works internally. Each box in the diagram is a separate `Task` that may spawn multiple goroutines, everything is set up in `src/contract/controller.go`.
+Here are some details about how the Contractor works internally. Each box in the diagram is a separate `Task` that may spawn multiple goroutines, everything is set up in `src/contract/controller.go`.
 
 
 ```mermaid

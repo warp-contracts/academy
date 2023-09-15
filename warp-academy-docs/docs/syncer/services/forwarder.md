@@ -3,13 +3,13 @@
 Forwarder is the service responsible for:
 
 - sending L1 and L2 interactions from the database to Redis
-- assigning last_sort_key to L1 interactions
+- assigning `last_sort_key` to L1 interactions
 
 
 ## Run
 
 ```bash
-# Start from the last saved block
+# Start from the latest saved block
 ./syncer forward
 ```
 
@@ -18,7 +18,9 @@ Forwarder is the service responsible for:
 
 ### Processing L1 interactions
 
-Forwarder receives changes of Syncer's finished block height through Postgres notifications. This change informs that all L1 interactions from this block are saved in the database and are ready for processing. Forwarder downloads all interactions (in batches) from the database, computes `last_sort_key` for each interactions and saves all info in the database. `FORWARDER_FINISHED_HEIGHT` is updated with the last batch.
+Forwarder receives changes of Syncer's finished block height through Postgres notifications. This change informs that all L1 interactions from this block are saved in the database and are ready for processing. Forwarder downloads all interactions (in batches) from the database, computes `last_sort_key` for each interaction, and saves results in the database.
+
+`FORWARDER_FINISHED_HEIGHT` is updated with the last batch.
 
 
 ### Sending L1 and L2 interactions
