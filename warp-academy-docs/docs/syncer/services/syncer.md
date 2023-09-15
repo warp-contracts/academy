@@ -9,7 +9,7 @@ It constantly monitors the Arweave network for new blocks, downloads transaction
 # Begin from the latest saved block
 ./syncer sync
 
-# Overwrite contracts within a block range and stop
+# Overwrite some columns within a block range and stop
 ./syncer sync --start=1237269 --stop=1237269 --DANGEROUS_replace_existing_data
 ```
 
