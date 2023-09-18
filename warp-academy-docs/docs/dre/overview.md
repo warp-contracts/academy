@@ -17,20 +17,22 @@ in a decentralized manner - taking the burden of the state evaluation from the e
 
 ## The reasoning
 
-The purpose of implementing Warp D.R.E. is to address the following issues.
+The purpose of implementing Warp DRE is to address the following issues.
 
 1. Evaluation of high-interaction contracts - evaluating contracts with thousands of interactions is a hassle for the
-   user's CPU. Response-time and UX can be improved significantly when computation is delegated to D.R.E.
+   user's CPU. Response-time and UX can be improved significantly when computation is delegated to DRE.
 
 2. Interaction with high-risk contracts - some contracts may perform risky/unsafe operations. Contract interaction via
-   Warp D.R.E. ensures the safety of users' devices.
+   Warp DRE ensures the safety of users' devices.
 
 3. Insights into PST tokens' - Providing aggregate information about PST tokens' status and count has always been
-   challenging. With D.R.E.'s aggregation tool, one can check global address data with just a few clicks.
+   challenging. With DRE's aggregation tool, one can check global address data with just a few clicks.
 
 4. Avoid centralised, closed-sourced solutions - private, unknown processing logic, and tightly coupled to a specific
-   cloud vendor (such as GCP or AWS) belong to the web2 era. Warp D.R.E. is built on the principle of "Don't trust,
-   verify". Once initial testing is complete, we will open up D.R.E nodes for public participation.
+   cloud vendor (such as GCP or AWS) belong to the web2 era. Warp DRE is built on the principle of "Don't trust,
+   verify".
+
+With the initial testing being completed, DRE nodes are open for public participation. To run your own DRE node instance, visit [*here*](/docs/dre/installation).
 
 ## Nodes
 
@@ -74,38 +76,38 @@ eg: https://dre-1.warp.cc/contract?id=-8A6RexFkpfWwuyVO98wzSFZh0d6VJuI-buTJvlwOJ
          "interaction": <new_interaction>
       }
       ```
-3. D.R.E. is subscribing for messages on the `contracts` channel.
-4. D.R.E. maintains two internal queues. The queues are implemented
+3. DRE is subscribing for messages on the `contracts` channel.
+4. DRE maintains two internal queues. The queues are implemented
    with [BullMQ](https://github.com/taskforcesh/bullmq#readme).
    1. **register** queue for registering new contracts (for messages with an initial state)
    2. **update** queue for processing contracts' interactions (for messages with a new interaction)
 5. Each of the queues have its own set of workers. Each worker runs as a
    separate, [sandboxed processor](https://docs.bullmq.io/guide/workers/sandboxed-processors)
    that is isolated from the rest of the code.
-6. Each message that comes to D.R.E. is first validated (message format, tx id format, etc.).
+6. Each message that comes to DRE is first validated (message format, tx id format, etc.).
 
 - If it is a `contract deployment` notification AND contract is not yet registered - a new job is added to the **
   register** queue.  
-  The processor that picks up such job simply sets the `initialState` from the incoming message in the D.R.E. cache.
+  The processor that picks up such job simply sets the `initialState` from the incoming message in the DRE cache.
 - If it is a `contract update` notification AND contract is not yet registered - a new job is added to the **register**
   queue.  
   The processor that picks up such job evaluates the contract's state from scratch.
 - If it is a `contract update` notification AND contract is already registered - a new job is added to the **update**
   queue.
   The processor that picks up such job either
-  - evaluates the state only for the interaction from the message - if D.R.E. has a contract cached
+  - evaluates the state only for the interaction from the message - if DRE has a contract cached
     at `message.interaction.lastSortKey`
   - evaluates the state for all the interactions from the lastly cached - if D.R.E has a contract cached at a lower
     sort key than `message.interaction.lastSortKey`.
 
 ### 2. Caching
 
-D.R.E. is currently using two kinds of caches
+DRE is currently using two kinds of caches
 
 1. Warp Contracts SDK's internal cache (with
    the [LMDB plugin](https://github.com/warp-contracts/warp-contracts-lmdb#warp-contracts-lmdb-cache))
 2. [better-sqlite3](https://github.com/WiseLibs/better-sqlite3#better-sqlite3-) based cache. This cache is used for
-   serving data via D.R.E. endpoints - in order not to interfere
+   serving data via DRE endpoints - in order not to interfere
    with the Warp Contracts SDK internal cache.
    It also serves as a form of a backup.  
    [WAL mode](https://github.com/WiseLibs/better-sqlite3/blob/master/docs/performance.md#performance) is being used for
@@ -113,7 +115,7 @@ D.R.E. is currently using two kinds of caches
 
 The evaluated state (apart from being automatically cached by the Warp Contracts SDK) is additionally:
 
-1. Signed by the D.R.E.'s wallet. The data for the signature consists of:
+1. Signed by the DRE's wallet. The data for the signature consists of:
 
    ```js
    // state is stringified with 'safe-stable-stringify', not JSON.stringify.
@@ -166,11 +168,11 @@ The `manifest` contains all the data that was used for the evaluation of the sta
 3. As a last step - a new state is being published on pub/sub `states` channel.
    The messages on this channel are being listened by
    the [Warp Aggregate Node](https://github.com/warp-contracts/warp-aggregate-node), which combines
-   the data from all the D.R.E.s.
+   the data from all the DREs.
 
 ### 3. Events
 
-To give a better understanding of that is going on, the D.R.E. registers events at certain points of processing.
+To give a better understanding of that is going on, the DRE registers events at certain points of processing.
 Each event consists of:
 
 1. event type
@@ -197,7 +199,7 @@ and ignored.
 ### 5. Endpoints
 
 :::tip
-If you're using Rust, you can interact with D.R.E. with the help of a great library developed by the [https://archivetheweb.com/](archivetheweb)
+If you're using Rust, you can interact with DRE with the help of a great library developed by the [https://archivetheweb.com/](archivetheweb)
 team - [https://github.com/archivetheweb/warp_dre](https://github.com/archivetheweb/warp_dre).
 :::
 
