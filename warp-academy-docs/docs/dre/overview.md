@@ -32,7 +32,7 @@ The purpose of implementing Warp DRE is to address the following issues.
    cloud vendor (such as GCP or AWS) belong to the web2 era. Warp DRE is built on the principle of "Don't trust,
    verify".
 
-With the initial testing being completed, DRE nodes are open for public participation. To run your own DRE node instance, visit here [*here*](/docs/dre/installation).
+With the initial testing being completed, DRE nodes are open for public participation. To run your own DRE node instance, visit [*here*](/docs/dre/installation).
 
 ## Nodes
 
