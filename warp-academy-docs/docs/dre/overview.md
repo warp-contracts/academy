@@ -1,7 +1,7 @@
-# Warp D.R.E.
+# Warp DRE
 
 A Delegated Resolution Environment for Warp Contracts.  
-D.R.E. nodes are a special kind of nodes that are responsible for evaluating and serving contracts' states -
+DRE nodes are a special kind of nodes that are responsible for evaluating and serving contracts' states -
 in a decentralized manner - taking the burden of the state evaluation from the end users.
 
 - [The reasoning](#the-reasoning)
@@ -43,6 +43,8 @@ Currently, there are five nodes are available:
 3. https://dre-3.warp.cc
 4. https://dre-4.warp.cc
 5. https://dre-5.warp.cc
+6. https://dre-6.warp.cc
+7. https://dre-u.warp.cc - a dedicated node for [**$U contract's**](https://u-wiki.arweave.dev/#/en/main) evaluation 
 
 To verify if your contract is available - check the `/contract` endpoint,  
 eg: https://dre-1.warp.cc/contract?id=-8A6RexFkpfWwuyVO98wzSFZh0d6VJuI-buTJvlwOJQ&events=true
