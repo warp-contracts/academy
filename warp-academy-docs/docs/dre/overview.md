@@ -36,7 +36,7 @@ With the initial testing being completed, DRE nodes are open for public particip
 
 ## Nodes
 
-Currently, there are five nodes are available:
+Currently, available nodes are:
 
 1. https://dre-1.warp.cc
 2. https://dre-2.warp.cc
