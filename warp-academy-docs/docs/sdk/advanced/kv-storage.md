@@ -1,9 +1,7 @@
 # Key-Value Storage for contracts
 
 An alternative way for storing state for contracts.
-:::caution
-Consider this as an experimental feature (though already used by our own contracts).
-:::
+
 ### Why?
 Imagine a PST contract with millions of entries in the 'balances' map.
 With the traditional way of storing a state - a change for one entry, requires passing to contract the whole state (the json) and then storing/caching it again - with only this one change.
@@ -51,7 +49,7 @@ await warp.deploy({
           useKVStorage: true
         }
       }
-    }));
+    });
 ```
 
 2. the `evaluationOptions` used for contract evaluation must have the `useKVStorage` option set true, e.g.:
@@ -99,6 +97,11 @@ The full contract example is available here: https://github.com/warp-contracts/w
 
 #### Example of retrieving kv entries for a specified range
 
+:::info
+In order to take the full of advantage of the kv storage, consider writing view functions in your contract. 
+This will enable an easy and fast access to the current kv state without any contract's state changes.
+:::
+
 ```js 
 let partialSum = 0;
 for await (let part of (await SmartWeave.kv.kvMap({ gte: 'pref.', lte: 'pref.\xff'})).values()) {
@@ -116,7 +119,7 @@ const dooValue = result.get('doo');
 ### Implementation details
 1. both 'put' and 'del' methods create new entries in kv storage under a current transaction sort key. In case of an error, entries inserted during active transaction are removed.
 2. all entries have the sortKey added to the stored key (the sortKey is taken from the `SmartWeave._activeTx`).
-3. The underlying storage is an implementation of the SDKs `SortKeyCache` interface. By default it is using the LevelDB (with a file based storage for node.js env and IndexedDB storage for browser env)
+3. The underlying storage is an implementation of the SDKs `SortKeyCache` interface. By default, it is using the LevelDB (with a file based storage for node.js env and IndexedDB storage for browser env)
 4. Any storage compatible with `SortKeyCache` interface can be used (e.g. https://github.com/warp-contracts/warp-contracts-lmdb#warp-contracts-lmdb-cache).
    In order to configure custom storage - use the `warp.useKVStorageFactory` method, e.g.:
 ```js
