@@ -32,7 +32,7 @@ const contractTags = [
 ];
 ```
 
-2. User then needs to initialize Bundlr and uploads the contract within data:
+2. User then needs to upload the contract. One can use Irys or other provider (e.g. Turbo or arbundles). Here, we will use Irys. In order to deploy contract we need to initialize Bundlr and upload the contract within data:
 
 ```ts
 const jwk = JSON.parse(fs.readFileSync('.secrets/warp-wallet-jwk.json').toString());
@@ -43,7 +43,9 @@ const data = fs.readFileSync('tools/data/data.txt');
 const tx = await bundlr.upload(data, { tags: contractTags });
 ```
 
-3. Finally, contract is sent to Warp Gateway where it is indexed so it can be immediately available for all Warp tools, contract data can be also served by Arweave gateway.
+3. Finally, contract is sent to Warp Gateway where it is indexed so it can be immediately available for all Warp tools, contract data can be also served by Arweave gateway. When using Irys - `node1` or `node2` must be set as a `register` method's second parameter, when using other providers - second parameter should be set to `arweave`. Warp Gateway verifies whether contract contains contract specific tags (e.g. Contract-Src, Init-State, App-Name and App-Version).
+
+`register` method is dedicated to atomic assets so contract init state should be set in a tag and not in the data field of the contract, additionally - contract should contain `Content-Type` tag.
 
 :::caution
 `register` method requires installing [`warp-contracts-plugin-deploy`](https://www.npmjs.com/package/warp-contracts-plugin-deploy). Learn more about this plugin in [`Deploy Plugin` section](plugins/deployment).

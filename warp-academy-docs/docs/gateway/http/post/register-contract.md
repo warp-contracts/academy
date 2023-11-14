@@ -2,7 +2,7 @@
 
 Method: `POST`
 
-`/gateway/register` - allows to register contract in Warp gateway. Contract must be firstly uploaded to Bundlr, its id and Bundlr's node to which contract data item has been uploaded (either `node1` or `node2`) must be passed to the request. Contract is then indexed in Warp gateway.
+`/gateway/register` - allows to register contract in Warp gateway. Contract must be firstly uploaded to Irys or other provider (e.g. Turbo or through arbundles). Then its id and register provider (either `node1` or `node2` for Irys deployments or `arweave` for others) must be passed to the request. Contract is then indexed in Warp gateway.
 
 Example request:
 
@@ -13,6 +13,6 @@ await fetch(`https://gateway.warp.cc/gateway/contracts/register`, {
     'Content-Type': 'application/json',
     Accept: 'application/json',
   },
-  body: JSON.stringify({ contractId, bundlrNode }),
+  body: JSON.stringify({ contractId, registerProvider }),
 });
 ```
