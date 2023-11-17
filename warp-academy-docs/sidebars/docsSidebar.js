@@ -111,25 +111,29 @@ const sidebars = {
       items: [
         { type: 'doc', label: 'Introduction', id: 'syncer/introduction' },
         { type: 'doc', label: 'Configuration', id: 'syncer/configuration' },
-        { type: 'category', 
-          label: 'Services', 
+        {
+          type: 'category',
+          label: 'Services',
           items: [
             { type: 'doc', label: 'Syncer', id: 'syncer/services/syncer' },
             { type: 'doc', label: 'Forwarder', id: 'syncer/services/forwarder' },
             { type: 'doc', label: 'Contractor', id: 'syncer/services/contractor' },
             { type: 'doc', label: 'Bundler', id: 'syncer/services/bundler' },
             { type: 'doc', label: 'Checker', id: 'syncer/services/checker' },
-        ]},
-        { type: 'category', 
-          label: 'Internals', 
+          ],
+        },
+        {
+          type: 'category',
+          label: 'Internals',
           items: [
             { type: 'doc', label: 'Development', id: 'syncer/internals/development' },
             { type: 'doc', label: 'Tasks', id: 'syncer/internals/tasks' },
             { type: 'doc', label: 'Peer Handling', id: 'syncer/internals/peer-handling' },
             { type: 'doc', label: 'Arweave API Client', id: 'syncer/internals/arweave-client' },
             { type: 'doc', label: 'Bundlr API Client', id: 'syncer/internals/bundlr-client' },
-        ]},
-      ],       
+          ],
+        },
+      ],
     },
     {
       type: 'category',
@@ -214,6 +218,11 @@ const sidebars = {
                   type: 'doc',
                   label: 'Creator',
                   id: 'gateway/http/get/creator',
+                },
+                {
+                  type: 'doc',
+                  label: 'Contracts by tags',
+                  id: 'gateway/http/get/contracts-by-tags',
                 },
               ],
             },
