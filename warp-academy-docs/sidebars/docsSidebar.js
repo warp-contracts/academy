@@ -42,6 +42,7 @@ const sidebars = {
           label: 'Advanced',
           items: [
             { type: 'doc', label: 'SmartWeave protocol', id: 'sdk/advanced/smartweave-protocol' },
+            { type: 'doc', label: 'Warp extensions', id: 'sdk/advanced/warp-extensions' },
             {
               type: 'category',
               label: 'WASM',
