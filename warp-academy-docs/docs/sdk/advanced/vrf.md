@@ -1,5 +1,11 @@
 # Verifiable randomness
 
+:::caution
+Random values will be handled in a new way once the decentralized sequencer is launched.
+More details can be found [here](/docs/sequencer/lifecycle/ordering#random-values).
+For backward compatibility, the function `SmartWeave.vrf.randomInt(maxValue)` will still work, but it will use the new function `SmartWeave.randomNumber(maxValue)` under the hood.
+:::
+
 You have an option to use random values in contracts via Verifiable Random Functions.  
 This may be a very useful feature in gaming, dynamic NFT generation, etc.
 

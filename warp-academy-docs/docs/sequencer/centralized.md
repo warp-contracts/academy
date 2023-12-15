@@ -1,52 +1,8 @@
-# Warp Sequencer
+# Warp Centralized Sequencer
 
-Warp Sequencer is a module that is responsible for submitting users' transactions into Arweave (via [Bundlr Network](https://bundlr.network/)).
-During the process, the transactions are indexed in [Warp Gateway](/docs/gateway/overview).
-This makes them instantly available for further processing (e.g. state evaluation) - unlike in traditional processing,
-where user has to wait several minutes for transaction mining and confirmation.
-
-Additionally, the Warp Sequencer does not require users to have any cryptocurrencies (AR, ETH, etc.) on their wallets.
-
-## Introduction
-
-The idea behind Warp Sequencer is to increase the Developer and User Experience.
-Normally, when an interaction with a contract is being sent to Arweave, one has to wait some time:
-
-1. for the transaction mining (~2 minutes)
-2. for the proper transaction confirmation (assuming at least 10 blocks - ~20 minutes).
-
-This in total gives ~20-25 minutes, which:
-
-1. Breaks the DX, e.g. in case developer wants to quickly test the contract's functions on mainnet
-2. Breaks the UX, e.g. - each user of a given dApp/protocol must wait really long to see the effect
-   of an interaction with a contract. This makes the applications effectively unusable - especially for users coming
-   from the web2.
-
-Additionally, any interaction with contract requires some amount of ARs in the wallet - which might further increase
-the entry barrier, both for developers and given protocol/dApp users.
-
-**NOTE** Waiting for a proper confirmation
-is especially important (though often overlooked) in case of a smart contract interactions.  
-Imagine a cache, that is evaluating the contracts state for all the interactions returned at any given time by the
-default Arweave (arweave.net) gateway.  
-If the cache does not wait for the proper transactions' confirmation, it may happen
-that it will store a contract state evaluated from the transactions from a forked blocks (or - even worse - from
-transactions that were not included in any block).
-
-## Advantages of using Warp Sequencer for interactions posting
-
-1. Interaction is near-instantly available - as soon as proper response from Bundlr network is received.
-2. Posting interactions with contract does not require any ARs - the deployment via Bundlr network is either
-   fully subsidized by the Arweave (for transactions <= 100KiB) or by the Warp (for transactions > 100KiB).
-   The max transaction size is currently 2MiB.  
-   Most of the contracts' interactions have the "default" 4B size.
-3. Even though the Bundlr transactions are created and signed by the Warp's wallet, it is still possible to identify
-   the original data item owner/signer.  
-   **NOTE** This is especially important in case of smart contracts - as contracts' business
-   logic very often is dependent on _who_ (i.e. what wallet address) is interacting with the contract.
-4. The option to use VRF in contracts that require verifiable randomness.
-5. Even if the Warp infra will go down, all the contract interactions can be still retrieved directly from Arweave,
-   using a simple GQL query.
+:::caution
+This section describes the operation of the current centralized sequencer, which will soon be replaced by the new [decentralized solution](/docs/sequencer/decentralized).
+:::
 
 ## How it works
 
@@ -108,7 +64,7 @@ This also means that the sequencing algorithm is fully backwards compatible with
 | `Sequencer-Owner`                           | The original owner/signar of the contract transaction                |
 | `Sequencer-Mills`                           | The sequence value used by the Sequencer for this transaction        |
 | `Sequencer-Sort-Key`                        | The generated sort key for this transaction                          |
-| `Sequencer-Last-Sort-Key`                   | The sort key of the previous transaction                             |
+| `Sequencer-Prev-Sort-Key`                   | The sort key of the previous transaction                             |
 | `Sequencer-Tx-Id`                           | The original transaction id                                          |
 | `Sequencer-Block-Height`                    | The block height used for generating the sort key                    |
 | `Sequencer-Block-Id`                        | The block hash used for generating the sort key                      |
@@ -116,7 +72,7 @@ This also means that the sequencing algorithm is fully backwards compatible with
 | ...all the tags of the original transaction |                                                                      |
 
 :::tip
-The `Sequencer-Last-Sort-Key` tells what is the sort key of the 'previous' transaction in the sequencer and
+The `Sequencer-Prev-Sort-Key` tells what is the sort key of the 'previous' transaction in the sequencer and
 can be used to verify whether all transactions have been properly loaded (i.e. if one
 decides to load them directly from L1 nodes) and none is missing.
 :::

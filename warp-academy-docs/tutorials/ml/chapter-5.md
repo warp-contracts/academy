@@ -80,7 +80,7 @@ async function postBtcPrice(message, context) {
 exports.postBtcPrice = postBtcPrice;
 ```
 :::info
-The above function is posting the transactions via [Warp Sequencer](../../docs/sdk/advanced/bundled-interaction). When using the Warp Sequencer,
+The above function is posting the transactions via [Warp Sequencer](../../docs/sequencer/introduction). When using the Warp Sequencer,
 you don't need to have any ARs, tokens or weird, web2-ish API keys.  
 All you need is a wallet (which can be generated on the fly) that will allow to identify
 who is interacting with the contract.

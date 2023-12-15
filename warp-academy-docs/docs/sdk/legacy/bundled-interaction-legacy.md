@@ -1,7 +1,7 @@
 # Warp Sequencer - legacy
 
 :::caution
-Please note, that you are viewing old Warp Sequencer docs. Since `warp-contracts@1.4.13` nested bundles have been introduced instead of the format described in this file. In order to read about current interaction format, please head to [Warp Sequencer](../advanced/bundled-interaction.md).
+Please note, that you are viewing old Warp Sequencer docs. Since `warp-contracts@1.4.13` nested bundles have been introduced instead of the format described in this file. In order to read about current interaction format, please head to [Warp Sequencer](../../sequencer/introduction.md).
 :::
 
 Warp Sequencer is a module that is responsible for submitting users' transactions into Arweave (via [Bundlr Network](https://bundlr.network/)).
