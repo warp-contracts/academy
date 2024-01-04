@@ -102,9 +102,27 @@ const sidebars = {
       ],
     },
     {
-      type: 'doc',
+      type: 'category',
       label: 'Warp Sequencer',
-      id: 'sdk/advanced/bundled-interaction',
+      items: [
+        { type: 'doc', label: 'Introduction', id: 'sequencer/introduction' },
+        { type: 'doc', label: 'Centralized Sequencer', id: 'sequencer/centralized' },
+        { type: 'doc', label: 'Decentralized Sequencer', id: 'sequencer/decentralized' },
+        {
+          type: 'category',
+          label: 'Interaction Lifecycle',
+          items: [
+            { type: 'doc', label: 'Overview', id: 'sequencer/lifecycle/overview' },
+            { type: 'doc', label: 'Creating and sending', id: 'sequencer/lifecycle/creating' },
+            { type: 'doc', label: 'Receiving and validating', id: 'sequencer/lifecycle/receiving' },
+            { type: 'doc', label: 'Ordering', id: 'sequencer/lifecycle/ordering' },
+            { type: 'doc', label: 'Relaying', id: 'sequencer/lifecycle/relaying' },
+          ],
+        },
+        { type: 'doc', label: 'Data Format', id: 'sequencer/data-format' },
+        { type: 'doc', label: 'API Methods', id: 'sequencer/api-methods' },
+        { type: 'doc', label: 'Roadmap', id: 'sequencer/roadmap' }
+      ],
     },
     {
       type: 'category',

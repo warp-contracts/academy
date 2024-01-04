@@ -6,7 +6,7 @@ Apart from Arweave wallet, you can connect EVM wallet to your contract. By readi
 
 1. You can connect EVM wallet only in browser environment.
 2. User needs to have Metamask plugin installed.
-3. It is possible to use EVM wallet only when bundling transaction. See [this feature](/docs/sdk/advanced/bundled-interaction).
+3. It is possible to use EVM wallet only when bundling transaction. See [this feature](/docs/sequencer/introduction).
 
 Most importantly - these obstacles will not last forever as Warp team is planning to develop the feature further. For now, treat is an experimental feature which can expand the capabilities of your application by inviting users from other blockchain than Arweave. As always - if you find it useful or would like to make a suggestion, please reach to the Warp team on [on Discord](https://discord.com/invite/PVxBZKFr46).
 

@@ -83,6 +83,17 @@ const config = {
         },
         sidebarPath: require.resolve('./sidebars/standardsSidebar.js'),
       },
+    ],
+    [
+      '@docusaurus/plugin-client-redirects',
+      {
+        redirects: [
+          {
+            to: '/docs/sequencer/introduction',
+            from: '/docs/sdk/advanced/bundled-interaction',
+          }
+        ]
+      }
     ]
   ],
 
@@ -195,7 +206,7 @@ const config = {
       prism: {
         theme: lightCodeTheme,
         darkTheme: darkCodeTheme,
-        additionalLanguages: ['rust', 'toml'],
+        additionalLanguages: ['rust', 'toml', 'protobuf'],
       },
       algolia: {
         appId: 'MCHYFKZV38',
