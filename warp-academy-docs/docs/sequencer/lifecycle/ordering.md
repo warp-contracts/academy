@@ -47,14 +47,11 @@ This implies, in particular, that when an Arweave block along with its contained
 
 ## Previous Sort Key
 
-----
-[DIAGRAM WITH LINKED LIST OF INTERACTIONS]
-
-----
-
 All interactions, regardless of how they were sent, are ordered by the sequencer in a linear order. 
 This means that for each interaction, which is not the first interaction of a given contract, we can identify its predecessor within that contract. 
 For this purpose, we use a value we will call the `prev sort key`.
+
+![Linked list of interactions](/img/docs/sequencer/interactions-linked-list.png)
 
 This value is useful prior to the evaluation of the contract state when retrieving the [list of interactions](/docs/gateway/http/get/interactions) for that contract from the gateway, ensuring that no interactions were overlooked.
 
@@ -63,10 +60,7 @@ To calculate the prev sort key, each sequencer node maintains a map (refer to: [
 ## Block Proposal
 As sequencer nodes accept interactions and place them in their mempool, these interactions do not yet have assigned `sort key` and `prev sort key` values. These values can only be calculated at the time of creating a proposal for the next sequencer block.
 
-----
-[DIAGRAM FOR PROPOSER]
-
-----
+![Creating a block proposal](/img/docs/sequencer/block-proposal.png)
 
 The process is as follows:
 

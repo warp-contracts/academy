@@ -1,5 +1,7 @@
 # Receiving and Validating Interactions
 
+![Receiving interaction by the sequencer node](/img/docs/sequencer/receiving-interaction.png)
+
 The sequencer accepts interactions in the form of [DataItem](https://github.com/ArweaveTeam/arweave-standards/blob/master/ans/ANS-104.md) via the endpoint `/api/v1/data-item` (refer to: [API Methods](/docs/sequencer/api-methods#submits-a-new-interaction-to-the-sequencer)). 
 Interactions added to the sequencer's blockchain take the form of messages. 
 The message that encapsulates an interaction in the DataItem format is `MsgDataItem` (see: [Messages format](/docs/sequencer/data-format#interaction-message)). 
@@ -9,11 +11,6 @@ Finally, a transaction is created whose only message is this interaction.
 :::tip
 A [transaction](https://docs.cosmos.network/main/learn/advanced/transactions) in the Cosmos SDK represents a set of messages that trigger state transitions within the blockchain.
 :::
-
-----
-[DIAGRAM FOR RECEIVING INTERACTIONS]
-
-----
 
 ## Validation
 

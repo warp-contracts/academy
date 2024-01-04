@@ -3,6 +3,8 @@
 Interactions are used to change the state of contracts and invoke computations defined in the contract's source code.
 However, before any of that can happen, the interaction must go through a lifecycle, which is not such a simple process.
 
+![The lifecycle of an interaction in Warp Sequencer](/img/docs/sequencer/interaction-lifecycle.png)
+
 In brief, the lifecycle of an interaction begins when it is [created](/docs/sequencer/lifecycle/creating) and sent by the [Warp SDK](/docs/sdk/overview).
 The interaction is then [received](/docs/sequencer/lifecycle/receiving) by the Warp Sequencer, which establishes order relative to other interactions.
 The process of [ordering](/docs/sequencer/lifecycle/ordering) involves generating keys on which the interactions are sorted, as well as generating random values in case the contract needs them.
@@ -17,7 +19,5 @@ Due to the characteristics of the Arweave blockchain, these interactions must be
 For this type of interaction, the sequencer also sends data to Arweave, but only information related to the ordering of the interactions and random values.
 
 The gateway receives a common list of interactions regardless of whether they were sent to the sequencer or to Arweave.
-
-![Decentralized Warp Sequencer](/img/docs/sequencer/sequencer.png)
 
 The stages of the interaction lifecycle will be described in detail in the following sections.

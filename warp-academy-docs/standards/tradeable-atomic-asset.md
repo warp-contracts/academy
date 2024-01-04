@@ -16,7 +16,7 @@ To find existing contracts implementing the atomic-asset standard, we can use `t
 Tags can be specified [during deployment](../docs/sdk/advanced/register-contract) of atomic-asset.
 
 - During deployment following tag should be added : `{name: 'Indexed-By', value: 'atomic-asset'}`
-  - This tag is supported by [warp-aggregate-node](../docs/aggregate-node/overview.md). Thus allow to query assets by its owner - [documentation](../docs/aggregate-node/overview.md#nft-by-owner)
+  - This tag is supported by [warp-aggregate-node](../docs/aggregate-node/overview). Thus allow to query assets by its owner - [documentation](../docs/aggregate-node/overview#nft-by-owner)
 
 ## State
 
