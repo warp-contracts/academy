@@ -28,11 +28,6 @@ This collaboration fosters a robust foundation for future growth and innovation 
 In the same decentralized spirit as the sequencing process, the submission of interactions to Arweave should also unfold through a decentralized mechanism. 
 It is imperative that every interaction sender can be confident that by submitting their interaction to the sequencer, it will ultimately find its way to Arweave.
 
-----
-[DIAGRAM FOR RELAYER]
-
-----
-
 ### Mechanism of Interaction Submission
 
 - The node that is currently responsible for forwarding interactions to Arweave is called the *Relayer*.
